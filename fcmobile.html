@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>FC Mobile - HYPER TOPUP</title>
+  
+  <!-- تسريع تحميل الصور والخطوط -->
+  <link rel="preconnect" href="https://i.ibb.co">
+  <link rel="dns-prefetch" href="https://i.ibb.co">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      background-color: #0b0d10;
+      color: #e2e8f0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    body.modal-open {
+      overflow: hidden !important;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      padding: 20px 15px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* الهيدر والعناوين */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
+    }
+
+    .sub-title {
+      display: inline-block;
+      background: rgba(168, 85, 247, 0.1);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      color: #c084fc;
+      font-size: 11px;
+      padding: 3px 12px;
+      border-radius: 4px;
+      margin-top: 4px;
+      font-weight: bold;
+    }
+
+    .back-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      color: #ffffff;
+      width: 38px;
+      height: 38px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .back-btn:active {
+      transform: scale(0.92);
+      background: #a855f7;
+    }
+
+    /* البانر العلوي */
+    .banner-container {
+      width: 100%;
+      height: 160px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+      position: relative;
+    }
+
+    .banner-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* التبويبات العلوية مع الصور */
+    .filter-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .tab-btn {
+      background: #121018;
+      border: 1px solid #281e36;
+      color: #94a3b8;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.25s ease;
+    }
+
+    .tab-btn img {
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(57, 255, 20, 0.1) 100%);
+      border-color: #39ff14;
+      color: #ffffff;
+      box-shadow: 0 0 12px rgba(57, 255, 20, 0.2);
+    }
+
+    /* شبكة الكروت */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .product-card {
+      background: #110e17;
+      border: 1px solid #211a2d;
+      border-radius: 10px;
+      padding: 15px 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .product-card:hover {
+      border-color: #a855f7;
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.25);
+    }
+
+    .pkg-img {
+      width: 65px;
+      height: 65px;
+      object-fit: contain;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 0 6px rgba(168, 85, 247, 0.3));
+    }
+
+    .pkg-name {
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      line-height: 1.3;
+      min-height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .price {
+      color: #39ff14;
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      text-shadow: 0 0 8px rgba(57, 255, 20, 0.4);
+    }
+
+    .buy-btn {
+      width: 100%;
+      background: linear-gradient(180deg, #1d331f 0%, #112013 100%);
+      border: 1px solid #39ff14;
+      color: #ffffff;
+      padding: 9px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .buy-btn:active {
+      background: #39ff14;
+      color: #000000;
+      box-shadow: 0 0 10px #39ff14;
+    }
+
+    /* المودال Pop-up Order */
+    .hidden {
+      display: none !important;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(6px);
+    }
+
+    .modal-content {
+      position: relative;
+      z-index: 10000;
+      background: #0f0c14;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      border: 1px solid #271a38;
+      border-top: 2px solid #a855f7;
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 20px;
+      box-shadow: 0 -5px 30px rgba(168, 85, 247, 0.3);
+    }
+
+    .modal-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .modal-title-text {
+      font-size: 16px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .selected-pkg-card {
+      background: #171221;
+      border: 1px solid #2c1e40;
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      gap: 15px;
+      margin-bottom: 18px;
+    }
+
+    .pkg-title-display {
+      font-size: 15px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .pkg-icon-box img {
+      width: 45px;
+      height: 45px;
+      object-fit: contain;
+    }
+
+    .input-label {
+      display: block;
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 8px;
+      text-align: right;
+    }
+
+    .id-input-field {
+      width: 100%;
+      padding: 13px;
+      background: #140f1d;
+      border: 1px solid #2a1e3b;
+      border-radius: 6px;
+      color: #ffffff;
+      font-size: 14px;
+      outline: none;
+      margin-bottom: 20px;
+    }
+
+    .id-input-field:focus {
+      border-color: #a855f7;
+    }
+
+    .section-title {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 10px;
+      text-align: right;
+    }
+
+    .payment-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .pay-item {
+      background: #140f1d;
+      border: 1px solid #2a1e3b;
+      border-radius: 6px;
+      padding: 13px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .pay-item.selected {
+      border-color: #39ff14;
+      background: #172418;
+    }
+
+    .pay-item-name {
+      font-size: 14px;
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    .badge-recommended {
+      background: #39ff14;
+      color: #000000;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .modal-bottom-action {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 10px;
+    }
+
+    .price-display-box {
+      text-align: right;
+    }
+
+    .price-label-sub {
+      font-size: 12px;
+      color: #94a3b8;
+      display: block;
+    }
+
+    .final-price-text {
+      font-size: 18px;
+      font-weight: bold;
+      color: #39ff14;
+    }
+
+    .submit-pay-btn {
+      background: #39ff14;
+      color: #000000;
+      border: none;
+      padding: 12px 34px;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <div>
+        <h1 class="brand-title">HYPER TOPUP</h1>
+        <span class="sub-title">FC Mobile - شحن معتمد</span>
+      </div>
+      <a href="games.html" class="back-btn">&gt;</a>
+    </div>
+
+    <!-- بانر FC Mobile العلوي -->
+    <div class="banner-container">
+      <img src="https://i.ibb.co/M529KW1G/IMG-20260911-123002.png" alt="FC Mobile Banner" class="banner-img">
+    </div>
+
+    <!-- كروت التبويبات -->
+    <div class="filter-tabs">
+      <button id="fcPointsTabBtn" class="tab-btn active" onclick="switchTab('fcpoints')">
+        <img src="https://i.ibb.co/4RcftKPd/3dc2b799f5b68755bcb49d682c081a61.png" alt="FC Points">
+        <span>قسم FC Points</span>
+      </button>
+
+      <button id="silverTabBtn" class="tab-btn" onclick="switchTab('silver')">
+        <img src="https://i.ibb.co/0y8k7gLc/1705583683444-FCM-3-PP-Silver-Single-1.png" alt="Silver">
+        <span>قسم Silver</span>
+      </button>
+    </div>
+
+    <!-- شبكة المنتجات -->
+    <div id="productsGrid" class="products-grid"></div>
+  </div>
+
+  <!-- مودال الشحن Popup -->
+  <div id="orderModal" class="modal hidden">
+    <div class="modal-overlay" onclick="closeModal()"></div>
+    <div class="modal-content">
+      
+      <div class="modal-top-bar">
+        <span class="modal-title-text">إتمام طلب الشحن - FC Mobile</span>
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+      </div>
+
+      <div class="selected-pkg-card">
+        <div class="pkg-icon-box">
+          <img id="modalPkgImg" src="" alt="Selected Package">
+        </div>
+        <span id="packageTitleDisplay" class="pkg-title-display">-</span>
+      </div>
+
+      <label class="input-label" for="playerIdInput">معرف اللاعب (Player ID)</label>
+      <input type="tel" inputmode="numeric" id="playerIdInput" class="id-input-field" placeholder="اكتب Player ID هنا" dir="rtl" style="text-align: right;">
+
+      <div class="section-title">اختر طريقة الدفع</div>
+      <div class="payment-list">
+        <div class="pay-item selected" onclick="selectPayOption(this, 'فودافون كاش / أورنج / اتصالات')">
+          <span class="pay-item-name">فودافون كاش / أورنج / اتصالات</span>
+          <span class="badge-recommended">مستحسن</span>
+        </div>
+
+        <div class="pay-item" onclick="selectPayOption(this, 'InstaPay')">
+          <span class="pay-item-name">إنستا باي (InstaPay)</span>
+        </div>
+      </div>
+
+      <div class="modal-bottom-action">
+        <button class="submit-pay-btn" onclick="submitOrder()">دفع</button>
+
+        <div class="price-display-box">
+          <span class="price-label-sub">الإجمالي:</span>
+          <span id="finalPriceDisplay" class="final-price-text">0.00 EGP</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+const productsData = {
+  fcpoints: [
+    { name: 'باقة 40 FC POINTS', price: 25, img: 'https://i.ibb.co/LdyNYKCj/1705583704508-40-FC-Points-1.png' },
+    { name: 'باقة 100 FC POINTS', price: 60, img: 'https://i.ibb.co/4RcftKPd/3dc2b799f5b68755bcb49d682c081a61.png' },
+    { name: 'باقة 520 FC POINTS', price: 285, img: 'https://i.ibb.co/QFvpFx5h/3231a5af12d881c6a88ad4fe221f5fc4.png' },
+    { name: 'باقة 1070 FC POINTS', price: 560, img: 'https://i.ibb.co/3y4TGGqw/a170279f4510f8f5734a423af9d02118.png' },
+    { name: 'باقة 2200 FC POINTS', price: 1100, img: 'https://i.ibb.co/1f1yyRm4/b53d2e47254fe8456dd35041cb4d8e7f.png' },
+    { name: 'باقة 5750 FC POINTS', price: 2680, img: 'https://i.ibb.co/ycs3d8N4/c35f0944a64a9109ccce9cbc24291c1e.png' },
+    { name: 'باقة 12000 FC POINTS', price: 5300, img: 'https://i.ibb.co/b52pR5YB/453a1767f313ea05fb4fc838635dae37.png' }
+  ],
+  silver: [
+    { name: 'باقة 39 Silver', price: 25, img: 'https://i.ibb.co/d4Qz8VQb/a7f26a86ef3329f8e6f064a54e395902.png' },
+    { name: 'باقة 99 Silver', price: 60, img: 'https://i.ibb.co/TBFs7Xdd/c30d05de57d0893291276d4335779ca5.png' },
+    { name: 'باقة 499 Silver', price: 285, img: 'https://i.ibb.co/tMRmW712/fdf2e2ce01d2885686d4c6b7f162cb33.png' },
+    { name: 'باقة 999 Silver', price: 560, img: 'https://i.ibb.co/m5kSSWS8/dc6c86afb0fba47aad21adc17d447255.png' },
+    { name: 'باقة 1999 Silver', price: 1100, img: 'https://i.ibb.co/zTcSTD3D/adf04936c53da8a0202fae85ca43ed44.png' },
+    { name: 'باقة 4999 Silver', price: 2680, img: 'https://i.ibb.co/84gbtYf5/f27cdad088b1ab659041d0423a2f52c8.png' },
+    { name: 'باقة 9999 Silver', price: 5300, img: 'https://i.ibb.co/fV2zrsXr/ab8debb7b199f570bb52d95ef6680ad1.png' }
+  ]
+};
+
+let currentTab = 'fcpoints';
+let currentOrderData = {};
+let selectedMethod = 'فودافون كاش / أورنج / اتصالات';
+
+const $ = id => document.getElementById(id);
+
+function renderProducts(tab) {
+  const grid = $('productsGrid');
+  if(!grid) return;
+  grid.innerHTML = '';
+
+  productsData[tab].forEach((item, index) => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <img src="${item.img}" class="pkg-img" alt="${item.name}" loading="lazy">
+      <div class="pkg-name">${item.name}</div>
+      <div class="price">${item.price} EGP</div>
+      <button class="buy-btn" onclick="openOrder('${tab}', ${index})">شحن فوري</button>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function switchTab(tab) {
+  currentTab = tab;
+  if (tab === 'fcpoints') {
+    $('fcPointsTabBtn').classList.add('active');$('silverTabBtn').classList.remove('active');
+  } else {
+    $('silverTabBtn').classList.add('active');$('fcPointsTabBtn').classList.remove('active');
+  }
+  renderProducts(tab);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderProducts(currentTab);
+});
+
+function openOrder(tab, index) {
+  const item = productsData[tab][index];
+  if (!item) return;
+
+  currentOrderData = item;
+
+  $('packageTitleDisplay').textContent = item.name;
+  $('modalPkgImg').src = item.img;
+  $('finalPriceDisplay').textContent = item.price.toFixed(2) + ' EGP';$('playerIdInput').value = '';
+
+  $('orderModal').classList.remove('hidden');
+  document.body.classList.add('modal-open');
+}
+
+function closeModal() {
+  $('orderModal').classList.add('hidden');
+  document.body.classList.remove('modal-open');
+}
+
+function selectPayOption(el, method) {
+  document.querySelectorAll('.pay-item').forEach(i => i.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedMethod = method;
+}
+
+function submitOrder() {
+  const idInput = document.getElementById('playerIdInput');
+  const playerId = idInput ? idInput.value.trim() : '';
+
+  if (!playerId) {
+    alert('⚠️ يرجى كتابة الـ Player ID الخاص بك أولاً!');
+    return;
+  }
+
+  const isInstaPaySelected = (selectedMethod === 'InstaPay') || 
+                             (document.querySelector('.pay-item.selected')?.innerText.includes('InstaPay'));
+
+  const packageName = currentOrderData.name || 'باقة FC Mobile';
+  const rawPrice = currentOrderData.price || 0;
+  const roundedPrice = Math.round(parseFloat(rawPrice));
+  const orderId = '#HYP' + Math.floor(1000 + Math.random() * 9000);
+
+  if (isInstaPaySelected) {
+    window.location.href = `instapay-payment.html?game=FC%20Mobile&package=${encodeURIComponent(packageName)}&amount=${roundedPrice}&id=${encodeURIComponent(playerId)}&order=${orderId}`;
+  } else {
+    window.location.href = `hyper-payment.html?game=FC%20Mobile&package=${encodeURIComponent(packageName)}&amount=${rawPrice}&id=${encodeURIComponent(playerId)}&order=${orderId}`;
+  }
+}
+</script>
+</body>
+</html>

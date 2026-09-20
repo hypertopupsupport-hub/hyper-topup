@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Free Fire - HYPER TOPUP</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    html, body {
+      background-color: #0b0e14;
+      color: #ffffff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    body.modal-open {
+      overflow: hidden !important;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      padding: 20px 15px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      padding: 10px 0;
+    }
+
+    .header-titles {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 1px;
+      margin: 0;
+    }
+
+    .sub-title {
+      display: inline-block;
+      background: rgba(0, 243, 255, 0.1);
+      border: 1px solid rgba(0, 243, 255, 0.3);
+      color: #00f3ff;
+      font-size: 11px;
+      padding: 3px 12px;
+      border-radius: 12px;
+      margin-top: 4px;
+    }
+
+    .back-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      text-decoration: none;
+    }
+
+    .banner-container {
+      width: 100%;
+      height: 160px;
+      margin-bottom: 20px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 243, 255, 0.2);
+    }
+
+    .banner-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .filter-tabs {
+      display: flex;
+      margin-bottom: 25px;
+    }
+
+    .tab-btn {
+      background: #0a0a14;
+      border: 1px solid #00f3ff;
+      color: #00f3ff;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .product-card {
+      background: #121824;
+      border: 1px solid rgba(0, 243, 255, 0.25);
+      border-radius: 12px;
+      padding: 18px 12px;
+      text-align: center;
+    }
+
+    .gem-icon {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .pkg-name {
+      color: #e0e0e0;
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      color: #00f3ff;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .buy-btn {
+      width: 100%;
+      background: #00a2ff;
+      border: none;
+      color: #ffffff;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* المودال */
+    .hidden {
+      display: none !important;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-content {
+      position: relative;
+      z-index: 10000;
+      background: #111622;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      border: 1px solid #1e293b;
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 20px;
+      box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .modal-title-text {
+      font-size: 18px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    /* تعديل كارت الباقة: الأيقونة على اليمين بالكامل */
+    .selected-pkg-card {
+      background: #1a2234;
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse; /* نقل الصورة لليقين */
+      justify-content: flex-end;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .pkg-title-display {
+      font-size: 16px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .pkg-icon-box {
+      font-size: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .input-label {
+      display: block;
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 8px;
+      text-align: right;
+    }
+
+    .id-input-field {
+      width: 100%;
+      padding: 14px;
+      background: #182030;
+      border: 1px solid #28354d;
+      border-radius: 10px;
+      color: #ffffff;
+      font-size: 14px;
+      outline: none;
+      margin-bottom: 20px;
+    }
+
+    .id-input-field:focus {
+      border-color: #00a2ff;
+    }
+
+    .section-title {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 10px;
+      text-align: right;
+    }
+
+    .payment-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .pay-item {
+      background: #182030;
+      border: 1px solid #28354d;
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .pay-item.selected {
+      border-color: #00a2ff;
+      background: #15273e;
+    }
+
+    .pay-item-name {
+      font-size: 14px;
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    .badge-recommended {
+      background: #00a2ff;
+      color: #ffffff;
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    /* مربع تفاصيل السعر الدقيق */
+    .price-breakdown-box {
+      background: #182030;
+      border: 1px solid #28354d;
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 15px;
+    }
+
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      margin-bottom: 8px;
+      color: #94a3b8;
+    }
+
+    .breakdown-row.discount-text {
+      color: #f59e0b;
+    }
+
+    .breakdown-row.total-text {
+      color: #ffffff;
+      font-weight: bold;
+      border-top: 1px solid #28354d;
+      padding-top: 8px;
+      margin-bottom: 0;
+    }
+
+    .modal-bottom-action {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 10px;
+    }
+
+    .price-toggle-btn {
+      text-align: right;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .price-label-sub {
+      font-size: 12px;
+      color: #94a3b8;
+      display: block;
+    }
+
+    .final-price-text {
+      font-size: 18px;
+      font-weight: bold;
+      color: #00a2ff;
+    }
+
+    .submit-pay-btn {
+      background: #00a2ff;
+      color: #ffffff;
+      border: none;
+      padding: 12px 36px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <div class="header-titles">
+        <h1 class="brand-title">HYPER TOPUP</h1>
+        <span class="sub-title">شحن وخدمات Free Fire</span>
+      </div>
+      <a href="games.html" class="back-btn">&gt;</a>
+    </div>
+
+    <div class="banner-container">
+      <img src="https://i.ibb.co/8nQsbYj0/IMG-20260910-235840.png" alt="Free Fire X HYPER TOPUP" class="banner-img">
+    </div>
+
+    <div class="filter-tabs">
+      <button class="tab-btn">قسم شراء</button>
+    </div>
+
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="gem-icon">💎</div>
+        <div class="pkg-name">باقة 50 جوهرة</div>
+        <div class="price">EGP 30.00</div>
+        <button class="buy-btn" onclick="openOrder(0)">شحن فوري</button>
+      </div>
+
+      <div class="product-card">
+        <div class="gem-icon">💎</div>
+        <div class="pkg-name">باقة 100 جوهرة</div>
+        <div class="price">EGP 53.99</div>
+        <button class="buy-btn" onclick="openOrder(1)">شحن فوري</button>
+      </div>
+
+      <div class="product-card">
+        <div class="gem-icon">💎</div>
+        <div class="pkg-name">باقة 210 جوهرة</div>
+        <div class="price">EGP 108.99</div>
+        <button class="buy-btn" onclick="openOrder(2)">شحن فوري</button>
+      </div>
+
+      <div class="product-card">
+        <div class="gem-icon">💎</div>
+        <div class="pkg-name">باقة 310 جوهرة</div>
+        <div class="price">EGP 159.99</div>
+        <button class="buy-btn" onclick="openOrder(3)">شحن فوري</button>
+      </div>
+
+      <div class="product-card">
+        <div class="gem-icon">💎</div>
+        <div class="pkg-name">باقة 520 جوهرة</div>
+        <div class="price">EGP 260.00</div>
+        <button class="buy-btn" onclick="openOrder(4)">شحن فوري</button>
+      </div>
+
+      <div class="product-card">
+        <div class="gem-icon">💎</div>
+        <div class="pkg-name">باقة 1,060 جوهرة</div>
+        <div class="price">EGP 510.00</div>
+        <button class="buy-btn" onclick="openOrder(5)">شحن فوري</button>
+      </div>
+
+      <div class="product-card">
+        <div class="gem-icon">💎</div>
+        <div class="pkg-name">باقة 2,200 جوهرة</div>
+        <div class="price">EGP 1079.99</div>
+        <button class="buy-btn" onclick="openOrder(6)">شحن فوري</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- مودال الشحن -->
+  <div id="orderModal" class="modal hidden">
+    <div class="modal-overlay" onclick="closeModal()"></div>
+    <div class="modal-content">
+      
+      <div class="modal-top-bar">
+        <span class="modal-title-text">إتمام طلب الشحن</span>
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+      </div>
+
+      <div class="selected-pkg-card">
+        <div class="pkg-icon-box">💎</div>
+        <span id="packageTitleDisplay" class="pkg-title-display">باقة 50 جوهرة</span>
+      </div>
+
+      <label class="input-label" for="playerIdInput">معرف اللاعب (Player ID)</label>
+      <input type="tel" inputmode="numeric" id="playerIdInput" class="id-input-field" placeholder="اكتب Player ID هنا" dir="rtl" style="text-align: right;">
+
+      <div class="section-title">اختر قنوات الدفع</div>
+      <div class="payment-list">
+        <div class="pay-item selected" onclick="selectPayOption(this, 'فودافون كاش / أورنج / اتصالات')">
+          <span class="pay-item-name">فودافون كاش / أورنج / اتصالات</span>
+          <span class="badge-recommended">مستحسن</span>
+        </div>
+
+        <div class="pay-item" onclick="selectPayOption(this, 'إنستا باي (InstaPay)')">
+          <span class="pay-item-name">إنستا باي (InstaPay)</span>
+        </div>
+      </div>
+
+      <!-- تفاصيل السعر الحقيقية بدون خصم وهمي -->
+      <div id="priceBreakdown" class="price-breakdown-box hidden">
+        <div class="breakdown-row">
+          <span>السعر الأصلي:</span>
+          <span id="originalPrice">EGP 0.00</span>
+        </div>
+        <div class="breakdown-row discount-text">
+          <span>الخصم:</span>
+          <span id="discountPrice">EGP 0.00</span>
+        </div>
+        <div class="breakdown-row total-text">
+          <span>الإجمالي النهائي:</span>
+          <span id="finalBreakdownPrice">EGP 0.00</span>
+        </div>
+      </div>
+
+      <div class="modal-bottom-action">
+        <button class="submit-pay-btn" onclick="submitOrder()">دفع</button>
+
+        <div class="price-toggle-btn" onclick="togglePriceBreakdown()">
+          <span class="price-label-sub"><span id="arrowIcon">▲</span> الإجمالي:</span>
+          <span id="finalPriceDisplay" class="final-price-text">EGP 0.00</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+// ترتيب العناصر: [اسم الباقة, السعر الحالي, السعر الأصلي (0 إذا لا يوجد خصم)]
+const products = [
+  ['باقة 50 جوهرة', 30.00, 0],
+  ['باقة 100 جوهرة', 53.99, 0],
+  ['باقة 210 جوهرة', 108.99, 0],
+  ['باقة 310 جوهرة', 159.99, 0],
+  ['باقة 520 جوهرة', 260.00, 0],
+  ['باقة 1,060 جوهرة', 510.00, 0],
+  ['باقة 2,200 جوهرة', 1079.99, 0]
+];
+
+let currentOrderData = {};
+let selectedMethod = 'فودافون كاش / أورنج / اتصالات';
+
+const $ = id => document.getElementById(id);
+
+function openOrder(index) {
+  const item = products[index];
+  if (!item) return;
+
+  const currentPrice = item[1];
+  const origPrice = item[2] > 0 ? item[2] : currentPrice;
+  const discountVal = origPrice - currentPrice;
+
+  currentOrderData = { name: item[0], price: currentPrice };
+
+  $('packageTitleDisplay').textContent = item[0];
+  $('finalPriceDisplay').textContent = 'EGP ' + currentPrice.toFixed(2);
+
+  $('originalPrice').textContent = 'EGP ' + origPrice.toFixed(2);
+  $('discountPrice').textContent = discountVal > 0 ? '-EGP ' + discountVal.toFixed(2) : 'EGP 0.00';
+  $('finalBreakdownPrice').textContent = 'EGP ' + currentPrice.toFixed(2);
+
+  $('playerIdInput').value = '';
+  $('priceBreakdown').classList.add('hidden');
+  $('arrowIcon').textContent = '▲';
+
+  $('orderModal').classList.remove('hidden');
+  document.body.classList.add('modal-open');
+}
+
+function closeModal() {
+  $('orderModal').classList.add('hidden');
+  document.body.classList.remove('modal-open');
+}
+
+function togglePriceBreakdown() {
+  const box = $('priceBreakdown');
+  const arrow = $('arrowIcon');
+  const isHidden = box.classList.toggle('hidden');
+  arrow.textContent = isHidden ? '▲' : '▼';
+}
+
+function selectPayOption(el, method) {
+  document.querySelectorAll('.pay-item').forEach(i => i.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedMethod = method;
+}
+
+function submitOrder() {
+  const idInput = document.getElementById('playerIdInput');
+  const playerId = idInput ? idInput.value.trim() : '';
+
+  if (!playerId) {
+    alert('⚠️ يرجى كتابة الـ Player ID الخاص بك أولاً!');
+    return;
+  }
+
+  // فحص مضمون لاختيار إنستا باي
+  const isInstaPaySelected = (typeof selectedMethod !== 'undefined' && selectedMethod === 'InstaPay') ||
+                             (typeof selectedPayMethod !== 'undefined' && selectedPayMethod === 'InstaPay') ||
+                             (typeof selectedPaymentMethod !== 'undefined' && selectedPaymentMethod === 'InstaPay') ||
+                             (document.querySelector('.pay-card.selected, .pay-item.selected')?.innerText.includes('InstaPay'));
+
+  const packageName = (typeof currentOrderData !== 'undefined' && currentOrderData.name) ? currentOrderData.name : 'باقة فري فاير';
+  const rawPrice = (typeof currentOrderData !== 'undefined' && currentOrderData.price) ? currentOrderData.price : 0;
+  const roundedPrice = Math.round(parseFloat(rawPrice));
+  const orderId = '#HYP' + Math.floor(1000 + Math.random() * 9000);
+
+  if (isInstaPaySelected) {
+    // التوجيه لصفحة إنستا باي
+    window.location.href = `instapay-payment.html?game=Free%20Fire&package=${encodeURIComponent(packageName)}&amount=${roundedPrice}&id=${encodeURIComponent(playerId)}&order=${orderId}`;
+  } else {
+    // التوجيه لصفحة الكاش والمحفظة القديمة
+    window.location.href = `hyper-payment.html?game=Free%20Fire&package=${encodeURIComponent(packageName)}&amount=${rawPrice}&id=${encodeURIComponent(playerId)}&order=${orderId}`;
+  }
+}
+</script>
+</body>
+</html>

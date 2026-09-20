@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سياسة الخصوصية | Hyper TopUp</title>
+  <!-- خط القاهرة العربي الاحترافي -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #0b0e14;
+      color: #e2e8f0;
+      line-height: 1.7;
+      padding-bottom: 40px;
+    }
+
+    /* هيدر الصفحة العلوي */
+    .header {
+      background: #121824;
+      border-bottom: 1px solid rgba(244, 201, 93, 0.15);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .back-btn {
+      color: #f4c95d;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(244, 201, 93, 0.1);
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(244, 201, 93, 0.2);
+      transition: all 0.2s ease;
+    }
+
+    .back-btn:active {
+      transform: scale(0.96);
+    }
+
+    .logo-title {
+      color: #f4c95d;
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+    }
+
+    /* الحاوية الرئيسية */
+    .container {
+      max-width: 650px;
+      margin: 20px auto;
+      padding: 0 16px;
+    }
+
+    /* بطاقة الترحيب والتأكيد */
+    .hero-card {
+      background: linear-gradient(135deg, #161c28 0%, #121824 100%);
+      border: 1px solid rgba(244, 201, 93, 0.25);
+      border-radius: 16px;
+      padding: 24px 20px;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(244, 201, 93, 0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px auto;
+      color: #f4c95d;
+    }
+
+    .hero-title {
+      font-size: 20px;
+      color: #ffffff;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .hero-desc {
+      font-size: 13px;
+      color: #94a3b8;
+    }
+
+    /* قسم أقسام السياسة */
+    .policy-section {
+      background: #121824;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 10px;
+    }
+
+    .section-icon {
+      color: #f4c95d;
+      font-size: 18px;
+    }
+
+    .section-title {
+      font-size: 15px;
+      color: #f4c95d;
+      font-weight: 700;
+    }
+
+    .policy-text {
+      font-size: 13px;
+      color: #cbd5e1;
+      margin-bottom: 10px;
+    }
+
+    .policy-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .policy-list li {
+      position: relative;
+      padding-right: 20px;
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 8px;
+    }
+
+    .policy-list li::before {
+      content: "•";
+      color: #f4c95d;
+      font-weight: bold;
+      font-size: 18px;
+      position: absolute;
+      right: 0;
+      top: -2px;
+    }
+
+    /* تنبيه أمان بارز */
+    .alert-card {
+      background: rgba(244, 201, 93, 0.06);
+      border: 1px dashed rgba(244, 201, 93, 0.4);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 20px 0;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .alert-icon {
+      color: #f4c95d;
+      font-size: 20px;
+      margin-top: 2px;
+    }
+
+    .alert-text {
+      font-size: 12px;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+
+    .alert-text strong {
+      color: #f4c95d;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* الفوتر */
+    .footer-note {
+      text-align: center;
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- هيدر الصفحة -->
+  <header class="header">
+    <a href="account.html" class="back-btn">
+      <span>&#10140;</span> رجوع
+    </a>
+    <div class="logo-title">HYPER TOPUP</div>
+  </header>
+
+  <div class="container">
+
+    <!-- البطاقة الرئيسية -->
+    <div class="hero-card">
+      <div class="hero-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h1 class="hero-title">سياسة الخصوصية وأمان البيانات</h1>
+      <p class="hero-desc">في متجر Hyper TopUp، نعتبر خصوصية وأمان بياناتك أولوية قصوى. يوضح هذا المستند كيفية التعامل مع معلوماتك بشفافية ودقة.</p>
+    </div>
+
+    <!-- 1. البيانات التي نجمعها -->
+    <div class="policy-section">
+      <div class="section-header">
+        <span class="section-icon">&#128100;</span>
+        <h2 class="section-title">1. البيانات التي نجمعها</h2>
+      </div>
+      <p class="policy-text">نجمع فقط البيانات الضرورية لتنفيذ طلبات الشحن الخاصة بك وضمان تقديم خدمة سريعة وآمنة:</p>
+      <ul class="policy-list">
+        <li><strong>معلومات الحساب:</strong> البريد الإلكتروني والاسم عند التسجيل عبر Google لتأكيد ملكية الحساب.</li>
+        <li><strong>معرف اللاعب (Player ID):</strong> الـ ID الخاص بك داخل اللعبة (مثل PUBG أو Free Fire) لنتمكن من إرسال الشحنة لملفك الشخصي.</li>
+        <li><strong>سجل الطلبات:</strong> تفاصيل المعاملات السابقة لتتمكن من متابعتها ومراجعتها من داخل حسابك في أي وقت.</li>
+      </ul>
+    </div>
+
+    <!-- 2. استخدام البيانات -->
+    <div class="policy-section">
+      <div class="section-header">
+        <span class="section-icon">&#9881;</span>
+        <h2 class="section-title">2. كيف نستخدم معلوماتك؟</h2>
+      </div>
+      <ul class="policy-list">
+        <li>معالجة وتنفيذ طلبات الشحن بسرعة وبدقة على ألعابك المفضلة.</li>
+        <li>إشعارات وتحديثات حالة الطلب داخل حسابه الشخصي.</li>
+        <li>تقديم الدعم الفني والمساعدة المباشرة عند وجود أي استفسار حول طلبك.</li>
+      </ul>
+    </div>
+
+    <!-- تنبيه أمان هامي للزبون -->
+    <div class="alert-card">
+      <div class="alert-icon">&#128274;</div>
+      <div class="alert-text">
+        <strong>ضمان الأمان الكامل:</strong>
+        نحن في <strong>Hyper TopUp</strong> لا نطلب أبداً كلمة السر (Password) الخاصة بحساب لعبتك أو حسابك البنكي. الشحن يتم عن طريق معرف اللاعب (Player ID) فقط بكل أمان.
+      </div>
+    </div>
+
+    <!-- 3. حماية وسرية البيانات -->
+    <div class="policy-section">
+      <div class="section-header">
+        <span class="section-icon">&#128737;</span>
+        <h2 class="section-title">3. حماية وسرية المعلومات</h2>
+      </div>
+      <p class="policy-text">
+        تُخزن جميع البيانات بشكل مشفر وآمن عبر خوادم شركة <strong>Google Firebase</strong> المعتمدة أمنياً عالمياً.
+      </p>
+      <ul class="policy-list">
+        <li>نلتزم بأعلى معايير التشفير لمنع أي وصول غير مصرح به.</li>
+        <li><strong>لا نقوم ببيع أو مشاركة أو تأجير</strong> بياناتك الشخصية لأي أطراف ثالثة أو شركات إعلانية تحت أي ظرف.</li>
+      </ul>
+    </div>
+
+    <!-- 4. حقوقك والتواصل -->
+    <div class="policy-section">
+      <div class="section-header">
+        <span class="section-icon">&#128222;</span>
+        <h2 class="section-title">4. حقوقك والتواصل معنا</h2>
+      </div>
+      <p class="policy-text">
+        يحق لك في أي وقت تعديل بياناتك أو طلب حذف حسابك وبياناتك بالكامل من متجرنا. لأي استفسار أو طلب يتعلق بخصوصيتك، يمكنك التواصل مع فريق الدعم الفني مباشرة:
+      </p>
+      <ul class="policy-list">
+        <li>البريد الإلكتروني للدعم: <strong>hypertopup.support@gmail.com</strong></li>
+      </ul>
+    </div>
+
+    <div class="footer-note">
+      جميع الحقوق محفوظة &copy; 2026 Hyper TopUp
+    </div>
+
+  </div>
+
+</body>
+</html>

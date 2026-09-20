@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HYPER TOPUP - شحن جواهر بيجو لايف</title>
+  <style>
+    /* Global Styles & Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #050508;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    /* Modal Overlay Container */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(5, 5, 8, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      overflow-y: auto;
+      padding: 15px;
+    }
+
+    .modal-container {
+      width: 100%;
+      max-width: 480px;
+      background: #0b0e14;
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.15);
+      margin: auto 0;
+    }
+
+    /* Header Layout */
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .back-btn {
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      color: #00f2fe;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:active {
+      transform: scale(0.9);
+      background: #00f2fe;
+      color: #000;
+      box-shadow: 0 0 15px #00f2fe;
+    }
+
+    .header-titles {
+      text-align: left;
+    }
+
+    .brand-title {
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(0, 242, 254, 0.6);
+    }
+
+    .sub-badge {
+      font-size: 11px;
+      color: #00f2fe;
+      background: rgba(0, 242, 254, 0.1);
+      padding: 2px 8px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-top: 2px;
+      border: 1px solid rgba(0, 242, 254, 0.2);
+    }
+
+    /* Hero Banner Image */
+    .hero-banner {
+      width: 100%;
+      max-height: 130px;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      box-shadow: 0 0 18px rgba(0, 242, 254, 0.2);
+    }
+
+    .hero-banner img {
+      width: 100%;
+      height: 130px;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* Products Grid Layout */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    /* Individual Product Card */
+    .product-card {
+      background: #121622;
+      border: 1px solid rgba(0, 242, 254, 0.15);
+      border-radius: 14px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .product-card:hover, .product-card:active {
+      border-color: #00f2fe;
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .gem-img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 0 6px rgba(0, 242, 254, 0.4));
+    }
+
+    .pkg-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .pkg-price {
+      font-size: 12px;
+      font-weight: 700;
+      color: #00f2fe;
+      margin-bottom: 10px;
+    }
+
+    /* Action Charge Button */
+    .charge-btn {
+      width: 100%;
+      padding: 8px 0;
+      background: transparent;
+      border: 1px solid #00f2fe;
+      color: #00f2fe;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+    }
+
+    .charge-btn:active {
+      background: #00f2fe;
+      color: #0b0e14;
+      box-shadow: 0 0 12px #00f2fe;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Overlay Modal Wrapper -->
+  <div class="modal-overlay">
+    <div class="modal-container">
+      
+      <!-- Top Header Layout -->
+      <div class="modal-header">
+        <button class="back-btn" onclick="closeModal()" title="إغلاق">&lt;</button>
+        <div class="header-titles">
+          <div class="brand-title">HYPER TOPUP</div>
+          <div class="sub-badge">شحن جواهر BIGO LIVE</div>
+        </div>
+      </div>
+
+      <!-- Hero Banner Image -->
+      <div class="hero-banner">
+        <img src="https://i.ibb.co/bMHBP1sH/IMG-20260912-200748.png" alt="شحن جواهر بيجو لايف">
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid">
+
+        <!-- Package 1 -->
+        <div class="product-card">
+          <img class="gem-img" src="https://i.ibb.co/zhbkRphc/1000131739.png" alt="Bigo Diamond">
+          <div class="pkg-title">35 + 10 جوهرة</div>
+          <div class="pkg-price">65 ج.م</div>
+          <button class="charge-btn" onclick="orderGems('35 + 10 جوهرة', '65 ج.م')">شحن فوري</button>
+        </div>
+
+        <!-- Package 2 -->
+        <div class="product-card">
+          <img class="gem-img" src="https://i.ibb.co/zhbkRphc/1000131739.png" alt="Bigo Diamond">
+          <div class="pkg-title">78 + 12 جوهرة</div>
+          <div class="pkg-price">125 ج.م</div>
+          <button class="charge-btn" onclick="orderGems('78 + 12 جوهرة', '125 ج.م')">شحن فوري</button>
+        </div>
+
+        <!-- Package 3 -->
+        <div class="product-card">
+          <img class="gem-img" src="https://i.ibb.co/zhbkRphc/1000131739.png" alt="Bigo Diamond">
+          <div class="pkg-title">163 + 12 جوهرة</div>
+          <div class="pkg-price">245 ج.م</div>
+          <button class="charge-btn" onclick="orderGems('163 + 12 جوهرة', '245 ج.م')">شحن فوري</button>
+        </div>
+
+        <!-- Package 4 -->
+        <div class="product-card">
+          <img class="gem-img" src="https://i.ibb.co/zhbkRphc/1000131739.png" alt="Bigo Diamond">
+          <div class="pkg-title">420 + 15 جوهرة</div>
+          <div class="pkg-price">580 ج.م</div>
+          <button class="charge-btn" onclick="orderGems('420 + 15 جوهرة', '580 ج.م')">شحن فوري</button>
+        </div>
+
+        <!-- Package 5 -->
+        <div class="product-card">
+          <img class="gem-img" src="https://i.ibb.co/zhbkRphc/1000131739.png" alt="Bigo Diamond">
+          <div class="pkg-title">850 + 20 جوهرة</div>
+          <div class="pkg-price">1,130 ج.م</div>
+          <button class="charge-btn" onclick="orderGems('850 + 20 جوهرة', '1,130 ج.م')">شحن فوري</button>
+        </div>
+
+        <!-- Package 6 -->
+        <div class="product-card">
+          <img class="gem-img" src="https://i.ibb.co/zhbkRphc/1000131739.png" alt="Bigo Diamond">
+          <div class="pkg-title">4,300 + 20 جوهرة</div>
+          <div class="pkg-price">5,450 ج.م</div>
+          <button class="charge-btn" onclick="orderGems('4,300 + 20 جوهرة', '5,450 ج.م')">شحن فوري</button>
+        </div>
+
+        <!-- Package 7 -->
+        <div class="product-card">
+          <img class="gem-img" src="https://i.ibb.co/zhbkRphc/1000131739.png" alt="Bigo Diamond">
+          <div class="pkg-title">8,650 + 20 جوهرة</div>
+          <div class="pkg-price">10,750 ج.م</div>
+          <button class="charge-btn" onclick="orderGems('8,650 + 20 جوهرة', '10,750 ج.م')">شحن فوري</button>
+        </div>
+
+        <!-- Package 8 -->
+        <div class="product-card">
+          <img class="gem-img" src="https://i.ibb.co/zhbkRphc/1000131739.png" alt="Bigo Diamond">
+          <div class="pkg-title">26,000 + 20 جوهرة</div>
+          <div class="pkg-price">31,900 ج.م</div>
+          <button class="charge-btn" onclick="orderGems('26,000 + 20 جوهرة', '31,900 ج.م')">شحن فوري</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Navigation Function
+    function closeModal() {
+      window.location.href = "apps.html";
+    }
+
+    // Direct WhatsApp Order Handler
+    function orderGems(pkgName, price) {
+      const phone = "201002722164";
+      const message = encodeURIComponent(`مرحباً، أريد شحن جواهر بيجو لايف (BIGO LIVE):\nالباقة: ${pkgName}\nالسعر: ${price}\nمن متجر HYPER TOPUP`);
+      window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${message}`, '_blank');
+    }
+    
+  </script>
+</body>
+</html>

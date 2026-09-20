@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Call of Duty Mobile - HYPER TOPUP</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    html, body {
+      background-color: #0b0d12;
+      color: #e2e8f0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    body.modal-open {
+      overflow: hidden !important;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      padding: 20px 15px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* الهيدر والعناوين */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+    }
+
+    .sub-title {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #38bdf8;
+      font-size: 11px;
+      padding: 3px 12px;
+      border-radius: 4px;
+      margin-top: 4px;
+      font-weight: bold;
+    }
+
+    .back-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #ffffff;
+      width: 38px;
+      height: 38px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .back-btn:hover {
+      border-color: #a855f7;
+      color: #a855f7;
+    }
+
+    /* البانر العلوي */
+    .banner-container {
+      width: 100%;
+      height: 160px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+      position: relative;
+    }
+
+    .banner-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* التبويبات الثلاثة المسطحة بدون إيموجي أو صور */
+    .filter-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .tab-btn {
+      background: #111520;
+      border: 1px solid #1e2638;
+      color: #94a3b8;
+      padding: 12px 8px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.25s ease;
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+      border-color: #38bdf8;
+      color: #ffffff;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+    }
+
+    /* شبكة الكروت */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .product-card {
+      background: #10131d;
+      border: 1px solid #1c2336;
+      border-radius: 10px;
+      padding: 15px 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .product-card:hover {
+      border-color: #38bdf8;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+    }
+
+    .pkg-img {
+      width: 65px;
+      height: 65px;
+      object-fit: contain;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.3));
+    }
+
+    .pkg-name {
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      line-height: 1.3;
+      min-height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .price {
+      color: #38bdf8;
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      text-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+    }
+
+    .buy-btn {
+      width: 100%;
+      background: linear-gradient(180deg, #193147 0%, #0f1d2b 100%);
+      border: 1px solid #38bdf8;
+      color: #ffffff;
+      padding: 9px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .buy-btn:active {
+      background: #38bdf8;
+      color: #000000;
+      box-shadow: 0 0 10px #38bdf8;
+    }
+
+    /* مودال الشحن Popup Overlay */
+    .hidden {
+      display: none !important;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(6px);
+    }
+
+    .modal-content {
+      position: relative;
+      z-index: 10000;
+      background: #0d1017;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      border: 1px solid #1e283d;
+      border-top: 2px solid #38bdf8;
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 20px;
+      box-shadow: 0 -5px 30px rgba(56, 189, 248, 0.25);
+    }
+
+    .modal-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .modal-title-text {
+      font-size: 16px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .selected-pkg-card {
+      background: #141a27;
+      border: 1px solid #232f47;
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      gap: 15px;
+      margin-bottom: 18px;
+    }
+
+    .pkg-title-display {
+      font-size: 15px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .pkg-icon-box img {
+      width: 45px;
+      height: 45px;
+      object-fit: contain;
+    }
+
+    .input-label {
+      display: block;
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 8px;
+      text-align: right;
+    }
+
+    .id-input-field {
+      width: 100%;
+      padding: 13px;
+      background: #101420;
+      border: 1px solid #212c42;
+      border-radius: 6px;
+      color: #ffffff;
+      font-size: 14px;
+      outline: none;
+      margin-bottom: 20px;
+    }
+
+    .id-input-field:focus {
+      border-color: #38bdf8;
+    }
+
+    .section-title {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 10px;
+      text-align: right;
+    }
+
+    .payment-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .pay-item {
+      background: #101420;
+      border: 1px solid #212c42;
+      border-radius: 6px;
+      padding: 13px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .pay-item.selected {
+      border-color: #38bdf8;
+      background: #142130;
+    }
+
+    .pay-item-name {
+      font-size: 14px;
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    .badge-recommended {
+      background: #38bdf8;
+      color: #000000;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .modal-bottom-action {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 10px;
+    }
+
+    .price-display-box {
+      text-align: right;
+    }
+
+    .price-label-sub {
+      font-size: 12px;
+      color: #94a3b8;
+      display: block;
+    }
+
+    .final-price-text {
+      font-size: 18px;
+      font-weight: bold;
+      color: #38bdf8;
+    }
+
+    .submit-pay-btn {
+      background: #38bdf8;
+      color: #000000;
+      border: none;
+      padding: 12px 34px;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <div>
+        <h1 class="brand-title">HYPER TOPUP</h1>
+        <span class="sub-title">Call of Duty Mobile - شحن معتمد</span>
+      </div>
+      <a href="games.html" class="back-btn">&gt;</a>
+    </div>
+
+    <div class="banner-container">
+      <img src="https://i.ibb.co/v4cTkR6c/IMG-20260911-133858.png" alt="CODM Banner" class="banner-img">
+    </div>
+
+    <div class="filter-tabs">
+      <button id="cpTabBtn" class="tab-btn active" onclick="switchTab('cp')">قسم CP</button>
+      <button id="honkaiTabBtn" class="tab-btn" onclick="switchTab('honkai')">قسم HONKAI</button>
+      <button id="giftsTabBtn" class="tab-btn" onclick="switchTab('gifts')">قسم الهدايا</button>
+    </div>
+
+    <div id="productsGrid" class="products-grid"></div>
+  </div>
+
+  <div id="orderModal" class="modal hidden">
+    <div class="modal-overlay" onclick="closeModal()"></div>
+    <div class="modal-content">
+      
+      <div class="modal-top-bar">
+        <span class="modal-title-text">إتمام طلب الشحن - CODM</span>
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+      </div>
+
+      <div class="selected-pkg-card">
+        <div class="pkg-icon-box">
+          <img id="modalPkgImg" src="" alt="Selected Package">
+        </div>
+        <span id="packageTitleDisplay" class="pkg-title-display">-</span>
+      </div>
+
+      <label class="input-label" for="playerIdInput">معرف اللاعب (Player ID)</label>
+      <input type="tel" inputmode="numeric" id="playerIdInput" class="id-input-field" placeholder="اكتب Player ID هنا" dir="rtl" style="text-align: right;">
+
+      <div class="section-title">اختر طريقة الدفع</div>
+      <div class="payment-list">
+        <div class="pay-item selected" onclick="selectPayOption(this, 'فودافون كاش / أورنج / اتصالات')">
+          <span class="pay-item-name">فودافون كاش / أورنج / اتصالات</span>
+          <span class="badge-recommended">مستحسن</span>
+        </div>
+
+        <div class="pay-item" onclick="selectPayOption(this, 'إنستا باي (InstaPay)')">
+          <span class="pay-item-name">إنستا باي (InstaPay)</span>
+        </div>
+      </div>
+
+      <div class="modal-bottom-action">
+        <button id="modalActionBtn" class="submit-pay-btn" onclick="submitOrder()">دفع</button>
+
+        <div class="price-display-box">
+          <span class="price-label-sub">الإجمالي:</span>
+          <span id="finalPriceDisplay" class="final-price-text">0.00 EGP</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+const productsData = {
+  cp: [
+    { name: 'باقة 88 CP', price: 60, img: 'https://i.ibb.co/0RNVpb4P/88.webp' },
+    { name: 'باقة 160 CP', price: 60, img: 'https://i.ibb.co/BHt4sYmp/160.webp' },
+    { name: 'باقة 460 CP', price: 190, img: 'https://i.ibb.co/v6k7hCqy/420.webp' },
+    { name: 'باقة 960 CP', price: 370, img: 'https://i.ibb.co/Kzh8YpZ7/960.webp' },
+    { name: 'باقة 2600 CP', price: 900, img: 'https://i.ibb.co/Nd0CTtRQ/2600.webp' },
+    { name: 'باقة 5400 CP', price: 1780, img: 'https://i.ibb.co/DfTYycmp/4000.webp' },
+    { name: 'باقة 11600 CP', price: 5300, img: 'https://i.ibb.co/YBfm5Jp8/11600.webp' },
+    { name: 'باقة 23200 CP', price: 10250, img: 'https://i.ibb.co/YBfm5Jp8/11600.webp' },
+    { name: 'باقة 34800 CP', price: 15200, img: 'https://i.ibb.co/YBfm5Jp8/11600.webp' },
+    { name: 'باقة 58000 CP', price: 24500, img: 'https://i.ibb.co/YBfm5Jp8/11600.webp' }
+  ],
+  honkai: [
+    { name: 'باقة 80 CP + 80 CP ومكافأة الرمزية', price: 60, img: 'https://i.ibb.co/20pcgpYH/b796f6522ac23005b82437eb4c1b6d82.webp' },
+    { name: 'عرض 10 بطاقات نقاط XP للسلاح + مكافأة 200 نقطة', price: 60, img: 'https://i.ibb.co/LdQKWP5B/1788928414926-eafe56a6-500d-402c-984f-b93f5b3823bf.webp' },
+    { name: 'عرض 30 بطاقة نقاط XP للسلاح + مكافأة 1000 نقطة', price: 175, img: 'https://i.ibb.co/ks8BFHmq/93b729465d68598f4fc8643de07bb322.webp' }
+  ],
+  gifts: [
+    { name: 'الهدية اليومية (مخزون سري أسطوري)', price: 0, isFree: true, img: 'https://i.ibb.co/qYtTjXKM/bd80946517a09734d1b1d6cd23942084.webp' }
+  ]
+};
+
+let currentTab = 'cp';
+let currentOrderData = {};
+let selectedMethod = 'فودافون كاش / أورنج / اتصالات';
+
+const $ = id => document.getElementById(id);
+
+function renderProducts(tab) {
+  const grid = $('productsGrid');
+  grid.innerHTML = '';
+
+  productsData[tab].forEach((item, index) => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    
+    const priceText = item.isFree ? 'مجاناً' : `${item.price} EGP`;
+    const btnText = item.isFree ? 'استلام الهدية' : 'شحن فوري';
+
+    card.innerHTML = `
+      <img src="${item.img}" class="pkg-img" alt="${item.name}">
+      <div class="pkg-name">${item.name}</div>
+      <div class="price">${priceText}</div>
+      <button class="buy-btn" onclick="openOrder('${tab}', ${index})">${btnText}</button>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function switchTab(tab) {
+  currentTab = tab;
+  ['cp', 'honkai', 'gifts'].forEach(t => {
+    $(`${t}TabBtn`).classList.toggle('active', t === tab);
+  });
+  renderProducts(tab);
+}
+
+function openOrder(tab, index) {
+  const item = productsData[tab][index];
+  if (!item) return;
+
+  currentOrderData = item;
+
+  $('packageTitleDisplay').textContent = item.name;
+  $('modalPkgImg').src = item.img;
+  
+  if (item.isFree) {
+    $('finalPriceDisplay').textContent = 'مجاناً';
+    $('modalActionBtn').textContent = 'استلام الأن';
+  } else {
+    $('finalPriceDisplay').textContent = item.price.toFixed(2) + ' EGP';
+    $('modalActionBtn').textContent = 'دفع';
+  }
+  
+  $('playerIdInput').value = '';
+  $('orderModal').classList.remove('hidden');
+  document.body.classList.add('modal-open');
+}
+
+function closeModal() {
+  $('orderModal').classList.add('hidden');
+  document.body.classList.remove('modal-open');
+}
+
+function selectPayOption(el, method) {
+  document.querySelectorAll('.pay-item').forEach(i => i.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedMethod = method;
+}
+
+function submitOrder() {
+  const idInput = document.getElementById('playerIdInput');
+  const playerId = idInput ? idInput.value.trim() : '';
+
+  if (!playerId) {
+    alert('⚠️ يرجى كتابة الـ Player ID الخاص بك أولاً!');
+    return;
+  }
+
+  // فحص مضمون لاختيار إنستا باي
+  const isInstaPaySelected = (typeof selectedMethod !== 'undefined' && selectedMethod === 'InstaPay') ||
+                             (typeof selectedPayMethod !== 'undefined' && selectedPayMethod === 'InstaPay') ||
+                             (typeof selectedPaymentMethod !== 'undefined' && selectedPaymentMethod === 'InstaPay') ||
+                             (document.querySelector('.pay-card.selected, .pay-item.selected')?.innerText.includes('InstaPay'));
+
+  const packageName = (typeof currentOrderData !== 'undefined' && currentOrderData.name) ? currentOrderData.name : 'باقة CODM';
+  const rawPrice = (typeof currentOrderData !== 'undefined' && currentOrderData.price) ? currentOrderData.price : 0;
+  const roundedPrice = Math.round(parseFloat(rawPrice));
+  const orderId = '#HYP' + Math.floor(1000 + Math.random() * 9000);
+
+  if (isInstaPaySelected) {
+    // التوجيه لصفحة إنستا باي
+    window.location.href = `instapay-payment.html?game=Call%20of%20Duty%20Mobile&package=${encodeURIComponent(packageName)}&amount=${roundedPrice}&id=${encodeURIComponent(playerId)}&order=${orderId}`;
+  } else {
+    // التوجيه لصفحة الكاش والمحفظة القديمة
+    window.location.href = `hyper-payment.html?game=Call%20of%20Duty%20Mobile&package=${encodeURIComponent(packageName)}&amount=${rawPrice}&id=${encodeURIComponent(playerId)}&order=${orderId}`;
+  }
+}
+</script>
+</body>
+</html>

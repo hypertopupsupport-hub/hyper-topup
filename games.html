@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HYPER TOPUP | قسم الألعاب</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800&display=swap');
+
+    :root {
+      --bg: #080c18;
+      --bg2: #10172a;
+      --gold: #f4c95d;
+      --white: #fff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+    body { background-color: var(--bg); color: var(--white); padding: 15px; }
+
+    /* الهيدر والعنوان */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .back-btn {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 22px;
+    }
+
+    h1.page-title {
+      font-size: 18px;
+      color: var(--white);
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    /* التبويبات الفلترة زي Midasbuy */
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      overflow-x: auto;
+      padding-bottom: 5px;
+    }
+
+    .tab-btn {
+      background: var(--bg2);
+      border: 1px solid rgba(244, 201, 93, 0.2);
+      color: #aeb7c8;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .tab-btn.active {
+      background: #007bff;
+      color: #fff;
+      border-color: #007bff;
+      font-weight: bold;
+    }
+
+    /* شبكة الألعاب */
+    .games-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+    .game-card {
+      text-decoration: none;
+      background: var(--bg2);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(244, 201, 93, 0.2);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s;
+    }
+
+    .game-card:active { transform: scale(0.96); }
+
+    .card-thumb {
+      position: relative;
+      width: 100%;
+      height: 105px;
+    }
+
+    .card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .badge {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 3px 0;
+      font-size: 9px;
+      text-align: center;
+      font-weight: bold;
+      color: #000;
+    }
+
+    .badge.yellow { background: var(--gold); }
+
+    .game-info {
+      padding: 8px 4px;
+      text-align: center;
+    }
+
+    .game-info h3 {
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+    }
+   .filter-tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: #fff;
+  border: 1px solid rgba(0, 123, 255, 0.5);
+  font-weight: 800;
+  padding: 8px 24px;
+  border-radius: 25px;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+/* إلغاء تأخير الضغط وتفعيل الضغطة المباشرة الواحدة على الموبايل */
+a, button, .card, .game-card, .nav-item {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+  </style>
+</head>
+<body>
+
+  <!-- الهيدر أزرار الرجوع والعنوان -->
+  <header>
+    <a href="HYPER_TOPUP_REVIEWS_PRO_FINAL-1.html" class="back-btn">&#10095;</a>
+    <h1 class="page-title">كل الألعاب</h1>
+    <div style="width: 20px;"></div>
+  </header>
+
+  <!-- تبويبات الفلترة المقتبسة من ميداسباي -->
+  <div class="filter-tabs">
+    <button class="tab-btn active">جميع الألعاب</button>
+    </div>
+  <!-- شبكة كروت الألعاب -->
+  <div class="games-grid">
+    <!-- كارت ببجي موبايل -->
+    <a href="HYPER_TOPUP_PUBG_MOBILE.html" class="game-card">
+      <div class="card-thumb">
+        <img src="https://i.ibb.co/C3yLRsQM/IMG-20260909-191042.png" alt="PUBG Mobile">
+        <span class="badge yellow">أقوى العروض</span>
+      </div>
+      <div class="game-info">
+        <h3>PUBG MOBILE</h3>
+      </div>
+    </a>
+          <a href="mirage.html" class="game-card">
+  <div class="card-thumb">
+    <img src="https://i.ibb.co/tpYNKbyW/GSTM-SHOUYE-6c38865a.png" alt="Gangstar Mirage City">
+    <span class="badge yellow">جديد</span>
+  </div>
+  <div class="game-info">
+    <h3>Gangstar Mirage City</h3>
+  </div>
+</a>
+      <a href="freefire.html" class="game-card">
+  <div class="card-thumb">
+    <img src="https://i.ibb.co/GfNGzs2S/icon.png" alt="Free Fire">
+    <span class="badge yellow">عروض حصرية</span>
+  </div>
+  <div class="game-info">
+    <h3>Free Fire</h3>
+  </div>
+</a>
+<!-- Delta Force Card -->
+<a href="deltaforce.html" class="game-card">
+  <div class="card-thumb">
+    <img src="https://i.ibb.co/j1QtGZ5/icon-1.png" alt="Delta Force">
+  </div>
+  <div class="game-info">
+    <h3>Delta Force</h3>
+  </div>
+</a>
+<!-- FC Mobile Card -->
+<a href="fcmobile.html" class="game-card">
+  <div class="card-thumb">
+    <img src="https://i.ibb.co/M529KW1G/IMG-20260911-123002.png" alt="FC Mobile">
+  </div>
+  <div class="game-info">
+    <h3>FC Mobile</h3>
+  </div>
+</a>
+<!-- Call of Duty Mobile Card -->
+<a href="codm.html" class="game-card">
+  <div class="card-thumb">
+    <img src="https://i.ibb.co/4ZkgRcCq/6066e42229dfe9263f1ec7e6beaa2e5c.jpg" alt="Call of Duty Mobile">
+  </div>
+  <div class="game-info">
+    <h3>Call of Duty Mobile</h3>
+  </div>
+</a>
+<!-- Honor of Kings Card -->
+<a href="hok.html" class="game-card">
+  <div class="card-thumb">
+    <img src="https://i.ibb.co/bRGhRCgT/HOK-brandimage-977e8256.png" alt="Honor of Kings">
+  </div>
+  <div class="game-info">
+    <h3>Honor of Kings</h3>
+  </div>
+</a>
+<!-- Ludo World Game Card -->
+<a href="ludo.html" class="game-card">
+  <div class="card-thumb">
+    <img src="https://i.ibb.co/VppfMSfX/1-1-dd407ca3.png" alt="Ludo World" loading="lazy" decoding="async">
+  </div>
+  <div class="game-info">
+    <h3>Ludo World</h3>
+  </div>
+</a>
+  </div>
+
+</body>
+</html>

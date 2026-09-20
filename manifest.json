@@ -1,0 +1,16 @@
+{
+  "short_name": "HYPER TOPUP",
+  "name": "HYPER TOPUP - متجر الشحن المباشر",
+  "icons": [
+    {
+      "src": "./logo.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": "./HYPER_TOPUP_REVIEWS_PRO_FINAL-1.html",
+  "background_color": "#050508",
+  "theme_color": "#050508",
+  "display": "standalone",
+  "orientation": "portrait"
+}

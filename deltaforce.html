@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Delta Force - HYPER TOPUP</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    html, body {
+      background-color: #0b0e11;
+      color: #e2e8f0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    body.modal-open {
+      overflow: hidden !important;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      padding: 20px 15px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      padding: 10px 0;
+    }
+
+    .header-titles {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
+    }
+
+    .sub-title {
+      display: inline-block;
+      background: rgba(57, 255, 20, 0.08);
+      border: 1px solid rgba(57, 255, 20, 0.3);
+      color: #39ff14;
+      font-size: 11px;
+      padding: 3px 12px;
+      border-radius: 4px;
+      margin-top: 4px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .back-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(57, 255, 20, 0.3);
+      color: #ffffff;
+      width: 38px;
+      height: 38px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .banner-container {
+      width: 100%;
+      height: 160px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(57, 255, 20, 0.3);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+      position: relative;
+    }
+
+    .banner-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .filter-tabs {
+      display: flex;
+      margin-bottom: 20px;
+    }
+
+    .tab-btn {
+      background: #141b15;
+      border: 1px solid #39ff14;
+      color: #39ff14;
+      padding: 8px 20px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .product-card {
+      background: #121619;
+      border: 1px solid #242e28;
+      border-radius: 8px;
+      padding: 15px 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .product-card:hover {
+      border-color: #39ff14;
+      box-shadow: 0 0 10px rgba(57, 255, 20, 0.15);
+    }
+
+    .pkg-img {
+      width: 55px;
+      height: 55px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .pkg-name {
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      line-height: 1.4;
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .price {
+      color: #cd7f32;
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      text-shadow: 0 0 5px rgba(205, 127, 50, 0.2);
+    }
+
+    .buy-btn {
+      width: 100%;
+      background: linear-gradient(180deg, #2e4a32 0%, #1b2e1e 100%);
+      border: 1px solid #39ff14;
+      color: #ffffff;
+      padding: 9px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .buy-btn:active {
+      background: #39ff14;
+      color: #000000;
+    }
+
+    /* المودال الشبه انبثاقي التكتيكي */
+    .hidden {
+      display: none !important;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+      position: relative;
+      z-index: 10000;
+      background: #0f1411;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      border: 1px solid #28382c;
+      border-top: 2px solid #39ff14;
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 20px;
+      box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.9);
+    }
+
+    .modal-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .modal-title-text {
+      font-size: 17px;
+      font-weight: bold;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .selected-pkg-card {
+      background: #162019;
+      border: 1px solid #28382c;
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      gap: 15px;
+      margin-bottom: 18px;
+    }
+
+    .pkg-title-display {
+      font-size: 15px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .pkg-icon-box img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    .input-label {
+      display: block;
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 8px;
+      text-align: right;
+    }
+
+    .id-input-field {
+      width: 100%;
+      padding: 13px;
+      background: #141b16;
+      border: 1px solid #28382c;
+      border-radius: 6px;
+      color: #ffffff;
+      font-size: 14px;
+      outline: none;
+      margin-bottom: 20px;
+    }
+
+    .id-input-field:focus {
+      border-color: #39ff14;
+    }
+
+    .section-title {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 10px;
+      text-align: right;
+    }
+
+    .payment-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .pay-item {
+      background: #141b16;
+      border: 1px solid #28382c;
+      border-radius: 6px;
+      padding: 13px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .pay-item.selected {
+      border-color: #39ff14;
+      background: #19271c;
+    }
+
+    .pay-item-name {
+      font-size: 14px;
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    .badge-recommended {
+      background: #39ff14;
+      color: #000000;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .modal-bottom-action {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 10px;
+    }
+
+    .price-display-box {
+      text-align: right;
+    }
+
+    .price-label-sub {
+      font-size: 12px;
+      color: #94a3b8;
+      display: block;
+    }
+
+    .final-price-text {
+      font-size: 18px;
+      font-weight: bold;
+      color: #cd7f32;
+    }
+
+    .submit-pay-btn {
+      background: #39ff14;
+      color: #000000;
+      border: none;
+      padding: 12px 34px;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <div class="header-titles">
+        <h1 class="brand-title">HYPER TOPUP</h1>
+        <span class="sub-title">Delta Force - شحن و خدمات</span>
+      </div>
+      <a href="games.html" class="back-btn">&gt;</a>
+    </div>
+
+    <div class="banner-container">
+      <img src="https://i.ibb.co/7dS0b5Pm/IMG-20260911-014400.png" alt="Delta Force Banner" class="banner-img">
+    </div>
+
+    <div class="filter-tabs">
+      <button class="tab-btn">قسم شراء</button>
+    </div>
+
+    <!-- قائمة الـ 14 منتج -->
+    <div class="products-grid">
+
+      <div class="product-card">
+        <img src="https://i.ibb.co/d4bwfd5Z/point.png" class="pkg-img" alt="Coin">
+        <div class="pkg-name">باقة 18 + 1 عملة</div>
+        <div class="price">19.99 EGP</div>
+        <button class="buy-btn" onclick="openOrder(0)">شحن فوري</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://i.ibb.co/d4bwfd5Z/point.png" class="pkg-img" alt="Coin">
+        <div class="pkg-name">باقة 30 + 2 عملة</div>
+        <div class="price">27.99 EGP</div>
+        <button class="buy-btn" onclick="openOrder(1)">شحن فوري</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://i.ibb.co/d4bwfd5Z/point.png" class="pkg-img" alt="Coin">
+        <div class="pkg-name">باقة 60 + 3 عملة</div>
+        <div class="price">54.99 EGP</div>
+        <button class="buy-btn" onclick="openOrder(2)">شحن فوري</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://i.ibb.co/d4bwfd5Z/point.png" class="pkg-img" alt="Coin">
+        <div class="pkg-name">باقة 300 + 36 عملة</div>
+        <div class="price">249.99 EGP</div>
+        <button class="buy-btn" onclick="openOrder(3)">شحن فوري</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://i.ibb.co/d4bwfd5Z/point.png" class="pkg-img" alt="Coin">
+        <div class="pkg-name">باقة 420 + 62 عملة</div>
+        <div class="price">344.99 EGP</div>
+        <button class="buy-btn" onclick="openOrder(4)">شحن فوري</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://i.ibb.co/d4bwfd5Z/point.png" class="pkg-img" alt="Coin">
+        <div class="pkg-name">باقة 680 + 105 عملة</div>
+        <div class="price">489.99 EGP</div>
+        <button class="buy-btn" onclick="openOrder(5)">شحن فوري</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://i.ibb.co/d4bwfd5Z/point.png" class="pkg-img" alt="Coin">
+        <div class="pkg-name">باقة 1280 + 264 عملة</div>
+        <div class="price">961.99 EGP</div>
+        <button class="buy-btn" onclick="openOrder(6)">شحن فوري</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://i.ibb.co/d4bwfd5Z/point.png" class="pkg-img" alt="Coin">
+        <div class="pkg-name">باقة 1680 + 385 عملة</div>
+        <div class="price">1209.99 EGP</div>
+        <button class="buy-btn" onclick="openOrder(7)">شحن فوري</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://i.ibb.co/d4bwfd5Z/point.png" class="pkg-img" alt="Coin">
+        <div class="pkg-name">باقة 3280 + 834 عملة</div>
+        <div class="price">2394.99 EGP</div>
+        <button class="buy-btn" onclick="openOrder(8)">شحن فوري</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://i.ibb.co/d4bwfd5Z/point.png" class="pkg-img" alt="Coin">
+        <div class="pkg-name">باقة 6480 + 1944 عملة</div>
+        <div class="price">4764.99 EGP</div>
+        <button class="buy-btn" onclick="openOrder(9)">شحن فوري</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://i.ibb.co/d4bwfd5Z/point.png" class="pkg-img" alt="Coin">
+        <div class="pkg-name">باقة 12960 + 3888 عملة</div>
+        <div class="price">9489.99 EGP</div>
+        <button class="buy-btn" onclick="openOrder(10)">شحن فوري</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://i.ibb.co/d4bwfd5Z/point.png" class="pkg-img" alt="Coin">
+        <div class="pkg-name">باقة 19440 + 5832 عملة</div>
+        <div class="price">14199.99 EGP</div>
+        <button class="buy-btn" onclick="openOrder(11)">شحن فوري</button>
+      </div>
+
+      <!-- العروض الخاصة -->
+      <div class="product-card">
+        <span class="special-badge">عرض خاص</span>
+        <img src="https://i.ibb.co/5xXPz3Fp/image.png" class="pkg-img" alt="Supply">
+        <div class="pkg-name">عرض إمدادات إعادة التوجيه الأولى</div>
+        <div class="price">31.99 EGP</div>
+        <button class="buy-btn" onclick="openOrder(12)">شحن فوري</button>
+      </div>
+
+      <div class="product-card">
+        <span class="special-badge">عرض خاص</span>
+        <img src="https://i.ibb.co/5xXPz3Fp/image.png" class="pkg-img" alt="Supply Advanced">
+        <div class="pkg-name">عرض إمدادات إعادة التوجيه الثانية (متقدمة)</div>
+        <div class="price">84.99 EGP</div>
+        <button class="buy-btn" onclick="openOrder(13)">شحن فوري</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Popup Modal الشحن -->
+  <div id="orderModal" class="modal hidden">
+    <div class="modal-overlay" onclick="closeModal()"></div>
+    <div class="modal-content">
+      
+      <div class="modal-top-bar">
+        <span class="modal-title-text">إتمام طلب الشحن - Delta Force</span>
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+      </div>
+
+      <div class="selected-pkg-card">
+        <div class="pkg-icon-box">
+          <img id="modalPkgImg" src="" alt="Selected Package">
+        </div>
+        <span id="packageTitleDisplay" class="pkg-title-display">-</span>
+      </div>
+
+      <label class="input-label" for="playerIdInput">معرف اللاعب (Player ID)</label>
+      <input type="tel" inputmode="numeric" id="playerIdInput" class="id-input-field" placeholder="اكتب Player ID هنا" dir="rtl" style="text-align: right;">
+
+      <div class="section-title">اختر قنوات الدفع</div>
+      <div class="payment-list">
+        <div class="pay-item selected" onclick="selectPayOption(this, 'فودافون كاش / أورنج / اتصالات')">
+          <span class="pay-item-name">فودافون كاش / أورنج / اتصالات</span>
+          <span class="badge-recommended">مستحسن</span>
+        </div>
+
+        <div class="pay-item" onclick="selectPayOption(this, 'إنستا باي (InstaPay)')">
+          <span class="pay-item-name">إنستا باي (InstaPay)</span>
+        </div>
+      </div>
+
+      <div class="modal-bottom-action">
+        <button class="submit-pay-btn" onclick="submitOrder()">دفع</button>
+
+        <div class="price-display-box">
+          <span class="price-label-sub">الإجمالي:</span>
+          <span id="finalPriceDisplay" class="final-price-text">0.00 EGP</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+const products = [
+  ['باقة 18 + 1 عملة', 19.99, 'https://i.ibb.co/d4bwfd5Z/point.png'],
+  ['باقة 30 + 2 عملة', 27.99, 'https://i.ibb.co/d4bwfd5Z/point.png'],
+  ['باقة 60 + 3 عملة', 54.99, 'https://i.ibb.co/d4bwfd5Z/point.png'],
+  ['باقة 300 + 36 عملة', 249.99, 'https://i.ibb.co/d4bwfd5Z/point.png'],
+  ['باقة 420 + 62 عملة', 344.99, 'https://i.ibb.co/d4bwfd5Z/point.png'],
+  ['باقة 680 + 105 عملة', 489.99, 'https://i.ibb.co/d4bwfd5Z/point.png'],
+  ['باقة 1280 + 264 عملة', 961.99, 'https://i.ibb.co/d4bwfd5Z/point.png'],
+  ['باقة 1680 + 385 عملة', 1209.99, 'https://i.ibb.co/d4bwfd5Z/point.png'],
+  ['باقة 3280 + 834 عملة', 2394.99, 'https://i.ibb.co/d4bwfd5Z/point.png'],
+  ['باقة 6480 + 1944 عملة', 4764.99, 'https://i.ibb.co/d4bwfd5Z/point.png'],
+  ['باقة 12960 + 3888 عملة', 9489.99, 'https://i.ibb.co/d4bwfd5Z/point.png'],
+  ['باقة 19440 + 5832 عملة', 14199.99, 'https://i.ibb.co/d4bwfd5Z/point.png'],
+  ['عرض إمدادات إعادة التوجيه الأولى', 31.99, 'https://i.ibb.co/5xXPz3Fp/image.png'],
+  ['عرض إمدادات إعادة التوجيه الثانية (متقدمة)', 84.99, 'https://i.ibb.co/5xXPz3Fp/image.png']
+];
+
+let currentOrderData = {};
+let selectedMethod = 'فودافون كاش / أورنج / اتصالات';
+
+const $ = id => document.getElementById(id);
+
+function openOrder(index) {
+  const item = products[index];
+  if (!item) return;
+
+  currentOrderData = { name: item[0], price: item[1] };
+
+  $('packageTitleDisplay').textContent = item[0];
+  $('modalPkgImg').src = item[2];
+  $('finalPriceDisplay').textContent = item[1].toFixed(2) + ' EGP';
+  $('playerIdInput').value = '';
+
+  $('orderModal').classList.remove('hidden');
+  document.body.classList.add('modal-open');
+}
+
+function closeModal() {
+  $('orderModal').classList.add('hidden');
+  document.body.classList.remove('modal-open');
+}
+
+function selectPayOption(el, method) {
+  document.querySelectorAll('.pay-item').forEach(i => i.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedMethod = method;
+}
+
+function submitOrder() {
+  const idInput = document.getElementById('playerIdInput');
+  const playerId = idInput ? idInput.value.trim() : '';
+
+  if (!playerId) {
+    alert('⚠️ يرجى كتابة الـ Player ID الخاص بك أولاً!');
+    return;
+  }
+
+  // فحص مضمون لاختيار إنستا باي
+  const isInstaPaySelected = (typeof selectedMethod !== 'undefined' && selectedMethod === 'InstaPay') ||
+                             (typeof selectedPayMethod !== 'undefined' && selectedPayMethod === 'InstaPay') ||
+                             (typeof selectedPaymentMethod !== 'undefined' && selectedPaymentMethod === 'InstaPay') ||
+                             (document.querySelector('.pay-card.selected, .pay-item.selected')?.innerText.includes('InstaPay'));
+
+  const packageName = (typeof currentOrderData !== 'undefined' && currentOrderData.name) ? currentOrderData.name : 'باقة Delta Force';
+  const rawPrice = (typeof currentOrderData !== 'undefined' && currentOrderData.price) ? currentOrderData.price : 0;
+  const roundedPrice = Math.round(parseFloat(rawPrice));
+  const orderId = '#HYP' + Math.floor(1000 + Math.random() * 9000);
+
+  if (isInstaPaySelected) {
+    // التوجيه لصفحة إنستا باي
+    window.location.href = `instapay-payment.html?game=Delta%20Force&package=${encodeURIComponent(packageName)}&amount=${roundedPrice}&id=${encodeURIComponent(playerId)}&order=${orderId}`;
+  } else {
+    // التوجيه لصفحة الكاش والمحفظة القديمة
+    window.location.href = `hyper-payment.html?game=Delta%20Force&package=${encodeURIComponent(packageName)}&amount=${rawPrice}&id=${encodeURIComponent(playerId)}&order=${orderId}`;
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>HYPER TOPUP — بوابة الدفع</title>
+<meta name="theme-color" content="#05070D">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   HYPER TOPUP — PAYMENT GATEWAY
+   Design tokens
+   ============================================================ */
+:root{
+  --bg-void:#05070d;
+  --bg-panel:#0b0e18;
+  --bg-panel-2:#0e1220;
+  --bg-input:#080b13;
+  --gold:#ffd84a;
+  --gold-deep:#c79a2e;
+  --gold-soft:rgba(255,216,74,.14);
+  --navy:#12224a;
+  --navy-bright:#2f5fd6;
+  --ink:#f4f5f9;
+  --ink-dim:#9aa0b4;
+  --ink-faint:#6b7182;
+  --border:rgba(255,255,255,.08);
+  --border-gold:rgba(255,216,74,.22);
+  --danger:#e5646b;
+  --danger-soft:rgba(229,100,107,.12);
+  --radius-lg:18px;
+  --radius-md:14px;
+  --radius-sm:10px;
+}
+
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%}
+body{
+  font-family:'Almarai',Tahoma,sans-serif;
+  background:var(--bg-void);
+  color:var(--ink);
+  overflow-x:hidden;
+  background-image:
+    radial-gradient(circle at 50% -8%, rgba(255,196,40,.12), transparent 38%),
+    radial-gradient(circle at 12% 40%, rgba(47,95,214,.10), transparent 34%),
+    linear-gradient(160deg,#05070d,#090c17 55%,#05060b);
+  background-attachment:fixed;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.3;z-index:0;
+  background:repeating-linear-gradient(125deg,transparent 0 70px,rgba(255,215,80,.02) 71px 72px,transparent 73px 145px);
+}
+::selection{background:var(--gold);color:#0a0a0a}
+a{color:inherit}
+button{font-family:inherit}
+img{max-width:100%}
+
+.wrap{position:relative;z-index:1;width:min(560px,100%);margin:0 auto;padding:16px 14px 40px}
+
+/* ---------- Header ---------- */
+.header{text-align:center;padding:14px 8px 6px}
+.brand{display:inline-flex;align-items:center;gap:8px;font-weight:800;letter-spacing:1.5px;font-size:24px;color:var(--gold)}
+.brand .mark{width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 14px rgba(255,216,74,.7)}
+.brand-sub{margin-top:6px;color:var(--ink-dim);font-size:13px}
+
+/* ---------- Checkout progress rail ---------- */
+.rail{display:flex;align-items:center;justify-content:center;gap:6px;margin:18px 0 6px;padding:0 6px}
+.rail .node{display:flex;align-items:center;gap:6px;flex:1;min-width:0}
+.rail .dot{width:22px;height:22px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;background:var(--bg-panel-2);border:1px solid var(--border);color:var(--ink-faint);transition:all .35s ease}
+.rail .label{font-size:10.5px;color:var(--ink-faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .35s ease}
+.rail .line{height:1px;flex:1;background:var(--border);transition:background .35s ease}
+.rail .node.done .dot{background:var(--gold);border-color:var(--gold);color:#0a0a0a}
+.rail .node.done .label{color:var(--ink-dim)}
+.rail .node.active .dot{border-color:var(--gold);color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+.rail .node.active .label{color:var(--ink)}
+.rail .node.done + .line{background:var(--gold-deep)}
+
+/* ---------- Cards ---------- */
+.card{
+  border:1px solid var(--border-gold);
+  background:linear-gradient(155deg,rgba(20,24,38,.9),rgba(8,11,19,.95));
+  border-radius:var(--radius-lg);
+  padding:16px;
+  margin-bottom:12px;
+  box-shadow:0 12px 32px rgba(0,0,0,.30);
+}
+.card-title{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:800;margin-bottom:14px;color:var(--ink)}
+.card-title .ico{font-size:16px;line-height:1}
+
+/* ---------- Order summary ---------- */
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.info-box{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 11px}
+.info-box small{display:block;color:var(--ink-faint);font-size:11px;margin-bottom:5px}
+.info-box b{display:block;font-size:13.5px;font-weight:700;word-break:break-word}
+
+.method-row{display:flex;justify-content:space-between;align-items:center;margin-top:9px;padding:10px 12px;border-radius:var(--radius-sm);background:rgba(255,255,255,.02);border:1px solid var(--border);font-size:12.5px;color:var(--ink-dim)}
+.method-row b{color:var(--ink);font-weight:700}
+
+.amount-box{margin-top:11px;text-align:center;border-radius:var(--radius-md);padding:14px;background:linear-gradient(100deg,rgba(255,205,50,.09),rgba(255,205,50,.02));border:1px solid var(--border-gold)}
+.amount-box small{color:var(--ink-dim);font-size:12px}
+.amount-box strong{display:block;color:var(--gold);font-size:27px;font-weight:800;margin-top:4px;text-shadow:0 0 18px rgba(255,216,74,.2)}
+
+/* ---------- Payment methods ---------- */
+.methods{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.method-card{
+  position:relative;min-height:104px;padding:12px;border-radius:var(--radius-md);
+  background:var(--bg-panel-2);border:1px solid var(--border);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:5px;
+  cursor:pointer;transition:border-color .2s ease, background .2s ease, transform .15s ease;
+}
+.method-card:active{transform:scale(.98)}
+.method-card .ico{font-size:22px}
+.method-card h3{font-size:13px;margin:0;font-weight:700}
+.method-card p{font-size:10.5px;color:var(--ink-faint);margin:0;line-height:1.5}
+.method-card.selected{border-color:var(--gold);background:linear-gradient(155deg,rgba(255,216,74,.09),rgba(255,216,74,.02));box-shadow:0 0 0 1px var(--gold) inset}
+.method-card.selected::after{content:"✓";position:absolute;top:8px;left:8px;width:18px;height:18px;border-radius:50%;background:var(--gold);color:#0a0a0a;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.method-card.soon{opacity:.45;cursor:not-allowed}
+.method-card.soon .badge{position:absolute;top:8px;left:8px;font-size:9px;background:rgba(255,255,255,.08);color:var(--ink-dim);padding:2px 7px;border-radius:20px;border:1px solid var(--border)}
+
+/* ---------- Method detail panels ---------- */
+.detail-panel{display:none;margin-top:13px;animation:reveal .3s ease}
+.detail-panel.show{display:block}
+@keyframes reveal{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+
+.numberbox{display:flex;gap:8px;align-items:center;background:var(--bg-input);border:1px solid var(--border-gold);border-radius:var(--radius-sm);padding:9px}
+.numberbox .num{direction:ltr;flex:1;text-align:center;font-size:18px;font-weight:800;color:var(--gold);letter-spacing:1px}
+.copy-btn{border:0;border-radius:9px;padding:10px 13px;background:var(--gold);color:#0a0a0a;font-weight:800;font-size:12.5px;min-height:40px}
+.copy-btn:active{transform:scale(.96)}
+
+.link-btn{
+  display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;
+  border-radius:var(--radius-md);padding:14px;min-height:50px;
+  background:linear-gradient(135deg,var(--navy),var(--navy-bright));
+  border:1px solid rgba(100,160,255,.4);color:#fff;font-weight:800;font-size:14px;
+}
+.link-btn:active{transform:scale(.98)}
+
+.hint{font-size:11px;color:var(--ink-faint);line-height:1.65;margin-top:9px;text-align:center}
+
+/* ---------- Confirmation form ---------- */
+.confirm-section{display:none}
+.confirm-section.show{display:block;animation:reveal .3s ease}
+label{display:block;font-size:12.5px;font-weight:700;margin:13px 0 7px;color:var(--ink-dim)}
+input[type=text]{
+  width:100%;border:1px solid var(--border);background:var(--bg-input);color:var(--ink);
+  border-radius:var(--radius-sm);padding:13px;font-size:15px;outline:none;transition:border-color .2s ease;
+}
+input[type=text]:focus{border-color:var(--gold)}
+input[type=text].err{border-color:var(--danger)}
+.field-err{display:none;color:var(--danger);font-size:11px;margin-top:5px}
+.field-err.show{display:block}
+
+.upload{
+  position:relative;border:1px dashed var(--border-gold);background:var(--bg-input);
+  border-radius:var(--radius-md);min-height:100px;display:flex;align-items:center;justify-content:center;
+  text-align:center;color:var(--ink-faint);font-size:12px;overflow:hidden;
+}
+.upload input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.upload #preview{max-width:100%;max-height:160px;display:none;border-radius:8px}
+
+/* ---------- Trust section ---------- */
+.trust-grid{display:grid;grid-template-columns:1fr;gap:8px}
+.trust-item{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--ink-dim);padding:2px 0}
+.trust-item .tick{flex:none;color:var(--gold);font-size:13px}
+
+/* ---------- CTA ---------- */
+.pay-btn{
+  width:100%;border:0;border-radius:var(--radius-md);padding:16px;margin-top:6px;min-height:54px;
+  background:linear-gradient(135deg,#ffe16b,#eab800);color:#0a0a0a;font-size:15.5px;font-weight:800;
+  box-shadow:0 10px 26px rgba(255,201,40,.18);display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.pay-btn:active{transform:scale(.985)}
+.pay-btn:disabled{opacity:.55}
+.pay-btn .spin{width:16px;height:16px;border-radius:50%;border:2px solid rgba(10,10,10,.3);border-top-color:#0a0a0a;animation:spin .8s linear infinite;display:none}
+.pay-btn.loading .spin{display:inline-block}
+.pay-btn.loading .txt::after{content:"جاري معالجة الدفع…"}
+.pay-btn.loading .default-txt{display:none}
+
+.footer-note{text-align:center;color:var(--ink-faint);font-size:11px;margin-top:16px;line-height:1.7}
+
+/* ============================================================
+   Processing / result overlay
+   ============================================================ */
+#overlay{display:none;position:fixed;inset:0;z-index:50;background:rgba(3,5,9,.97);align-items:center;justify-content:center;padding:24px}
+#overlay.show{display:flex}
+.overlay-box{width:min(430px,100%);text-align:center}
+
+.loader-ring{width:66px;height:66px;border-radius:50%;border:5px solid #242832;border-top-color:var(--gold);animation:spin 1s linear infinite;margin:0 auto 22px;box-shadow:0 0 26px rgba(255,215,70,.12)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.check-circle{display:none;width:76px;height:76px;border-radius:50%;margin:0 auto 22px;align-items:center;justify-content:center;position:relative;background:radial-gradient(circle,rgba(255,216,74,.15),transparent 70%);}
+.check-circle svg{width:76px;height:76px}
+.check-circle circle{fill:none;stroke:var(--gold);stroke-width:2.5;stroke-dasharray:220;stroke-dashoffset:220;animation:ring .5s ease forwards}
+.check-circle path{fill:none;stroke:var(--gold);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:40;stroke-dashoffset:40;animation:tick .35s ease .45s forwards}
+@keyframes ring{to{stroke-dashoffset:0}}
+@keyframes tick{to{stroke-dashoffset:0}}
+
+.error-circle{display:none;width:76px;height:76px;border-radius:50%;margin:0 auto 22px;align-items:center;justify-content:center;background:var(--danger-soft);border:2px solid var(--danger);color:var(--danger);font-size:34px}
+
+.overlay-box h2{font-size:19px;margin:0 0 9px;font-weight:800}
+.overlay-box p{color:var(--ink-dim);font-size:13px;line-height:1.7;margin:0}
+
+.tracker{margin-top:26px;text-align:right}
+.t-step{display:flex;gap:10px;align-items:flex-start;padding:9px 0;color:var(--ink-faint);font-size:12.5px}
+.t-dot{width:9px;height:9px;margin-top:3px;border-radius:50%;background:#2b303b;flex:none;transition:all .3s ease}
+.t-step.active{color:var(--ink)}
+.t-step.active .t-dot{background:var(--gold);box-shadow:0 0 10px rgba(255,215,70,.55)}
+.t-step.done{color:var(--ink-dim)}
+.t-step.done .t-dot{background:var(--gold-deep)}
+
+.overlay-order{margin-top:18px;font-size:12px;color:var(--ink-faint);background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px;display:none}
+.overlay-order b{color:var(--gold);font-weight:800;letter-spacing:.5px}
+
+.overlay-btn{display:none;margin-top:22px;border:0;border-radius:var(--radius-sm);padding:12px 28px;min-height:46px;background:var(--gold);color:#0a0a0a;font-weight:800;font-size:13.5px;cursor:pointer;}
+.overlay-btn.retry{background:transparent;border:1px solid var(--border);color:var(--ink)}
+
+/* ---------- small screens ---------- */
+@media(max-width:390px){
+  .summary-grid{grid-template-columns:1fr}
+  .methods{grid-template-columns:1fr}
+}
+
+/* ---------- accessibility ---------- */
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+}
+  .custom-toast {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #171221;
+    border: 1px solid #ff4a4a;
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 5px 20px rgba(255, 74, 74, 0.35);
+    z-index: 99999;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    opacity: 0;
+  }
+
+  .custom-toast.show {
+    bottom: 30px;
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ============ Header ============ -->
+  <header class="header">
+    <div class="brand"><span class="mark"></span>HYPER TOPUP</div>
+    <div class="brand-sub">بوابة الدفع الآمنة لإتمام طلبك</div>
+  </header>
+
+  <!-- ============ Checkout progress rail ============ -->
+  <div class="rail" id="rail">
+    <div class="node done" id="railNode1"><span class="dot">١</span><span class="label">مراجعة الطلب</span></div>
+    <div class="line"></div>
+    <div class="node active" id="railNode2"><span class="dot">٢</span><span class="label">الدفع</span></div>
+    <div class="line"></div>
+    <div class="node" id="railNode3"><span class="dot">٣</span><span class="label">التأكيد</span></div>
+  </div>
+
+  <!-- ============ Order summary ============ -->
+  <section class="card">
+    <div class="card-title"><span class="ico">📦</span>تفاصيل الطلب</div>
+    <div class="summary-grid">
+      <div class="info-box"><small>اللعبة</small><b id="game">PUBG MOBILE</b></div>
+      <div class="info-box"><small>الباقة</small><b id="package">60 شدة</b></div>
+      <div class="info-box"><small>معرف اللاعب</small><b id="player">—</b></div>
+      <div class="info-box"><small>رقم الطلب</small><b id="order">يُنشأ عند التأكيد</b></div>
+    </div>
+    <div class="method-row"><span>وسيلة الدفع</span><b id="methodLabel">لم يتم الاختيار بعد</b></div>
+    <div class="amount-box"><small>إجمالي المطلوب</small><strong id="amount">47.99 ج.م</strong></div>
+  </section>
+
+  <!-- ============ Payment methods ============ -->
+  <section class="card">
+    <div class="card-title"><span class="ico">💳</span>اختر وسيلة الدفع</div>
+
+    <div class="methods">
+      <div class="method-card" data-method="link" onclick="selectMethod('link')">
+        <div class="ico">🔗</div>
+        <h3>محفظة إلكترونية</h3>
+        <p>فتح بوابة التحويل مباشرة</p>
+      </div>
+      <div class="method-card" data-method="manual" onclick="selectMethod('manual')">
+        <div class="ico">📱</div>
+        <h3>تحويل يدوي</h3>
+        <p>تحويل لرقم المتجر ثم تأكيد</p>
+      </div>
+    </div>
+
+    <!-- Link transfer detail -->
+    <div class="detail-panel" id="panelLink">
+      <a class="link-btn" id="transferLinkBtn" href="#" target="_blank" rel="noopener">فتح رابط فودافون كاش الرسمي ↗</a>
+      <div class="hint">هذا هو رابط التحويل الرسمي لخدمة فودافون كاش الخاص بمتجر HYPER TOPUP. اضغط براحتك، أكمل التحويل بكل ثقة، ثم ارجع لهذه الصفحة لتأكيد طلبك بالأسفل.</div>
+    </div>
+
+    <!-- Manual transfer detail -->
+    <div class="detail-panel" id="panelManual">
+      <div class="numberbox">
+        <div class="num" id="walletNumber">01002722164</div>
+        <button class="copy-btn" type="button" onclick="copyNumber()">نسخ الرقم</button>
+      </div>
+      <div class="hint">حوّل المبلغ المطلوب إلى الرقم أعلاه، ثم أكمل بيانات التأكيد بالأسفل.</div>
+    </div>
+  </section>
+
+  <!-- ============ Confirmation form ============ -->
+  <section class="card confirm-section" id="confirmSection">
+    <div class="card-title"><span class="ico">🧾</span>تأكيد عملية التحويل</div>
+
+    <label for="sender">رقم الهاتف الذي تم التحويل منه</label>
+    <input id="sender" type="text" inputmode="numeric" maxlength="11" placeholder="مثال: 01012345678">
+    <div class="field-err" id="senderErr">من فضلك اكتب رقم هاتف صحيح مكوّن من 11 رقمًا.</div>
+
+    <label>إيصال التحويل</label>
+    <div class="upload">
+      <div id="uploadText">📷 اضغط هنا لاختيار صورة الإيصال</div>
+      <img id="preview" alt="الإيصال">
+      <input id="receipt" type="file" accept="image/*" onchange="previewReceipt(event)">
+    </div>
+    <div class="field-err" id="receiptErr">من فضلك ارفع صورة إيصال التحويل.</div>
+  </section>
+
+<!-- ================== بداية كود زرار الضمان ================== -->
+<style>
+  .guarantee-badge-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(57, 255, 20, 0.08);
+    border: 1px solid rgba(57, 255, 20, 0.4);
+    color: #39ff14;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 15px 0;
+    width: 100%;
+    transition: all 0.2s ease;
+  }
+
+  .guarantee-badge-btn:active {
+    transform: scale(0.98);
+    background: rgba(57, 255, 20, 0.2);
+  }
+
+  .guarantee-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .guarantee-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+  }
+
+  .guarantee-modal-card {
+    position: relative;
+    z-index: 100000;
+    background: #120f1a;
+    border: 1px solid #39ff14;
+    border-radius: 14px;
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+    box-shadow: 0 0 25px rgba(57, 255, 20, 0.2);
+    text-align: right;
+  }
+
+  .guarantee-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+  }
+
+  .guarantee-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 15px 0;
+  }
+
+  .guarantee-list li {
+    font-size: 13px;
+    color: #cbd5e1;
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+
+  .guarantee-list li strong {
+    color: #39ff14;
+  }
+
+  .guarantee-note {
+    background: rgba(168, 85, 247, 0.1);
+    border-right: 3px solid #a855f7;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: #e2e8f0;
+    line-height: 1.5;
+    margin-bottom: 15px;
+  }
+
+  .guarantee-close-btn {
+    width: 100%;
+    background: #39ff14;
+    color: #000000;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .hidden-guarantee {
+    display: none !important;
+  }
+</style>
+
+<!-- زرار الضمان -->
+<button type="button" class="guarantee-badge-btn" onclick="openGuaranteeModal()">
+  <span>🛡️</span>
+  <span>كلمة الضمان وحقك معانا (اضغط هنا)</span>
+</button>
+
+<!-- نافذة الضمان المنبثقة -->
+<div id="guaranteeModal" class="guarantee-modal hidden-guarantee">
+  <div class="guarantee-modal-overlay" onclick="closeGuaranteeModal()"></div>
+  <div class="guarantee-modal-card">
+    <div class="guarantee-title">
+      <span>🛡️</span>
+      <span>ضمان حقك في HYPER TOPUP</span>
+    </div>
+
+    <ul class="guarantee-list">
+            <li>• <strong>شحن رسمي 100%:</strong> بنشحنلك بالـ ID بس، يعني حسابك في أمان تام ومفيش أي مخاطرة عليه.</li>
+      <li>• <strong>فلوسك في أمان:</strong> لو حصلت أي مشكلة فنية أو الطلب أتلغى من عندنا، حقك بيرجعلك كاملاً على محفظتك فوراً وبدون أي خصم.</li>
+      <li>• <strong>خدمة سريعة:</strong> أول ما تبعت الإيصال، طلبك ببيتراجع وبيتنفذ في دقائق معدودة.</li>
+    </ul>
+
+    <div class="guarantee-note">
+      💡 إن شاء الله لما الموقع يكبر ويكبر بيكوا، هنجيب بوابات دفع تلقائية بالكامل عشانكم وتدفعوا بضغطة زرار واحدة!
+    </div>
+
+    <button type="button" class="guarantee-close-btn" onclick="closeGuaranteeModal()">فهمت، شكراً 👍</button>
+  </div>
+</div>
+
+<script>
+  function openGuaranteeModal() {
+    document.getElementById('guaranteeModal').classList.remove('hidden-guarantee');
+  }
+  function closeGuaranteeModal() {
+    document.getElementById('guaranteeModal').classList.add('hidden-guarantee');
+  }
+</script>
+<!-- ================== نهاية كود زرار الضمان ================== -->
+
+  <!-- ============ Trust section ============ -->
+  <section class="card">
+    <div class="card-title"><span class="ico">🔒</span>دفع آمن</div>
+    <div class="trust-grid">
+      <div class="trust-item"><span class="tick">✓</span>لا نطلب الرقم السري لمحفظتك أو كلمة المرور</div>
+      <div class="trust-item"><span class="tick">✓</span>لا نطلب رمز OTP خارج بوابة الدفع الرسمية لمزوّد الخدمة</div>
+      <div class="trust-item"><span class="tick">✓</span>رقم طلب فريد لكل عملية شراء</div>
+      <div class="trust-item"><span class="tick">✓</span>تتم مراجعة كل عملية تحويل قبل تنفيذ الشحن</div>
+      <div class="trust-item"><span class="tick">✓</span>دعم عملاء متاح لأي استفسار حول طلبك</div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <button class="pay-btn" id="payBtn" onclick="processPayment()">
+    <span class="spin"></span>
+    <span class="txt default-txt">ادفع الآن</span>
+  </button>
+
+  <div class="footer-note">HYPER TOPUP • بعد إرسال الطلب تتم مراجعته قبل تنفيذ الشحن</div>
+</div>
+
+<!-- ============================================================
+     Processing / result overlay
+     ============================================================ -->
+<div id="overlay">
+  <div class="overlay-box">
+
+    <div class="loader-ring" id="loader"></div>
+
+    <div class="check-circle" id="checkCircle">
+      <svg viewBox="0 0 76 76">
+        <circle cx="38" cy="38" r="34"/>
+        <path d="M24 39 L34 49 L53 27"/>
+      </svg>
+    </div>
+
+    <div class="error-circle" id="errorCircle">!</div>
+
+    <h2 id="overlayTitle">جاري إرسال بيانات الطلب</h2>
+    <p id="overlayText">جاري تجهيز طلبك للمراجعة، يرجى عدم إغلاق الصفحة.</p>
+
+    <div class="tracker" id="tracker">
+      <div class="t-step active" id="t1"><span class="t-dot"></span>جاري إرسال بيانات الطلب</div>
+      <div class="t-step" id="t2"><span class="t-dot"></span>جاري التحقق من عملية الدفع</div>
+      <div class="t-step" id="t3"><span class="t-dot"></span>جاري تنفيذ طلب الشحن</div>
+    </div>
+
+    <div class="overlay-order" id="overlayOrder">رقم طلبك: <b id="overlayOrderNum"></b></div>
+
+    <button class="overlay-btn" id="overlayBack" onclick="window.location.href='orders.html'">الانتقال إلى سجل الطلبات 📋</button>
+    <button class="overlay-btn retry" id="overlayRetry" onclick="closeOverlay()">إعادة المحاولة</button>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   HYPER TOPUP — PAYMENT GATEWAY LOGIC
+   ============================================================ */
+const PAYMENT_GATEWAY_CONFIG = {
+  walletNumber: '01002722164',
+  transferLink: 'https://vf.eg/vfcash?id=mt&qrId=wk3ETf',
+  
+  // Supabase Edge Function URL
+  functionUrl:'https://vmvubihkmeyoyjcfvpjd.supabase.co/functions/v1/super-handler',
+  anonKey: 'sb_publishable_F6owfDxHzuqsdOhCvsn1XQ_EAzy3ZvT',
+
+  // SheetDB API URL
+  sheetDbUrl: 'https://sheetdb.io/api/v1/ouyhx87gxkpry'
+};
+
+/* ------------------------------------------------------------
+   Order data — read from the URL query string
+   ------------------------------------------------------------ */
+const params = new URLSearchParams(location.search);
+
+// استخراج الأرقام فقط من السعر للتعامل مع EGP أو أي رموز
+let rawAmountStr = params.get('amount') || params.get('price') || '';
+let cleanAmountStr = rawAmountStr.replace(/[^0-9.]/g, ''); 
+
+let parsedAmount = parseFloat(cleanAmountStr);
+
+// وضع قيمة احتياطية فقط لو الرابط مفيش فيه سعر خالص
+if (isNaN(parsedAmount) || parsedAmount <= 0) {
+  parsedAmount = 50;
+}
+
+const orderData = {
+  game: params.get('game') || 'Gangstar Mirage',
+  packageName: params.get('package') || params.get('pack') || 'باقة اللعبة',
+  playerId: params.get('id') || params.get('player') || '—',
+  amount: parsedAmount.toString(),
+  orderId: params.get('order') || '',
+  paymentMethod: null,
+};
+
+document.getElementById('game').textContent = orderData.game;
+document.getElementById('package').textContent = orderData.packageName;
+document.getElementById('player').textContent = orderData.playerId;
+document.getElementById('amount').textContent = Math.round(parseFloat(orderData.amount)).toString() + ' ج.م';
+if (orderData.orderId) document.getElementById('order').textContent = orderData.orderId;
+
+document.getElementById('walletNumber').textContent = PAYMENT_GATEWAY_CONFIG.walletNumber;
+document.getElementById('transferLinkBtn').href = PAYMENT_GATEWAY_CONFIG.transferLink;
+
+/* ------------------------------------------------------------
+   Payment method selection
+   ------------------------------------------------------------ */
+function selectMethod(method) {
+  orderData.paymentMethod = method;
+
+  document.querySelectorAll('.method-card[data-method]').forEach(el => {
+    el.classList.toggle('selected', el.dataset.method === method);
+  });
+
+  document.getElementById('panelLink').classList.toggle('show', method === 'link');
+  document.getElementById('panelManual').classList.toggle('show', method === 'manual');
+  document.getElementById('confirmSection').classList.add('show');
+
+  const labels = { link: 'محفظة إلكترونية (رابط)', manual: 'تحويل يدوي' };
+  document.getElementById('methodLabel').textContent = labels[method] || '—';
+}
+
+function copyNumber() {
+  navigator.clipboard?.writeText(PAYMENT_GATEWAY_CONFIG.walletNumber);
+  const btn = event.currentTarget;
+  const original = btn.textContent;
+  btn.textContent = 'تم النسخ ✓';
+  setTimeout(() => (btn.textContent = original), 1500);
+}
+
+function previewReceipt(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const img = document.getElementById('preview');
+  img.src = URL.createObjectURL(file);
+  img.style.display = 'block';
+  document.getElementById('uploadText').style.display = 'none';
+  document.getElementById('receiptErr').classList.remove('show');
+}
+
+/* ------------------------------------------------------------
+   Form validation
+   ------------------------------------------------------------ */
+function validateForm() {
+  let valid = true;
+
+  if (!orderData.paymentMethod) {
+    showToast('من فضلك اختر وسيلة الدفع أولاً');
+    return false;
+  }
+
+  const senderInput = document.getElementById('sender');
+  const senderOk = /^\d{11}$/.test(senderInput.value.trim());
+  senderInput.classList.toggle('err', !senderOk);
+  document.getElementById('senderErr').classList.toggle('show', !senderOk);
+  if (!senderOk) valid = false;
+
+  const hasReceipt = document.getElementById('receipt').files.length > 0;
+  document.getElementById('receiptErr').classList.toggle('show', !hasReceipt);
+  if (!hasReceipt) valid = false;
+
+  return valid;
+}
+
+/* ------------------------------------------------------------
+   Overlay / tracker helpers
+   ------------------------------------------------------------ */
+function openOverlay() {
+  document.getElementById('overlay').classList.add('show');
+}
+function closeOverlay() {
+  document.getElementById('overlay').classList.remove('show');
+  document.getElementById('errorCircle').style.display = 'none';
+  document.getElementById('loader').style.display = 'block';
+  document.getElementById('overlayRetry').style.display = 'none';
+}
+
+function setTrackerStep(n) {
+  for (let i = 1; i <= 3; i++) {
+    const el = document.getElementById('t' + i);
+    el.classList.remove('active', 'done');
+    if (i < n) el.classList.add('done');
+    if (i === n) el.classList.add('active');
+  }
+}
+
+function showSuccess(orderId) {
+  document.getElementById('loader').style.display = 'none';
+  document.getElementById('checkCircle').style.display = 'flex';
+  document.getElementById('overlayTitle').textContent = 'تم تأكيد طلبك ✓';
+  document.getElementById('overlayText').textContent =
+    'احتفظ برقم الطلب للمتابعة، ويمكنك في أي وقت الاطمئنان على حالته من سجل الطلبات داخل قسم الحساب. لن يُعتبر الشحن مكتملاً إلا بعد تنفيذه فعليًا من فريق المتجر.';
+  document.getElementById('overlayOrder').style.display = 'block';
+  document.getElementById('overlayOrderNum').textContent = orderId;
+  document.getElementById('overlayBack').style.display = 'inline-block';
+  document.getElementById('railNode3').classList.add('done');
+  document.getElementById('railNode3').classList.remove('active');
+}
+
+function showError(message) {
+  document.getElementById('loader').style.display = 'none';
+  document.getElementById('errorCircle').style.display = 'flex';
+  document.getElementById('overlayTitle').textContent = 'تعذّر إرسال الطلب';
+  document.getElementById('overlayText').textContent =
+    message || 'حدث خطأ أثناء إرسال البيانات إلى السيرفر، يرجى إعادة المحاولة.';
+  document.getElementById('overlayRetry').style.display = 'inline-block';
+}
+
+/* ------------------------------------------------------------
+   processPayment() — الإرسال لـ Supabase + SheetDB + الحفظ المحلي
+   ------------------------------------------------------------ */
+async function processPayment() {
+  if (!validateForm()) return;
+
+  const payBtn = document.getElementById('payBtn');
+  payBtn.classList.add('loading');
+  payBtn.disabled = true;
+
+  const cleanOrderID = (orderData.orderId || ('HYP' + Math.floor(100000 + Math.random() * 900000))).replace('#', '');
+  const displayOrderID = '#' + cleanOrderID;
+  document.getElementById('order').textContent = displayOrderID;
+
+  document.getElementById('railNode2').classList.add('done');
+  document.getElementById('railNode2').classList.remove('active');
+  document.getElementById('railNode3').classList.add('active');
+
+  openOverlay();
+  setTrackerStep(1);
+  document.getElementById('overlayTitle').textContent = 'جاري إرسال بيانات الطلب';
+  document.getElementById('overlayText').textContent = 'جاري تجهيز طلبك للمراجعة، يرجى عدم إغلاق الصفحة.';
+
+  try {
+    const formData = new FormData();
+    formData.append('orderId', cleanOrderID);
+    formData.append('game', orderData.game);
+    formData.append('package', orderData.packageName);
+    formData.append('playerId', orderData.playerId);
+    formData.append('amount', orderData.amount);
+    formData.append('paymentMethod', orderData.paymentMethod);
+    formData.append('sender', document.getElementById('sender').value.trim());
+    
+    const receiptFile = document.getElementById('receipt').files[0];
+    if (receiptFile) {
+      formData.append('receipt', receiptFile);
+    }
+
+    setTrackerStep(2);
+    document.getElementById('overlayTitle').textContent = 'جاري إرسال الإشعار وتأكيد الطلب';
+
+    // 1. الإرسال لسيرفر Supabase (إرسال الإشعار للتليجرام)
+    const res = await fetch(PAYMENT_GATEWAY_CONFIG.functionUrl, {
+      method: 'POST',
+      headers: {
+        'apikey': PAYMENT_GATEWAY_CONFIG.anonKey,
+        'Authorization': 'Bearer ' + PAYMENT_GATEWAY_CONFIG.anonKey
+      },
+      body: formData
+    });
+
+    const result = await res.json().catch(() => ({}));
+
+    if (res.ok && (result.success || res.status === 200)) {
+
+      // 2. إرسال الطلب لـ Google Sheets عبر SheetDB
+            // 2. إرسال الطلب لـ Google Sheets عبر SheetDB بشكل متوافق مع أعمدة الشيت
+      try {
+        const fullGameStr = `${orderData.game} - ${orderData.packageName}`;
+        
+        // تنسيق التاريخ والوقت
+        const now = new Date();
+        const formattedDate = `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${now.getHours()}:${now.getMinutes() < 10 ? '0' : ''}${now.getMinutes()}`;
+        
+        const senderNumber = document.getElementById('sender').value.trim();
+        const paymentMethodTxt = orderData.paymentMethod === 'link' ? 'فودافون كاش' : 'تحويل يدوي';
+
+        await fetch(PAYMENT_GATEWAY_CONFIG.sheetDbUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            data: [{
+              'ID': orderData.playerId,
+              'Customer': senderNumber,
+              'Game': fullGameStr,
+              'Amount': orderData.amount,
+              'Status': '⏳ قيد المراجعة',
+              'Date': formattedDate,
+              'Method': paymentMethodTxt,
+              'Coupon': 'بدون كود خصم',
+              'OrderID': '#' + cleanOrderID
+            }]
+          })
+        });
+      } catch (sheetErr) {
+        console.error('فشل التسجيل في الشيت:', sheetErr);
+      }
+
+      // 3. حفظ الطلب في ذاكرة العميل LocalStorage ليظهر في orders.html
+      let userOrders = JSON.parse(localStorage.getItem('hyper_user_orders') || '[]');
+      userOrders.push({
+        orderID: cleanOrderID,
+        game: `${orderData.game} - ${orderData.packageName}`,
+        amount: orderData.amount,
+        playerID: orderData.playerId,
+        method: orderData.paymentMethod === 'link' ? 'محفظة (رابط)' : 'تحويل يدوي',
+        status: '⏳ قيد المراجعة',
+        date: new Date().toLocaleString('ar-EG')
+      });
+      localStorage.setItem('hyper_user_orders', JSON.stringify(userOrders));
+
+      setTrackerStep(3);
+      showSuccess(displayOrderID);
+    } else {
+      showError(result.error || 'فشل إرسال بيانات الطلب، تأكد من صحة الإعدادات.');
+    }
+  } catch (err) {
+    console.error('Fetch error:', err);
+    showError('تعذّر الاتصال بالسيرفر، تأكد من إعدادات الشبكة وإعادة المحاولة.');
+  } finally {
+    payBtn.classList.remove('loading');
+    payBtn.disabled = false;
+  }
+}
+
+  // دالة إظهار التنبيه الاحترافي بديل alert
+  function showToast(message) {
+    let toast = document.getElementById('customToast');
+    let toastMsg = document.getElementById('toastMsg');
+    
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'customToast';
+      toast.className = 'custom-toast';
+      toast.innerHTML = '<span>⚠️</span><span id="toastMsg"></span>';
+      document.body.appendChild(toast);
+      toastMsg = document.getElementById('toastMsg');
+    }
+    
+    if (toast && toastMsg) {
+      toastMsg.textContent = message;
+      toast.classList.add('show');
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+  }
+</script>
+</body>
+</html>

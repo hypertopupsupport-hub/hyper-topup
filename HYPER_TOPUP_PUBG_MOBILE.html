@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#050505">
+<title>HYPER TOPUP | PUBG Mobile</title>
+<style>
+:root{--bg:#050505;--card:#121212;--gold:#d6ad55;--gold2:#f5d98a;--text:#f7f3e8;--muted:#aaa49a;--line:rgba(214,173,85,.24)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;min-height:100%;background:radial-gradient(circle at 50% -10%,rgba(214,173,85,.16),transparent 34%),linear-gradient(180deg,#030303,#0b0b0b 55%,#030303);color:var(--text);font-family:Tahoma,Arial,sans-serif}body{overflow-x:hidden}body:before{content:"";position:fixed;inset:-20%;pointer-events:none;opacity:.13;background:repeating-linear-gradient(120deg,transparent 0 75px,rgba(214,173,85,.18) 76px,transparent 78px 150px);transform:rotate(-5deg)}button,input{font:inherit}.page{position:relative;z-index:1;width:min(100%,720px);margin:auto;padding:14px 12px 34px}
+.topbar{display:flex;align-items:center;gap:10px;margin-bottom:12px}.back-btn{width:42px;height:42px;border:1px solid var(--line);border-radius:13px;color:var(--gold2);background:#ffffff08;font-size:22px;cursor:pointer}.brand{flex:1;text-align:center}.brand-name{margin:0;font-size:19px;font-weight:900;letter-spacing:1px}.brand-name span{color:var(--gold2)}.game-label{display:inline-block;margin-top:4px;padding:4px 10px;border:1px solid var(--line);border-radius:99px;color:#cfc5ad;background:#d6ad550d;font-size:10px}.spacer{width:42px}
+.hero-banner {position: relative;width: 100%;height: 140px;border-radius: 12px;overflow: hidden;margin-bottom: 15px;}
+.banner-img {width: 100%;height: 100%;object-fit: cover;object-position: center;}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:15px;padding:5px;border:1px solid var(--line);border-radius:16px;background:#ffffff05;backdrop-filter:blur(12px)}.tab{min-height:48px;border:1px solid transparent;border-radius:12px;background:transparent;color:#aaa49a;cursor:pointer;font-size:11px;font-weight:800;transition:.2s}.tab .icon{display:block;font-size:18px;line-height:18px;margin-bottom:3px}.tab.active{color:#111;background:linear-gradient(135deg,var(--gold2),var(--gold));border-color:var(--gold2);box-shadow:0 5px 20px #d6ad5533}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin:5px 2px 10px}.section-head h2{margin:0;font-size:15px}.count{color:#8f897d;font-size:10px}.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product{overflow:hidden;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#ffffff0f,#ffffff03);box-shadow:0 12px 30px #0005;transition:.18s}.product:active{transform:scale(.98);border-color:#f5d98a99}.product-img{width:100%;aspect-ratio:1.45/1;display:flex;align-items:center;justify-content:center;padding:9px;background:radial-gradient(circle,#d6ad5519,transparent 68%),#0003;border-bottom:1px solid #ffffff0d}.product-img img{display:block;width:100%;height:100%;object-fit:contain;border-radius:10px}.product-info{padding:10px}.product-name{min-height:34px;font-size:11px;font-weight:800;line-height:1.55}
+.price-box {text-align: center;margin: 8px 0;}
+.current-price {color: #ffb703;font-size: 1.1rem;font-weight: bold;}
+.old-price {color: #888;text-decoration: line-through;font-size: 0.85rem;margin-top: 2px;}
+.discount-badge {background-color: #ff5722;color: #fff;font-size: 0.75rem;font-weight: bold;padding: 2px 6px;border-radius: 4px;display: inline-block;margin-top: 4px;}
+.currency{font-size:9px;color:#b7ad99;margin-right:3px}.buy-btn{width:100%;border:1px solid #f5d98a88;border-radius:11px;color:#111;background:linear-gradient(135deg,#f5d98a,#c89c45);cursor:pointer;font-weight:900;box-shadow:0 7px 20px #d6ad5524;height:38px;margin-top:9px;font-size:11px}.buy-btn:active{transform:scale(.97)}.hidden{display:none!important}
+.toast{position:fixed;left:50%;bottom:18px;z-index:100;width:calc(100% - 30px);max-width:480px;padding:12px 14px;border:1px solid #f5d98a47;border-radius:13px;background:#121212f7;color:#eee;box-shadow:0 15px 40px #0009;transform:translate(-50%,120px);opacity:0;transition:.25s;text-align:center;font-size:11px;line-height:1.6}.toast.show{transform:translate(-50%,0);opacity:1}
+.modal-overlay {position: fixed; inset: 0; background: rgba(5, 7, 12, 0.85); backdrop-filter: blur(8px); display: flex; align-items: flex-end; justify-content: center; z-index: 1000;}
+.modal-overlay.hidden {display: none !important;}
+.modal-card {background: #10141e; border: 1px solid #1f293d; border-top-left-radius: 20px; border-top-right-radius: 20px; width: 100%; max-width: 500px; max-height: 85vh; overflow-y: auto; padding: 20px; color: #fff; position: relative; margin: 0;}
+.acc-head {background: #171d2c; padding: 14px 16px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-size: 0.95rem; font-weight: bold; border: 1px solid #253147;}
+.acc-head .arrow {transition: transform 0.3s ease; font-size: 0.75rem; color: #4a9eff;}
+.acc-head.active .arrow {transform: rotate(180deg);}
+.acc-body {background: #141926; padding: 14px; border-radius: 0 0 10px 10px; border: 1px solid #253147; border-top: none; display: none;}
+.acc-body.open {display: block;}
+.pay-card {background: #171d2c; border: 1px solid #253147; border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.2s;}
+.pay-card.selected {border-color: #0084ff; background: rgba(0, 132, 255, 0.12);}
+.checkout-bar {position: sticky; bottom: -20px; margin: 20px -20px -20px -20px; background: #0b0e14; border-top: 1px solid #1f293d; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; z-index: 10;}
+.pay-btn-main {background: linear-gradient(90deg, #0084ff, #00c6ff); border: none; color: #fff; padding: 12px 35px; border-radius: 10px; font-weight: bold; font-size: 1rem; cursor: pointer;}
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.close-btn { background: none; border: none; color: #888; font-size: 1.5rem; cursor: pointer; }
+.input-group input {width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #444; background: #0f1012; color: #fff; margin-top: 6px; box-sizing: border-box;}
+.id-help-link {color: #aaa; font-size: 0.85rem; margin: 12px 0; cursor: pointer; display: flex; align-items: center; gap: 6px; background: #222327; padding: 8px 12px; border-radius: 6px;}
+.action-btn {width: 100%; background: #ffb703; color: #000; font-weight: bold; border: none; padding: 12px; border-radius: 8px; cursor: pointer; margin-top: 10px;}
+.action-btn.secondary { background: #333; color: #fff; }
+.payment-options { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
+.pay-option {background: #222327; padding: 14px; border-radius: 8px; border: 1px solid #333; text-align: center; font-weight: bold; cursor: pointer;}
+.pay-option:hover { border-color: #ffb703; color: #ffb703; }
+body.modal-open {
+  overflow: hidden !important;
+  touch-action: none;
+}
+
+.price-box-hidden {
+  display: none;
+  background: #111927;
+  border: 1px solid #253147;
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 10px;
+  font-size: 0.85rem;
+}
+
+.price-box-show {
+  display: block !important;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<main class="page">
+<header class="topbar"><button class="back-btn" type="button" onclick="goBack()">‹</button><div class="brand"><h1 class="brand-name">HYPER <span>TOPUP</span></h1><div class="game-label">PUBG MOBILE • شحن وخدمات</div></div><div class="spacer"></div></header>
+
+<div class="hero-banner">
+  <img src="https://i.ibb.co/C3yLRsQM/IMG-20260909-191042.png" alt="PUBG Mobile" class="banner-img">
+</div>
+
+<nav class="tabs">
+  <button class="tab active" data-tab="uc" onclick="switchTab('uc')">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    UC
+  </button>
+  <button class="tab" data-tab="wow" onclick="switchTab('wow')">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    WOW Coin
+  </button>
+  <button class="tab" data-tab="shop" onclick="switchTab('shop')">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+    تسوق
+  </button>
+</nav>
+
+<section id="ucSection"><div class="section-head"><h2>باقات UC</h2><span class="count">6 باقات</span></div><div id="ucProducts" class="products"></div></section>
+<section id="wowSection" class="hidden"><div class="section-head"><h2>باقات WOW Coin</h2><span class="count">6 باقات</span></div><div id="wowProducts" class="products"></div></section>
+<section id="shopSection" class="hidden"><div class="section-head"><h2>التسوق والاشتراكات</h2><span class="count">11 منتج</span></div><div id="shopProducts" class="products"></div></section>
+</main>
+<!-- نافذة الشراء والدفع الموحدة بطراز ميداس باي -->
+<div id="orderModal" class="modal-overlay hidden">
+  <div class="modal-card" style="direction: rtl; text-align: right;">
+    
+    <!-- زر الإغلاق والعنوان -->
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+      <h3 style="margin:0; font-size:1.05rem; color:#fff;">إتمام طلب الشحن</h3>
+      <button onclick="closeModal('orderModal')" class="close-btn">&times;</button>
+    </div>
+
+    <!-- كارت الباقة: الصورة على اليمين بالظبط -->
+    <div style="display:flex; flex-direction:row-reverse; justify-content:flex-end; align-items:center; gap:12px; background:#182335; padding:12px; border-radius:10px; margin-bottom:14px;">
+      <div id="packageTitleDisplay" style="font-weight:bold; color:#fff; font-size:1rem;">بااقة 300 + 1500 شدة</div>
+      <img id="modalPackageImg" src="" alt="Package" style="width:48px; height:48px; object-fit:contain; border-radius:6px; background:#0f1724; padding:3px;">
+    </div>
+
+    <!-- إدخال الأيدي -->
+    <div class="input-group">
+      <label style="font-size:0.85rem; color:#aaa; display:block; margin-bottom:6px;">معرف اللاعب (Player ID)</label>
+      <input type="number" id="playerIdInput" placeholder="اكتب Player ID هنا" style="width:100%; padding:12px; border-radius:8px; border:1px solid #253147; background:#171d2c; color:#fff; direction: rtl;">
+    </div>
+
+    <!-- زر كيف تعثر على معرف اللاعب (شغال 100%) -->
+    <div onclick="openModal('idHelpModal')" style="margin-top:8px; font-size:0.8rem; color:#4a9eff; cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
+      <span style="border:1px solid #4a9eff; border-radius:50%; width:15px; height:15px; display:inline-flex; align-items:center; justify-content:center; font-size:10px;">i</span>
+      <span>كيف تعثر على معرف اللاعب؟</span>
+    </div>
+
+    <!-- قنوات الدفع -->
+    <h4 style="margin:16px 0 10px 0; font-size:0.9rem; color:#eee;">اختر قنوات الدفع</h4>
+    <div class="pay-card selected" onclick="selectPayOption(this, 'Vodafone Cash')">
+      <span>فودافون كاش / أورنج / اتصالات</span>
+      <span style="background:#0084ff; color:#fff; padding:2px 8px; border-radius:4px; font-size:0.75rem;">مستحسن</span>
+    </div>
+    <div class="pay-card" onclick="selectPayOption(this, 'InstaPay')">
+      <span>إنستا باي (InstaPay)</span>
+    </div>
+       <!-- نافذة تفاصيل السعر -->
+    <div id="priceDetailsBox" class="price-box-hidden">
+      <div style="display:flex; justify-content:space-between; margin-bottom:6px; color:#aaa;">
+        <span>السعر الأصلي:</span>
+        <span id="originalPriceDisplay">EGP 1308.10</span>
+      </div>
+      <div style="display:flex; justify-content:space-between; margin-bottom:6px; color:#ffb700;">
+        <span>الخصم:</span>
+        <span id="discountDisplay">EGP -98.11</span>
+      </div>
+      <hr style="border:0; border-top:1px dashed #253147; margin:8px 0;">
+      <div style="display:flex; justify-content:space-between; font-weight:bold; color:#fff;">
+        <span>الإجمالي النهائي:</span>
+        <span id="finalPriceDisplay">EGP 1209.99</span>
+      </div>
+    </div>
+    <!-- الشريط السفلي مع سهم تفاصيل السعر -->
+    <div class="checkout-bar" style="margin-top:15px;">
+      <div onclick="togglePriceDetails()" style="cursor:pointer; text-align:right;">
+        <div style="font-size:0.75rem; color:#aaa; display:flex; align-items:center; gap:4px;">
+          <span id="priceArrow" style="display:inline-block; transition: transform 0.3s;">▲</span> الإجمالي:
+        </div>
+        <div id="modalTotalPrice" style="font-weight:bold; color:#00c6ff; font-size:1.1rem;">EGP 1209.99</div>
+      </div>
+      <button class="pay-btn-main" onclick="submitOrder()">دفع</button>
+    </div>
+ 
+
+<!-- نافذة شرح الـ ID الاحترافية -->
+<div id="idHelpModal" class="modal-overlay hidden">
+  <div class="modal-card" style="max-width:340px; text-align:right; direction:rtl;">
+    <h3 style="margin-top:0; color:#fff; font-size:1.1rem;">كيف تعثر على Player ID؟</h3>
+    <div style="color:#ccc; font-size:0.85rem; line-height:1.6; margin:15px 0;">
+      1. افتح لعبة <b>PUBG Mobile</b>.<br>
+      2. اضغط على <b>الصورة الشخصية</b> أعلى اليسار.<br>
+      3. انسخ <b>الرقم (ID)</b> الموجود بجانب اسمك.
+    </div>
+    <button onclick="closeModal('idHelpModal')" style="width:100%; padding:10px; background:#0084ff; border:none; border-radius:8px; color:#fff; font-weight:bold; cursor:pointer;">تم، فهمت</button>
+  </div>
+</div>
+
+<script>
+const products={
+uc:[
+['باقة 60 شدة',49.99,'https://i.ibb.co/fVq2ySHd/level1-cb11b2cd.png'],
+['باقة 25 + 300 شدة',244.99,'https://i.ibb.co/3mpv6VP5/level2-f2b27a84.png'],
+['باقة 60 + 600 شدة',484.99,'https://i.ibb.co/Z66pVvWN/level3-6e2a3de7.png'],
+['باقة 300 + 1500 شدة',1209.99,'https://i.ibb.co/S7tBBSWS/level4-5662a174.png'],
+['باقة 850 + 3000 شدة',2429.99,'https://i.ibb.co/DPDM03wd/level5-5a6a7af6.png'],
+['باقة 2100 + 6000 شدة',4849.99,'https://i.ibb.co/xcdMrc9/level6-03ebac0d.png']],
+wow:[
+['باقة 60 WOW',49.99,'https://i.ibb.co/JjdPpXr6/60-5cac7787.png'],
+['باقة 25 + 300 WOW',244.99,'https://i.ibb.co/cSWdq5PJ/300-c7cd0786.png'],
+['باقة 60 + 600 WOW',484.99,'https://i.ibb.co/Ng3x3yKg/600-938a36d5.png'],
+['باقة 300 + 1500 WOW',1209.99,'https://i.ibb.co/Ng3x3yKg/600-938a36d5.png'],
+['باقة 850 + 3000 WOW',2429.99,'https://i.ibb.co/tPCxWHDJ/3000-c1ecce03-1.png'],
+['باقة 2100 + 6000 WOW',4849.99,'https://i.ibb.co/y2sxXtf/6000-fb9cde03.png']],
+shop:[
+['Prime شهر 1',44.99,'https://i.ibb.co/5gqNrspf/1-ar-31a61417.jpg'],
+['Prime 3 شهور',134.99,'https://i.ibb.co/YFtngZYd/3-ar-c9a3ebd6.jpg'],
+['Prime 6 شهور',269.99,'https://i.ibb.co/0pbxSMGm/6-ar-02ac5793.jpg'],
+['Prime 12 شهر',539.99,'https://i.ibb.co/yzjFf7L/12-ar-471c9625.jpg'],
+['Prime Plus شهر 1',449.99,'https://i.ibb.co/GwXdg6K/plus1-ar-272b8584.jpg'],
+['Prime Plus 3 أشهر',1349.90,'https://i.ibb.co/FbNJBXT2/plus3-ar-6742104b.jpg'],
+['Prime Plus 6 أشهر',2699.99,'https://i.ibb.co/d077dnNX/plus6-ar-6dd77eb1.jpg'],
+['Prime Plus 12 شهراً',5399.99,'https://i.ibb.co/qYQFRp7R/plus12-ar-75ace814.jpg'],
+['Weekly Deal Pack 1',44.99,'https://i.ibb.co/qYFTKBHv/17270800787514-402cdd13.jpg'],
+['Weekly Mythic Emblem Value Pack',134.99,'https://i.ibb.co/fd5hSmJ6/weeklytu-aa489de9.jpg'],
+['Weekly Deal Pack 2',134.99,'https://i.ibb.co/ZkMp7BP/17270800666888-579501ad.jpg']]
+};
+
+const $=id=>document.getElementById(id);
+let currentOrderData = {};
+
+function card(p,i,c){
+    const e=document.createElement('article');
+    e.className='product';
+    let currentPrice = Number(p[1]);
+    let discountRate = 0.05;
+
+    if (currentPrice < 100) discountRate = 0.037;
+    else if (currentPrice >= 100 && currentPrice < 1000) discountRate = 0.05;
+    else if (currentPrice >= 1000 && currentPrice < 3000) discountRate = 0.075;
+    else if (currentPrice >= 3000) discountRate = 0.10;
+
+    let discountPercent = (discountRate * 100).toFixed(1).replace('.0', '');
+    let oldPrice = (currentPrice / (1 - discountRate)).toFixed(2);
+    
+    e.innerHTML=`<div class="product-img"><img src="${p[2]}" alt="${esc(p[0])}" loading="lazy"></div><div class="product-info"><div class="product-name">${esc(p[0])}</div><div class="price-box"><div class="current-price"><span class="currency">EGP</span> ${currentPrice.toFixed(2)}</div><div class="old-price"><span class="currency">EGP</span> ${oldPrice}</div><span class="discount-badge">-${discountPercent}%</span></div><button class="buy-btn" type="button" onclick="openOrder(${i}, '${c}')">شحن فوري</button></div>`; 
+    return e;
+}
+
+function render(){
+  Object.keys(products).forEach(c=>{
+    const box=$(`${c}Products`);
+    if(box){
+      box.innerHTML='';
+      products[c].forEach((p,i)=>box.appendChild(card(p,i,c)));
+    }
+  });
+}
+
+function switchTab(c){
+  ['uc','wow','shop'].forEach(x=>$(`${x}Section`).classList.toggle('hidden',x!==c));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===c));
+  scrollTo({top:0,behavior:'smooth'});
+  vib(12);
+}
+
+function openOrder(i, c) {
+  const item = products[c][i];
+  currentOrderData = { name: item[0], price: item[1] };
+  
+  $('selectedPackageBox').innerHTML = `
+    <div style="background:#222; padding:10px; border-radius:8px; margin-bottom:12px; text-align:center;">
+      <strong>${item[0]}</strong> - <span style="color:#ffb703;">EGP ${item[1]}</span>
+    </div>`;
+  $('playerIdInput').value = '';
+  openModal('orderModal');
+  vib(18);
+}
+
+function openModal(id) {
+  const el = typeof id === 'string' ? document.getElementById(id) : id;
+  if (el) el.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(id) {
+  const el = typeof id === 'string' ? document.getElementById(id) : id;
+  if (el) el.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+function goToPaymentStep() {
+  const idInput = $('playerIdInput').value.trim();
+  if (!idInput) { alert('يرجى كتابة الـ ID أولاً'); return; }
+  currentOrderData.playerId = idInput;
+  closeModal('orderModal');
+  openModal('paymentModal');
+}
+
+function selectPayment(method) {
+  currentOrderData.paymentMethod = method;
+  alert(`تم اختيار ${method} لشحن باقة ${currentOrderData.name} للأيدي ${currentOrderData.playerId}`);
+  closeModal('paymentModal');
+}
+
+function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(window.tt);window.tt=setTimeout(()=>t.classList.remove('show'),3500)}
+function goBack(){if(history.length>1)history.back();else toast('اربط زر الرجوع بالصفحة الرئيسية عند دمج القسم.');vib(12)}
+function vib(n){if(navigator.vibrate)navigator.vibrate(n)}
+function esc(v){return String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+// التحكم في فتح وإغلاق قائمة التفاصيل (السهم)
+function toggleAcc(id, el) {
+  const content = document.getElementById(id);
+  el.classList.toggle('active');
+  content.classList.toggle('open');
+}
+
+// تحديد طريقة الدفع المختارة
+let selectedMethod = 'Vodafone Cash';
+function selectPayOption(element, method) {
+  document.querySelectorAll('.pay-card').forEach(c => c.classList.remove('selected'));
+  element.classList.add('selected');
+  selectedMethod = method;
+}
+
+// ربط بيانات الباقة بالمودال عند الضغط على أي كارت
+// فتح وإغلاق تفاصيل السعر بالأنيميشن
+function togglePriceDetails() {
+  const box = document.getElementById('priceDetailsBox');
+  const arrow = document.getElementById('priceArrow');
+  
+  if (box.classList.contains('price-box-show')) {
+    box.classList.remove('price-box-show');
+    arrow.style.transform = 'rotate(0deg)';
+  } else {
+    box.classList.add('price-box-show');
+    arrow.style.transform = 'rotate(180deg)';
+  }
+}
+
+// فتح المودال وتعبئة بيانات الباقة والصورة على اليمين
+function openOrder(i, c) {
+  const item = products[c][i];
+  currentOrderData = { name: item[0], price: item[1], img: item[2] };
+  
+  document.getElementById('packageTitleDisplay').textContent = item[0];
+  document.getElementById('modalPackageImg').src = item[2];
+  
+  // حساب السعر والخصم التلقائي
+  const basePrice = (item[1] * 1.04).toFixed(2);
+  const discount = (basePrice - item[1]).toFixed(2);
+  
+  document.getElementById('modalTotalPrice').textContent = 'EGP ' + item[1].toFixed(2);
+  document.getElementById('originalPriceDisplay').textContent = 'EGP ' + basePrice;
+  document.getElementById('discountDisplay').textContent = 'EGP -' + discount;
+  document.getElementById('finalPriceDisplay').textContent = 'EGP ' + item[1].toFixed(2);
+  
+  document.getElementById('playerIdInput').value = '';
+  document.getElementById('priceDetailsBox').style.display = 'none';
+  document.getElementById('priceArrow').textContent = '▲';
+  
+  openModal('orderModal');
+  if (typeof vib === 'function') vib(18);
+}
+
+// تأكيد الطلب وإرسال البيانات //
+function submitOrder() {
+    proceedToPayment();
+}
+// تحديد قناة الدفع والتحويل لصفحة الدفع المناسبة مع تقريب السعر
+let selectedPayMethod = 'Vodafone Cash';
+
+function selectPayOption(el, method) {
+  document.querySelectorAll('.pay-card').forEach(card => card.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedPayMethod = method;
+}
+
+function proceedToPayment() {
+  const idInput = document.getElementById('playerIdInput');
+  const playerId = idInput ? idInput.value.trim() : '';
+
+  if (!playerId) {
+    alert('يرجى كتابة الـ ID أولاً!');
+    return;
+  }
+
+  // أخذ بيانات الباقة والسعر
+  const packageName = (typeof currentOrderData !== 'undefined' && currentOrderData.name) ? currentOrderData.name : '60 شدة';
+  const rawPrice = (typeof currentOrderData !== 'undefined' && currentOrderData.price) ? currentOrderData.price : 47.99;
+
+  // تقريب السعر لإنستا باي
+  const roundedPrice = Math.round(parseFloat(rawPrice));
+  const orderId = '#HYP' + Math.floor(1000 + Math.random() * 9000);
+
+  // تحديد صفحة الدفع والسعر المبعوت
+  let targetPage = 'hyper-payment.html';
+  let finalPrice = rawPrice;
+
+  if (selectedPayMethod === 'InstaPay') {
+    targetPage = 'instapay-payment.html';
+    finalPrice = roundedPrice;
+  }
+
+  // التحويل لصفحة الدفع
+  window.location.href = `${targetPage}?game=PUBG MOBILE&package=${encodeURIComponent(packageName)}&amount=${finalPrice}&id=${encodeURIComponent(playerId)}&order=${orderId}`;
+}
+// تشغيل العرض بعد تحميل جميع العناصر
+render();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080c18">
+<title>HYPER TOPUP - شحن التطبيقات والكوينز</title>
+
+<style>
+/* ================= HYPER TOPUP — APPS PAGE ================= */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800&family=Orbitron:wght@600;700&display=swap');
+
+:root{
+  --bg:#080c18;--bg2:#10172a;--gold:#f4c95d;--gold2:#ffe8a0;
+  --gold3:#9c691c;--green:#10b981;--white:#fff8e6;--muted:#aeb7c8;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  margin:0;min-height:100vh;overflow-x:hidden;color:var(--white);
+  font-family:Cairo,system-ui,sans-serif;
+  background:
+    radial-gradient(ellipse 70% 30% at 50% 8%,rgba(244,201,93,.20),transparent 72%),
+    radial-gradient(ellipse 65% 35% at 88% 76%,rgba(183,125,31,.13),transparent 70%),
+    radial-gradient(ellipse 65% 32% at 8% 83%,rgba(43,75,133,.18),transparent 72%),
+    linear-gradient(150deg,#050811,#0c1221 44%,#080d1a 72%,#10172a);
+}
+
+.gold-mesh{
+  position:fixed;inset:0;width:100%;height:100%;z-index:-1;
+  pointer-events:none;overflow:hidden;
+}
+.gold-mesh svg{width:100%;height:100%;display:block}
+.gold-mesh .aura{fill:url(#aura);opacity:.75}
+
+.page{width:min(100%,520px);margin:auto;padding:15px 16px 105px}
+
+/* Header & Nav Top */
+.top-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:15px;padding-bottom:10px;
+  border-bottom:1px solid rgba(244,201,93,.15);
+}
+.back-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  color:#ffe49a;text-decoration:none;font-size:12px;font-weight:800;
+  padding:6px 12px;border-radius:999px;
+  background:rgba(244,201,93,.08);border:1px solid rgba(244,201,93,.25);
+}
+.page-title{font-size:18px;font-weight:800;color:#ffe8a0;margin:0}
+
+/* Search Bar */
+.search{
+  width:100%;height:44px;margin:0 auto 20px;
+  display:flex;align-items:center;gap:9px;padding:0 13px;
+  border:1px solid rgba(244,201,93,.42);border-radius:14px;
+  background:rgba(4,8,18,.17);
+  box-shadow:0 0 0 1px rgba(255,255,255,.02),0 7px 22px rgba(0,0,0,.12);
+}
+.search svg{width:17px;height:17px;flex:0 0 17px;stroke:#f2ca67}
+.search input{
+  width:100%;border:0;outline:0;background:transparent;color:#fff;
+  font:600 12px Cairo,sans-serif;
+}
+.search input::placeholder{color:#8993a8}
+
+/* Apps Grid */
+.apps-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:12px;direction:rtl;
+}
+.app-card{
+  padding:12px;border-radius:18px;
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  text-decoration:none;color:#fff;
+  background:linear-gradient(145deg,rgba(25,35,61,.48),rgba(7,12,25,.26));
+  border:1px solid rgba(255,224,145,.14);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+  transition:transform 0.15s ease, border-color 0.15s ease;
+}
+.app-card:active{transform:scale(.98)}
+.app-icon{
+  width:72px;height:72px;border-radius:16px;object-fit:cover;
+  margin-bottom:8px;box-shadow:0 4px 12px rgba(0,0,0,.3);
+  border:1px solid rgba(255,255,255,.1);
+}
+.app-name{font-size:13px;font-weight:800;color:#fff7e0;margin-bottom:2px}
+.app-desc{font-size:10px;color:#aeb7c8;line-height:1.4}
+.app-tag{
+  margin-top:8px;padding:2px 8px;border-radius:999px;
+  font-size:9px;font-weight:700;color:#72e6a6;
+  background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);
+}
+
+/* Bottom Nav */
+.bottom-nav{
+  position:fixed;z-index:50;left:0;right:0;bottom:0;height:73px;
+  padding:5px 8px calc(5px + env(safe-area-inset-bottom));
+  display:grid;grid-template-columns:repeat(4,1fr);direction:rtl;
+  background:rgba(2,4,9,.94);border-top:1px solid rgba(244,201,93,.13);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+}
+.nav-item{
+  text-decoration:none;color:#70798b;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:2px;font-size:9px;font-weight:700;
+}
+.nav-icon-svg{
+  width:21px;height:21px;display:block;fill:none;stroke:currentColor;
+  stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:.72;
+}
+.nav-item.active{color:#f5c85b;text-shadow:0 0 10px rgba(244,201,93,.45)}
+.nav-item.active .nav-icon-svg{opacity:1}
+@media(min-width:600px){
+  .bottom-nav{left:50%;right:auto;width:min(100%,520px);transform:translateX(-50%);border-radius:20px 20px 0 0}
+}
+/* إلغاء تأخير الضغط وتفعيل الضغطة المباشرة الواحدة على الموبايل */
+a, button, .card, .game-card, .nav-item {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+</style>
+</head>
+
+<body>
+
+<div class="gold-mesh" aria-hidden="true">
+<svg viewBox="0 0 1000 1800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <radialGradient id="aura"><stop stop-color="#ffe59a" stop-opacity=".28"/><stop offset="1" stop-color="#d18c22" stop-opacity="0"/></radialGradient>
+</defs>
+<ellipse class="aura" cx="500" cy="185" rx="400" ry="270"/>
+</svg>
+</div>
+
+<div class="page">
+
+  <!-- Top Navigation Bar -->
+  <div class="top-bar">
+    <a href="HYPER_TOPUP_REVIEWS_PRO_FINAL-1.html" class="back-btn">➔ العودة للرئيسية</a>
+    <h1 class="page-title">شحن الكوينز والتطبيقات</h1>
+  </div>
+
+  <!-- Applications Grid (EMPTY) -->
+  <section class="apps-grid" id="appsList">  
+<!-- كارت شحن عملات تيك توك -->
+<a href="tiktok.html" class="category-card digital" data-search="tiktok coins tik tok t تيك توك عملات شحن كوينز" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; max-width: 160px; background: rgba(18, 18, 26, 0.75); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 14px; padding: 10px; margin: 8px auto; text-decoration: none; box-sizing: border-box; text-align: center;">
+ <span class="badge" style="background: rgba(255, 215, 0, 0.15); color: #ffd700; border: 1px solid #ffd700; font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 5px; margin-bottom: 6px;">موثق</span>
+ <div style="width: 100%; height: 90px; overflow: hidden; border-radius: 10px;">
+     <img class="card-cover card-currency" src="https://i.ibb.co/FbSMg2ZW/IMG-20260911-214638.png" alt="TikTok Coins" loading="eager" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+ </div>
+ <div class="card-copy" style="margin-top: 8px;">
+   <div class="card-title" style="color: #ffffff; font-weight: 800; font-size: 12px; font-family: 'Orbitron', sans-serif;">TikTok Coins</div>
+   <div class="card-sub" style="color: #8e8ea0; font-size: 10px; margin-top: 2px;">شحن مباشر وسريع</div>
+ </div>
+</a>
+<!-- كارت شحن بيجو لايف -->
+<a href="./bigo.html" class="category-card digital" data-search="bigo live b بيجو لايف جواهر شحن كوينز b diamonds" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; max-width: 160px; background: rgba(18, 18, 26, 0.75); border: 1px solid rgba(0, 242, 254, 0.3); border-radius: 14px; padding: 10px; margin: 8px auto; text-decoration: none; box-sizing: border-box; text-align: center;">
+ <span class="badge" style="background: rgba(0, 242, 254, 0.15); color: #00f2fe; border: 1px solid #00f2fe; font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 5px; margin-bottom: 6px;">موثق</span>
+ <div style="width: 100%; height: 90px; overflow: hidden; border-radius: 10px;">
+     <img class="card-cover card-currency" src="https://i.ibb.co/RTMQ9ds6/IMG-20260911-223321.jpg" alt="Bigo Live Diamonds" loading="eager" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+ </div>
+ <div class="card-copy" style="margin-top: 8px;">
+   <div class="card-title" style="color: #ffffff; font-weight: 800; font-size: 12px; font-family: 'Orbitron', sans-serif;">Bigo Live</div>
+   <div class="card-sub" style="color: #8e8ea0; font-size: 10px; margin-top: 2px;">شحن مباشر وسريع</div>
+ </div>
+</a>
+<!-- كارت شحن يوهو (YOHO) -->
+<a href="yoho.html" class="category-card digital" data-search="yoho group voice chat يوهو كوينز عملات شحن voice chat" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; max-width: 160px; background: rgba(18, 18, 26, 0.75); border: 1px solid rgba(0, 242, 254, 0.3); border-radius: 14px; padding: 10px; margin: 8px auto; text-decoration: none; box-sizing: border-box; text-align: center;">
+ <span class="badge" style="background: rgba(0, 242, 254, 0.15); color: #00f2fe; border: 1px solid #00f2fe; font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 5px; margin-bottom: 6px;">موثق</span>
+ <div style="width: 100%; height: 90px; overflow: hidden; border-radius: 10px;">
+     <img class="card-cover card-currency" src="https://i.ibb.co/b5GCN8WD/Screenshot-2026-09-12-10-19-36-45-680d03679600f7af0b4c700c6b270fe7.jpg" alt="YOHO Coins" loading="eager" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+ </div>
+ <div class="card-copy" style="margin-top: 8px;">
+   <div class="card-title" style="color: #ffffff; font-weight: 800; font-size: 11px; font-family: 'Orbitron', sans-serif;">YOHO VOICE</div>
+   <div class="card-sub" style="color: #8e8ea0; font-size: 10px; margin-top: 2px;">شحن كوينز مباشر</div>
+ </div>
+</a>
+<!-- كارت شحن سوجو (Sugo) -->
+<a href="sugo.html" class="category-card digital" data-search="sugo voice chat سوجو كوينز عملات شحن voice chat بث مباشر" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; max-width: 160px; background: rgba(18, 18, 26, 0.75); border: 1px solid rgba(0, 242, 254, 0.3); border-radius: 14px; padding: 10px; margin: 8px auto; text-decoration: none; box-sizing: border-box; text-align: center;">
+ <span class="badge" style="background: rgba(0, 242, 254, 0.15); color: #00f2fe; border: 1px solid #00f2fe; font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 5px; margin-bottom: 6px;">موثق</span>
+ <div style="width: 100%; height: 90px; overflow: hidden; border-radius: 10px;">
+     <img class="card-cover card-currency" src="https://i.ibb.co/G4KsQXWb/sugo-tile.png" alt="Sugo Coins" loading="eager" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+ </div>
+ <div class="card-copy" style="margin-top: 8px;">
+   <div class="card-title" style="color: #ffffff; font-weight: 800; font-size: 11px; font-family: 'Orbitron', sans-serif;">SUGO CHAT</div>
+   <div class="card-sub" style="color: #8e8ea0; font-size: 10px; margin-top: 2px;">شحن كوينز مباشر</div>
+ </div>
+</a>
+  </section>
+
+</div>
+<script>
+// Search System
+const appSearch = document.getElementById("appSearch");
+
+appSearch.addEventListener("input", () => {
+  const query = appSearch.value.trim().toLowerCase();
+  const appCards = document.querySelectorAll(".app-card");
+  appCards.forEach(card => {
+    const text = (card.dataset.search + " " + card.innerText).toLowerCase();
+    card.style.display = (!query || text.includes(query)) ? "flex" : "none";
+  });
+});
+
+// WhatsApp Order Direct
+function orderApp(appName) {
+  const phone = "201002722164";
+  const message = encodeURIComponent("مرحباً، أريد شحن تطبيق: " + appName + " من متجر HYPER TOPUP");
+  window.open("https://api.whatsapp.com/send?phone=" + phone + "&text=" + message, "_blank");
+}
+
+function openWhatsApp() {
+  orderApp("عام");
+}
+</script>
+
+</body>
+</html>

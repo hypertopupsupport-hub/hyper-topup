@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Honor of Kings - HYPER TOPUP</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    html, body {
+      background-color: #0b0d12;
+      color: #e2e8f0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    body.modal-open {
+      overflow: hidden !important;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      padding: 20px 15px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* الهيدر والعناوين */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-shadow: 0 0 12px rgba(6, 182, 212, 0.4);
+    }
+
+    .sub-title {
+      display: inline-block;
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.4);
+      color: #22d3ee;
+      font-size: 11px;
+      padding: 3px 12px;
+      border-radius: 4px;
+      margin-top: 4px;
+      font-weight: bold;
+    }
+
+    .back-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(6, 182, 212, 0.4);
+      color: #ffffff;
+      width: 38px;
+      height: 38px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .back-btn:hover {
+      border-color: #a855f7;
+      color: #a855f7;
+    }
+
+    /* البانر العلوي */
+    .banner-container {
+      width: 100%;
+      height: 160px;
+      margin-bottom: 18px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+      position: relative;
+    }
+
+    .banner-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* المستوى الأول: الأقسام الرئيسية */
+    .main-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .main-tab-btn {
+      background: #10141e;
+      border: 1px solid #1c2536;
+      color: #94a3b8;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.25s ease;
+    }
+
+    .main-tab-btn.active {
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.25) 0%, rgba(168, 85, 247, 0.2) 100%);
+      border-color: #22d3ee;
+      color: #ffffff;
+      box-shadow: 0 0 12px rgba(6, 182, 212, 0.25);
+    }
+
+    /* المستوى الثاني: الأقسام الفرعية داخل قسم متجر (3 أزرار) */
+    .sub-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 20px;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .sub-tab-btn {
+      background: #0d111a;
+      border: 1px solid #172030;
+      color: #64748b;
+      padding: 10px 2px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .sub-tab-btn.active {
+      background: rgba(168, 85, 247, 0.15);
+      border-color: #a855f7;
+      color: #e9d5ff;
+      box-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
+    }
+
+    /* شبكة الكروت */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .product-card {
+      background: #0f131c;
+      border: 1px solid #1a2233;
+      border-radius: 10px;
+      padding: 15px 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .product-card:hover {
+      border-color: #22d3ee;
+      box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+    }
+
+    /* إطار الصورة */
+    .img-box {
+      width: 100%;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+
+    /* حجم الصورة الطبيعي لقسم الشراء */
+    .pkg-img {
+      max-width: 80%;
+      max-height: 80%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 6px rgba(6, 182, 212, 0.3));
+    }
+
+    /* حجم كبير خاص لصور قسم المتجر فقط */
+    .product-card.store-item .pkg-img {
+      max-width: 100%;
+      max-height: 100%;
+      transform: scale(2.2); /* تكبير ممتاز لصور المتجر الصغيرة */
+      filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.5));
+    }
+
+    .pkg-name {
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      line-height: 1.3;
+      min-height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .price {
+      color: #22d3ee;
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      text-shadow: 0 0 8px rgba(6, 182, 212, 0.4);
+    }
+
+    .buy-btn {
+      width: 100%;
+      background: linear-gradient(180deg, #102a3a 0%, #0a1b26 100%);
+      border: 1px solid #22d3ee;
+      color: #ffffff;
+      padding: 9px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .buy-btn:active {
+      background: #22d3ee;
+      color: #000000;
+      box-shadow: 0 0 10px #22d3ee;
+    }
+
+    /* مودال الشحن Popup Overlay */
+    .hidden {
+      display: none !important;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(6px);
+    }
+
+    .modal-content {
+      position: relative;
+      z-index: 10000;
+      background: #0d1017;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      border: 1px solid #1c263b;
+      border-top: 2px solid #22d3ee;
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 20px;
+      box-shadow: 0 -5px 30px rgba(6, 182, 212, 0.25);
+    }
+
+    .modal-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .modal-title-text {
+      font-size: 16px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .selected-pkg-card {
+      background: #141a26;
+      border: 1px solid #202b40;
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      gap: 15px;
+      margin-bottom: 18px;
+    }
+
+    .pkg-title-display {
+      font-size: 15px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .pkg-icon-box img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+    }
+
+    .input-label {
+      display: block;
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 8px;
+      text-align: right;
+    }
+
+    .id-input-field {
+      width: 100%;
+      padding: 13px;
+      background: #101420;
+      border: 1px solid #212c42;
+      border-radius: 6px;
+      color: #ffffff;
+      font-size: 14px;
+      outline: none;
+      margin-bottom: 20px;
+    }
+
+    .id-input-field:focus {
+      border-color: #22d3ee;
+    }
+
+    .section-title {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 10px;
+      text-align: right;
+    }
+
+    .payment-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .pay-item {
+      background: #101420;
+      border: 1px solid #212c42;
+      border-radius: 6px;
+      padding: 13px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .pay-item.selected {
+      border-color: #22d3ee;
+      background: #132333;
+    }
+
+    .pay-item-name {
+      font-size: 14px;
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    .badge-recommended {
+      background: #22d3ee;
+      color: #000000;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .modal-bottom-action {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 10px;
+    }
+
+    .price-display-box {
+      text-align: right;
+    }
+
+    .price-label-sub {
+      font-size: 12px;
+      color: #94a3b8;
+      display: block;
+    }
+
+    .final-price-text {
+      font-size: 18px;
+      font-weight: bold;
+      color: #22d3ee;
+    }
+
+    .submit-pay-btn {
+      background: #22d3ee;
+      color: #000000;
+      border: none;
+      padding: 12px 34px;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <div>
+        <h1 class="brand-title">HYPER TOPUP</h1>
+        <span class="sub-title">Honor of Kings - شحن معتمد</span>
+      </div>
+      <a href="games.html" class="back-btn">&gt;</a>
+    </div>
+
+    <!-- بانر اللعبة -->
+    <div class="banner-container">
+      <img src="https://i.ibb.co/mrqKkwRy/Gemini-Generated-Image-n9qkc4n9qkc4n9qk.jpg" alt="HOK Banner" class="banner-img">
+    </div>
+
+    <!-- المستوى الأول: الأقسام الرئيسية -->
+    <div class="main-tabs">
+      <button id="buyMainTab" class="main-tab-btn active" onclick="switchMainTab('buy')">شراء</button>
+      <button id="storeMainTab" class="main-tab-btn" onclick="switchMainTab('store')">متجر</button>
+    </div>
+
+    <!-- المستوى الثاني: الأقسام الفرعية (3 أزرار: الجميع، Share Limit، البطاقة الأسبوعية) -->
+    <div id="subTabsContainer" class="sub-tabs hidden">
+      <button id="allSubTab" class="sub-tab-btn active" onclick="switchSubTab('all')">الجميع</button>
+      <button id="shareLimitSubTab" class="sub-tab-btn" onclick="switchSubTab('share_limit')">Share Limit</button>
+      <button id="weeklyCardSubTab" class="sub-tab-btn" onclick="switchSubTab('weekly_card')">البطاقة الأسبوعية</button>
+    </div>
+
+    <!-- شبكة المنتجات -->
+    <div id="productsGrid" class="products-grid"></div>
+  </div>
+
+  <!-- مودال الشحن Popup Overlay -->
+  <div id="orderModal" class="modal hidden">
+    <div class="modal-overlay" onclick="closeModal()"></div>
+    <div class="modal-content">
+      
+      <div class="modal-top-bar">
+        <span class="modal-title-text">إتمام طلب الشحن - HOK</span>
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+      </div>
+
+      <div class="selected-pkg-card">
+        <div class="pkg-icon-box">
+          <img id="modalPkgImg" src="" alt="Selected Package">
+        </div>
+        <span id="packageTitleDisplay" class="pkg-title-display">-</span>
+      </div>
+
+      <label class="input-label" for="playerIdInput">معرف اللاعب (Player ID)</label>
+      <input type="tel" inputmode="numeric" id="playerIdInput" class="id-input-field" placeholder="اكتب Player ID هنا" dir="rtl" style="text-align: right;">
+
+      <div class="section-title">اختر طريقة الدفع</div>
+      <div class="payment-list">
+        <div class="pay-item selected" onclick="selectPayOption(this, 'فودافون كاش / أورنج / اتصالات')">
+          <span class="pay-item-name">فودافون كاش / أورنج / اتصالات</span>
+          <span class="badge-recommended">مستحسن</span>
+        </div>
+
+        <div class="pay-item" onclick="selectPayOption(this, 'إنستا باي (InstaPay)')">
+          <span class="pay-item-name">إنستا باي (InstaPay)</span>
+        </div>
+      </div>
+
+      <div class="modal-bottom-action">
+        <button class="submit-pay-btn" onclick="submitOrder()">دفع</button>
+
+        <div class="price-display-box">
+          <span class="price-label-sub">الإجمالي:</span>
+          <span id="finalPriceDisplay" class="final-price-text">0.00 EGP</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+// بيانات المنتجات
+const storeData = {
+  buy: [
+    { name: 'باقة 16 + 16 Token', price: 15.00, img: 'https://i.ibb.co/5W9v067j/d8ff36f3bcde316bb9e82e1ee73797eb.png' },
+    { name: 'باقة 23 + 23 Token', price: 20.00, img: 'https://i.ibb.co/5W9v067j/d8ff36f3bcde316bb9e82e1ee73797eb.png' },
+    { name: 'باقة 80 + 80 Token', price: 55.00, img: 'https://i.ibb.co/SDYz67N0/e6dcce33a62e2a7e233376aea341b366.png' },
+    { name: 'باقة 48 + 240 Token', price: 155.00, img: 'https://i.ibb.co/SDYz67N0/e6dcce33a62e2a7e233376aea341b366.png' },
+    { name: 'باقة 80 + 400 Token', price: 255.00, img: 'https://i.ibb.co/LzCHNGyH/e24ecc8e4dceb69e56b63778d136ec26.png' },
+    { name: 'باقة 112 + 560 Token', price: 350.00, img: 'https://i.ibb.co/LzCHNGyH/e24ecc8e4dceb69e56b63778d136ec26.png' },
+    { name: 'باقة 160 + 800 Token', price: 500.00, img: 'https://i.ibb.co/3ypZdcgD/3d50a9b34940d0e3505a46100672cdac.png' },
+    { name: 'باقة 240 + 1200 Token', price: 745.00, img: 'https://i.ibb.co/39sJQ8tc/5df9b33de1d89c172d324d8415ed7888.png' },
+    { name: 'باقة 480 + 2400 Token', price: 1470.00, img: 'https://i.ibb.co/n8mjvpXx/5e3f9c1c70d2af157b9c1c5a2c9b2d96.png' },
+    { name: 'باقة 800 + 4000 Token', price: 2420.00, img: 'https://i.ibb.co/mVQxPMcy/20394d44dcd34949253863196976a5e4.png' },
+    { name: 'باقة 1600 + 8000 Token', price: 4790.00, img: 'https://i.ibb.co/NdmxVCDH/b90717b741b250577d8dd5c8b6317dac.png' }
+  ],
+  share_limit: [
+    { name: 'حقيبة حظ ضعف العملات', price: 20.00, img: 'https://i.ibb.co/NgR1MWq9/a0a4c834.png' },
+    { name: 'حزمة خصم الشراء العادي', price: 20.00, img: 'https://i.ibb.co/xtccrYtH/40e1325f.png' },
+    { name: 'حزمة توفير نقاط الشرف', price: 20.00, img: 'https://i.ibb.co/cSpgtP0R/6ba9e7e4.png' },
+    { name: 'حزمة خصم الشراء المميز', price: 75.00, img: 'https://i.ibb.co/tP1ncjCs/735d4149.png' }
+  ],
+  weekly_card: [
+    { name: 'البطاقة الأسبوعية (العادية)', price: 55.00, img: 'https://i.ibb.co/9mQGm48D/1-90981e9a.jpg' },
+    { name: 'Card Plus', price: 155.00, img: 'https://i.ibb.co/MxTKDmSN/plus-6b8e5a72.jpg' }
+  ]
+};
+
+let currentMainTab = 'buy';
+let currentSubTab = 'all';
+let currentOrderData = {};
+let selectedMethod = 'فودافون كاش / أورنج / اتصالات';
+
+const $ = id => document.getElementById(id);
+
+function getActiveProducts() {
+  if (currentMainTab === 'buy') {
+    return storeData.buy;
+  } else {
+    if (currentSubTab === 'share_limit') {
+      return storeData.share_limit;
+    } else if (currentSubTab === 'weekly_card') {
+      return storeData.weekly_card;
+    } else {
+      // الجميع: يدمج منتجات Share Limit والبطاقة الأسبوعية معاً
+      return [...storeData.share_limit, ...storeData.weekly_card];
+    }
+  }
+}
+
+function renderProducts() {
+  const grid = $('productsGrid');
+  grid.innerHTML = '';
+  const products = getActiveProducts();
+  const isStoreTab = currentMainTab === 'store';
+
+  products.forEach((item, index) => {
+    const card = document.createElement('div');
+    card.className = `product-card ${isStoreTab ? 'store-item' : ''}`;
+    card.innerHTML = `
+      <div class="img-box">
+        <img src="${item.img}" class="pkg-img" alt="${item.name}">
+      </div>
+      <div class="pkg-name">${item.name}</div>
+      <div class="price">${item.price.toFixed(2)} EGP</div>
+      <button class="buy-btn" onclick="openOrder(${index})">شحن فوري</button>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function switchMainTab(tab) {
+  currentMainTab = tab;
+  
+  if (tab === 'buy') {
+    $('buyMainTab').classList.add('active');
+    $('storeMainTab').classList.remove('active');
+    $('subTabsContainer').classList.add('hidden');
+  } else {
+    $('storeMainTab').classList.add('active');
+    $('buyMainTab').classList.remove('active');
+    $('subTabsContainer').classList.remove('hidden');
+  }
+  
+  renderProducts();
+}
+
+function switchSubTab(subTab) {
+  currentSubTab = subTab;
+  
+  $('allSubTab').classList.toggle('active', subTab === 'all');
+  $('shareLimitSubTab').classList.toggle('active', subTab === 'share_limit');
+  $('weeklyCardSubTab').classList.toggle('active', subTab === 'weekly_card');
+
+  renderProducts();
+}
+
+function openOrder(index) {
+  const products = getActiveProducts();
+  const item = products[index];
+  if (!item) return;
+
+  currentOrderData = item;
+
+  $('packageTitleDisplay').textContent = item.name;
+  $('modalPkgImg').src = item.img;
+  $('finalPriceDisplay').textContent = item.price.toFixed(2) + ' EGP';
+  $('playerIdInput').value = '';
+
+  $('orderModal').classList.remove('hidden');
+  document.body.classList.add('modal-open');
+}
+
+function closeModal() {
+  $('orderModal').classList.add('hidden');
+  document.body.classList.remove('modal-open');
+}
+
+function selectPayOption(el, method) {
+  document.querySelectorAll('.pay-item').forEach(i => i.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedMethod = method;
+}
+
+function submitOrder() {
+  const idInput = document.getElementById('playerIdInput');
+  const playerId = idInput ? idInput.value.trim() : '';
+
+  if (!playerId) {
+    alert('⚠️ يرجى كتابة الـ Player ID الخاص بك أولاً!');
+    return;
+  }
+
+  // فحص مضمون لاختيار إنستا باي
+  const isInstaPaySelected = (typeof selectedMethod !== 'undefined' && selectedMethod === 'InstaPay') ||
+                             (typeof selectedPayMethod !== 'undefined' && selectedPayMethod === 'InstaPay') ||
+                             (typeof selectedPaymentMethod !== 'undefined' && selectedPaymentMethod === 'InstaPay') ||
+                             (document.querySelector('.pay-card.selected, .pay-item.selected')?.innerText.includes('InstaPay'));
+
+  const packageName = (typeof currentOrderData !== 'undefined' && currentOrderData.name) ? currentOrderData.name : 'باقة Honor of Kings';
+  const rawPrice = (typeof currentOrderData !== 'undefined' && currentOrderData.price) ? currentOrderData.price : 0;
+  const roundedPrice = Math.round(parseFloat(rawPrice));
+  const orderId = '#HYP' + Math.floor(1000 + Math.random() * 9000);
+
+  if (isInstaPaySelected) {
+    // التوجيه لصفحة إنستا باي
+    window.location.href = `instapay-payment.html?game=Honor%20of%20Kings&package=${encodeURIComponent(packageName)}&amount=${roundedPrice}&id=${encodeURIComponent(playerId)}&order=${orderId}`;
+  } else {
+    // التوجيه لصفحة الكاش والمحفظة القديمة
+    window.location.href = `hyper-payment.html?game=Honor%20of%20Kings&package=${encodeURIComponent(packageName)}&amount=${rawPrice}&id=${encodeURIComponent(playerId)}&order=${orderId}`;
+  }
+}
+</script>
+</body>
+</html

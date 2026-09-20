@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HYPER TOPUP | Gangstar Mirage City</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: #0b0e14;
+      color: #fff;
+      padding-bottom: 90px; /* مساحة للشريط السفلي */
+    }
+
+    /* الهيدر العلوي */
+    .top-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 20px;
+      background: #111927;
+      border-bottom: 1px solid #253147;
+      margin-bottom: 0;
+    }
+
+    .back-btn {
+      background: #171d2c;
+      border: 1px solid #ff2a85;
+      color: #ff2a85;
+      font-size: 1.1rem;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .back-btn:hover {
+      background: #ff2a85;
+      color: #fff;
+      box-shadow: 0 0 10px rgba(255, 42, 133, 0.5);
+    }
+
+    .header-title-box {
+      text-align: center;
+    }
+
+    .brand-name {
+      font-size: 0.75rem;
+      color: #aaa;
+      letter-spacing: 1px;
+    }
+
+    .service-subtitle {
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    /* بانر اللعبة الترويجي */
+    .game-banner-container {
+      padding: 15px 20px;
+      background: #111927;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #253147;
+    }
+
+   .game-banner-img {
+    width: 100%;
+    height: 140px; /* تحديد الارتفاع الأفقي زي بانر ببجي */
+    object-fit: cover; /* قص الصورة وتوسيطها تلقائياً لتملأ المستطيل بالعرض */
+    border-radius: 12px;
+    display: block;
+    box-shadow: 0 4px 15px rgba(0,0,0,.4);
+}
+
+    /* التبويب المسطح */
+    .filter-tabs {
+      display: flex;
+      gap: 10px;
+      padding: 0 15px;
+      margin-bottom: 20px;
+    }
+
+    .tab-btn {
+      background: #171d2c;
+      border: 1px solid #ff2a85;
+      color: #ff2a85;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    /* شبكة المنتجات */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 0 15px;
+    }
+
+    @media (min-width: 768px) {
+      .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* تصميم الكارت باللون الوردي المضيء */
+    .product-card {
+      background: #111927;
+      border: 1px solid #253147;
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      border-color: #ff2a85;
+      box-shadow: 0 0 12px rgba(255, 42, 133, 0.25);
+    }
+
+    .product-img {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .product-name {
+      font-size: 0.95rem;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    /* تنسيق الأسعار والخصومات بنظام ببجي */
+    .price-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      margin-bottom: 10px;
+    }
+
+    .current-price {
+      font-size: 0.95rem;
+      font-weight: bold;
+      color: #ff2a85;
+    }
+
+    .old-and-discount {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .old-price {
+      font-size: 0.7rem;
+      color: #888;
+      text-decoration: line-through;
+    }
+
+    .discount-badge {
+      font-size: 0.6rem;
+      background: #ff2a85;
+      color: #fff;
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-weight: bold;
+    }
+
+    .buy-btn {
+      background: linear-gradient(90deg, #ff2a85, #ff5c9e);
+      border: none;
+      color: #fff;
+      width: 100%;
+      padding: 8px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .buy-btn:hover {
+      opacity: 0.9;
+      box-shadow: 0 0 10px rgba(255, 42, 133, 0.4);
+    }
+
+    /* نافذة المودال (Overlay Modal) */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 9999;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      transition: 0.3s;
+    }
+
+    @media (min-width: 600px) {
+      .modal-overlay {
+        align-items: center;
+      }
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .modal-card {
+      background: #111927;
+      border: 1px solid #253147;
+      border-top: 2px solid #ff2a85;
+      width: 100%;
+      max-width: 450px;
+      border-radius: 16px 16px 0 0;
+      padding: 20px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    @media (min-width: 600px) {
+      .modal-card {
+        border-radius: 16px;
+      }
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: #888;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .selected-product-banner {
+      background: #171d2c;
+      border: 1px solid #253147;
+      border-radius: 10px;
+      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .selected-product-banner img {
+      width: 45px;
+      height: 45px;
+      object-fit: contain;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-bottom: 5px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #444;
+      background: #0f1012;
+      color: #fff;
+      box-sizing: border-box;
+    }
+
+    .input-group input:focus {
+      border-color: #ff2a85;
+      outline: none;
+    }
+
+    .id-help-link {
+      color: #aaa;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 5px;
+    }
+
+    /* خيارات الدفع */
+    .pay-card {
+      background: #171d2c;
+      border: 1px solid #253147;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .pay-card.selected {
+      border-color: #ff2a85;
+      background: rgba(255, 42, 133, 0.08);
+    }
+
+    /* صندوق السعر المنبثق للأعلى */
+    .price-box-hidden {
+      display: none;
+      background: #111927;
+      border: 1px solid #253147;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+    }
+
+    .price-box-show {
+      display: block !important;
+      animation: slideUp 0.3s ease-out;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* الشريط السفلي الثابت */
+    .checkout-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #0b0e14;
+      border-top: 1px solid #1f293d;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-sizing: border-box;
+    }
+
+    .pay-btn-main {
+      background: linear-gradient(90deg, #ff2a85, #ff5c9e);
+      border: none;
+      color: #fff;
+      padding: 12px 35px;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    /* إزالة التحديد الأزرق والخلفية الزرقاء عند الضغط من الصفحة كلها */
+* {
+  -webkit-tap-highlight-color: transparent !important;
+  outline: none !important;
+}
+
+*:focus,
+*:focus-visible,
+*:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+  </style>
+</head>
+<body>
+
+  <!-- الهيدر العلوي (نظيف بدون اسم الصفحة وبنظام ببجي) -->
+  <div class="top-header">
+    <a href="games.html" class="back-btn">&lt;</a>
+    <div class="header-title-box">
+      <div class="brand-name">HYPER TOPUP</div>
+      <div class="service-subtitle">شحن و خدمات جانجستر ميراج</div>
+    </div>
+    <div style="width: 35px;"></div>
+  </div>
+
+  <!-- بانر اللعبة الترويجي -->
+  <div class="game-banner-container">
+    <img src="https://i.ibb.co/Kx3MrLv7/IMG-20260910-160329.png" alt="Gangstar Mirage Banner" class="game-banner-img">
+  </div>
+
+  <div class="filter-tabs">
+    <button class="tab-btn">قسم شراء</button>
+  </div>
+
+  <div class="products-grid">
+    <!-- الباقة 1 -->
+    <div class="product-card" onclick="openOrderModal('باقة 60 ماسة', '48.99', '50.00', 'https://i.ibb.co/1fR7dVKS/60-diamonds-7f30042d.png')">
+      <img src="https://i.ibb.co/1fR7dVKS/60-diamonds-7f30042d.png" alt="60 ماسة" class="product-img">
+      <div class="product-name">باقة 60 ماسة</div>
+      <div class="price-box">
+        <span class="current-price">EGP 48.99</span>
+        <div class="old-and-discount">
+          <span class="old-price">EGP 50.00</span>
+          <span class="discount-badge">2%</span>
+        </div>
+      </div>
+      <button class="buy-btn">شحن فوري</button>
+    </div>
+
+    <!-- الباقة 2 -->
+    <div class="product-card" onclick="openOrderModal('باقة 20 + 300 ماسة', '241.99', '250.00', 'https://i.ibb.co/HyG5b16/300-diamonds-d2728c9d.png')">
+      <img src="https://i.ibb.co/HyG5b16/300-diamonds-d2728c9d.png" alt="300 ماسة" class="product-img">
+      <div class="product-name">باقة 20 + 300 ماسة</div>
+      <div class="price-box">
+        <span class="current-price">EGP 241.99</span>
+        <div class="old-and-discount">
+          <span class="old-price">EGP 250.00</span>
+          <span class="discount-badge">3.2%</span>
+        </div>
+      </div>
+      <button class="buy-btn">شحن فوري</button>
+    </div>
+
+    <!-- الباقة 3 -->
+    <div class="product-card" onclick="openOrderModal('باقة 60 + 680 ماسة', '486.99', '500.00', 'https://i.ibb.co/VWH4Yq6p/680-diamonds-d318cfa2.png')">
+      <img src="https://i.ibb.co/VWH4Yq6p/680-diamonds-d318cfa2.png" alt="680 ماسة" class="product-img">
+      <div class="product-name">باقة 60 + 680<br>ماسة</div>
+      <div class="price-box">
+        <span class="current-price">EGP 486.99</span>
+        <div class="old-and-discount">
+          <span class="old-price">EGP 500.00</span>
+          <span class="discount-badge">2.6%</span>
+        </div>
+      </div>
+      <button class="buy-btn">شحن فوري</button>
+    </div>
+
+    <!-- الباقة 4 -->
+    <div class="product-card" onclick="openOrderModal('باقة 220 + 1280 ماسة', '974.99', '1000.00', 'https://i.ibb.co/qbmsKTr/1280-diamonds-ccf41fbd.png')">
+      <img src="https://i.ibb.co/qbmsKTr/1280-diamonds-ccf41fbd.png" alt="1280 ماسة" class="product-img">
+      <div class="product-name">باقة 220 + 1280 ماسة</div>
+      <div class="price-box">
+        <span class="current-price">EGP 974.99</span>
+        <div class="old-and-discount">
+          <span class="old-price">EGP 1000.00</span>
+          <span class="discount-badge">2.5%</span>
+        </div>
+      </div>
+      <button class="buy-btn">شحن فوري</button>
+    </div>
+
+    <!-- الباقة 5 -->
+    <div class="product-card" onclick="openOrderModal('باقة 580 + 3280 ماسة', '2409.99', '2500.00', 'https://i.ibb.co/bR8GvtPJ/3280-diamonds-950a2b2c.png')">
+      <img src="https://i.ibb.co/bR8GvtPJ/3280-diamonds-950a2b2c.png" alt="3280 ماسة" class="product-img">
+      <div class="product-name">باقة 580 + 3280 ماسة</div>
+      <div class="price-box">
+        <span class="current-price">EGP 2409.99</span>
+        <div class="old-and-discount">
+          <span class="old-price">EGP 2500.00</span>
+          <span class="discount-badge">3.6%</span>
+        </div>
+      </div>
+      <button class="buy-btn">شحن فوري</button>
+    </div>
+
+    <!-- الباقة 6 -->
+    <div class="product-card" onclick="openOrderModal('باقة 1280 + 6480 ماسة', '4809.99', '5000.00', 'https://i.ibb.co/h1mVSmsn/6480-diamonds-2999fed1.png')">
+      <img src="https://i.ibb.co/h1mVSmsn/6480-diamonds-2999fed1.png" alt="6480 ماسة" class="product-img">
+      <div class="product-name">باقة 1280 + 6480 ماسة</div>
+      <div class="price-box">
+        <span class="current-price">EGP 4809.99</span>
+        <div class="old-and-discount">
+          <span class="old-price">EGP 5000.00</span>
+          <span class="discount-badge">3.8%</span>
+        </div>
+      </div>
+      <button class="buy-btn">شحن فوري</button>
+    </div>
+  </div>
+
+  <div id="orderModal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="font-size: 1.1rem; color: #fff;">إتمام طلب الشحن</h3>
+        <button class="close-btn" onclick="closeModal('orderModal')">&times;</button>
+      </div>
+
+      <div class="selected-product-banner">
+        <img id="modalProductImg" src="" alt="">
+        <div id="modalProductName" style="font-weight: bold; font-size: 0.95rem;"></div>
+      </div>
+
+      <div class="input-group">
+        <label>معرف اللاعب (Player ID)</label>
+        <input type="tel" inputmode="numeric" id="playerIdInput" dir="rtl" style="text-align: right;" placeholder="اكتب Player ID هنا">
+        <div class="id-help-link" onclick="openModal('idHelpModal')">
+          <span>ⓘ</span> كيف تعثر على معرف اللاعب؟
+        </div>
+      </div>
+
+      <div style="margin-bottom: 12px; font-size: 0.9rem; color: #aaa;">اختر قنوات الدفع</div>
+      
+      <div class="pay-card selected" onclick="selectPayment(this, 'فودافون كاش / أورنج / اتصالات')">
+        <span>فودافون كاش / أورنج / اتصالات</span>
+        <span style="font-size:0.7rem; background:#ff2a85; padding:3px 6px; border-radius:4px; color:#fff;">مستحسن</span>
+      </div>
+
+      <div class="pay-card" onclick="selectPayment(this, 'إنستا باي (InstaPay)')">
+        <span>إنستا باي (InstaPay)</span>
+      </div>
+
+      <div id="priceDetailsBox" class="price-box-hidden">
+        <div style="display:flex; justify-content:space-between; margin-bottom:6px; color:#aaa;">
+          <span>السعر الأصلي:</span>
+          <span id="originalPriceDisplay">EGP 0.00</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:6px; color:#ff2a85;">
+          <span>الخصم:</span>
+          <span id="discountDisplay">EGP 0.00</span>
+        </div>
+        <hr style="border:0; border-top:1px dashed #253147; margin:8px 0;">
+        <div style="display:flex; justify-content:space-between; font-weight:bold; color:#fff;">
+          <span>الإجمالي النهائي:</span>
+          <span id="finalPriceDisplay">EGP 0.00</span>
+        </div>
+      </div>
+
+      <div class="checkout-bar" style="position: relative; margin-top: 15px; border-radius: 10px;">
+        <div onclick="togglePriceDetails()" style="cursor:pointer; text-align:right;">
+          <div style="font-size:0.75rem; color:#aaa; display:flex; align-items:center; gap:4px;">
+            <span id="priceArrow" style="display:inline-block; transition: transform 0.3s;">▲</span> الإجمالي:
+          </div>
+          <div id="modalTotalPrice" style="font-weight:bold; color:#ff2a85; font-size:1.1rem;">EGP 0.00</div>
+        </div>
+        <button class="pay-btn-main" onclick="submitOrder()">دفع</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="idHelpModal" class="modal-overlay hidden">
+    <div class="modal-card" style="max-width:340px; text-align:right;">
+      <h3 style="margin-top:0; color:#fff; font-size:1.1rem;">كيف تعثر على Player ID؟</h3>
+      <div style="color:#ccc; font-size:0.85rem; line-height:1.6; margin:15px 0;">
+        1. افتح لعبة <b>Gangstar Mirage City</b>.<br>
+        2. اضغط على ملف التعريف الخاص بك في الزاوية.<br>
+        3. ستجد المعرف (Player ID) جاهزاً للنسخ.
+      </div>
+      <button class="buy-btn" onclick="closeModal('idHelpModal')">حسناً</button>
+    </div>
+  </div>
+
+  <script>
+    let currentOrderData = {
+      name: '',
+      currentPrice: 0,
+      oldPrice: 0,
+      img: '',
+      paymentMethod: 'فودافون كاش / أورنج / اتصالات'
+    };
+
+    function openOrderModal(name, currentPrice, oldPrice, img) {
+      currentOrderData.name = name;
+      currentOrderData.currentPrice = parseFloat(currentPrice);
+      currentOrderData.oldPrice = parseFloat(oldPrice);
+      currentOrderData.img = img;
+
+      document.getElementById('modalProductName').innerText = name;
+      document.getElementById('modalProductImg').src = img;
+      document.getElementById('originalPriceDisplay').innerText = 'EGP ' + oldPrice;
+      
+      let discount = (parseFloat(oldPrice) - parseFloat(currentPrice)).toFixed(2);
+      document.getElementById('discountDisplay').innerText = 'EGP -' + discount;
+      document.getElementById('finalPriceDisplay').innerText = 'EGP ' + currentPrice;
+      document.getElementById('modalTotalPrice').innerText = 'EGP ' + currentPrice;
+
+      document.getElementById('playerIdInput').value = '';
+      openModal('orderModal');
+    }
+
+    function selectPayment(element, method) {
+      document.querySelectorAll('.pay-card').forEach(card => card.classList.remove('selected'));
+      element.classList.add('selected');
+      currentOrderData.paymentMethod = method;
+    }
+
+    function togglePriceDetails() {
+      const box = document.getElementById('priceDetailsBox');
+      const arrow = document.getElementById('priceArrow');
+      if (box.classList.contains('price-box-show')) {
+        box.classList.remove('price-box-show');
+        arrow.style.transform = 'rotate(0deg)';
+      } else {
+        box.classList.add('price-box-show');
+        arrow.style.transform = 'rotate(180deg)';
+      }
+    }
+
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    function submitOrder() {
+  const idInput = document.getElementById('playerIdInput');
+  const playerId = idInput ? idInput.value.trim() : '';
+
+  if (!playerId) {
+    alert('⚠️ يرجى كتابة الـ Player ID الخاص بك أولاً!');
+    return;
+  }
+
+  // فحص هل العميل مختار إنستا باي
+  const isInstaPaySelected = currentOrderData.paymentMethod.includes('InstaPay') ||
+                             (document.querySelector('.pay-card.selected')?.innerText.includes('InstaPay'));
+
+  const packageName = currentOrderData.name || 'باقة شحن';
+  // تصحيح قراءة السعر من currentPrice
+  const rawPrice = currentOrderData.currentPrice || 0; 
+  const orderId = '#HYP' + Math.floor(1000 + Math.random() * 9000);
+
+  if (isInstaPaySelected) {
+    // توجيه لصفحة إنستا باي
+    window.location.href = `instapay-payment.html?game=Gangstar%20Mirage&package=${encodeURIComponent(packageName)}&amount=${rawPrice}&id=${encodeURIComponent(playerId)}&order=${orderId}`;
+  } else {
+    // توجيه لصفحة الكاش والمحفظة الإلكترونية
+    window.location.href = `hyper-payment.html?game=Gangstar%20Mirage&package=${encodeURIComponent(packageName)}&amount=${rawPrice}&id=${encodeURIComponent(playerId)}&order=${orderId}`;
+  }
+}
+  </script>
+</body>
+</html>

@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Yalla Ludo - HYPER TOPUP</title>
+  
+  <!-- تسريع تحميل الصور من imgbb -->
+  <link rel="preconnect" href="https://i.ibb.co">
+  <link rel="dns-prefetch" href="https://i.ibb.co">
+
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      background-color: #000000;
+      color: #ffffff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    body.modal-open {
+      overflow: hidden !important;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      padding: 20px 15px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* الهيدر والعناوين */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
+    }
+
+    .sub-title {
+      display: inline-block;
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      color: #00f2fe;
+      font-size: 11px;
+      padding: 3px 12px;
+      border-radius: 4px;
+      margin-top: 4px;
+      font-weight: bold;
+    }
+
+    .back-btn {
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      color: #00f2fe;
+      width: 38px;
+      height: 38px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .back-btn:active {
+      transform: scale(0.92);
+      background: #00f2fe;
+      color: #000000;
+    }
+
+    /* البانر العلوي */
+    .banner-container {
+      width: 100%;
+      height: 160px;
+      margin-bottom: 25px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+    }
+
+    .banner-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* عناوين الفواصل بين الأقسام */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 25px 0 15px 0;
+      border-right: 4px solid #00f2fe;
+      padding-right: 10px;
+    }
+
+    .section-divider h2 {
+      font-size: 16px;
+      font-weight: 800;
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(0, 242, 254, 0.3);
+    }
+
+    /* شبكة الكروت */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .product-card {
+      background: rgba(14, 16, 24, 0.9);
+      border: 1px solid rgba(0, 242, 254, 0.2);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .product-card:hover {
+      border-color: #00f2fe;
+      box-shadow: 0 0 16px rgba(0, 242, 254, 0.35);
+    }
+
+    .card-img-wrapper {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .card-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-details {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .pkg-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: #d1d5db;
+      text-align: center;
+    }
+
+    .pkg-price {
+      font-size: 14px;
+      font-weight: 900;
+      color: #00f2fe;
+      text-shadow: 0 0 5px rgba(0, 242, 254, 0.3);
+      margin-bottom: 4px;
+    }
+
+    .buy-btn {
+      width: 100%;
+      padding: 8px 0;
+      background: rgba(0, 242, 254, 0.08);
+      color: #00f2fe;
+      border: 1px solid #00f2fe;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 0 6px rgba(0, 242, 254, 0.15);
+    }
+
+    .buy-btn:active {
+      background: #00f2fe;
+      color: #000000;
+      box-shadow: 0 0 14px rgba(0, 242, 254, 0.6);
+    }
+
+    /* المودال Pop-up Order */
+    .hidden {
+      display: none !important;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+    }
+
+    .modal-content {
+      position: relative;
+      z-index: 10000;
+      background: #050508;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      border-top: 2px solid #00f2fe;
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 20px;
+      box-shadow: 0 -5px 30px rgba(0, 242, 254, 0.25);
+    }
+
+    .modal-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .modal-title-text {
+      font-size: 15px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .selected-pkg-card {
+      background: rgba(14, 16, 24, 0.9);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      border-radius: 10px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      gap: 15px;
+      margin-bottom: 18px;
+    }
+
+    .pkg-title-display {
+      font-size: 14px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .pkg-icon-box {
+      width: 50px;
+      height: 50px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .pkg-icon-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .input-label {
+      display: block;
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 8px;
+      text-align: right;
+    }
+
+    .id-input-field {
+      width: 100%;
+      padding: 13px;
+      background: #0a0a0f;
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      border-radius: 6px;
+      color: #ffffff;
+      font-size: 14px;
+      outline: none;
+      margin-bottom: 20px;
+    }
+
+    .id-input-field:focus {
+      border-color: #00f2fe;
+      box-shadow: 0 0 8px rgba(0, 242, 254, 0.3);
+    }
+
+    .section-title {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 10px;
+      text-align: right;
+    }
+
+    .payment-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .pay-item {
+      background: #0a0a0f;
+      border: 1px solid rgba(0, 242, 254, 0.2);
+      border-radius: 6px;
+      padding: 13px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .pay-item.selected {
+      border-color: #00f2fe;
+      background: rgba(0, 242, 254, 0.1);
+    }
+
+    .pay-item-name {
+      font-size: 14px;
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    .badge-recommended {
+      background: #00f2fe;
+      color: #000000;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .modal-bottom-action {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 10px;
+    }
+
+    .price-display-box {
+      text-align: right;
+    }
+
+    .price-label-sub {
+      font-size: 12px;
+      color: #94a3b8;
+      display: block;
+    }
+
+    .final-price-text {
+      font-size: 18px;
+      font-weight: bold;
+      color: #00f2fe;
+    }
+
+    .submit-pay-btn {
+      background: #00f2fe;
+      color: #000000;
+      border: none;
+      padding: 12px 34px;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <div>
+        <h1 class="brand-title">HYPER TOPUP</h1>
+        <span class="sub-title">Yalla Ludo - شحن معتمد</span>
+      </div>
+      <a href="games.html" class="back-btn">&gt;</a>
+    </div>
+
+    <!-- البانر العلوي -->
+    <div class="banner-container">
+      <img src="https://i.ibb.co/zvKmNRB/IMG-20260912-200427.png" alt="Yalla Ludo Banner" class="banner-img">
+    </div>
+
+    <!-- قسم 1: شحن العملات الذهبية -->
+    <div class="section-divider">
+      <h2>شحن العملات الذهبية</h2>
+    </div>
+    <div id="coinsGrid" class="products-grid"></div>
+
+    <!-- قسم 2: بطاقات العناصر -->
+    <div class="section-divider" style="margin-top: 35px;">
+      <h2>بطاقات العناصر</h2>
+    </div>
+    <div id="itemsGrid" class="products-grid"></div>
+
+  </div>
+
+  <!-- مودال الشحن Popup -->
+  <div id="orderModal" class="modal hidden">
+    <div class="modal-overlay" onclick="closeModal()"></div>
+    <div class="modal-content">
+      
+      <div class="modal-top-bar">
+        <span class="modal-title-text">إتمام طلب الشحن - يلا لودو</span>
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+      </div>
+
+      <div class="selected-pkg-card">
+        <div class="pkg-icon-box">
+          <img id="modalPkgImg" src="" alt="Selected Package">
+        </div>
+        <span id="packageTitleDisplay" class="pkg-title-display">-</span>
+      </div>
+
+      <label class="input-label" for="playerIdInput">معرف اللاعب (Player ID)</label>
+      <input type="tel" inputmode="numeric" id="playerIdInput" class="id-input-field" placeholder="اكتب Player ID هنا" dir="rtl" style="text-align: right;">
+
+      <div class="section-title">اختر طريقة الدفع</div>
+      <div class="payment-list">
+        <div class="pay-item selected" onclick="selectPayOption(this, 'فودافون كاش / أورنج / اتصالات')">
+          <span class="pay-item-name">فودافون كاش / أورنج / اتصالات</span>
+          <span class="badge-recommended">مستحسن</span>
+        </div>
+
+        <div class="pay-item" onclick="selectPayOption(this, 'إنستا باي (InstaPay)')">
+          <span class="pay-item-name">إنستا باي (InstaPay)</span>
+        </div>
+      </div>
+
+      <div class="modal-bottom-action">
+        <button class="submit-pay-btn" onclick="submitOrder()">دفع</button>
+
+        <div class="price-display-box">
+          <span class="price-label-sub">الإجمالي:</span>
+          <span id="finalPriceDisplay" class="final-price-text">0 EGP</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+const coinsData = [
+  { name: 'باقة 10,000 عملة', price: 65, img: 'https://i.ibb.co/wZFZDfDH/coins-01-midasbuy-7948de34.jpg' },
+  { name: 'باقة 30,000 عملة', price: 125, img: 'https://i.ibb.co/MxhNSPFF/coins-08-midasbuy-0cf28e39.jpg' },
+  { name: 'باقة 72,000 عملة', price: 245, img: 'https://i.ibb.co/PspLyFcc/coins-03-midasbuy-a132b0f1.jpg' },
+  { name: 'باقة 210,000 عملة', price: 630, img: 'https://i.ibb.co/Pvf5L5qr/coins-04-midasbuy-9965e70d.jpg' },
+  { name: 'باقة 500,000 عملة', price: 1390, img: 'https://i.ibb.co/bgXsMng7/coins-09-midasbuy-20212530.jpg' },
+  { name: 'باقة 1,200,000 عملة', price: 2990, img: 'https://i.ibb.co/BKQ1QkbQ/coins-06-midasbuy-dc57b293.jpg' }
+];
+
+const itemsData = [
+  { name: 'باقة 30 بطاقة عناصر', price: 65, img: 'https://i.ibb.co/BV5XWXs1/itemcard-02-midasbuy-153e33be.jpg' },
+  { name: 'باقة 100 بطاقة عناصر', price: 185, img: 'https://i.ibb.co/BV5XWXs1/itemcard-02-midasbuy-153e33be.jpg' },
+  { name: 'باقة 500 بطاقة عناصر', price: 580, img: 'https://i.ibb.co/BV5XWXs1/itemcard-02-midasbuy-153e33be.jpg' }
+];
+
+let currentOrderData = {};
+let selectedMethod = 'فودافون كاش / أورنج / اتصالات';
+
+const $ = id => document.getElementById(id);
+
+function renderGrid(containerId, list) {
+  const container = $(containerId);
+  if (!container) return;
+  container.innerHTML = '';
+
+  list.forEach((item) => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <div class="card-img-wrapper">
+        <img src="${item.img}" alt="${item.name}" loading="lazy">
+      </div>
+      <div class="card-details">
+        <span class="pkg-name">${item.name}</span>
+        <span class="pkg-price">EGP ${item.price}</span>
+        <button class="buy-btn" onclick="openOrder('${item.name}', ${item.price}, '${item.img}')">شحن فوري</button>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+// عرض المنتجات فوراً عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', () => {
+  renderGrid('coinsGrid', coinsData);
+  renderGrid('itemsGrid', itemsData);
+});
+
+function openOrder(name, price, img) {
+  currentOrderData = { name, price, img };
+
+  $('packageTitleDisplay').textContent = name;
+  $('modalPkgImg').src = img;
+  $('finalPriceDisplay').textContent = 'EGP ' + price;
+  $('playerIdInput').value = '';
+
+  $('orderModal').classList.remove('hidden');
+  document.body.classList.add('modal-open');
+}
+
+function closeModal() {
+  $('orderModal').classList.add('hidden');
+  document.body.classList.remove('modal-open');
+}
+
+function selectPayOption(el, method) {
+  document.querySelectorAll('.pay-item').forEach(i => i.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedMethod = method;
+}
+
+function submitOrder() {
+  const idInput = document.getElementById('playerIdInput');
+  const playerId = idInput ? idInput.value.trim() : '';
+
+  if (!playerId) {
+    alert('⚠️ يرجى كتابة الـ Player ID الخاص بك أولاً!');
+    return;
+  }
+
+  // فحص مضمون لاختيار إنستا باي
+  const isInstaPaySelected = (typeof selectedMethod !== 'undefined' && selectedMethod === 'InstaPay') ||
+                             (typeof selectedPayMethod !== 'undefined' && selectedPayMethod === 'InstaPay') ||
+                             (typeof selectedPaymentMethod !== 'undefined' && selectedPaymentMethod === 'InstaPay') ||
+                             (document.querySelector('.pay-card.selected, .pay-item.selected')?.innerText.includes('InstaPay'));
+
+  const packageName = (typeof currentOrderData !== 'undefined' && currentOrderData.name) ? currentOrderData.name : 'باقة Yalla Ludo';
+  const rawPrice = (typeof currentOrderData !== 'undefined' && currentOrderData.price) ? currentOrderData.price : 0;
+  const roundedPrice = Math.round(parseFloat(rawPrice));
+  const orderId = '#HYP' + Math.floor(1000 + Math.random() * 9000);
+
+  if (isInstaPaySelected) {
+    // التوجيه لصفحة إنستا باي
+    window.location.href = `instapay-payment.html?game=Yalla%20Ludo&package=${encodeURIComponent(packageName)}&amount=${roundedPrice}&id=${encodeURIComponent(playerId)}&order=${orderId}`;
+  } else {
+    // التوجيه لصفحة الكاش والمحفظة القديمة
+    window.location.href = `hyper-payment.html?game=Yalla%20Ludo&package=${encodeURIComponent(packageName)}&amount=${rawPrice}&id=${encodeURIComponent(playerId)}&order=${orderId}`;
+  }
+}
+</script>
+</body>
+</html>

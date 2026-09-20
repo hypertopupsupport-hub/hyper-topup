@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HYPER TOPUP - شحن عملات YoHo</title>
+  <style>
+    /* Global Styles & Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #050508;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    /* Modal Overlay Container */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(5, 5, 8, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      overflow-y: auto;
+      padding: 15px;
+    }
+
+    .modal-container {
+      width: 100%;
+      max-width: 480px;
+      background: #0b0e14;
+      border: 1px solid rgba(255, 102, 0, 0.3);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 0 25px rgba(255, 102, 0, 0.15);
+      margin: auto 0;
+    }
+
+    /* Header Layout */
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .back-btn {
+      background: rgba(255, 102, 0, 0.08);
+      border: 1px solid rgba(255, 102, 0, 0.4);
+      color: #ff6600;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:active {
+      transform: scale(0.9);
+      background: #ff6600;
+      color: #000;
+      box-shadow: 0 0 15px #ff6600;
+    }
+
+    .header-titles {
+      text-align: left;
+    }
+
+    .brand-title {
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(255, 102, 0, 0.6);
+    }
+
+    .sub-badge {
+      font-size: 11px;
+      color: #ff6600;
+      background: rgba(255, 102, 0, 0.1);
+      padding: 2px 8px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-top: 2px;
+      border: 1px solid rgba(255, 102, 0, 0.2);
+    }
+
+    /* Hero Banner Image */
+    .hero-banner {
+      width: 100%;
+      max-height: 130px;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      border: 1px solid rgba(255, 102, 0, 0.3);
+      box-shadow: 0 0 18px rgba(255, 102, 0, 0.2);
+    }
+
+    .hero-banner img {
+      width: 100%;
+      height: 130px;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* Products Grid Layout */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    /* Individual Product Card */
+    .product-card {
+      background: #121622;
+      border: 1px solid rgba(255, 102, 0, 0.15);
+      border-radius: 14px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .product-card:hover, .product-card:active {
+      border-color: #ff6600;
+      box-shadow: 0 0 15px rgba(255, 102, 0, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .coin-img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 0 6px rgba(255, 102, 0, 0.4));
+    }
+
+    .pkg-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .pkg-price {
+      font-size: 12px;
+      font-weight: 700;
+      color: #ff6600;
+      margin-bottom: 10px;
+    }
+
+    /* Action Charge Button */
+    .charge-btn {
+      width: 100%;
+      padding: 8px 0;
+      background: transparent;
+      border: 1px solid #ff6600;
+      color: #ff6600;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+    }
+
+    .charge-btn:active {
+      background: #ff6600;
+      color: #0b0e14;
+      box-shadow: 0 0 12px #ff6600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Overlay Modal Wrapper -->
+  <div class="modal-overlay">
+    <div class="modal-container">
+      
+      <!-- Top Header Layout -->
+      <div class="modal-header">
+        <button class="back-btn" onclick="closeModal()" title="إغلاق">&lt;</button>
+        <div class="header-titles">
+          <div class="brand-title">HYPER TOPUP</div>
+          <div class="sub-badge">شحن عملات YOHO</div>
+        </div>
+      </div>
+
+      <!-- Hero Banner Image -->
+      <div class="hero-banner">
+        <img src="https://i.ibb.co/wFWDgZQw/1789233123378.png" alt="شحن عملات يوهو">
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid">
+
+        <!-- Package 1 -->
+        <div class="product-card">
+          <img class="coin-img" src="https://i.ibb.co/CK3SdP3N/icon-gold.png" alt="YoHo Coins">
+          <div class="pkg-title">8,800 عملة</div>
+          <div class="pkg-price">70 ج.م</div>
+          <button class="charge-btn" onclick="orderCoins('8,800 عملة', '70 ج.م')">شحن فوري</button>
+        </div>
+
+        <!-- Package 2 -->
+        <div class="product-card">
+          <img class="coin-img" src="https://i.ibb.co/CK3SdP3N/icon-gold.png" alt="YoHo Coins">
+          <div class="pkg-title">44,000 عملة</div>
+          <div class="pkg-price">320 ج.م</div>
+          <button class="charge-btn" onclick="orderCoins('44,000 عملة', '320 ج.م')">شحن فوري</button>
+        </div>
+
+        <!-- Package 3 -->
+        <div class="product-card">
+          <img class="coin-img" src="https://i.ibb.co/CK3SdP3N/icon-gold.png" alt="YoHo Coins">
+          <div class="pkg-title">88,000 عملة</div>
+          <div class="pkg-price">630 ج.م</div>
+          <button class="charge-btn" onclick="orderCoins('88,000 عملة', '630 ج.م')">شحن فوري</button>
+        </div>
+
+        <!-- Package 4 -->
+        <div class="product-card">
+          <img class="coin-img" src="https://i.ibb.co/CK3SdP3N/icon-gold.png" alt="YoHo Coins">
+          <div class="pkg-title">132,000 عملة</div>
+          <div class="pkg-price">930 ج.م</div>
+          <button class="charge-btn" onclick="orderCoins('132,000 عملة', '930 ج.م')">شحن فوري</button>
+        </div>
+
+        <!-- Package 5 -->
+        <div class="product-card">
+          <img class="coin-img" src="https://i.ibb.co/CK3SdP3N/icon-gold.png" alt="YoHo Coins">
+          <div class="pkg-title">264,000 عملة</div>
+          <div class="pkg-price">1,820 ج.م</div>
+          <button class="charge-btn" onclick="orderCoins('264,000 عملة', '1,820 ج.م')">شحن فوري</button>
+        </div>
+
+        <!-- Package 6 -->
+        <div class="product-card">
+          <img class="coin-img" src="https://i.ibb.co/CK3SdP3N/icon-gold.png" alt="YoHo Coins">
+          <div class="pkg-title">440,000 عملة</div>
+          <div class="pkg-price">2,990 ج.م</div>
+          <button class="charge-btn" onclick="orderCoins('440,000 عملة', '2,990 ج.م')">شحن فوري</button>
+        </div>
+
+        <!-- Package 7 -->
+        <div class="product-card">
+          <img class="coin-img" src="https://i.ibb.co/CK3SdP3N/icon-gold.png" alt="YoHo Coins">
+          <div class="pkg-title">880,000 عملة</div>
+          <div class="pkg-price">5,950 ج.م</div>
+          <button class="charge-btn" onclick="orderCoins('880,000 عملة', '5,950 ج.م')">شحن فوري</button>
+        </div>
+
+        <!-- Package 8 -->
+        <div class="product-card">
+          <img class="coin-img" src="https://i.ibb.co/CK3SdP3N/icon-gold.png" alt="YoHo Coins">
+          <div class="pkg-title">1,760,000 عملة</div>
+          <div class="pkg-price">11,800 ج.م</div>
+          <button class="charge-btn" onclick="orderCoins('1,760,000 عملة', '11,800 ج.م')">شحن فوري</button>
+        </div>
+
+        <!-- Package 9 -->
+        <div class="product-card">
+          <img class="coin-img" src="https://i.ibb.co/CK3SdP3N/icon-gold.png" alt="YoHo Coins">
+          <div class="pkg-title">4,400,000 عملة</div>
+          <div class="pkg-price">29,200 ج.م</div>
+          <button class="charge-btn" onclick="orderCoins('4,400,000 عملة', '29,200 ج.م')">شحن فوري</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Navigation Function
+    function closeModal() {
+      window.location.href = "apps.html";
+    }
+
+    // Direct WhatsApp Order Handler
+    function orderCoins(pkgName, price) {
+      const phone = "201002722164";
+      const message = encodeURIComponent(`مرحباً، أريد شحن عملات تطبيق YoHo (Group Voice Chat):\nالباقة: ${pkgName}\nالسعر: ${price}\nمن متجر HYPER TOPUP`);
+      window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${message}`, '_blank');
+    }
+  </script>
+</body>
+</html>
