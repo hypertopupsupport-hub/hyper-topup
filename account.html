@@ -266,13 +266,19 @@
         </div>
       </a>
 
-      <a href="#" class="menu-item">
-        <span class="arrow">‹</span>
-        <div class="menu-right">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-          <span>شارك المتجر مع أصحابك</span>
-        </div>
-      </a>
+      <div id="shareBtn" class="menu-item" style="cursor: pointer;">
+  <span class="arrow">&rsaquo;</span>
+  <div class="menu-right">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="18" cy="5" r="3"/>
+      <circle cx="6" cy="12" r="3"/>
+      <circle cx="18" cy="19" r="3"/>
+      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+      <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+    </svg>
+    <span>شارك المتجر مع أصحابك</span>
+  </div>
+</div>
 
       <a href="privacy.html" style="text-decoration: none; color: inherit; display: block;">
   <div class="menu-item">
@@ -622,6 +628,33 @@ window.handleGoogleSignIn = async function() {
     showToast("حدث خطأ أثناء التسجيل بواسطة Google", "error");
   }
 };
+document.addEventListener('DOMContentLoaded', function() {
+  const shareBtn = document.getElementById('shareBtn');
+  if (shareBtn) {
+    shareBtn.addEventListener('click', async function() {
+      const shareData = {
+        title: 'HYPER TOPUP',
+        text: 'اشحن العابك وتطبيقاتك بأسعار متميزة وسريعة من متجر HYPER TOPUP!',
+        url: 'https://hypertopupsupport-hub.github.io/hyper-topup/'
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+        } catch (err) {
+          console.log('تم إلغاء المشاركة:', err);
+        }
+      } else {
+        try {
+          await navigator.clipboard.writeText(shareData.url);
+          alert('تم نسخ رابط المتجر بنجاح!');
+        } catch (err) {
+          console.error('فشل النسخ:', err);
+        }
+      }
+    });
+  }
+});
   </script>
 </body>
 </html>

@@ -906,13 +906,6 @@ function handleSwipe() {
 
 startAutoSlide();
 </script>
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js').catch(() => {});
-    });
-  }
-</script>
 <!-- شاشة الانتظار الكاملة والعد التنازلي -->
 <div id="launch-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(8, 12, 24, 0.98); backdrop-filter: blur(10px); z-index: 999999; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; padding: 20px; box-sizing: border-box; font-family: inherit;">
   
