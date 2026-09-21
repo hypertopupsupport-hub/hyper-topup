@@ -320,6 +320,95 @@ body::-webkit-scrollbar,
   background: transparent !important;
   opacity: 0 !important;
 }
+
+  /* ==========================================
+   تنسيق البنَر بعرض الشاشة الكامل وبدون توهج
+   ========================================== */
+.banner-slider {
+  position: relative;
+  width: 100vw;              /* بعرض شاشة الموبايل بالكامل */
+  margin-left: calc(-50vw + 50%); /* لإلغاء أي هوامش من الأب */
+  margin-right: calc(-50vw + 50%);
+  margin-top: 10px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border: none;              /* إلغاء الإطار */
+  box-shadow: none;          /* إلغاء التوهج والتأثيرات */
+  direction: ltr;
+  touch-action: pan-y;       /* تمكين السحب باللمس للهواتف */
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  width: 100%;
+  will-change: transform;
+}
+
+.slide {
+  min-width: 100vw;          /* كل شريحة بعرض الشاشة الكامل */
+  width: 100vw;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0;          /* بدون انحناء للحواف */
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* زر انطلاق فوق البنَر */
+.launch-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 15px;
+  background: linear-gradient(135deg, #00d2ff 0%, #0072ff 100%);
+  color: #ffffff;
+  border: none;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 10;
+  direction: rtl;
+}
+
+.launch-btn:active {
+  transform: scale(0.93);
+}
+
+/* نقاط المؤشر السفلية */
+.slider-dots {
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  z-index: 10;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background-color: #00d2ff;
+  width: 20px;
+  border-radius: 10px;
+}
+
 </style>
 </head>
 
@@ -358,6 +447,151 @@ body::-webkit-scrollbar,
 </header>
 
 <main class="main">
+<!-- ================= البنر بعرض الشاشة الكامل وحركات السحب ================= -->
+<style>
+  .banner-slider-full {
+    position: relative;
+    width: 100vw !important;
+    left: 50% !important;
+    right: 50% !important;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    overflow: hidden;
+    direction: ltr;
+    touch-action: pan-y;
+  }
+
+  .slides-container {
+    display: flex;
+    transition: transform 0.5s ease-out;
+    width: 100%;
+    will-change: transform;
+  }
+
+  .slide-item {
+    min-width: 100vw;
+    width: 100vw;
+    position: relative;
+    box-sizing: border-box;
+  }
+
+  .slide-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0;
+    object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  .launch-btn {
+    position: absolute;
+    bottom: 18px;
+    right: 15px;
+    background: linear-gradient(135deg, #00d2ff 0%, #0072ff 100%);
+    color: #ffffff;
+    border: none;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    z-index: 10;
+    direction: rtl;
+  }
+
+  .launch-btn:active {
+    transform: scale(0.93);
+  }
+
+  .slider-dots {
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    z-index: 10;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .dot.active {
+    background-color: #00d2ff;
+    width: 22px;
+    border-radius: 10px;
+  }
+/* الإشعار السلس */
+.smooth-toast {
+  visibility: hidden;
+  min-width: 220px;
+  background-color: #1a1e29;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 25px;
+  padding: 12px 20px;
+  position: fixed;
+  z-index: 9999;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%) translateY(50px);
+  opacity: 0;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #00d2ff;
+  box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+  pointer-events: none;
+  direction: rtl;
+}
+
+.smooth-toast.show {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+</style>
+<div id="customToast" class="smooth-toast">📋 تم نسخ كود الخصم بنجاح!</div>
+<div class="banner-slider-full" id="bannerSlider">
+  <div class="slides-container" id="bannerSlides">
+    
+    <!-- الشريحة 1 -->
+    <div class="slide-item">
+      <img src="https://i.ibb.co/hFRRFJrT/file-00000000fa7082438889a2141f1cee33.webp" alt="خصم">
+      <button class="launch-btn" onclick="copyPromoCode('WELCOME')">انطلاق 🚀</button>
+    </div>
+
+    <!-- الشريحة 2 -->
+    <div class="slide-item">
+      <img src="https://i.ibb.co/hJHkmPKP/file-0000000029ac81f49e504e601ab57024.webp" alt="ببجي">
+      <button class="launch-btn" onclick="navigateToPage('HYPER_TOPUP_PUBG_MOBILE.html')">انطلاق 🚀</button>
+    </div>
+
+    <!-- الشريحة 3 -->
+    <div class="slide-item">
+      <img src="https://i.ibb.co/SDXFVZBt/IMG-20260921-164913.webp" alt="ميراج">
+      <button class="launch-btn" onclick="navigateToPage('mirage.html')">انطلاق 🚀</button>
+    </div>
+
+  </div>
+
+  <div class="slider-dots">
+    <span class="dot active" onclick="goToSlide(0)"></span>
+    <span class="dot" onclick="goToSlide(1)"></span>
+    <span class="dot" onclick="goToSlide(2)"></span>
+  </div>
+</div>
+
 
  <section class="promo">
   <strong>🔥 عروض الصيف الحصرية — اشحن الآن واحصل على بونص إضافي! 🔥</strong>
@@ -586,7 +820,92 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+<script>
+let currentSlideIndex = 0;
+const slides = document.getElementById('bannerSlides');
+const dots = document.querySelectorAll('.dot');
+const totalSlides = document.querySelectorAll('.slide-item').length;
+const sliderContainer = document.getElementById('bannerSlider');
 
+let startX = 0;
+let endX = 0;
+let autoSlideInterval;
+
+function updateSlider() {
+  if (slides) {
+    slides.style.transform = `translateX(-${currentSlideIndex * 100}vw)`;
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentSlideIndex);
+    });
+  }
+}
+
+function goToSlide(index) {
+  currentSlideIndex = index;
+  updateSlider();
+  resetAutoSlide();
+}
+
+function nextSlide() {
+  currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+  updateSlider();
+}
+
+function prevSlide() {
+  currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
+  updateSlider();
+}
+
+function startAutoSlide() {
+  autoSlideInterval = setInterval(nextSlide, 3500);
+}
+
+function resetAutoSlide() {
+  clearInterval(autoSlideInterval);
+  startAutoSlide();
+}
+
+function navigateToPage(url) {
+  window.location.href = url;
+}
+function copyPromoCode(code) {
+  navigator.clipboard.writeText(code).then(() => {
+    const toast = document.getElementById('customToast');
+    if (toast) {
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 1500); // بيختفي بعد ثانية ونصف
+    }
+  }).catch(err => {
+    console.error('فشل النسخ: ', err);
+  });
+}
+// السحب لمس باليد (Touch Swipe)
+if (sliderContainer) {
+  sliderContainer.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+
+  sliderContainer.addEventListener('touchend', (e) => {
+    endX = e.changedTouches[0].clientX;
+    handleSwipe();
+  }, { passive: true });
+}
+
+function handleSwipe() {
+  const threshold = 30;
+  if (startX - endX > threshold) {
+    nextSlide();
+    resetAutoSlide();
+  } else if (endX - startX > threshold) {
+    prevSlide();
+    resetAutoSlide();
+  }
+}
+
+startAutoSlide();
+</script>
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {

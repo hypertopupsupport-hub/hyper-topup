@@ -64,6 +64,104 @@ body.modal-open {
   from { opacity: 0; transform: translateY(15px); }
   to { opacity: 1; transform: translateY(0); }
 }
+/* تنسيق قسم كود الخصم الاحترافي */
+.promo-code-group {
+  margin: 16px 0;
+  text-align: right;
+}
+
+.promo-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #94a3b8; /* نفس لون نصوص العناوين الفرعية */
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.promo-icon {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* الإطار الداخلي المدمج */
+.promo-input-box {
+  display: flex;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 4px 6px 4px 12px; /* مساحة متناسقة للزرار */
+  transition: all 0.3s ease;
+}
+
+/* تأثير التحديد باللون الأزرق المضيء */
+.promo-input-box:focus-within {
+  border-color: #00aaff;
+  box-shadow: 0 0 12px rgba(0, 170, 255, 0.25);
+}
+
+.promo-input-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 8px 4px;
+  font-family: inherit;
+}
+
+.promo-input-box input::placeholder {
+  color: #64748b;
+  font-size: 12px;
+}
+
+/* زر التحديث الداخلي */
+.promo-input-box button {
+  background: linear-gradient(135deg, #00aaff, #0077ff);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.promo-input-box button:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+.promo-input-box button:active {
+  transform: scale(0.98);
+}
+
+/* رسائل الخطأ والنجاح */
+.promo-message {
+  font-size: 12px;
+  margin-top: 6px;
+  font-weight: 600;
+  display: none;
+}
+
+.promo-message.success {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #22c55e;
+}
+
+.promo-message.error {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #ef4444;
+}
 </style>
 </head>
 <body>
@@ -121,7 +219,18 @@ body.modal-open {
       <span style="border:1px solid #4a9eff; border-radius:50%; width:15px; height:15px; display:inline-flex; align-items:center; justify-content:center; font-size:10px;">i</span>
       <span>كيف تعثر على معرف اللاعب؟</span>
     </div>
-
+<!-- قسم كود الخصم الاحترافي -->
+<div class="promo-code-group">
+  <div class="promo-label">
+    <span>كود الخصم (Promo Code)</span>
+    <span class="promo-icon"></span>
+  </div>
+  <div class="promo-input-box">
+    <input type="text" id="couponInput" placeholder="أدخل كود الخصم هنا..." autocomplete="off">
+    <button type="button" id="applyCouponBtn" onclick="applyCoupon()">تطبيق</button>
+  </div>
+  <div id="couponMessage" class="promo-message"></div>
+</div>
     <!-- قنوات الدفع -->
     <h4 style="margin:16px 0 10px 0; font-size:0.9rem; color:#eee;">اختر قنوات الدفع</h4>
     <div class="pay-card selected" onclick="selectPayOption(this, 'Vodafone Cash')">
@@ -362,23 +471,107 @@ function proceedToPayment() {
 
   // أخذ بيانات الباقة والسعر
   const packageName = (typeof currentOrderData !== 'undefined' && currentOrderData.name) ? currentOrderData.name : '60 شدة';
-  const rawPrice = (typeof currentOrderData !== 'undefined' && currentOrderData.price) ? currentOrderData.price : 47.99;
+      const rawPrice = (typeof currentOrderData !== 'undefined' && currentOrderData.price) ? currentOrderData.price : 47.99;
 
-  // تقريب السعر لإنستا باي
-  const roundedPrice = Math.round(parseFloat(rawPrice));
-  const orderId = '#HYP' + Math.floor(1000 + Math.random() * 9000);
+    // حساب السعر بعد الخصم إن وجد
+    const discountedPrice = Math.max(0, rawPrice - discountAmount);
+    const roundedPrice = Math.round(discountedPrice);
+    const orderId = '#HYP' + Math.floor(1000 + Math.random() * 9000);
 
-  // تحديد صفحة الدفع والسعر المبعوت
-  let targetPage = 'hyper-payment.html';
-  let finalPrice = rawPrice;
+    // تحديد صفحة الدفع والسعر المبعوث
+    let targetPage = 'hyper-payment.html';
+    let finalPrice = discountedPrice;
 
-  if (selectedPayMethod === 'InstaPay') {
-    targetPage = 'instapay-payment.html';
-    finalPrice = roundedPrice;
-  }
+    if (selectedPayMethod === 'InstaPay') {
+      targetPage = 'instapay-payment.html';
+      finalPrice = roundedPrice;
+    }
+
+    // تسكيل الكود كمستخدم لمنع استخدامه مرة أخرى
+    saveUsedCoupon();
+
+    // التحويل لصفحة الدفع مع إرسال كود الخصم
+    window.location.href = `${targetPage}?game=PUBG MOBILE&package=${encodeURIComponent(packageName)}&amount=${finalPrice}&id=${encodeURIComponent(playerId)}&order=${orderId}&coupon=${encodeURIComponent(appliedCoupon || 'لا يوجد')}`;
 
   // التحويل لصفحة الدفع
   window.location.href = `${targetPage}?game=PUBG MOBILE&package=${encodeURIComponent(packageName)}&amount=${finalPrice}&id=${encodeURIComponent(playerId)}&order=${orderId}`;
+}
+// --- نظام إدارة كود الخصم ---
+const AVAILABLE_COUPONS = {
+  'WELCOME':       { type: 'percent', value: 5,  minPrice: 100 },
+  'HYPER-9K2X-77': { type: 'percent', value: 10, minPrice: 100 },
+  'VIP-8M3P-15':   { type: 'fixed',   value: 15, minPrice: 100 },
+  'LAUNCH-X7Q9':   { type: 'percent', value: 10, minPrice: 100 },
+  'PROMO-4W1Z':    { type: 'fixed',   value: 20, minPrice: 100 },
+  'GAME-77KR-99':  { type: 'percent', value: 15, minPrice: 100 }
+};
+
+let appliedCoupon = null;
+let discountAmount = 0;
+
+function applyCoupon() {
+  const inputEl = document.getElementById('couponInput');
+  const msgEl = document.getElementById('couponMessage');
+  if (!inputEl || !msgEl) return;
+
+  const code = inputEl.value.trim().toUpperCase();
+
+  if (!code) {
+    msgEl.className = 'promo-message error';
+    msgEl.innerHTML = '⚠️ يُرجى إدخال كود الخصم أولاً';
+    return;
+  }
+
+  if (!AVAILABLE_COUPONS[code]) {
+    msgEl.className = 'promo-message error';
+    msgEl.innerHTML = '✕ كود الخصم غير صحيح أو انتهت صلاحيته';
+    return;
+  }
+
+  let usedCoupons = JSON.parse(localStorage.getItem('hyper_used_coupons') || '[]');
+  if (usedCoupons.includes(code)) {
+    msgEl.className = 'promo-message error';
+    msgEl.innerHTML = '⚠️ لقد استخدمت هذا الكود من قبل!';
+    return;
+  }
+
+  const basePrice = (typeof currentOrderData !== 'undefined' && currentOrderData.price) ? currentOrderData.price : 47.99;
+  const coupon = AVAILABLE_COUPONS[code];
+
+  if (basePrice < coupon.minPrice) {
+    msgEl.className = 'promo-message error';
+    msgEl.innerHTML = `⚠️ هذا الكود يعمل فقط على الباقات من ${coupon.minPrice} ج.م وأكثر`;
+    return;
+  }
+
+  appliedCoupon = code;
+  if (coupon.type === 'percent') {
+    discountAmount = (basePrice * coupon.value) / 100;
+  } else {
+    discountAmount = coupon.value;
+  }
+
+  if (discountAmount > basePrice) discountAmount = basePrice;
+  const newPrice = Math.max(0, basePrice - discountAmount);
+
+  // تحديث السعر المعروض
+  const totalEl = document.getElementById('totalAmount') || document.querySelector('.total-price') || document.querySelector('.EGP-price');
+  if (totalEl) {
+    totalEl.innerHTML = `<span style="text-decoration: line-through; color: #64748b; font-size: 12px; margin-left: 6px;">EGP ${basePrice.toFixed(2)}</span> EGP ${newPrice.toFixed(2)}`;
+  }
+
+  msgEl.className = 'promo-message success';
+  msgEl.innerHTML = `✓ تم تفعيل الخصم! توفير <b>${discountAmount.toFixed(2)} ج.م</b>`;
+}
+
+function saveUsedCoupon() {
+  if (appliedCoupon) {
+    let usedCoupons = JSON.parse(localStorage.getItem('hyper_used_coupons') || '[]');
+    if (!usedCoupons.includes(appliedCoupon)) {
+      usedCoupons.push(appliedCoupon);
+      localStorage.setItem('hyper_used_coupons', JSON.stringify(usedCoupons));
+    }
+  }
 }
 // تشغيل العرض بعد تحميل جميع العناصر
 render();

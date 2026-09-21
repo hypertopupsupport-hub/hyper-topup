@@ -392,6 +392,109 @@
   outline: none !important;
   box-shadow: none !important;
 }
+/* ==========================================
+   تنسيق قسم كود الخصم (خاص بلعبة جانجستر ميراج)
+   ========================================== */
+
+.promo-code-group {
+  margin: 16px 0;
+  text-align: right;
+}
+
+.promo-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.promo-icon {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* الإطار الداخلي للخانة */
+.promo-input-box {
+  display: flex;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 4px 6px 4px 12px;
+  transition: all 0.3s ease;
+}
+
+/* تأثير التحديد باللون الوردي النيون لصفحة ميراج */
+.promo-input-box:focus-within {
+  border-color: #ff2a85;
+  box-shadow: 0 0 12px rgba(255, 42, 133, 0.35);
+}
+
+.promo-input-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 8px 4px;
+  font-family: inherit;
+}
+
+.promo-input-box input::placeholder {
+  color: #64748b;
+  font-size: 12px;
+}
+
+/* زرار التفعيل باللون الوردي الخاص بـ Mirage */
+.promo-input-box button {
+  background: linear-gradient(135deg, #ff2a85, #d6005d);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(255, 42, 133, 0.25);
+}
+
+.promo-input-box button:hover {
+  opacity: 0.92;
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(255, 42, 133, 0.4);
+}
+
+.promo-input-box button:active {
+  transform: scale(0.98);
+}
+
+/* رسائل الخطأ والنجاح */
+.promo-message {
+  font-size: 12px;
+  margin-top: 6px;
+  font-weight: 600;
+  display: none;
+}
+
+.promo-message.success {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #22c55e;
+}
+
+.promo-message.error {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #ef4444;
+}
   </style>
 </head>
 <body>
@@ -520,6 +623,18 @@
           <span>ⓘ</span> كيف تعثر على معرف اللاعب؟
         </div>
       </div>
+      <!-- قسم كود الخصم الاحترافي -->
+<div class="promo-code-group">
+  <div class="promo-label">
+    <span>كود الخصم (Promo Code)</span>
+    <span class="promo-icon"></span>
+  </div>
+  <div class="promo-input-box">
+    <input type="text" id="couponInput" placeholder="أدخل كود الخصم هنا..." autocomplete="off">
+    <button type="button" id="applyCouponBtn" onclick="applyCoupon()">تطبيق</button>
+  </div>
+  <div id="couponMessage" class="promo-message"></div>
+</div>
 
       <div style="margin-bottom: 12px; font-size: 0.9rem; color: #aaa;">اختر قنوات الدفع</div>
       
@@ -572,6 +687,7 @@
       <button class="buy-btn" onclick="closeModal('idHelpModal')">حسناً</button>
     </div>
   </div>
+  
 
   <script>
     let currentOrderData = {
@@ -643,16 +759,103 @@
                              (document.querySelector('.pay-card.selected')?.innerText.includes('InstaPay'));
 
   const packageName = currentOrderData.name || 'باقة شحن';
-  // تصحيح قراءة السعر من currentPrice
-  const rawPrice = currentOrderData.currentPrice || 0; 
-  const orderId = '#HYP' + Math.floor(1000 + Math.random() * 9000);
+        // تصحيح قراءة السعر وحساب الخصم
+        const rawPrice = currentOrderData.currentPrice || 0;
+        const finalPrice = Math.max(0, rawPrice - discountAmount);
+        const orderId = '#HYP' + Math.floor(1000 + Math.random() * 9000);
 
-  if (isInstaPaySelected) {
-    // توجيه لصفحة إنستا باي
-    window.location.href = `instapay-payment.html?game=Gangstar%20Mirage&package=${encodeURIComponent(packageName)}&amount=${rawPrice}&id=${encodeURIComponent(playerId)}&order=${orderId}`;
+        // حفظ الكود كمُستعمل على مستوى المتجر بالكامل
+        saveUsedCouponGlobally();
+
+        if (isInstaPaySelected) {
+          // توجيه لصفحة إنستا باي
+          window.location.href = `instapay-payment.html?game=Gangstar%20Mirage&package=${encodeURIComponent(packageName)}&amount=${finalPrice}&id=${encodeURIComponent(playerId)}&order=${orderId}&coupon=${encodeURIComponent(appliedCoupon || 'لا يوجد')}`;
+        } else {
+          // توجيه لصفحة الكاش والمحفظة الإلكترونية
+          window.location.href = `hyper-payment.html?game=Gangstar%20Mirage&package=${encodeURIComponent(packageName)}&amount=${finalPrice}&id=${encodeURIComponent(playerId)}&order=${orderId}&coupon=${encodeURIComponent(appliedCoupon || 'لا يوجد')}`;
+        }
+}
+// --- نظام كود الخصم العام لصفحة ميراج ---
+const AVAILABLE_COUPONS = {
+  'WELCOME':       { type: 'percent', value: 5,  minPrice: 100 },
+  'HYPER-9K2X-77': { type: 'percent', value: 10, minPrice: 100 },
+  'VIP-8M3P-15':   { type: 'fixed',   value: 15, minPrice: 100 },
+  'MIRAGE-2026':   { type: 'percent', value: 15, minPrice: 100 },
+  'PROMO-4W1Z':    { type: 'fixed',   value: 20, minPrice: 100 }
+};
+
+let appliedCoupon = null;
+let discountAmount = 0;
+
+function applyCoupon() {
+  const inputEl = document.getElementById('couponInput');
+  const msgEl = document.getElementById('couponMessage');
+  if (!inputEl || !msgEl) return;
+
+  const code = inputEl.value.trim().toUpperCase();
+
+  if (!code) {
+    msgEl.className = 'promo-message error';
+    msgEl.style.display = 'flex';
+    msgEl.innerHTML = '⚠️ يُرجى إدخال كود الخصم أولاً';
+    return;
+  }
+
+  if (!AVAILABLE_COUPONS[code]) {
+    msgEl.className = 'promo-message error';
+    msgEl.style.display = 'flex';
+    msgEl.innerHTML = '✕ كود الخصم غير صحيح أو انتهت صلاحيته';
+    return;
+  }
+
+  // فحص هل استخدم الزبون الكود من قبل في أي لعبة/منتج آخر على المتجر
+  let globalUsedCoupons = JSON.parse(localStorage.getItem('hyper_global_used_coupons') || '[]');
+  if (globalUsedCoupons.includes(code)) {
+    msgEl.className = 'promo-message error';
+    msgEl.style.display = 'flex';
+    msgEl.innerHTML = '⚠️ تم استخدام هذا الكود من قبل !';
+    return;
+  }
+
+  const basePrice = (typeof currentOrderData !== 'undefined' && currentOrderData.currentPrice) ? currentOrderData.currentPrice : 48.99;
+  const coupon = AVAILABLE_COUPONS[code];
+
+  // منع الخصم على الباقات الأقل من 100 جنيه
+  if (basePrice < coupon.minPrice) {
+    msgEl.className = 'promo-message error';
+    msgEl.style.display = 'flex';
+    msgEl.innerHTML = `⚠️ هذا الكود يعمل فقط على الباقات من ${coupon.minPrice} ج.م وأكثر`;
+    return;
+  }
+
+  appliedCoupon = code;
+  if (coupon.type === 'percent') {
+    discountAmount = (basePrice * coupon.value) / 100;
   } else {
-    // توجيه لصفحة الكاش والمحفظة الإلكترونية
-    window.location.href = `hyper-payment.html?game=Gangstar%20Mirage&package=${encodeURIComponent(packageName)}&amount=${rawPrice}&id=${encodeURIComponent(playerId)}&order=${orderId}`;
+    discountAmount = coupon.value;
+  }
+
+  if (discountAmount > basePrice) discountAmount = basePrice;
+  const newPrice = Math.max(0, basePrice - discountAmount);
+
+  // تحديث السعر على الشاشة
+  const totalEl = document.getElementById('totalAmount') || document.querySelector('.EGP-price') || document.querySelector('.total-price');
+  if (totalEl) {
+    totalEl.innerHTML = `<span style="text-decoration: line-through; color: #64748b; font-size: 11px; margin-left: 6px;">EGP ${basePrice.toFixed(2)}</span> EGP ${newPrice.toFixed(2)}`;
+  }
+
+  msgEl.className = 'promo-message success';
+  msgEl.style.display = 'flex';
+  msgEl.innerHTML = `✓ تم تفعيل الخصم! ووفرت <b>${discountAmount.toFixed(2)} ج.م</b>`;
+}
+
+function saveUsedCouponGlobally() {
+  if (appliedCoupon) {
+    let globalUsedCoupons = JSON.parse(localStorage.getItem('hyper_global_used_coupons') || '[]');
+    if (!globalUsedCoupons.includes(appliedCoupon)) {
+      globalUsedCoupons.push(appliedCoupon);
+      localStorage.setItem('hyper_global_used_coupons', JSON.stringify(globalUsedCoupons));
+    }
   }
 }
   </script>
