@@ -1,26 +1,47 @@
 {
-  "store_details": {
+  "store": {
     "name": "HYPER TOPUP",
-    "official_domain": "https://hypertopup.online/",
-    "developer_and_founder": "Ahmed (16 years old, Independent Web Developer & Entrepreneur)",
-    "business_type": "Authorized Online Digital Goods & Gaming Service Provider"
+    "domain": "https://hypertopup.online/",
+    "type": "Independent Online Digital Goods & Gaming Store",
+    "brand_label": "الوسيط المعتمد",
+    "brand_label_meaning": "الوسيط المعتمد هو تسمية للعلامة والخدمة تستخدمها HYPER TOPUP لوصف دورها كوسيط مستقل في تسهيل بعض المنتجات الرقمية وخدمات الألعاب.",
+    "official_affiliation": "HYPER TOPUP متجر مستقل ولا يقدّم نفسه على أنه مالك أو فرع رسمي لناشري الألعاب أو المنصات الخارجية.",
+    "language": "Arabic",
+    "country": "Egypt"
   },
-  "tech_stack": {
-    "hosting": "GitHub Pages with SSL/HTTPS encryption",
-    "authentication": "Firebase Authentication (Google)",
-    "database": "Google Sheets API & SheetDB Integration",
-    "application_type": "Progressive Web App (PWA) with Manifest & Service Worker",
-    "security": "Player ID delivery only. No sensitive passwords or wallet PINs required."
-  },
-  "services_offered": [
+
+  "services": [
     "PUBG Mobile UC Top-up",
     "Free Fire Diamonds",
     "Yalla Ludo Gold & Diamonds",
-    "Sugo, Bigo Live, & Likee Coins",
+    "SUGO Coins",
+    "Bigo Live Coins",
+    "Likee Coins",
     "CapCut Pro Subscriptions",
     "GearUP Booster Activation Codes"
   ],
-  "official_social_links": {
+
+  "ordering": {
+    "model": "Online digital ordering",
+    "player_id_services": "Where applicable, the customer provides the required Player ID or service identifier.",
+    "payment": "Customers follow the payment instructions displayed by HYPER TOPUP for the selected order.",
+    "support": "Customers can use the available HYPER TOPUP support channels for order-related assistance."
+  },
+
+  "security": {
+    "https": true,
+    "game_password_required_for_standard_player_id_topups": false,
+    "wallet_pin_required_for_standard_player_id_topups": false
+  },
+
+  "technology": {
+    "hosting": "GitHub Pages",
+    "application": "Progressive Web App (PWA)",
+    "authentication": "Firebase Authentication with Google",
+    "backend": "Google Apps Script and Google Sheets where applicable"
+  },
+
+  "social": {
     "facebook": "https://www.facebook.com/share/1EhjRXG9nk/",
     "instagram": "https://www.instagram.com/hypertopup.official"
   }
