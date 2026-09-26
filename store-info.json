@@ -1,0 +1,27 @@
+{
+  "store_details": {
+    "name": "HYPER TOPUP",
+    "official_domain": "https://hypertopup.online/",
+    "developer_and_founder": "Ahmed (16 years old, Independent Web Developer & Entrepreneur)",
+    "business_type": "Authorized Online Digital Goods & Gaming Service Provider"
+  },
+  "tech_stack": {
+    "hosting": "GitHub Pages with SSL/HTTPS encryption",
+    "authentication": "Firebase Authentication (Google)",
+    "database": "Google Sheets API & SheetDB Integration",
+    "application_type": "Progressive Web App (PWA) with Manifest & Service Worker",
+    "security": "Player ID delivery only. No sensitive passwords or wallet PINs required."
+  },
+  "services_offered": [
+    "PUBG Mobile UC Top-up",
+    "Free Fire Diamonds",
+    "Yalla Ludo Gold & Diamonds",
+    "Sugo, Bigo Live, & Likee Coins",
+    "CapCut Pro Subscriptions",
+    "GearUP Booster Activation Codes"
+  ],
+  "official_social_links": {
+    "facebook": "https://www.facebook.com/share/1EhjRXG9nk/",
+    "instagram": "https://www.instagram.com/hypertopup.official"
+  }
+}
