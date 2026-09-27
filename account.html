@@ -656,36 +656,31 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
   </script>
+<style>
+  /* إخفاء أيقونة gabster العائمة من الأسفل تماماً */
+  iframe[src*="gabster"], 
+  div[data-gabster-widget], 
+  #gabster-widget-container {
+    display: none !important;
+  }
+</style>
+
 <script data-gabster-widget src="https://widget.gabster.ai/loader?cbid=6ab94cbfd2b24e46976a94fb" data-embed-type="widget"></script>
 
 <script>
-  // 1. إخفاء الشات بوت تلقائياً بمجرد ما ينزل في الصفحة
-  const hideGabster = setInterval(() => {
-    const widgets = document.querySelectorAll('iframe[src*="gabster"], div[data-gabster-widget], #gabster-widget-container, [id*="gabster"], [class*="gabster"]');
-    if (widgets.length > 0) {
-      widgets.forEach(el => {
-        el.style.setProperty('display', 'none', 'important');
-        el.style.setProperty('visibility', 'hidden', 'important');
-      });
-    }
-  }, 300); // يفحص كل 0.3 ثانية ويكرر الإخفاء
-
-  // 2. وظيفة زرار المساعدة لفتح الشات فوراً
   function openGabsterChat() {
-    clearInterval(hideGabster); // إيقاف الإخفاء التلقائي عند الضغط
-
-    const widgets = document.querySelectorAll('iframe[src*="gabster"], div[data-gabster-widget], #gabster-widget-container, [id*="gabster"], [class*="gabster"]');
-    widgets.forEach(el => {
+    // 1. إظهار العنصر
+    var widgets = document.querySelectorAll('iframe[src*="gabster"], div[data-gabster-widget], #gabster-widget-container');
+    widgets.forEach(function(el) {
       el.style.setProperty('display', 'block', 'important');
-      el.style.setProperty('visibility', 'visible', 'important');
       el.style.setProperty('z-index', '999999', 'important');
     });
 
+    // 2. فتح المحادثة
     if (window.Gabster && typeof window.Gabster.open === 'function') {
       window.Gabster.open();
     }
   }
 </script>
-
 </body>
 </html>
