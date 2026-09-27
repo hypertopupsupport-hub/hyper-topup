@@ -656,27 +656,53 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
   </script>
+<!-- كود الشات بوت Gabster -->
+<script data-gabster-widget src="https://widget.gabster.ai/loader?cbid=6ab94cbfd2b24e46976a94fb" data-embed-type="widget"></script>
+
 <style>
-  /* إخفاء أيقونة gabster العائمة من الأسفل تماماً */
-  iframe[src*="gabster"], 
-  div[data-gabster-widget], 
-  #gabster-widget-container {
+  /* إخفاء الأيقونة العائمة نهائياً */
+  .gabster-hidden-force {
     display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
   }
 </style>
 
-<script data-gabster-widget src="https://widget.gabster.ai/loader?cbid=6ab94cbfd2b24e46976a94fb" data-embed-type="widget"></script>
-
 <script>
+  let isChatAllowed = false;
+
+  // مراقبة عناصر Gabster وإخفائها فور ظهورها في الصفحة
+  const observer = new MutationObserver(() => {
+    if (!isChatAllowed) {
+      const gabsterElements = document.querySelectorAll('iframe[src*="gabster"], div[data-gabster-widget], #gabster-widget-container, [class*="gabster"]');
+      gabsterElements.forEach(el => {
+        // إذا لم تكن نافذة الشات المفتوحة، إخفِ العنصر
+        if (!el.classList.contains('gabster-active-window')) {
+          el.classList.add('gabster-hidden-force');
+        }
+      });
+    }
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  // دالة زرار المساعدة
   function openGabsterChat() {
-    // 1. إظهار العنصر
-    var widgets = document.querySelectorAll('iframe[src*="gabster"], div[data-gabster-widget], #gabster-widget-container');
-    widgets.forEach(function(el) {
+    isChatAllowed = true;
+    
+    // إزالة الإخفاء عن عناصر Gabster
+    const gabsterElements = document.querySelectorAll('iframe[src*="gabster"], div[data-gabster-widget], #gabster-widget-container, [class*="gabster"]');
+    gabsterElements.forEach(el => {
+      el.classList.remove('gabster-hidden-force');
+      el.classList.add('gabster-active-window');
       el.style.setProperty('display', 'block', 'important');
-      el.style.setProperty('z-index', '999999', 'important');
+      el.style.setProperty('opacity', '1', 'important');
+      el.style.setProperty('visibility', 'visible', 'important');
+      el.style.setProperty('pointer-events', 'auto', 'important');
     });
 
-    // 2. فتح المحادثة
+    // فتح المحادثة
     if (window.Gabster && typeof window.Gabster.open === 'function') {
       window.Gabster.open();
     }
