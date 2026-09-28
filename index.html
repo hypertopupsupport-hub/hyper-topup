@@ -747,7 +747,79 @@ body::-webkit-scrollbar,
  </div>
 </main>
 </div>
+<!-- زر الدعم الفني السريع المصغر على اليمين -->
+<div onclick="openGabsterChat()" class="support-mini-btn">
+  <span class="support-dot"></span>
+  <div class="support-text-group">
+    <span class="support-title">الدعم الفني <span class="support-icon">💬</span></span>
+    <span class="support-subtitle">متوفر 24 ساعة</span>
+  </div>
+</div>
 
+<style>
+  .support-mini-btn {
+    position: fixed;
+    bottom: 65px; /* يرتفع فوق الشريط السفلي */
+    right: 15px;  /* جهة اليمين */
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    border-radius: 20px;
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    direction: rtl;
+    animation: miniFloat 3s infinite ease-in-out;
+  }
+
+  .support-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #22c55e; /* نقطة خضراء تفيد بأنه أونلاين */
+    border-radius: 50%;
+    box-shadow: 0 0 8px #22c55e;
+    flex-shrink: 0;
+  }
+
+  .support-text-group {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+  }
+
+  .support-title {
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .support-icon {
+    font-size: 11px;
+  }
+
+  .support-subtitle {
+    color: #38bdf8;
+    font-size: 9px;
+    font-weight: 500;
+  }
+
+  /* حركة طفو خفيفة جداً */
+  @keyframes miniFloat {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-3px);
+    }
+  }
+</style>
 <!-- شريط التنقل السفلي الأصلي البسيط -->
 <nav class="bottom-nav">
   <a href="index.html" class="nav-item" id="nav-home">
@@ -957,6 +1029,66 @@ function handleSwipe() {
     resetAutoSlide();
   }
 }
+</script>
+<!-- مربع النص ثابت جهة الشمال فوق شريط التنقل -->
+<div class="crisp-label-left">
+  <span class="main-txt">الدعم الفني</span>
+  <span class="sub-txt">متوفر 24 ساعة</span>
+</div>
+
+<style>
+  /* تثبيت مربع النص جهة اليسار فوق شريط التنقل تماماً */
+  .crisp-label-left {
+    position: fixed;
+    bottom: 65px; /* ارتفاعه المظبوط فوق شريط التنقل مباشرة */
+    left: 15px;   /* مكانه ثابت على الشمال */
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    border-radius: 10px;
+    padding: 4px 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    direction: rtl;
+  }
+
+  .crisp-label-left .main-txt {
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 11px;
+    line-height: 1.2;
+  }
+
+  .crisp-label-left .sub-txt {
+    color: #38bdf8;
+    font-size: 9px;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+</style>
+
+<!-- سكربت Crisp الرسمي بدون أي لعب في موقع الأيقونة -->
+<script type="text/javascript">
+  window.$crisp = [];
+  window.CRISP_WEBSITE_ID = "0316b84d-cdc3-41b7-b06d-1b7a44f2b524";
+  (function() {
+    d = document;
+    s = d.createElement("script");
+    s.src = "https://client.crisp.chat/l.js";
+    s.async = 1;
+    d.getElementsByTagName("head")[0].appendChild(s);
+  })();
+
+  function openGabsterChat() {
+    if (window.$crisp) {
+      $crisp.push(["do", "chat:open"]);
+    }
+  }
 </script>
 </body>
 </html>
