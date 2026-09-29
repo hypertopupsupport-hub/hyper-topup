@@ -424,7 +424,7 @@ function calculatePrice() {
 
 // WhatsApp Order Handler for Standard Packages
 function orderCoins(packageAmount, price) {
-  const phone = "201002722164";
+  const phone = "201221182845";
   const message = encodeURIComponent(`مرحباً، أريد شحن عملات تيك توك:\nالباقة: ${packageAmount}\nالسعر: ${price}\nمن متجر HYPER TOPUP`);
   window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${message}`, '_blank');
 }
