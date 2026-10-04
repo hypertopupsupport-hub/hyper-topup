@@ -363,7 +363,8 @@
     </a>
   </div>
 
-  <p style="color: #475569; font-size: 11px; margin-top: 20px;">الإصدار 1.1.6</p>
+  <p style="color: #475569; font-size: 11px; margin-top: 20px;">الإصدار 1.2.2</p>
+
 </div>
 <!-- مربع النص ثابت جهة الشمال فوق شريط التنقل -->
 <div class="crisp-label-left">
@@ -713,6 +714,7 @@
         localStorage.removeItem('hyper_user');
 
         if (nameEl) nameEl.textContent = "تسجيل الدخول / حساب جديد";
+        if (new URLSearchParams(location.search).get('auth') === '1') window.openAuthModal();
         if (emailEl) {
           emailEl.textContent = "";
           emailEl.style.display = 'none';

@@ -13,6 +13,7 @@
 
 <meta name="robots" content="index, follow">
 <meta name="google-site-verification" content="_ID_8t7P5Qg8uT_aAtLhKx4x4_tSD5hTXAkr_-qjeW0" />
+<meta name="trustpilot-one-time-domain-verification-id" content="8a640f22-9e6e-41d3-b817-a573a4f473cb"/>
 <link rel="canonical" href="https://hypertopup.online/">
 
 <meta property="og:type" content="website">
@@ -462,7 +463,19 @@ body::-webkit-scrollbar,
   width: 20px;
   border-radius: 10px;
 }
-
+.header{position:relative}
+.auth-pill{
+position:absolute;top:10px;left:0;z-index:5;
+display:flex;flex-direction:column;align-items:center;gap:1px;
+padding:6px 12px;border-radius:14px;text-decoration:none;
+border:1px solid rgba(244,201,93,.55);
+background:rgba(8,12,24,.55);
+backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+box-shadow:0 0 12px rgba(244,201,93,.25);
+}
+.ap-main{font:800 11px/1.3 Cairo,sans-serif;color:#ffe49a}
+.ap-sub{font:600 9px/1.2 Cairo,sans-serif;color:#c2c8d5}
+.auth-pill:active{transform:scale(.96)}
 </style>
 </head>
 
@@ -478,8 +491,11 @@ body::-webkit-scrollbar,
 </div>
 
 <div class="page">
-
 <header class="header">
+<a href="account.html?auth=1" class="auth-pill" id="authPill">
+<span class="ap-main" id="apMain">تسجيل الدخول</span>
+<span class="ap-sub" id="apSub">أو إنشاء حساب</span>
+</a>
  <div class="logo-container">
   <div class="logo-particles-layer"></div>
   <svg class="logo-cyber-frame" viewBox="0 0 180 180" aria-hidden="true">
@@ -1082,6 +1098,16 @@ function handleSwipe() {
       $crisp.push(["do", "chat:open"]);
     }
   }
+</script>
+<script>
+try{
+var u=JSON.parse(localStorage.getItem('hyper_user')||'null');
+if(u){
+document.getElementById('apMain').textContent=u.name||'حسابي';
+document.getElementById('apSub').textContent='حسابي';
+document.getElementById('authPill').href='account.html';
+}
+}catch(e){}
 </script>
 </body>
 </html>
