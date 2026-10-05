@@ -1173,5 +1173,28 @@ window.addEventListener('resize',function(){place(current,false);});
 window.addEventListener('pageshow',function(ev){if(ev.persisted)place(current,false);});
 })();
 </script>
+<script>
+(function(){
+function sync(){
+var a=document.getElementById('authPill'),m=document.getElementById('apMain'),s=document.getElementById('apSub');
+if(!a||!m||!s)return;
+var u=null;
+try{u=JSON.parse(localStorage.getItem('hyper_user')||'null');}catch(e){}
+if(u){
+m.textContent=u.name||'حسابي';
+s.textContent='حسابي';
+a.href='account.html';
+}else{
+m.textContent='تسجيل الدخول';
+s.textContent='أو إنشاء حساب';
+a.href='account.html?auth=1';
+}
+}
+sync();
+addEventListener('pageshow',sync);
+addEventListener('storage',sync);
+document.addEventListener('visibilitychange',sync);
+})();
+</script>
 </body>
 </html>
