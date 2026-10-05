@@ -367,11 +367,6 @@
 
 </div>
 <!-- مربع النص ثابت جهة الشمال فوق شريط التنقل -->
-<div class="crisp-label-left">
-  <span class="main-txt">الدعم الفني</span>
-  <span class="sub-txt">متوفر 24 ساعة</span>
-</div>
-
 <style>
   /* تثبيت مربع النص جهة اليسار فوق شريط التنقل تماماً */
   .crisp-label-left {
@@ -704,7 +699,8 @@
           email: user.email
         };
         localStorage.setItem('hyper_user', JSON.stringify(userData));
-
+        var nx=new URLSearchParams(location.search).get('next');
+if(nx&&/^[\w\-.]+\.html(\?[\w=&%\-.]*)?$/.test(nx))location.replace(nx);
         if (nameEl) nameEl.textContent = user.displayName || "أهلاً بك 👋";
         if (emailEl) {
           emailEl.textContent = user.email;
@@ -781,5 +777,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
   </script>
+<script src="nav.js?v=1"></script>
 </body>
 </html>
