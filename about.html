@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>من نحن | HYPER TOPUP</title>
+
+    <meta name="description" content="تعرف على HYPER TOPUP، متجر إلكتروني متخصص في شحن الألعاب والعملات والخدمات الرقمية، مع تجربة شراء سهلة وسريعة وآمنة.">
+
+    <meta name="keywords" content="HYPER TOPUP, من نحن, متجر شحن ألعاب, شحن ألعاب, شحن PUBG, شحن Free Fire, TikTok Coins">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #070b14;
+            --bg-soft: #0d1321;
+            --card: #111a2b;
+            --card-light: #162238;
+            --gold: #f59e0b;
+            --gold-light: #fbbf24;
+            --blue: #38bdf8;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: rgba(255,255,255,0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(245,158,11,0.10),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at top left,
+                    rgba(56,189,248,0.08),
+                    transparent 35%
+                ),
+                var(--bg);
+
+            color: var(--text);
+            line-height: 1.8;
+            direction: rtl;
+            overflow-x: hidden;
+            padding-bottom: 90px;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            position: relative;
+            text-align: center;
+            padding: 65px 20px 55px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            background: rgba(245,158,11,0.08);
+            filter: blur(70px);
+            border-radius: 50%;
+            top: -80px;
+            right: -60px;
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 7px 14px;
+            margin-bottom: 18px;
+
+            border: 1px solid rgba(245,158,11,0.25);
+            border-radius: 999px;
+
+            background: rgba(245,158,11,0.07);
+            color: var(--gold-light);
+
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .hero-title {
+            font-size: clamp(32px, 8vw, 52px);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 16px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #fbbf24
+                );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            max-width: 650px;
+            margin: auto;
+
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+            width: min(100% - 32px, 900px);
+            margin: auto;
+        }
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        .section {
+            margin-top: 28px;
+        }
+
+        .section-card {
+            position: relative;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(22,34,56,0.95),
+                    rgba(13,19,33,0.95)
+                );
+
+            border: 1px solid var(--border);
+            border-radius: 24px;
+
+            padding: 28px 22px;
+
+            box-shadow:
+                0 18px 45px rgba(0,0,0,0.25);
+
+            overflow: hidden;
+        }
+
+        .section-card::after {
+            content: "";
+            position: absolute;
+
+            width: 100px;
+            height: 100px;
+
+            background: rgba(56,189,248,0.05);
+            border-radius: 50%;
+            filter: blur(30px);
+
+            left: -40px;
+            bottom: -40px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-bottom: 14px;
+
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .section-title i {
+            color: var(--gold);
+            font-size: 21px;
+        }
+
+        .section-text {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 2;
+        }
+
+        .section-text strong {
+            color: #fff;
+        }
+
+        /* =========================
+           STORY
+        ========================= */
+
+        .story {
+            border-right: 3px solid var(--gold);
+            padding-right: 18px;
+        }
+
+        .story-date {
+            display: inline-block;
+
+            margin-bottom: 10px;
+            padding: 5px 11px;
+
+            border-radius: 8px;
+            background: rgba(245,158,11,0.10);
+
+            color: var(--gold-light);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .feature {
+            background: rgba(255,255,255,0.025);
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+            padding: 18px;
+
+            transition:
+                transform .25s ease,
+                border-color .25s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-3px);
+            border-color: rgba(245,158,11,0.30);
+        }
+
+        .feature-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: rgba(245,158,11,0.10);
+            color: var(--gold);
+
+            margin-bottom: 11px;
+            font-size: 18px;
+        }
+
+        .feature-title {
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .feature-text {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           SERVICES
+        ========================= */
+
+        .service-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 18px;
+        }
+
+        .service-tag {
+            padding: 8px 12px;
+
+            background: rgba(56,189,248,0.06);
+            border: 1px solid rgba(56,189,248,0.12);
+
+            border-radius: 10px;
+
+            color: #cbd5e1;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* =========================
+           HOW IT WORKS
+        ========================= */
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+            margin-top: 20px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+        }
+
+        .step-number {
+            min-width: 34px;
+            height: 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: linear-gradient(
+                135deg,
+                var(--gold),
+                #d97706
+            );
+
+            color: #000;
+            font-size: 13px;
+            font-weight: 900;
+        }
+
+        .step-content strong {
+            display: block;
+            color: #fff;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .step-content span {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* =========================
+           PAYMENT
+        ========================= */
+
+        .payment-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .payment {
+            padding: 13px;
+
+            text-align: center;
+
+            background: rgba(255,255,255,0.025);
+            border: 1px solid var(--border);
+
+            border-radius: 13px;
+
+            color: #e2e8f0;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* =========================
+           VISION
+        ========================= */
+
+        .vision {
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(245,158,11,0.08),
+                    rgba(56,189,248,0.05)
+                );
+        }
+
+        .vision-icon {
+            width: 58px;
+            height: 58px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: 0 auto 15px;
+
+            border-radius: 18px;
+
+            background: rgba(245,158,11,0.10);
+            color: var(--gold);
+
+            font-size: 24px;
+        }
+
+        .vision-title {
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        /* =========================
+           FUTURE
+        ========================= */
+
+        .future-list {
+            list-style: none;
+            margin-top: 18px;
+        }
+
+        .future-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+
+            margin-bottom: 11px;
+
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .future-list i {
+            color: var(--gold);
+            margin-top: 5px;
+        }
+
+        /* =========================
+           DISCLAIMER
+        ========================= */
+
+        .note {
+            margin-top: 16px;
+
+            padding: 14px 16px;
+
+            background: rgba(255,255,255,0.025);
+            border: 1px solid var(--border);
+
+            border-radius: 14px;
+
+            color: #94a3b8;
+            font-size: 11px;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           CTA
+        ========================= */
+
+        .cta {
+            text-align: center;
+            margin-top: 28px;
+            padding: 30px 20px;
+        }
+
+        .cta h2 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .cta p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            padding: 13px 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--gold),
+                    #d97706
+                );
+
+            color: #000;
+            text-decoration: none;
+
+            border-radius: 13px;
+
+            font-size: 14px;
+            font-weight: 900;
+
+            box-shadow:
+                0 10px 25px rgba(245,158,11,0.22);
+
+            transition: transform .2s ease;
+        }
+
+        .cta-btn:active {
+            transform: scale(.97);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+            text-align: center;
+            padding: 15px 20px 5px;
+
+            color: #64748b;
+            font-size: 11px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .hero {
+                padding-top: 45px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-list {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .section-card {
+                padding: 23px 18px;
+                border-radius: 20px;
+            }
+        }
+
+        @media (max-width: 360px) {
+
+            .payment-list {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <header class="hero">
+
+        <div class="hero-badge">
+            <i class="fas fa-bolt"></i>
+            تعرف على HYPER TOPUP
+        </div>
+
+        <h1 class="hero-title">
+            من نحن؟
+        </h1>
+
+        <p class="hero-subtitle">
+            HYPER TOPUP هو متجرنا الإلكتروني المتخصص في شحن الألعاب
+            والعملات والخدمات الرقمية، ونسعى من خلاله إلى تقديم تجربة
+            شحن سهلة وسريعة وآمنة من الهاتف وبأقل عدد ممكن من الخطوات.
+        </p>
+
+    </header>
+
+
+    <main class="container">
+
+
+        <!-- =========================
+             WHO WE ARE
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-card">
+
+                <h2 class="section-title">
+                    <i class="fas fa-store"></i>
+                    من هو HYPER TOPUP؟
+                </h2>
+
+                <p class="section-text">
+
+                    <strong>HYPER TOPUP</strong> هو متجر إلكتروني مستقل
+                    أنشأناه لتوفير خدمات شحن الألعاب والعملات والمنتجات
+                    الرقمية بطريقة بسيطة وواضحة تناسب المستخدم الذي يريد
+                    تنفيذ طلبه بسرعة دون خطوات معقدة.
+
+                    <br><br>
+
+                    نركز على أن تكون تجربة العميل سهلة من لحظة اختيار
+                    الخدمة وحتى إتمام عملية الشحن، مع توفير طرق دفع
+                    إلكترونية مناسبة ودعم فني يساعد العميل عند الحاجة.
+
+                    <br><br>
+
+                    المتجر في مرحلة نمو وتطوير مستمر، ونعمل على توسيع
+                    قائمة الألعاب والتطبيقات والمنتجات الرقمية المتاحة
+                    تدريجيًا.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             OUR STORY
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-card">
+
+                <h2 class="section-title">
+                    <i class="fas fa-flag"></i>
+                    قصتنا
+                </h2>
+
+                <div class="story">
+
+                    <span class="story-date">
+                        24 سبتمبر 2026
+                    </span>
+
+                    <p class="section-text">
+
+                        بدأت فكرة <strong>HYPER TOPUP</strong> في
+                        24 سبتمبر 2026، من طموح بسيط لكنه كبير في نفس
+                        الوقت: إنشاء متجر يحمل اسمًا خاصًا به، ويتحول
+                        مع الوقت إلى علامة معروفة في مجال الشحن والخدمات
+                        الرقمية.
+
+                        <br><br>
+
+                        لم تكن الفكرة مجرد إنشاء صفحة لبيع منتجات رقمية،
+                        بل بناء تجربة متكاملة يستطيع العميل من خلالها
+                        الوصول إلى الخدمة التي يحتاجها، اختيار المنتج
+                        المناسب، إتمام الدفع، ثم متابعة طلبه بسهولة.
+
+                        <br><br>
+
+                        ومنذ البداية كان الهدف أن يكون HYPER TOPUP مشروعًا
+                        قابلًا للنمو، لذلك لا نتعامل مع الخدمات الحالية
+                        باعتبارها النهاية، بل كخطوة أولى نحو متجر أكبر
+                        يضم عددًا أكبر من الألعاب والمنتجات والخدمات
+                        الرقمية.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             OUR GOAL
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-card">
+
+                <h2 class="section-title">
+                    <i class="fas fa-bullseye"></i>
+                    هدفنا
+                </h2>
+
+                <p class="section-text">
+
+                    هدفنا الأساسي هو جعل عملية شحن الألعاب والخدمات
+                    الرقمية <strong>أسهل وأسرع وأكثر وضوحًا</strong>،
+                    بحيث يستطيع العميل إتمام طلبه من هاتفه دون الحاجة
+                    إلى خطوات غير ضرورية.
+
+                    <br><br>
+
+                    كما نعمل على تقديم أسعار مناسبة، وتوفير طرق دفع
+                    متنوعة، وتحسين سرعة تنفيذ الطلبات، مع الاستمرار في
+                    تطوير المتجر وإضافة خدمات ومنتجات جديدة.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             WHY HYPER TOPUP
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-card">
+
+                <h2 class="section-title">
+                    <i class="fas fa-star"></i>
+                    لماذا HYPER TOPUP؟
+                </h2>
+
+                <p class="section-text">
+                    صممنا المتجر من البداية حول فكرة بسيطة:
+                    <strong>العميل لا يحتاج إلى التعقيد.</strong>
+                </p>
+
+                <div class="features">
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-screen"></i>
+                        </div>
+
+                        <div class="feature-title">
+                            سهل الاستخدام
+                        </div>
+
+                        <div class="feature-text">
+                            واجهة مصممة لتسهيل اختيار الخدمة وإتمام
+                            الطلب من الهاتف بسهولة.
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+
+                        <div class="feature-title">
+                            سرعة التنفيذ
+                        </div>
+
+                        <div class="feature-text">
+                            نعمل على تنفيذ الطلبات خلال ثوانٍ بعد تأكيد
+                            الدفع، بحسب الخدمة ونظام الشحن المستخدم.
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-halved"></i>
+                        </div>
+
+                        <div class="feature-title">
+                            حماية وخصوصية
+                        </div>
+
+                        <div class="feature-text">
+                            نهتم بحماية بيانات العملاء ونعتمد على البيانات
+                            المطلوبة فقط لتنفيذ الخدمة.
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+
+                        <div class="feature-title">
+                            أسعار مناسبة
+                        </div>
+
+                        <div class="feature-text">
+                            نعمل على توفير أسعار مناسبة مع الحفاظ على
+                            جودة وسهولة الخدمة.
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+
+                        <div class="feature-title">
+                            دعم فني
+                        </div>
+
+                        <div class="feature-text">
+                            يتوفر الدعم الفني للمساعدة والإجابة عن
+                            استفسارات العملاء على مدار الأسبوع.
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+
+                        <div class="feature-title">
+                            خدمات متعددة
+                        </div>
+
+                        <div class="feature-text">
+                            نجمع شحن الألعاب والعملات والخدمات الرقمية
+                            في متجر واحد.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CURRENT SERVICES
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-card">
+
+                <h2 class="section-title">
+                    <i class="fas fa-gamepad"></i>
+                    ماذا نقدم؟
+                </h2>
+
+                <p class="section-text">
+
+                    نوفر حاليًا مجموعة من خدمات شحن الألعاب والعملات
+                    الرقمية، ونعمل على إضافة منتجات جديدة باستمرار.
+
+                    معظم خدمات الشحن لدينا تتم باستخدام <strong>معرّف
+                    اللاعب (ID)</strong>، بينما يتم شحن TikTok Coins
+                    باستخدام <strong>رمز QR</strong> الخاص بالخدمة.
+
+                </p>
+
+                <div class="service-tags">
+
+                    <span class="service-tag">PUBG MOBILE</span>
+                    <span class="service-tag">Free Fire</span>
+                    <span class="service-tag">Call of Duty Mobile</span>
+                    <span class="service-tag">FC Mobile</span>
+                    <span class="service-tag">Gangstar Mirage City</span>
+                    <span class="service-tag">Delta Force</span>
+                    <span class="service-tag">Ludo World</span>
+                    <span class="service-tag">Honor of Kings</span>
+                    <span class="service-tag">TikTok Coins</span>
+                    <span class="service-tag">Bigo Live</span>
+                    <span class="service-tag">YOHO VOICE</span>
+                    <span class="service-tag">SUGO CHAT</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             HOW IT WORKS
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-card">
+
+                <h2 class="section-title">
+                    <i class="fas fa-list-check"></i>
+                    كيف تتم عملية الشحن؟
+                </h2>
+
+                <p class="section-text">
+                    صممنا خطوات الطلب لتكون واضحة ومباشرة قدر الإمكان:
+                </p>
+
+                <div class="steps">
+
+                    <div class="step">
+
+                        <div class="step-number">1</div>
+
+                        <div class="step-content">
+                            <strong>اختيار الخدمة</strong>
+                            <span>
+                                اختر اللعبة أو التطبيق والمنتج الذي تريده.
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="step">
+
+                        <div class="step-number">2</div>
+
+                        <div class="step-content">
+                            <strong>إدخال البيانات المطلوبة</strong>
+                            <span>
+                                أدخل ID اللاعب أو البيانات المطلوبة
+                                للخدمة.
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="step">
+
+                        <div class="step-number">3</div>
+
+                        <div class="step-content">
+                            <strong>إتمام الدفع</strong>
+                            <span>
+                                اختر طريقة الدفع المناسبة وأكمل عملية الدفع.
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="step">
+
+                        <div class="step-number">4</div>
+
+                        <div class="step-content">
+                            <strong>تنفيذ الطلب</strong>
+                            <span>
+                                بعد تأكيد الدفع يتم تنفيذ طلب الشحن
+                                بأسرع وقت ممكن.
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PAYMENT METHODS
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-card">
+
+                <h2 class="section-title">
+                    <i class="fas fa-wallet"></i>
+                    طرق الدفع
+                </h2>
+
+                <p class="section-text">
+                    نوفر حاليًا عدة طرق دفع إلكترونية لتسهيل عملية
+                    الشراء، مع العمل على إضافة خيارات أخرى مستقبلًا.
+                </p>
+
+                <div class="payment-list">
+
+                    <div class="payment">
+                        Vodafone Cash
+                    </div>
+
+                    <div class="payment">
+                        Orange Cash
+                    </div>
+
+                    <div class="payment">
+                        Etisalat Cash
+                    </div>
+
+                    <div class="payment">
+                        InstaPay
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SUPPORT
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-card">
+
+                <h2 class="section-title">
+                    <i class="fas fa-headset"></i>
+                    الدعم الفني
+                </h2>
+
+                <p class="section-text">
+
+                    نؤمن أن خدمة العميل لا تنتهي بمجرد إتمام عملية
+                    الشراء، لذلك نوفر نظام دعم فني يساعد العملاء عند
+                    وجود أي استفسار أو مشكلة متعلقة بالطلب.
+
+                    <br><br>
+
+                    يتوفر <strong>المساعد الذكي للدعم الفني على مدار
+                    24 ساعة طوال أيام الأسبوع</strong> للمساعدة في
+                    الاستفسارات الأساسية، كما تتوفر إمكانية التواصل
+                    المباشر عند الحاجة.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SECURITY
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-card">
+
+                <h2 class="section-title">
+                    <i class="fas fa-lock"></i>
+                    الأمان والخصوصية
+                </h2>
+
+                <p class="section-text">
+
+                    الأمان جزء أساسي من تجربة HYPER TOPUP.
+
+                    <br><br>
+
+                    لذلك نعتمد في تنفيذ خدمات الشحن على البيانات المطلوبة
+                    لإتمام العملية فقط، ولا نطلب من العميل مشاركة كلمة
+                    مرور حسابه لتنفيذ خدمات الشحن التي تعتمد على الـID.
+
+                    <br><br>
+
+                    كما نعمل باستمرار على تطوير أنظمة المتجر وطريقة
+                    معالجة الطلبات بهدف توفير تجربة أكثر أمانًا ووضوحًا
+                    للعميل.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FUTURE
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-card">
+
+                <h2 class="section-title">
+                    <i class="fas fa-rocket"></i>
+                    إلى أين نتجه؟
+                </h2>
+
+                <p class="section-text">
+
+                    ما نراه اليوم في HYPER TOPUP هو البداية فقط.
+
+                    نخطط خلال الفترة القادمة لتوسيع المتجر وإضافة
+                    المزيد من الألعاب والخدمات والمنتجات الرقمية،
+                    حتى يصبح لدى العميل خيارات أكبر داخل مكان واحد.
+
+                </p>
+
+                <ul class="future-list">
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <span>إضافة المزيد من الألعاب وخدمات الشحن.</span>
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <span>إضافة منتجات رقمية جديدة.</span>
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <span>توفير طرق دفع إضافية.</span>
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <span>تطوير تجربة الطلب والدفع داخل المتجر.</span>
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <span>
+                            التوسع مستقبلًا في منتجات رقمية إضافية،
+                            بما في ذلك إمكانية توفير حسابات ألعاب
+                            وفق الأنظمة والشروط المعمول بها.
+                        </span>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             VISION
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-card vision">
+
+                <div class="vision-icon">
+                    <i class="fas fa-earth-americas"></i>
+                </div>
+
+                <h2 class="vision-title">
+                    رؤيتنا
+                </h2>
+
+                <p class="section-text">
+
+                    رؤيتنا في HYPER TOPUP أكبر من مجرد متجر شحن.
+
+                    <br><br>
+
+                    نريد بناء اسم حقيقي في مجال الخدمات الرقمية،
+                    والانتقال خطوة بخطوة من متجر في بدايته إلى علامة
+                    تجارية يعرفها العملاء ويثقون في تجربتها.
+
+                    <br><br>
+
+                    نطمح إلى أن يصل اسم <strong>HYPER TOPUP</strong>
+                    إلى عدد أكبر من المستخدمين حول العالم، وأن نستمر
+                    في تطوير المتجر والخدمات حتى يصبح مكانًا متكاملًا
+                    لاحتياجات الألعاب والمنتجات الرقمية.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             NOTE
+        ========================= -->
+
+        <section class="section">
+
+            <div class="note">
+
+                <strong style="color:#e2e8f0;">
+                    ملاحظة:
+                </strong>
+
+                HYPER TOPUP هو متجر إلكتروني مستقل. أسماء الألعاب
+                والتطبيقات والعلامات التجارية المذكورة في المتجر تعود
+                إلى مالكيها respective، ولا يعني عرض خدماتها داخل
+                HYPER TOPUP وجود شراكة أو ملكية أو اعتماد رسمي منها،
+                ما لم يتم الإعلان عن ذلك بشكل واضح.
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CTA
+        ========================= -->
+
+        <section class="cta">
+
+            <h2>
+                جاهز تبدأ؟
+            </h2>
+
+            <p>
+                اكتشف خدمات HYPER TOPUP واختر الخدمة التي تناسبك.
+            </p>
+
+            <a href="index.html" class="cta-btn">
+                <i class="fas fa-store"></i>
+                زيارة المتجر
+            </a>
+
+        </section>
+
+
+    </main>
+
+
+    <footer class="footer">
+        © 2026 HYPER TOPUP — جميع الحقوق محفوظة
+    </footer>
+
+
+</body>
+</html>
