@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>سياسة الاسترجاع والاسترداد | HYPER TOPUP</title>
+
+    <meta name="description" content="سياسة الاسترجاع والاسترداد في HYPER TOPUP للخدمات والمنتجات الرقمية وشحن الألعاب.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Tajawal", sans-serif;
+            background: #07111f;
+            color: #f5f7fa;
+            line-height: 1.9;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 15% 10%, rgba(0, 174, 255, 0.08), transparent 30%),
+                radial-gradient(circle at 85% 20%, rgba(255, 193, 7, 0.06), transparent 30%);
+            z-index: -1;
+        }
+
+        .container {
+            width: min(1100px, calc(100% - 30px));
+            margin: auto;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 75px 0 45px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border: 1px solid rgba(255, 193, 7, 0.25);
+            border-radius: 30px;
+            background: rgba(255, 193, 7, 0.07);
+            color: #ffd54f;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(30px, 6vw, 50px);
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #ffffff, #d9e8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            max-width: 720px;
+            margin: auto;
+            color: #aebccc;
+            font-size: 16px;
+        }
+
+        /* Main */
+        .policy-card {
+            background: rgba(15, 29, 48, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 22px;
+            padding: clamp(22px, 5vw, 42px);
+            margin-bottom: 28px;
+            box-shadow: 0 18px 55px rgba(0, 0, 0, 0.22);
+        }
+
+        .section {
+            margin-bottom: 38px;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 23px;
+            font-weight: 800;
+            margin-bottom: 14px;
+            color: #ffffff;
+        }
+
+        .section-title .icon {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border-radius: 12px;
+            background: rgba(0, 174, 255, 0.1);
+            border: 1px solid rgba(0, 174, 255, 0.15);
+            color: #31baff;
+            font-size: 19px;
+        }
+
+        .section p {
+            color: #b8c5d3;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        .section ul {
+            list-style: none;
+            display: grid;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .section li {
+            position: relative;
+            padding: 13px 18px 13px 15px;
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            color: #c3ced9;
+            font-size: 14px;
+        }
+
+        .section li::before {
+            content: "•";
+            position: absolute;
+            right: 7px;
+            color: #ffd54f;
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        .highlight {
+            padding: 18px 20px;
+            border-radius: 14px;
+            background: rgba(0, 174, 255, 0.06);
+            border-right: 3px solid #12aef5;
+            color: #d8e7f5;
+            margin-top: 15px;
+        }
+
+        .warning {
+            padding: 18px 20px;
+            border-radius: 14px;
+            background: rgba(255, 193, 7, 0.06);
+            border-right: 3px solid #ffc107;
+            color: #e6dcc0;
+            margin-top: 15px;
+        }
+
+        .success {
+            padding: 18px 20px;
+            border-radius: 14px;
+            background: rgba(40, 200, 130, 0.06);
+            border-right: 3px solid #36d391;
+            color: #d0eee0;
+            margin-top: 15px;
+        }
+
+        .number-list {
+            counter-reset: policy;
+            list-style: none;
+            display: grid;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .number-list li {
+            counter-increment: policy;
+            padding: 15px 55px 15px 18px;
+            position: relative;
+            background: rgba(255, 255, 255, 0.025);
+            border-radius: 13px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .number-list li::before {
+            content: counter(policy);
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 193, 7, 0.12);
+            color: #ffd54f;
+            font-weight: 800;
+            font-size: 13px;
+        }
+
+        /* Quick summary */
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .summary-box {
+            padding: 22px 16px;
+            text-align: center;
+            background: rgba(15, 29, 48, 0.82);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 18px;
+        }
+
+        .summary-icon {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .summary-box h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .summary-box p {
+            color: #99a9ba;
+            font-size: 13px;
+        }
+
+        /* CTA */
+        .contact-box {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 20px;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0, 174, 255, 0.09),
+                    rgba(255, 193, 7, 0.06)
+                );
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .contact-box h2 {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .contact-box p {
+            color: #aebccc;
+            margin-bottom: 20px;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 25px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #0aa8f5, #087fd0);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 800;
+            transition: 0.25s ease;
+            box-shadow: 0 8px 25px rgba(0, 157, 235, 0.18);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 35px 15px 45px;
+            color: #738397;
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: #aebccc;
+        }
+
+        /* Back button */
+        .back-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 29, 48, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            text-decoration: none;
+            font-size: 19px;
+            z-index: 50;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+            transition: 0.25s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            border-color: rgba(0, 174, 255, 0.35);
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .hero {
+                padding-top: 55px;
+            }
+
+            .summary {
+                grid-template-columns: 1fr;
+            }
+
+            .policy-card {
+                border-radius: 18px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            .section-title .icon {
+                width: 38px;
+                height: 38px;
+            }
+
+            .section p,
+            .section li {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-badge">
+                🔄 سياسة الاسترجاع والاسترداد
+            </div>
+
+            <h1>سياسة الاسترجاع والاسترداد</h1>
+
+            <p>
+                نحرص في HYPER TOPUP على تقديم تجربة واضحة وآمنة،
+                لذلك نوضح هنا الحالات المتعلقة بإلغاء الطلبات والاسترداد
+                والتعامل مع أي مشكلة قد تحدث أثناء تنفيذ الخدمة.
+            </p>
+        </section>
+
+        <!-- Summary -->
+        <section class="summary">
+
+            <div class="summary-box">
+                <div class="summary-icon">⚡</div>
+                <h3>تنفيذ سريع</h3>
+                <p>تُنفذ الطلبات عادةً خلال ثوانٍ بعد تأكيد الدفع.</p>
+            </div>
+
+            <div class="summary-box">
+                <div class="summary-icon">🛡️</div>
+                <h3>حماية العميل</h3>
+                <p>نراجع المشكلات المرتبطة بالطلبات ونسعى لحلها.</p>
+            </div>
+
+            <div class="summary-box">
+                <div class="summary-icon">💬</div>
+                <h3>دعم متواصل</h3>
+                <p>يمكنك التواصل مع الدعم عند وجود أي مشكلة.</p>
+            </div>
+
+        </section>
+
+        <!-- Policy -->
+        <section class="policy-card">
+
+            <!-- 1 -->
+            <div class="section">
+
+                <h2 class="section-title">
+                    <span class="icon">📌</span>
+                    قبل إتمام الطلب
+                </h2>
+
+                <p>
+                    قبل الدفع، يرجى مراجعة تفاصيل المنتج أو الخدمة
+                    والتأكد من صحة جميع البيانات التي أدخلتها، خصوصًا
+                    معرف اللاعب أو الحساب وطريقة الدفع.
+                </p>
+
+                <ul>
+                    <li>تأكد من اختيار اللعبة أو الخدمة الصحيحة.</li>
+                    <li>تأكد من إدخال ID اللاعب أو الحساب بشكل صحيح.</li>
+                    <li>في خدمات TikTok Coins، تأكد من استخدام رمز QR الصحيح للحساب.</li>
+                    <li>راجع الكمية والسعر وطريقة الدفع قبل تأكيد الطلب.</li>
+                </ul>
+
+            </div>
+
+            <!-- 2 -->
+            <div class="section">
+
+                <h2 class="section-title">
+                    <span class="icon">💳</span>
+                    بعد إتمام الدفع
+                </h2>
+
+                <p>
+                    بمجرد تأكيد الدفع وإرسال الطلب إلى نظام التنفيذ،
+                    قد تبدأ عملية الشحن مباشرة، ولذلك لا يمكن ضمان إمكانية
+                    إلغاء الطلب بعد بدء تنفيذه.
+                </p>
+
+                <div class="highlight">
+                    <strong>مهم:</strong>
+                    الخدمات الرقمية تختلف عن المنتجات العادية، حيث يتم
+                    تنفيذها إلكترونيًا وقد تصبح غير قابلة للإلغاء بمجرد
+                    بدء عملية الشحن أو التسليم.
+                </div>
+
+            </div>
+
+            <!-- 3 -->
+            <div class="section">
+
+                <h2 class="section-title">
+                    <span class="icon">🎮</span>
+                    الطلبات التي تعتمد على ID
+                </h2>
+
+                <p>
+                    يتم تنفيذ خدمات الشحن التي تعتمد على ID باستخدام
+                    البيانات التي يقدمها العميل أثناء إنشاء الطلب.
+                </p>
+
+                <ul>
+                    <li>
+                        العميل مسؤول عن التأكد من صحة الـID قبل تأكيد الطلب.
+                    </li>
+
+                    <li>
+                        إذا تم تنفيذ الشحن بنجاح على الـID الذي تم إدخاله
+                        في الطلب، فلا يمكن تحويل الشحنة إلى ID آخر أو
+                        استرداد قيمتها بسبب تغيير الـID بعد التنفيذ.
+                    </li>
+
+                    <li>
+                        إذا تم إدخال ID غير صحيح وتم تنفيذ الطلب عليه،
+                        فقد لا يمكن استرجاع المبلغ أو إعادة توجيه الشحنة.
+                    </li>
+                </ul>
+
+                <div class="warning">
+                    ⚠️ <strong>راجع الـID جيدًا قبل الدفع.</strong>
+                    خطأ بسيط في رقم اللاعب أو الحساب قد يؤدي إلى تنفيذ
+                    الطلب على حساب غير المقصود.
+                </div>
+
+            </div>
+
+            <!-- 4 -->
+            <div class="section">
+
+                <h2 class="section-title">
+                    <span class="icon">📱</span>
+                    خدمات TikTok عبر QR
+                </h2>
+
+                <p>
+                    بالنسبة لخدمات TikTok Coins التي تعتمد على QR،
+                    يجب على العميل التأكد من أن رمز QR يعود للحساب
+                    المطلوب شحنه قبل إتمام الطلب.
+                </p>
+
+                <ul>
+                    <li>استخدم رمز QR الصحيح للحساب.</li>
+                    <li>لا ترسل رمزًا يخص حسابًا آخر.</li>
+                    <li>بعد بدء التنفيذ، قد لا يمكن تغيير الحساب أو إلغاء الطلب.</li>
+                </ul>
+
+            </div>
+
+            <!-- 5 -->
+            <div class="section">
+
+                <h2 class="section-title">
+                    <span class="icon">⏳</span>
+                    التأخير في تنفيذ الطلب
+                </h2>
+
+                <p>
+                    نعمل على تنفيذ الطلبات بأسرع وقت ممكن، وغالبًا يتم
+                    التنفيذ خلال ثوانٍ بعد تأكيد الدفع، ولكن قد يحدث
+                    تأخير أحيانًا بسبب مزود الخدمة أو النظام الخاص
+                    باللعبة أو الخدمة أو وجود تحديثات وصيانة.
+                </p>
+
+                <div class="highlight">
+                    في حالة حدوث تأخير، يتم متابعة الطلب والتحقق من حالته
+                    قبل اتخاذ قرار بشأن الاسترداد أو التعويض.
+                </div>
+
+            </div>
+
+            <!-- 6 -->
+            <div class="section">
+
+                <h2 class="section-title">
+                    <span class="icon">🔎</span>
+                    متى يمكن طلب الاسترداد؟
+                </h2>
+
+                <p>
+                    يمكن للعميل التواصل مع الدعم لطلب مراجعة واسترداد
+                    المبلغ في الحالات التي تستدعي ذلك، ومنها:
+                </p>
+
+                <ul>
+                    <li>دفع ناجح مع عدم تنفيذ الخدمة بسبب مشكلة من جانب النظام.</li>
+                    <li>وجود خطأ تقني أدى إلى عدم وصول المنتج أو الخدمة.</li>
+                    <li>تعذر تنفيذ الطلب بشكل نهائي بعد التحقق من حالته.</li>
+                    <li>وجود خصم مالي ناجح دون استلام الخدمة المستحقة.</li>
+                </ul>
+
+                <div class="success">
+                    عند ثبوت أن المشكلة من جانب HYPER TOPUP أو من نظام
+                    التنفيذ، سيتم التعامل مع الحالة بما يحفظ حق العميل،
+                    سواء بإعادة تنفيذ الخدمة أو تقديم تعويض أو استرداد
+                    المبلغ حسب طبيعة الحالة.
+                </div>
+
+            </div>
+
+            <!-- 7 -->
+            <div class="section">
+
+                <h2 class="section-title">
+                    <span class="icon">🚫</span>
+                    حالات قد لا يشملها الاسترداد
+                </h2>
+
+                <p>
+                    قد لا يكون الاسترداد متاحًا في الحالات الناتجة عن
+                    بيانات غير صحيحة أو بعد اكتمال تنفيذ الخدمة.
+                </p>
+
+                <ul>
+                    <li>إدخال ID أو بيانات حساب خاطئة من العميل ثم تنفيذ الطلب بنجاح.</li>
+                    <li>اختيار لعبة أو خدمة أو منتج غير صحيح قبل الدفع.</li>
+                    <li>طلب تغيير الـID بعد تنفيذ الشحن.</li>
+                    <li>طلب إلغاء خدمة رقمية بعد بدء تنفيذها.</li>
+                    <li>المشكلات الناتجة عن الحساب نفسه إذا تم تنفيذ الخدمة بنجاح على البيانات الصحيحة.</li>
+                    <li>أي طلب تم تنفيذه بنجاح وفق البيانات التي قدمها العميل.</li>
+                </ul>
+
+            </div>
+
+            <!-- 8 -->
+            <div class="section">
+
+                <h2 class="section-title">
+                    <span class="icon">🧾</span>
+                    إثبات الدفع ومراجعة الطلب
+                </h2>
+
+                <p>
+                    قد نطلب من العميل تقديم بيانات أو إثباتات متعلقة
+                    بالطلب لمساعدتنا في التحقق من حالة الدفع والتنفيذ.
+                </p>
+
+                <ul>
+                    <li>رقم الطلب إن وجد.</li>
+                    <li>وسيلة الدفع المستخدمة.</li>
+                    <li>إثبات الدفع عند الحاجة.</li>
+                    <li>تفاصيل المنتج أو الخدمة المطلوبة.</li>
+                    <li>أي معلومات إضافية تساعد فريق الدعم في مراجعة المشكلة.</li>
+                </ul>
+
+                <div class="warning">
+                    لا ترسل كلمات المرور الخاصة بحسابات الألعاب أو التطبيقات.
+                    HYPER TOPUP لا يحتاج إلى كلمة مرور لتنفيذ خدمات الشحن
+                    التي تعتمد على ID أو QR.
+                </div>
+
+            </div>
+
+            <!-- 9 -->
+            <div class="section">
+
+                <h2 class="section-title">
+                    <span class="icon">🔄</span>
+                    طريقة معالجة طلبات الاسترداد
+                </h2>
+
+                <ol class="number-list">
+                    <li>
+                        يتواصل العميل مع الدعم ويذكر رقم الطلب وتفاصيل المشكلة.
+                    </li>
+
+                    <li>
+                        يتم مراجعة حالة الدفع والطلب ونتيجة التنفيذ.
+                    </li>
+
+                    <li>
+                        إذا ثبت وجود مشكلة تستحق التعويض، يتم تحديد الحل المناسب
+                        حسب طبيعة الحالة.
+                    </li>
+
+                    <li>
+                        قد يكون الحل إعادة تنفيذ الخدمة، أو تعويض العميل،
+                        أو استرداد قيمة الطلب حسب الحالة.
+                    </li>
+                </ol>
+
+            </div>
+
+            <!-- 10 -->
+            <div class="section">
+
+                <h2 class="section-title">
+                    <span class="icon">💰</span>
+                    الاسترداد بسبب تعذر التنفيذ
+                </h2>
+
+                <p>
+                    إذا تعذر تنفيذ الطلب بشكل نهائي بسبب مشكلة تقنية أو
+                    عدم توفر الخدمة، وبعد التأكد من حالة الطلب، يمكن
+                    مراجعة إمكانية استرداد المبلغ المدفوع.
+                </p>
+
+                <p>
+                    في بعض الحالات قد يكون الحل الأسرع هو إعادة تنفيذ
+                    نفس الخدمة بدلًا من الاسترداد، ويتم تحديد ذلك حسب
+                    طبيعة المشكلة ورغبة العميل عندما يكون ذلك ممكنًا.
+                </p>
+
+            </div>
+
+            <!-- 11 -->
+            <div class="section">
+
+                <h2 class="section-title">
+                    <span class="icon">🛡️</span>
+              التزامنا تجاه العميل
+                </h2>
+
+                <p>
+                    هدف HYPER TOPUP هو تقديم خدمات رقمية سهلة وسريعة
+                    مع الحفاظ على أمان وخصوصية العملاء.
+                </p>
+
+                <ul>
+                    <li>نتعامل مع مشكلات الطلبات بجدية.</li>
+                    <li>نراجع الحالات التي يحدث فيها خلل في التنفيذ.</li>
+                    <li>نسعى لتقديم الحل المناسب عند ثبوت وجود خطأ من جانب الخدمة.</li>
+                    <li>نوضح للعميل حالة طلبه قدر الإمكان.</li>
+                </ul>
+
+            </div>
+
+            <!-- 12 -->
+            <div class="section">
+
+                <h2 class="section-title">
+                    <span class="icon">📢</span>
+                    ملاحظات مهمة
+                </h2>
+
+                <ul>
+                    <li>
+                        إتمام الدفع يعني أن العميل راجع بيانات الطلب ووافق
+                        على تفاصيل الخدمة المختارة.
+                    </li>
+
+                    <li>
+                        المنتجات والخدمات الرقمية قد تختلف طبيعة إمكانية
+                        إلغائها أو استردادها حسب مرحلة التنفيذ.
+                    </li>
+
+                    <li>
+                        أي حالة استرداد يتم تقييمها بناءً على تفاصيل الطلب
+                        وحالة الدفع والتنفيذ.
+                    </li>
+
+                    <li>
+                        HYPER TOPUP يحتفظ بحقه في التحقق من أي طلب أو عملية
+                        دفع عند وجود سبب يستدعي ذلك لحماية العميل والمتجر.
+                    </li>
+                </ul>
+
+            </div>
+
+        </section>
+
+        <!-- Contact -->
+        <section class="contact-box">
+
+            <h2>واجهت مشكلة في طلبك؟</h2>
+
+            <p>
+                فريق الدعم جاهز لمساعدتك ومراجعة حالة طلبك.
+                أرسل رقم الطلب وتفاصيل المشكلة وسنعمل على مساعدتك.
+            </p>
+
+            <a href="index.html" class="contact-btn">
+                العودة إلى المتجر
+            </a>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <strong>HYPER TOPUP</strong>
+        <br>
+        سياسة الاسترجاع والاسترداد
+        <br>
+        جميع الحقوق محفوظة © 2026
+    </footer>
+
+    <!-- Back -->
+    <a href="javascript:history.back()" class="back-btn" aria-label="رجوع">
+        ←
+    </a>
+
+</body>
+</html>
