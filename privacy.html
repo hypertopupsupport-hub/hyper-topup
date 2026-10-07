@@ -1,300 +1,749 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>سياسة الخصوصية | Hyper TopUp</title>
-  <!-- خط القاهرة العربي الاحترافي -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-  
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Cairo', sans-serif;
-      -webkit-tap-highlight-color: transparent;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سياسة الخصوصية - HYPER TOPUP</title>
+    <!-- Google Fonts: Cairo & Fira Code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #07090e;
+            --bg-card: rgba(15, 22, 36, 0.7);
+            --bg-card-hover: rgba(22, 32, 52, 0.85);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-glow: rgba(99, 102, 241, 0.3);
+            --accent-primary: #6366f1;
+            --accent-cyan: #06b6d4;
+            --accent-emerald: #10b981;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-sub: #d1d5db;
+        }
 
-    body {
-      background-color: #0b0e14;
-      color: #e2e8f0;
-      line-height: 1.7;
-      padding-bottom: 40px;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
 
-    /* هيدر الصفحة العلوي */
-    .header {
-      background: #121824;
-      border-bottom: 1px solid rgba(244, 201, 93, 0.15);
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(10px);
-    }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.9;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(6, 182, 212, 0.08) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
 
-    .back-btn {
-      color: #f4c95d;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(244, 201, 93, 0.1);
-      padding: 6px 14px;
-      border-radius: 8px;
-      border: 1px solid rgba(244, 201, 93, 0.2);
-      transition: all 0.2s ease;
-    }
+        /* Container Layout */
+        .wrapper {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
 
-    .back-btn:active {
-      transform: scale(0.96);
-    }
+        /* Header Styling */
+        header {
+            text-align: center;
+            padding: 50px 20px 40px;
+            position: relative;
+        }
 
-    .logo-title {
-      color: #f4c95d;
-      font-weight: 800;
-      font-size: 16px;
-      letter-spacing: 0.5px;
-    }
+        .brand-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(6, 182, 212, 0.2));
+            border: 1px solid var(--border-glow);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
 
-    /* الحاوية الرئيسية */
-    .container {
-      max-width: 650px;
-      margin: 20px auto;
-      padding: 0 16px;
-    }
+        .brand-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
 
-    /* بطاقة الترحيب والتأكيد */
-    .hero-card {
-      background: linear-gradient(135deg, #161c28 0%, #121824 100%);
-      border: 1px solid rgba(244, 201, 93, 0.25);
-      border-radius: 16px;
-      padding: 24px 20px;
-      text-align: center;
-      margin-bottom: 20px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffffff 30%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
 
-    .hero-icon {
-      width: 50px;
-      height: 50px;
-      background: rgba(244, 201, 93, 0.12);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 12px auto;
-      color: #f4c95d;
-    }
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
 
-    .hero-title {
-      font-size: 20px;
-      color: #ffffff;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
+        .meta-tag {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 4px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
 
-    .hero-desc {
-      font-size: 13px;
-      color: #94a3b8;
-    }
+        /* Main Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 35px;
+            margin-top: 30px;
+            align-items: start;
+        }
 
-    /* قسم أقسام السياسة */
-    .policy-section {
-      background: #121824;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 14px;
-      padding: 20px;
-      margin-bottom: 16px;
-    }
+        /* Sidebar Navigation */
+        .sidebar {
+            position: sticky;
+            top: 30px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            backdrop-filter: blur(12px);
+            max-height: calc(100vh - 60px);
+            overflow-y: auto;
+        }
 
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      padding-bottom: 10px;
-    }
+        .sidebar h3 {
+            font-size: 1rem;
+            color: var(--accent-cyan);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-    .section-icon {
-      color: #f4c95d;
-      font-size: 18px;
-    }
+        .toc-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
 
-    .section-title {
-      font-size: 15px;
-      color: #f4c95d;
-      font-weight: 700;
-    }
+        .toc-list a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.25s ease;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
-    .policy-text {
-      font-size: 13px;
-      color: #cbd5e1;
-      margin-bottom: 10px;
-    }
+        .toc-list a:hover, .toc-list a.active {
+            color: #fff;
+            background: linear-gradient(90deg, rgba(99, 102, 241, 0.2), transparent);
+            border-right: 3px solid var(--accent-primary);
+            padding-right: 15px;
+        }
 
-    .policy-list {
-      list-style: none;
-      padding: 0;
-    }
+        /* Hero Intro Box */
+        .hero-box {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(6, 182, 212, 0.05));
+            border: 1px solid var(--border-glow);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            font-size: 1.1rem;
+            color: var(--text-main);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
 
-    .policy-list li {
-      position: relative;
-      padding-right: 20px;
-      font-size: 13px;
-      color: #94a3b8;
-      margin-bottom: 8px;
-    }
+        /* Policy Section Card */
+        .policy-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+            position: relative;
+        }
 
-    .policy-list li::before {
-      content: "•";
-      color: #f4c95d;
-      font-weight: bold;
-      font-size: 18px;
-      position: absolute;
-      right: 0;
-      top: -2px;
-    }
+        .policy-card:hover {
+            border-color: var(--border-glow);
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+        }
 
-    /* تنبيه أمان بارز */
-    .alert-card {
-      background: rgba(244, 201, 93, 0.06);
-      border: 1px dashed rgba(244, 201, 93, 0.4);
-      border-radius: 12px;
-      padding: 16px;
-      margin: 20px 0;
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-    }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
 
-    .alert-icon {
-      color: #f4c95d;
-      font-size: 20px;
-      margin-top: 2px;
-    }
+        .section-num {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-cyan));
+            color: #fff;
+            font-weight: 800;
+            font-size: 0.9rem;
+            min-width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
 
-    .alert-text {
-      font-size: 12px;
-      color: #e2e8f0;
-      line-height: 1.6;
-    }
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+        }
 
-    .alert-text strong {
-      color: #f4c95d;
-      display: block;
-      margin-bottom: 2px;
-    }
+        p {
+            color: var(--text-sub);
+            margin-bottom: 14px;
+            font-size: 0.98rem;
+        }
 
-    /* الفوتر */
-    .footer-note {
-      text-align: center;
-      font-size: 12px;
-      color: #64748b;
-      margin-top: 30px;
-    }
-  </style>
+        ul {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+
+        ul li {
+            position: relative;
+            padding-right: 24px;
+            margin-bottom: 10px;
+            color: var(--text-sub);
+            font-size: 0.95rem;
+        }
+
+        ul li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            top: 2px;
+            color: var(--accent-cyan);
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* Sub Services Grid */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .tech-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .tech-card h3 {
+            color: var(--accent-cyan);
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .tech-card p {
+            font-size: 0.88rem;
+            margin-bottom: 0;
+        }
+
+        /* Contact Box */
+        .contact-card {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(99, 102, 241, 0.1));
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .contact-card a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            direction: ltr;
+            display: inline-block;
+            margin-top: 8px;
+            transition: color 0.2s ease;
+        }
+
+        .contact-card a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        /* Commitment Banner */
+        .commitment-banner {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(15, 22, 36, 0.9) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .commitment-banner h3 {
+            color: var(--accent-emerald);
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px 20px;
+            margin-top: 50px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer strong {
+            color: #fff;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 992px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                position: relative;
+                top: 0;
+                max-height: none;
+                margin-bottom: 20px;
+            }
+            .toc-list {
+                display: flex;
+                flex-direction: row;
+                overflow-x: auto;
+                padding-bottom: 8px;
+            }
+            .toc-list a {
+                white-space: nowrap;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.9rem;
+            }
+            .policy-card {
+                padding: 20px;
+            }
+            .hero-box {
+                padding: 20px;
+                font-size: 1rem;
+            }
+        }
+      /* تنسيق زر الرجوع الاحترافي */
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background: rgba(15, 22, 36, 0.75);
+    border: 1px solid rgba(99, 102, 241, 0.35);
+    border-radius: 10px;
+    color: #f3f4f6;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+
+.back-btn:hover {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(6, 182, 212, 0.25));
+    border-color: #06b6d4;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(6, 182, 212, 0.35);
+}
+
+.back-btn svg {
+    stroke: #06b6d4;
+    transition: transform 0.3s ease;
+}
+
+.back-btn:hover svg {
+    transform: translateX(4px); /* حركة خفيفة للسهم عند التمرير */
+    stroke: #ffffff;
+}
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 14px;
+    border: 1px solid rgba(255, 215, 0, 0.35);
+    border-radius: 999px;
+    background: rgba(255, 215, 0, 0.08);
+    color: #ffd700;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.08);
+  }
+    </style>
 </head>
 <body>
 
-  <!-- هيدر الصفحة -->
-  <header class="header">
-    <a href="account.html" class="back-btn">
-      <span>&#10140;</span> رجوع
-    </a>
-    <div class="logo-title">HYPER TOPUP</div>
-  </header>
+  <a href="index.html" class="back-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14"></path>
+        <path d="M12 5l7 7-7 7"></path>
+    </svg>
+    <span>الرجوع للرئيسية</span>
+</a>
+    <div class="wrapper">
+        <!-- Header -->
+        <header>
+            <div class="badge">HYPER TOPUP • LEGAL CENTER</div>
+            <h1>سياسة الخصوصية وحماية البيانات</h1>
+            <div class="meta-info">
+                <span class="meta-tag">📅 آخر تحديث: أكتوبر 2026</span>
+                <span class="meta-tag">🔒 اتصال مشفر عبر HTTPS</span>
+            </div>
+        </header>
 
-  <div class="container">
+        <!-- Main Content Area -->
+        <div class="content-grid">
+            
+            <!-- Sidebar Table of Contents -->
+            <aside class="sidebar">
+                <h3>📌 الفهرس السريع</h3>
+                <ul class="toc-list" id="toc">
+                    <li><a href="#sec-1">1. البيانات المجمعة</a></li>
+                    <li><a href="#sec-2">2. استخدام المعلومات</a></li>
+                    <li><a href="#sec-3">3. أمان الألعاب</a></li>
+                    <li><a href="#sec-4">4. حماية الاتصال</a></li>
+                    <li><a href="#sec-5">5. الخدمات التقنية</a></li>
+                    <li><a href="#sec-6">6. بيانات الطلبات</a></li>
+                    <li><a href="#sec-7">7. أمان الدفع</a></li>
+                    <li><a href="#sec-8">8. ملفات الكوكيز</a></li>
+                    <li><a href="#sec-9">9. مشاركة البيانات</a></li>
+                    <li><a href="#sec-10">10. حماية العملاء</a></li>
+                    <li><a href="#sec-11">11. مدة الاحتفاظ</a></li>
+                    <li><a href="#sec-12">12. حقوق المستخدم</a></li>
+                    <li><a href="#sec-13">13. الروابط الخارجية</a></li>
+                    <li><a href="#sec-14">14. تحديث السياسة</a></li>
+                    <li><a href="#sec-15">15. التواصل معنا</a></li>
+                </ul>
+            </aside>
 
-    <!-- البطاقة الرئيسية -->
-    <div class="hero-card">
-      <div class="hero-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <h1 class="hero-title">سياسة الخصوصية وأمان البيانات</h1>
-      <p class="hero-desc">في متجر Hyper TopUp، نعتبر خصوصية وأمان بياناتك أولوية قصوى. يوضح هذا المستند كيفية التعامل مع معلوماتك بشفافية ودقة.</p>
+            <!-- Content Area -->
+            <main>
+                <!-- Hero Intro Box -->
+                <div class="hero-box">
+                    في <strong>HYPER TOPUP</strong>، نضع خصوصية المستخدم وأمان بياناته ضمن أولويات تشغيل المتجر. توضح هذه السياسة بصورة واضحة ومباشرة نوع المعلومات التي قد يتم التعامل معها عند استخدام الموقع أو إنشاء حساب أو تقديم طلب، والأغراض التي تُستخدم من أجلها، وكيف نعمل على حماية هذه المعلومات.
+                </div>
+
+                <!-- Section 1 -->
+                <section class="policy-card" id="sec-1">
+                    <div class="card-header">
+                        <span class="section-num">01</span>
+                        <h2>المعلومات التي قد يتم جمعها</h2>
+                    </div>
+                    <p>بحسب الخدمات والخصائص التي يستخدمها العميل، قد يتعامل HYPER TOPUP مع بعض المعلومات اللازمة لتشغيل الحساب وتنفيذ الطلبات، ومنها:</p>
+                    <ul>
+                        <li>الاسم والبريد الإلكتروني المرتبط بحساب المستخدم عند تسجيل الدخول أو إنشاء الحساب.</li>
+                        <li>Player ID / User ID المطلوب لبعض خدمات شحن الألعاب.</li>
+                        <li>تفاصيل الطلب مثل المنتج والكمية والسعر وحالة الطلب.</li>
+                        <li>المعلومات التي يقدمها المستخدم عند التواصل مع الدعم الفني إذا كانت ضرورية لمتابعة طلب أو مشكلة.</li>
+                        <li>بعض المعلومات التقنية الأساسية التي يوفرها المتصفح أو الجهاز أثناء استخدام الموقع.</li>
+                    </ul>
+                    <p>نحن نهدف إلى استخدام المعلومات المرتبطة بالوظيفة أو الخدمة المطلوبة، وعدم طلب بيانات شخصية غير ضرورية لإتمام الخدمة.</p>
+                </section>
+
+                <!-- Section 2 -->
+                <section class="policy-card" id="sec-2">
+                    <div class="card-header">
+                        <span class="section-num">02</span>
+                        <h2>كيف نستخدم المعلومات؟</h2>
+                    </div>
+                    <p>قد تُستخدم المعلومات المتاحة لنا من أجل:</p>
+                    <ul>
+                        <li>إنشاء وإدارة حساب المستخدم.</li>
+                        <li>تنفيذ الطلبات والخدمات الرقمية.</li>
+                        <li>ربط الطلب بحساب العميل أو Player ID الصحيح.</li>
+                        <li>حفظ ومتابعة سجل الطلبات.</li>
+                        <li>تقديم الدعم الفني وخدمة العملاء.</li>
+                        <li>التحقق من تفاصيل الطلبات والمعاملات عند الحاجة.</li>
+                        <li>تحسين أداء الموقع وتجربة الاستخدام.</li>
+                        <li>المساعدة في حماية المنصة من الاستخدام غير المصرح به أو الاحتيالي.</li>
+                    </ul>
+                </section>
+
+                <!-- Section 3 -->
+                <section class="policy-card" id="sec-3">
+                    <div class="card-header">
+                        <span class="section-num">03</span>
+                        <h2>أمان حسابات الألعاب</h2>
+                    </div>
+                    <p>في خدمات الشحن التي تعتمد على Player ID أو User ID، لا يحتاج العميل إلى تقديم كلمة مرور حساب اللعبة لتنفيذ عملية الشحن.</p>
+                    <p>كما لا ينبغي للمستخدم مشاركة كلمات المرور أو رموز التحقق أو أرقام PIN السرية مع أي شخص يدعي أنه من الدعم الفني.</p>
+                    <p>أمان حساب العميل مهم بالنسبة لنا، ولذلك تعتمد خدمات الشحن العادية على المعلومات اللازمة لتنفيذ الخدمة دون الحاجة إلى بيانات الدخول الخاصة بحساب اللعبة.</p>
+                </section>
+
+                <!-- Section 4 -->
+                <section class="policy-card" id="sec-4">
+                    <div class="card-header">
+                        <span class="section-num">04</span>
+                        <h2>حماية البيانات والاتصال الآمن</h2>
+                    </div>
+                    <p>يستخدم موقع HYPER TOPUP اتصال HTTPS للمساعدة في حماية البيانات أثناء انتقالها بين متصفح المستخدم والموقع.</p>
+                    <p>كما تعتمد المنصة على مجموعة من الخدمات والتقنيات الحديثة لإدارة الحسابات والطلبات وتشغيل وظائف الموقع، ويتم تطبيق إجراءات تقنية مناسبة للمساعدة في حماية المعلومات من الوصول غير المصرح به.</p>
+                    <p>نحن نراجع البنية التقنية للموقع ونحدّثها عند الحاجة بهدف الحفاظ على مستوى مناسب من الحماية مع تطور الخدمات والوظائف.</p>
+                </section>
+
+                <!-- Section 5 -->
+                <section class="policy-card" id="sec-5">
+                    <div class="card-header">
+                        <span class="section-num">05</span>
+                        <h2>الخدمات التقنية الخارجية</h2>
+                    </div>
+                    <p>قد يعتمد HYPER TOPUP على خدمات تقنية خارجية لتشغيل بعض وظائف الموقع، ومنها:</p>
+
+                    <div class="tech-grid">
+                        <div class="tech-card">
+                            <h3>Firebase</h3>
+                            <p>قد تُستخدم خدمات Firebase للمصادقة وتسجيل الدخول وإدارة بعض وظائف الحساب بحسب الخصائص المفعلة في الموقع.</p>
+                        </div>
+                        <div class="tech-card">
+                            <h3>Google Apps Script & Sheets</h3>
+                            <p>قد تُستخدم بعض خدمات Google في معالجة وتنظيم بيانات الطلبات والعمليات التشغيلية المرتبطة بتقديم الخدمة.</p>
+                        </div>
+                        <div class="tech-card">
+                            <h3>GitHub Pages & HTTPS</h3>
+                            <p>تُستخدم بنية الاستضافة الخاصة بالموقع لتوفير الموقع للمستخدمين عبر اتصال HTTPS آمن ومشفر.</p>
+                        </div>
+                    </div>
+                    <p>ويتم استخدام هذه الخدمات في نطاق الوظائف التقنية اللازمة لتشغيل المنصة وتقديم الخدمات المتاحة.</p>
+                </section>
+
+                <!-- Section 6 -->
+                <section class="policy-card" id="sec-6">
+                    <div class="card-header">
+                        <span class="section-num">06</span>
+                        <h2>بيانات الطلبات والمعاملات</h2>
+                    </div>
+                    <p>قد يتم الاحتفاظ ببعض بيانات الطلبات لمساعدة المتجر على:</p>
+                    <ul>
+                        <li>متابعة حالة الطلب.</li>
+                        <li>مراجعة تفاصيل الخدمة المطلوبة.</li>
+                        <li>تقديم الدعم الفني.</li>
+                        <li>معالجة المشكلات المتعلقة بالطلب.</li>
+                        <li>الحفاظ على سجل منظم للعمليات.</li>
+                    </ul>
+                    <p>تختلف المعلومات المرتبطة بكل طلب بحسب المنتج أو الخدمة المستخدمة.</p>
+                </section>
+
+                <!-- Section 7 -->
+                <section class="policy-card" id="sec-7">
+                    <div class="card-header">
+                        <span class="section-num">07</span>
+                        <h2>الدفع</h2>
+                    </div>
+                    <p>تختلف المعلومات المطلوبة أثناء عملية الدفع بحسب وسيلة الدفع المتاحة للطلب.</p>
+                    <p>لا تطلب HYPER TOPUP كلمات مرور الحسابات البنكية أو أرقام PIN السرية للمحافظ الإلكترونية كجزء من عملية الشحن العادية.</p>
+                    <p>ويُنصح العميل دائمًا باتباع تعليمات الدفع الظاهرة داخل المتجر وعدم مشاركة أي رموز سرية أو بيانات دخول مع أي طرف آخر.</p>
+                </section>
+
+                <!-- Section 8 -->
+                <section class="policy-card" id="sec-8">
+                    <div class="card-header">
+                        <span class="section-num">08</span>
+                        <h2>ملفات تعريف الارتباط والتخزين المحلي</h2>
+                    </div>
+                    <p>قد تستخدم بعض وظائف الموقع تقنيات مثل Cookies أو Local Storage أو تقنيات تخزين مشابهة للمساعدة في:</p>
+                    <ul>
+                        <li>حفظ بعض إعدادات المستخدم.</li>
+                        <li>تشغيل وظائف الموقع.</li>
+                        <li>الحفاظ على بعض بيانات الجلسة أو الحساب.</li>
+                        <li>تحسين تجربة الاستخدام.</li>
+                        <li>دعم بعض الخصائص التي تعتمد على المتصفح.</li>
+                    </ul>
+                    <p>ويختلف استخدام هذه التقنيات بحسب الوظائف المفعلة وطريقة استخدام الموقع والجهاز والمتصفح.</p>
+                </section>
+
+                <!-- Section 9 -->
+                <section class="policy-card" id="sec-9">
+                    <div class="card-header">
+                        <span class="section-num">09</span>
+                        <h2>مشاركة المعلومات</h2>
+                    </div>
+                    <p>لا تهدف HYPER TOPUP إلى بيع البيانات الشخصية للمستخدمين لأغراض إعلانية.</p>
+                    <p>وقد تتم معالجة بعض المعلومات من خلال مزودي الخدمات التقنية الذين تعتمد عليهم المنصة لتوفير وظائف محددة، مثل المصادقة أو تشغيل البنية التقنية أو تنظيم بيانات الطلبات.</p>
+                    <p>ويقتصر استخدام هذه الخدمات على ما يرتبط بتشغيل الوظائف التي يعتمد عليها الموقع، وفقًا لطبيعة كل خدمة وإعداداتها.</p>
+                </section>
+
+                <!-- Section 10 -->
+                <section class="policy-card" id="sec-10">
+                    <div class="card-header">
+                        <span class="section-num">10</span>
+                        <h2>حماية بيانات العملاء</h2>
+                    </div>
+                    <p>نتعامل مع بيانات العملاء باعتبارها معلومات يجب التعامل معها بعناية، ونعمل على تقليل البيانات المطلوبة إلى ما يرتبط بالخدمة.</p>
+                    <p>كما نحرص على أن تكون المعلومات المطلوبة أثناء الطلب واضحة للمستخدم، وأن تكون البيانات الحساسة غير المطلوبة للخدمة خارج نطاق عملية الطلب.</p>
+                </section>
+
+                <!-- Section 11 -->
+                <section class="policy-card" id="sec-11">
+                    <div class="card-header">
+                        <span class="section-num">11</span>
+                        <h2>الاحتفاظ بالمعلومات</h2>
+                    </div>
+                    <p>قد يتم الاحتفاظ ببعض المعلومات طالما كانت هناك حاجة إليها لتشغيل الحساب أو متابعة الطلبات أو تقديم الدعم أو الحفاظ على السجلات التشغيلية اللازمة.</p>
+                    <p>وتختلف مدة الاحتفاظ بحسب نوع المعلومات والغرض منها وطريقة تخزينها.</p>
+                </section>
+
+                <!-- Section 12 -->
+                <section class="policy-card" id="sec-12">
+                    <div class="card-header">
+                        <span class="section-num">12</span>
+                        <h2>حقوق المستخدم</h2>
+                    </div>
+                    <p>يمكن للمستخدم التواصل مع HYPER TOPUP بخصوص المعلومات المرتبطة بحسابه أو الاستفسار عن طريقة استخدامها.</p>
+                    <p>وقد تشمل طلبات المستخدم، بحسب طبيعة البيانات والأنظمة المستخدمة:</p>
+                    <ul>
+                        <li>الاستفسار عن البيانات المرتبطة بالحساب.</li>
+                        <li>طلب تعديل معلومات معينة.</li>
+                        <li>طلب حذف الحساب أو البيانات التي يمكن حذفها وفقًا لطبيعتها.</li>
+                        <li>الاستفسار عن كيفية استخدام المعلومات.</li>
+                    </ul>
+                    <p>قد نحتاج إلى التحقق من صاحب الحساب قبل تنفيذ بعض الطلبات المتعلقة بالبيانات لحماية الحساب من الطلبات غير المصرح بها.</p>
+                </section>
+
+                <!-- Section 13 -->
+                <section class="policy-card" id="sec-13">
+                    <div class="card-header">
+                        <span class="section-num">13</span>
+                        <h2>الروابط والخدمات الخارجية</h2>
+                    </div>
+                    <p>قد يحتوي الموقع على روابط أو خدمات مرتبطة بألعاب أو تطبيقات أو منصات خارجية.</p>
+                    <p>عند الانتقال إلى موقع أو خدمة خارج HYPER TOPUP، تصبح معالجة البيانات خاضعة لسياسة الخصوصية وشروط الجهة الخارجية المعنية.</p>
+                    <p>وجود اسم لعبة أو تطبيق أو منصة ضمن خدمات المتجر لا يعني أن HYPER TOPUP هو مالك تلك العلامة أو ناشرها، ما لم يتم توضيح وجود علاقة رسمية محددة.</p>
+                </section>
+
+                <!-- Section 14 -->
+                <section class="policy-card" id="sec-14">
+                    <div class="card-header">
+                        <span class="section-num">14</span>
+                        <h2>تحديث سياسة الخصوصية</h2>
+                    </div>
+                    <p>قد يتم تحديث سياسة الخصوصية عند إضافة خدمات جديدة أو تغيير البنية التقنية أو تطوير وظائف المتجر.</p>
+                    <p>سيتم تحديث تاريخ آخر تعديل في أعلى هذه الصفحة، ويُنصح المستخدم بمراجعة السياسة عند إجراء تغييرات مهمة.</p>
+                </section>
+
+                <!-- Section 15 -->
+                <section class="policy-card" id="sec-15">
+                    <div class="card-header">
+                        <span class="section-num">15</span>
+                        <h2>التواصل معنا</h2>
+                    </div>
+                    <p>إذا كان لديك أي استفسار يتعلق بالخصوصية أو حماية البيانات أو حسابك، يمكنك التواصل مع HYPER TOPUP من خلال قنوات الدعم المتاحة داخل المتجر.</p>
+                    <div class="contact-card">
+                        <div>البريد الإلكتروني المباشر للدعم الفني:</div>
+                        <a href="mailto:hypertopup.support@gmail.com">hypertopup.support@gmail.com</a>
+                    </div>
+                </section>
+
+                <!-- Commitment Banner -->
+                <div class="commitment-banner">
+                    <h3>🛡️ التزام HYPER TOPUP بالخصوصية</h3>
+                    <p>نؤمن بأن تجربة المتجر لا تقتصر على توفير الخدمة فقط، بل تشمل أيضًا توفير بيئة استخدام واضحة وآمنة قدر الإمكان.</p>
+                    <p style="margin-bottom:0;">ولهذا نحرص على حماية معلومات العملاء، وتقليل البيانات المطلوبة، وتوضيح طريقة استخدامها، وتطوير البنية التقنية للموقع بصورة مستمرة بما يتناسب مع الخدمات التي يقدمها HYPER TOPUP.</p>
+                </div>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p><strong>HYPER TOPUP</strong> — متجر إلكتروني مستقل للمنتجات والخدمات الرقمية.</p>
+            <p style="margin-top: 5px; opacity: 0.7;">© 2026 HYPER TOPUP — جميع الحقوق محفوظة.</p>
+        </footer>
     </div>
 
-    <!-- 1. البيانات التي نجمعها -->
-    <div class="policy-section">
-      <div class="section-header">
-        <span class="section-icon">&#128100;</span>
-        <h2 class="section-title">1. البيانات التي نجمعها</h2>
-      </div>
-      <p class="policy-text">نجمع فقط البيانات الضرورية لتنفيذ طلبات الشحن الخاصة بك وضمان تقديم خدمة سريعة وآمنة:</p>
-      <ul class="policy-list">
-        <li><strong>معلومات الحساب:</strong> البريد الإلكتروني والاسم عند التسجيل عبر Google لتأكيد ملكية الحساب.</li>
-        <li><strong>معرف اللاعب (Player ID):</strong> الـ ID الخاص بك داخل اللعبة (مثل PUBG أو Free Fire) لنتمكن من إرسال الشحنة لملفك الشخصي.</li>
-        <li><strong>سجل الطلبات:</strong> تفاصيل المعاملات السابقة لتتمكن من متابعتها ومراجعتها من داخل حسابك في أي وقت.</li>
-      </ul>
-    </div>
+    <!-- Active Link Scroll Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.policy-card');
+            const navLinks = document.querySelectorAll('.toc-list a');
 
-    <!-- 2. استخدام البيانات -->
-    <div class="policy-section">
-      <div class="section-header">
-        <span class="section-icon">&#9881;</span>
-        <h2 class="section-title">2. كيف نستخدم معلوماتك؟</h2>
-      </div>
-      <ul class="policy-list">
-        <li>معالجة وتنفيذ طلبات الشحن بسرعة وبدقة على ألعابك المفضلة.</li>
-        <li>إشعارات وتحديثات حالة الطلب داخل حسابه الشخصي.</li>
-        <li>تقديم الدعم الفني والمساعدة المباشرة عند وجود أي استفسار حول طلبك.</li>
-      </ul>
-    </div>
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 120) {
+                        current = section.getAttribute('id');
+                    }
+                });
 
-    <!-- تنبيه أمان هامي للزبون -->
-    <div class="alert-card">
-      <div class="alert-icon">&#128274;</div>
-      <div class="alert-text">
-        <strong>ضمان الأمان الكامل:</strong>
-        نحن في <strong>Hyper TopUp</strong> لا نطلب أبداً كلمة السر (Password) الخاصة بحساب لعبتك أو حسابك البنكي. الشحن يتم عن طريق معرف اللاعب (Player ID) فقط بكل أمان.
-      </div>
-    </div>
-
-    <!-- 3. حماية وسرية البيانات -->
-    <div class="policy-section">
-      <div class="section-header">
-        <span class="section-icon">&#128737;</span>
-        <h2 class="section-title">3. حماية وسرية المعلومات</h2>
-      </div>
-      <p class="policy-text">
-        تُخزن جميع البيانات بشكل مشفر وآمن عبر خوادم شركة <strong>Google Firebase</strong> المعتمدة أمنياً عالمياً.
-      </p>
-      <ul class="policy-list">
-        <li>نلتزم بأعلى معايير التشفير لمنع أي وصول غير مصرح به.</li>
-        <li><strong>لا نقوم ببيع أو مشاركة أو تأجير</strong> بياناتك الشخصية لأي أطراف ثالثة أو شركات إعلانية تحت أي ظرف.</li>
-      </ul>
-    </div>
-
-    <!-- 4. حقوقك والتواصل -->
-    <div class="policy-section">
-      <div class="section-header">
-        <span class="section-icon">&#128222;</span>
-        <h2 class="section-title">4. حقوقك والتواصل معنا</h2>
-      </div>
-      <p class="policy-text">
-        يحق لك في أي وقت تعديل بياناتك أو طلب حذف حسابك وبياناتك بالكامل من متجرنا. لأي استفسار أو طلب يتعلق بخصوصيتك، يمكنك التواصل مع فريق الدعم الفني مباشرة:
-      </p>
-      <ul class="policy-list">
-        <li>البريد الإلكتروني للدعم: <strong>hypertopup.support@gmail.com</strong></li>
-      </ul>
-    </div>
-
-    <div class="footer-note">
-      جميع الحقوق محفوظة &copy; 2026 Hyper TopUp
-    </div>
-
-  </div>
-
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
