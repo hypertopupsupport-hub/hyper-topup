@@ -587,31 +587,100 @@ function getOrderDataValues() {
 }
 
 async function sendToGoogleSheet(senderNumber) {
-  try {
-    const currentData = getOrderDataValues();
-    const sheetData = {
-      data: [{
-        'ID': currentData.player,
-        'Customer': senderNumber,
-        'Game': currentData.game + ' - ' + currentData.pkg,
-        'Amount': currentData.amount + ' ج.م',
-        'Status': 'قيد المراجعه',
-        'Date': new Date().toLocaleString('en-US', { hour12: true }),
-        'Method': (typeof orderData !== 'undefined' && orderData.paymentMethod) ? orderData.paymentMethod : 'إنستاباي',
-        'Coupon': 'بدون كود خصم',
-        'OrderID': orderData.orderId
-      }]
-    };
+try {
+const currentData = getOrderDataValues();
 
-    await fetch(PAYMENT_GATEWAY_CONFIG.sheetDbUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(sheetData)
-    });
-  } catch (err) {
-    console.error('فشل التسجيل في شيت جوجل:', err);
-  }
+// الحصول على حساب Firebase الحالي
+const { getApps, getApp, initializeApp } =
+  await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js");
+
+const { getAuth, onAuthStateChanged } =
+  await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js");
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAQnlfsncuDN2iK3VV_rEQvg4GIisWr7oc",
+  authDomain: "hyper-topup-59844.firebaseapp.com",
+  projectId: "hyper-topup-59844",
+  storageBucket: "hyper-topup-59844.firebasestorage.app",
+  messagingSenderId: "683467344388",
+  appId: "1:683467344388:web:5b32652c913051d4790351"
+};
+
+const app = getApps().length
+  ? getApp()
+  : initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const user = await new Promise((resolve) => {
+  const unsubscribe = onAuthStateChanged(
+    auth,
+    (currentUser) => {
+      unsubscribe();
+      resolve(currentUser);
+    },
+    () => resolve(null)
+  );
+});
+
+const userUid = user ? user.uid : "";
+
+if (!userUid) {
+  console.warn(
+    "العميل غير مسجل الدخول؛ الطلب سيُرسل بدون UserUID."
+  );
 }
+
+const sheetData = {
+  data: [{
+    'ID': currentData.player,
+    'Customer': senderNumber,
+    'Game': currentData.game + ' - ' + currentData.pkg,
+    'Amount': currentData.amount + ' ج.م',
+    'Status': 'قيد المراجعه',
+    'Date': new Date().toLocaleString('en-US', {
+      hour12: true
+    }),
+    'Method': (
+      typeof orderData !== 'undefined' &&
+      orderData.paymentMethod
+    ) ? orderData.paymentMethod : 'إنستاباي',
+    'Coupon': 'بدون كود خصم',
+    'OrderID': orderData.orderId,
+    'UserUID': userUid
+  }]
+};
+
+const response = await fetch(
+  PAYMENT_GATEWAY_CONFIG.sheetDbUrl,
+  {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(sheetData)
+  }
+);
+
+if (!response.ok) {
+  throw new Error(
+    'فشل التسجيل في Google Sheets: HTTP ' +
+    response.status
+  );
+}
+
+console.log(
+  'تم إرسال الطلب إلى Google Sheets. UserUID:',
+  userUid || 'غير متوفر'
+);
+
+} catch (err) {
+console.error(
+'فشل التسجيل في شيت جوجل:',
+err
+);
+}
+  }
 
 function saveToLocalOrders(senderNumber) {
   try {

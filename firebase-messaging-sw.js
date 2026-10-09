@@ -28,28 +28,30 @@ messaging.onBackgroundMessage(function(payload) {
     payload.notification?.title ||
     "HYPER TOPUP";
 
-  const notificationOptions = {
+  
+const notificationOptions = {
+  body:
+    payload.notification?.body ||
+    "لديك تحديث جديد لطلبك.",
 
-    body:
-      payload.notification?.body ||
-      "لديك تحديث جديد لطلبك.",
+  icon:
+    "/icon-512.png",
 
-    icon:
-      "/favicon.ico",
+  badge:
+    "/icon-512.png",
 
-    badge:
-      "/favicon.ico",
+  image:
+    "/icon-512.png",
 
-    data:
-      payload.data || {},
+  data:
+    payload.data || {},
 
-    dir:
-      "rtl",
+  dir:
+    "rtl",
 
-    lang:
-      "ar"
-
-  };
+  lang:
+    "ar"
+};
 
 
   self.registration.showNotification(

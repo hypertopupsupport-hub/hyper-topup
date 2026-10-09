@@ -484,6 +484,7 @@ opacity:0;pointer-events:none;
 @media (display-mode:standalone),(display-mode:fullscreen),(display-mode:minimal-ui){.site-footer{display:none!important}}
 .site-footer.in-app{display:none!important}
 .sf-links{row-gap:6px}
+.is-auth .auth-pill{display:none!important}
 </style>
 
 <link rel="stylesheet" href="notifications.css">
@@ -1182,19 +1183,11 @@ window.addEventListener('pageshow',function(ev){if(ev.persisted)place(current,fa
 <script>
 (function(){
 function sync(){
-var a=document.getElementById('authPill'),m=document.getElementById('apMain'),s=document.getElementById('apSub');
-if(!a||!m||!s)return;
 var u=null;
 try{u=JSON.parse(localStorage.getItem('hyper_user')||'null');}catch(e){}
-if(u){
-m.textContent=u.name||'حسابي';
-s.textContent='حسابي';
-a.href='account.html';
-}else{
-m.textContent='تسجيل الدخول';
-s.textContent='أو إنشاء حساب';
-a.href='account.html?auth=1';
-}
+document.documentElement.classList.toggle('is-auth',!!u);
+var a=document.getElementById('authPill');
+if(a)a.href='account.html?auth=1';
 }
 sync();
 addEventListener('pageshow',sync);

@@ -525,18 +525,22 @@ async function enablePushNotifications() {
 
 
     await setDoc(
-      tokenRef,
-      {
-        deviceType:
-          "web",
+  tokenRef,
+  {
+    token: token,
+    fcmToken: token,
+    deviceType: "web",
+    updatedAt: serverTimestamp()
+  },
+  {
+    merge: true
+  }
+);
 
-        updatedAt:
-          serverTimestamp()
-      },
-      {
-        merge: true
-      }
-    );
+console.log(
+  "تم حفظ FCM Token للعميل:",
+  currentUserUid
+);
 
 
     const button =
