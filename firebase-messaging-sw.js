@@ -30,27 +30,13 @@ messaging.onBackgroundMessage(function(payload) {
 
   
 const notificationOptions = {
-  body:
-    payload.notification?.body ||
-    "لديك تحديث جديد لطلبك.",
-
-  icon:
-    "/icon-512.png",
-
-  badge:
-    "/icon-512.png",
-
-  image:
-    "/icon-512.png",
-
-  data:
-    payload.data || {},
-
-  dir:
-    "rtl",
-
-  lang:
-    "ar"
+  body: payload.notification?.body || "لديك تحديث جديد لطلبك.",
+  icon: "/icon-512.png",
+  badge: "/notification-badge.png",
+  image: "/icon-512.png",
+  data: payload.data || {},
+  dir: "rtl",
+  lang: "ar"
 };
 
 
