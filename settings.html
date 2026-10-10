@@ -1,221 +1,333 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HYPER TOPUP | إعدادات الحساب</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, sans-serif;
-      -webkit-tap-highlight-color: transparent !important;
-      outline: none !important;
-    }
-    body {
-      background-color: #080d1a;
-      color: #ffffff;
-      padding: 15px 15px 90px;
-      direction: rtl;
-    }
-    .container {
-      max-width: 480px;
-      margin: 0 auto;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#080d1a">
+<meta name="robots" content="noindex">
+<title>HYPER TOPUP | إعدادات الحساب</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080d1a;--card:rgba(15,23,42,.85);--line:rgba(245,200,91,.2);--gold:#f5c85b;--gold2:#ffe49a;--gold3:#d49a32;--mute:#94a3b8;--ok:#34d399;--red:#f87171;--f:'Cairo',Tahoma,Arial,sans-serif;box-sizing:border-box}
+*,*::before,*::after{box-sizing:inherit;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%}
+body{background:var(--bg);color:#fff;font:500 15px/1.7 var(--f);padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(60% 40% at 50% 0%,rgba(245,200,91,.14),transparent),radial-gradient(50% 35% at 100% 40%,rgba(37,99,235,.14),transparent)}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:12px}
+.wrap{width:min(100%,480px);margin:0 auto;padding:12px 16px 40px}
 
-    /* الهيدر العلوي */
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 25px;
-      padding: 5px 0;
-    }
-    .back-btn {
-      color: #f5c85b;
-      text-decoration: none;
-      font-size: 22px;
-      font-weight: bold;
-      background: rgba(244, 201, 93, 0.1);
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(244, 201, 93, 0.2);
-    }
-    .header-title {
-      font-size: 18px;
-      font-weight: bold;
-      color: #ffffff;
-    }
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.top h1{margin:0;font-size:1.1rem;font-weight:800}
+.back,.sp{width:40px;height:40px}
+.back{display:grid;place-items:center;border-radius:50%;background:rgba(245,200,91,.1);border:1px solid var(--line);color:var(--gold)}
+.ic{width:1.3em;height:1.3em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.back .ic{width:22px;height:22px}
 
-    /* كارت الإعدادات */
-    .settings-card {
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid rgba(244, 201, 93, 0.25);
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-    }
+/* hero */
+.hero{text-align:center;margin-bottom:22px;animation:up .6s cubic-bezier(.22,1,.36,1)}
+@keyframes up{from{opacity:0;transform:translateY(14px)}}
+.av{width:94px;height:94px;margin:0 auto 12px;padding:3px;border-radius:50%;background:conic-gradient(var(--gold),#fff6d8,var(--gold3),var(--gold));box-shadow:0 0 34px rgba(245,200,91,.3)}
+.av span{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;background:#0f172a;font:900 2.3rem var(--f);color:var(--gold2)}
+.hero h2{margin:0;font-size:1.3rem;font-weight:900}
+.hero p{margin:2px 0 10px;color:var(--mute);font-size:.88rem;direction:ltr;word-break:break-all}
+.chips{display:flex;justify-content:center;flex-wrap:wrap;gap:8px}
+.chip{padding:4px 12px;border-radius:999px;font-size:.74rem;font-weight:800;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#cbd5e1}
+.chip.ok{background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.4);color:#a7f3d0}
 
-    .form-group {
-      margin-bottom: 18px;
-    }
-    .form-group label {
-      display: block;
-      font-size: 12px;
-      color: #94a3b8;
-      margin-bottom: 6px;
-    }
-    .form-input {
-      width: 100%;
-      padding: 12px 14px;
-      background: rgba(2, 4, 9, 0.6);
-      border: 1px solid rgba(244, 201, 93, 0.2);
-      border-radius: 10px;
-      color: #f5c85b;
-      font-size: 14px;
-      font-weight: 600;
-      text-align: right;
-    }
-    .form-input[readonly] {
-      opacity: 0.85;
-      cursor: not-allowed;
-    }
+/* groups */
+.gt{margin:20px 4px 8px;font-size:.8rem;font-weight:800;color:var(--gold2);letter-spacing:.02em}
+.group{border-radius:20px;background:var(--card);border:1px solid var(--line);overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35);animation:up .6s .08s both cubic-bezier(.22,1,.36,1)}
+.row{display:flex;align-items:center;gap:14px;width:100%;padding:13px 16px;background:none;border:0;border-bottom:1px solid rgba(255,255,255,.06);color:inherit;font:inherit;text-align:right;cursor:pointer;transition:background .2s}
+.row:last-child{border-bottom:0}
+button.row:active,a.row:active{background:rgba(245,200,91,.08)}
+.row.static{cursor:default}
+.ri{flex:none;width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:rgba(245,200,91,.1);border:1px solid var(--line);color:var(--gold)}
+.l{flex:1;min-width:0;display:flex;flex-direction:column;font-size:.76rem;color:var(--mute);line-height:1.5}
+.l b{color:#fff;font-size:.95rem;font-weight:700;word-break:break-all}
+.l b.ltr{direction:ltr;text-align:right}
+.act{color:var(--gold);font-weight:800;font-size:.84rem}
+.go{color:var(--mute);font-size:1.3rem;line-height:1}
+.note{font-size:.8rem;color:var(--mute);padding:4px 0}
+.danger .ri{color:var(--red);background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.35)}
+.danger .l b{color:#fecaca}
 
-    .action-btn {
-      width: 100%;
-      padding: 12px;
-      border-radius: 10px;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-      border: none;
-      transition: all 0.3s ease;
-      margin-top: 10px;
-    }
-    .btn-change-pass {
-      background: transparent;
-      border: 1px solid #f5c85b;
-      color: #f5c85b;
-    }
-    .btn-change-pass:active {
-      background: rgba(244, 201, 93, 0.15);
-    }
+/* skeleton + signed-out */
+.sk{height:92px;border-radius:20px;margin-bottom:12px;background:linear-gradient(100deg,rgba(255,255,255,.04) 30%,rgba(255,255,255,.1) 50%,rgba(255,255,255,.04) 70%) 0 0/200% 100%;animation:shim 1.3s infinite}
+@keyframes shim{to{background-position:-200% 0}}
+.out{padding:34px 20px;text-align:center;border-radius:22px;background:var(--card);border:1px solid var(--line)}
+.out .ri{margin:0 auto 12px;width:56px;height:56px;border-radius:18px}
+.out p{margin:0 0 18px;color:var(--mute)}
 
-    /* رسالة عدم تسجيل الدخول */
-    .not-logged-box {
-      text-align: center;
-      padding: 30px 15px;
-    }
-    .not-logged-box p {
-      color: #94a3b8;
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-    .btn-login-redirect {
-      display: inline-block;
-      background: #f5c85b;
-      color: #000;
-      text-decoration: none;
-      padding: 12px 24px;
-      border-radius: 10px;
-      font-weight: bold;
-      font-size: 13px;
-    }
+/* buttons */
+.b{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;width:100%;height:50px;border:0;border-radius:14px;font:800 .95rem var(--f);cursor:pointer;transition:transform .2s,opacity .2s}
+.b:active{transform:scale(.97)}
+.b:disabled{opacity:.6;cursor:not-allowed}
+.gold{color:#1a1204;background:linear-gradient(135deg,var(--gold3),var(--gold2) 50%,var(--gold3));box-shadow:0 8px 24px rgba(245,200,91,.28)}
+.red{color:#fff;background:linear-gradient(135deg,#dc2626,#f87171)}
+.ghost{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#e2e8f0}
+.b.load .t{opacity:0}
+.b.load::before{content:"";position:absolute;width:22px;height:22px;border-radius:50%;border:3px solid rgba(0,0,0,.25);border-top-color:#000;animation:rot .7s linear infinite}
+.red.load::before{border-color:rgba(255,255,255,.3);border-top-color:#fff}
+@keyframes rot{to{transform:rotate(360deg)}}
 
-    /* الشريط السفلي */
-    .bottom-nav {
-      position: fixed; z-index: 50; left: 0; right: 0; bottom: 0; height: 73px;
-      padding: 5px 8px calc(5px + env(safe-area-inset-bottom));
-      display: grid; grid-template-columns: repeat(3, 1fr); direction: rtl;
-      background: rgba(2, 4, 9, .94); border-top: 1px solid rgba(244, 201, 93, .13);
-      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    }
-    @media (min-width: 600px) {
-      .bottom-nav { left: 50%; right: auto; width: min(100%, 520px); transform: translateX(-50%); border-radius: 20px 20px 0 0; }
-    }
-    .nav-item {
-      text-decoration: none; color: #70798b; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 2px; font-size: 9px; font-weight: 700;
-    }
-    .nav-item.active { color: #f5c85b; text-shadow: 0 0 10px rgba(244, 201, 93, .45); }
-    .nav-icon-svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 2; opacity: 0.7; }
-    .nav-item.active .nav-icon-svg { opacity: 1; }
-  </style>
+/* bottom sheet */
+.ov{position:fixed;inset:0;z-index:100;display:flex;align-items:flex-end;justify-content:center;background:rgba(2,4,9,.7);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;transition:opacity .25s}
+.ov.on{opacity:1}
+.sheet{width:min(100%,480px);padding:10px 22px calc(22px + env(safe-area-inset-bottom));border-radius:28px 28px 0 0;background:#0d1426;border:1px solid var(--line);border-bottom:0;text-align:center;transform:translateY(100%);transition:transform .45s cubic-bezier(.34,1.3,.64,1)}
+.ov.on .sheet{transform:none}
+.grab{width:42px;height:4px;margin:0 auto 16px;border-radius:4px;background:rgba(255,255,255,.2)}
+.sico{width:64px;height:64px;margin:0 auto 12px;display:grid;place-items:center;border-radius:50%}
+.sico .ic{width:30px;height:30px}
+.sico.warn{background:rgba(245,200,91,.12);border:1px solid rgba(245,200,91,.45);color:var(--gold)}
+.sico.ok{background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.5);color:var(--ok)}
+.sico.bad{background:rgba(248,113,113,.12);border:1px solid rgba(248,113,113,.5);color:var(--red)}
+.sheet h4{margin:0 0 6px;font-size:1.15rem;font-weight:900}
+.sheet p{margin:0 0 16px;color:var(--mute);font-size:.9rem;word-break:break-word}
+.inp{width:100%;height:50px;margin:0 0 12px;padding:0 14px;border-radius:14px;border:1px solid var(--line);background:rgba(2,4,9,.6);color:var(--gold2);font:700 1rem var(--f);text-align:right}
+.inp:focus{outline:0;border-color:var(--gold);box-shadow:0 0 0 4px rgba(245,200,91,.14)}
+.err{margin:-4px 0 12px!important;padding:9px 12px;border-radius:12px;background:rgba(248,113,113,.12);border:1px solid rgba(248,113,113,.4);color:#fecaca!important;font-size:.84rem!important;font-weight:700}
+.btns{display:grid;gap:10px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
 
-  <div class="container">
-    <!-- الهيدر -->
-    <div class="header">
-      <a href="account.html" class="back-btn">›</a>
-      <h1 class="header-title">إعدادات الحساب</h1>
-      <div style="width: 36px;"></div>
-    </div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3.5 7.5 8.5 6 8.5-6"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9m-3 3 3 3m-6 0 2 2"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10.5" width="16" height="10" rx="3"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5.5c0 4.4 3 7.6 7 9.5 4-1.9 7-5.1 7-9.5V6z"/><path d="m9 12 2.2 2.2L15.5 10"/></symbol>
+<symbol id="i-out" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5M21 12H9"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+<symbol id="i-back" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+</svg>
 
-    <!-- كارت البيانات -->
-    <div class="settings-card" id="settingsContainer">
-      <!-- سيتم تحميل البيانات هنا ديناميكياً -->
-    </div>
-  </div>
+<div class="wrap">
+<header class="top">
+<a class="back" href="account.html" aria-label="رجوع"><svg class="ic"><use href="#i-back"/></svg></a>
+<h1>إعدادات الحساب</h1>
+<span class="sp"></span>
+</header>
 
-  <!-- الشريط السفلي -->
-  <nav class="bottom-nav">
-    <a class="nav-item" href="HYPER_TOPUP_REVIEWS_PRO_FINAL-1.html">
-      <svg class="nav-icon-svg" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      <span>الرئيسية</span>
-    </a>
-    <a class="nav-item" href="all-products.html">
-      <svg class="nav-icon-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-      <span>المنتجات</span>
-    </a>
-    <a class="nav-item active" href="account.html">
-      <svg class="nav-icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>
-      <span>الحساب</span>
-    </a>
-  </nav>
+<section id="skel"><div class="sk"></div><div class="sk"></div><div class="sk"></div></section>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const container = document.getElementById('settingsContainer');
+<section id="out" class="out" hidden>
+<div class="ri"><svg class="ic"><use href="#i-lock"/></svg></div>
+<p>سجّل دخولك أولاً لإدارة بيانات حسابك.</p>
+<a class="b gold" href="auth.html?next=settings.html"><span>تسجيل الدخول / حساب جديد</span></a>
+</section>
 
-      // فحص بيانات الحساب المخزنة في المتصفح
-      const savedUser = JSON.parse(localStorage.getItem('hyper_user') || 'null');
-      const savedEmail = localStorage.getItem('hyper_user_email');
-      const savedName = localStorage.getItem('hyper_user_name');
+<section id="app" hidden>
+<div class="hero">
+<div class="av"><span id="ini"></span></div>
+<h2 id="hName"></h2>
+<p id="hMail"></p>
+<div class="chips"><span class="chip ok">✓ بريد مُفعّل</span><span class="chip" id="hProv"></span></div>
+</div>
 
-      const name = (savedUser && savedUser.name) || savedName;
-      const email = (savedUser && savedUser.email) || savedEmail;
+<h3 class="gt">معلومات الحساب</h3>
+<div class="group">
+<button class="row" id="rName" type="button">
+<span class="ri"><svg class="ic"><use href="#i-user"/></svg></span>
+<span class="l">الاسم الكامل<b id="vName"></b></span>
+<span class="act">تعديل</span>
+</button>
+<div class="row static">
+<span class="ri"><svg class="ic"><use href="#i-mail"/></svg></span>
+<span class="l">البريد الإلكتروني المسجل<b class="ltr" id="vMail"></b></span>
+<svg class="ic" style="color:var(--mute)"><use href="#i-lock"/></svg>
+</div>
+<div class="row static">
+<span class="ri"><svg class="ic"><use href="#i-cal"/></svg></span>
+<span class="l">تاريخ الانضمام<b id="vJoin"></b></span>
+</div>
+<div class="row static">
+<span class="ri"><svg class="ic"><use href="#i-clock"/></svg></span>
+<span class="l">آخر تسجيل دخول<b id="vLast"></b></span>
+</div>
+</div>
 
-      // لو الحساب غير مسجل خروج وهناك بيانات للمستخدم
-      if (name || email) {
-        container.innerHTML = `
-          <div class="form-group">
-            <label>الاسم بالكامل</label>
-            <input type="text" class="form-input" value="${name || 'غير محدد'}" readonly>
-          </div>
+<h3 class="gt">الأمان</h3>
+<div class="group">
+<button class="row" id="rPass" type="button">
+<span class="ri"><svg class="ic"><use href="#i-key"/></svg></span>
+<span class="l">كلمة السر<b>••••••••</b></span>
+<span class="act">تغيير</span>
+</button>
+<div class="row static" id="rGoogle" hidden>
+<span class="ri"><svg class="ic"><use href="#i-shield"/></svg></span>
+<span class="l">تسجيل الدخول عبر Google<b>حسابك محمي بـ Google ولا يحتاج كلمة سر</b></span>
+</div>
+</div>
 
-          <div class="form-group">
-            <label>البريد الإلكتروني</label>
-            <input type="email" class="form-input" value="${email || 'غير محدد'}" readonly>
-          </div>
+<h3 class="gt">المساعدة</h3>
+<div class="group">
+<a class="row" href="support.html"><span class="ri"><svg class="ic"><use href="#i-help"/></svg></span><span class="l"><b>الدعم الفني</b></span><span class="go">‹</span></a>
+<a class="row" href="privacy.html"><span class="ri"><svg class="ic"><use href="#i-shield"/></svg></span><span class="l"><b>سياسة الخصوصية</b></span><span class="go">‹</span></a>
+</div>
 
-          <button class="action-btn btn-change-pass" onclick="alert('خاصية تغيير كلمة السر ستكون متاحة قريباً')">تغيير كلمة السر</button>
-        `;
-      } else {
-        // لو الحساب عامل تسجيل خروج
-        container.innerHTML = `
-          <div class="not-logged-box">
-            <p>أنت غير مسجل الدخول حالياً 🔒</p>
-            <a href="account.html" class="btn-login-redirect">تسجيل الدخول / حساب جديد</a>
-          </div>
-        `;
-      }
-    });
-  </script>
+<div class="group danger" style="margin-top:20px">
+<button class="row" id="rOut" type="button"><span class="ri"><svg class="ic"><use href="#i-out"/></svg></span><span class="l"><b>تسجيل الخروج</b></span></button>
+</div>
+</section>
+</div>
+
+<div class="ov" id="ov" hidden>
+<div class="sheet" role="dialog" aria-modal="true" aria-labelledby="shTitle">
+<div class="grab"></div>
+<div class="sico warn" id="shIcon"></div>
+<h4 id="shTitle"></h4>
+<p id="shText"></p>
+<input class="inp" id="shInput" maxlength="40" autocomplete="name" hidden>
+<p class="err" id="shErr" hidden></p>
+<div class="btns">
+<button class="b gold" id="shOk" type="button"><span class="t"></span></button>
+<button class="b ghost" id="shNo" type="button">إلغاء</button>
+</div>
+</div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, sendPasswordResetEmail, updateProfile, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+const app = initializeApp({
+apiKey: "AIzaSyAQnlfsncuDN2iK3VV_rEQvg4GIisWr7oc",
+authDomain: "hyper-topup-59844.firebaseapp.com",
+projectId: "hyper-topup-59844",
+storageBucket: "hyper-topup-59844.firebasestorage.app",
+messagingSenderId: "683467344388",
+appId: "1:683467344388:web:5b32652c913051d4790351",
+measurementId: "G-F7E53L2PFN"
+});
+const auth = getAuth(app);
+auth.languageCode = 'ar';
+
+const $ = (id) => document.getElementById(id);
+const LS = {
+get(k){ try{ return localStorage.getItem(k); }catch(_){ return null; } },
+set(k,v){ try{ localStorage.setItem(k,v); }catch(_){} },
+del(k){ try{ localStorage.removeItem(k); }catch(_){} }
+};
+const T = (p, ms = 20000) => Promise.race([p, new Promise((_, rej) => setTimeout(() => rej({ code: 'x/timeout' }), ms))]);
+const errText = (e) => ({
+'auth/too-many-requests': 'محاولات كثيرة، حاول مرة أخرى بعد قليل',
+'auth/network-request-failed': 'تأكد من اتصالك بالإنترنت',
+'auth/requires-recent-login': 'لأسباب أمنية سجّل دخولك مرة أخرى ثم أعد المحاولة',
+'x/timeout': 'الاتصال بطيء، حاول مرة أخرى'
+}[e && e.code] || 'تعذّر إتمام العملية، حاول مرة أخرى');
+const fmtDate = (d) => { try { return new Date(d).toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' }); } catch (_) { return '—'; } };
+const fmtTime = (d) => { try { return new Date(d).toLocaleString('ar-EG', { dateStyle: 'medium', timeStyle: 'short' }); } catch (_) { return '—'; } };
+const valid = (u) => u && (u.emailVerified || u.providerData.some(p => p.providerId !== 'password'));
+
+let cur = null;
+
+/* ---------- عرض البيانات (textContent فقط) ---------- */
+function render(u){
+const name = u.displayName || 'مستخدم هايبر';
+const ids = u.providerData.map(p => p.providerId);
+const hasPw = ids.includes('password'), hasG = ids.includes('google.com');
+$('hName').textContent = name; $('vName').textContent = name;
+$('hMail').textContent = u.email || ''; $('vMail').textContent = u.email || '';
+$('ini').textContent = (name.trim().charAt(0) || 'H').toUpperCase();
+$('hProv').textContent = hasG && !hasPw ? 'حساب Google' : 'بريد وكلمة سر';
+$('rPass').hidden = !hasPw; $('rGoogle').hidden = hasPw;
+$('vJoin').textContent = fmtDate(u.metadata.creationTime);
+$('vLast').textContent = fmtTime(u.metadata.lastSignInTime);
+LS.set('hyper_user', JSON.stringify({ name, email: u.email }));
+$('skel').hidden = true; $('out').hidden = true; $('app').hidden = false;
+}
+
+onAuthStateChanged(auth, (u) => {
+cur = u;
+if (valid(u)) render(u);
+else { LS.del('hyper_user'); $('skel').hidden = true; $('app').hidden = true; $('out').hidden = false; }
+});
+
+/* ---------- النافذة السفلية ---------- */
+let run = null;
+const ico = (id) => '<svg class="ic"><use href="#' + id + '"/></svg>';
+function sheet(o){
+const i = $('shIcon'); i.className = 'sico ' + (o.kind || 'warn'); i.innerHTML = ico(o.icon);
+$('shTitle').textContent = o.title; $('shText').textContent = o.text;
+const inp = $('shInput'); inp.hidden = !o.input;
+if (o.input) { inp.value = o.input.value || ''; inp.placeholder = o.input.ph || ''; }
+$('shErr').hidden = true;
+$('shOk').className = 'b ' + (o.danger ? 'red' : 'gold');
+$('shOk').querySelector('.t').textContent = o.ok;
+$('shNo').hidden = false;
+run = o.run;
+$('ov').hidden = false;
+requestAnimationFrame(() => $('ov').classList.add('on'));
+if (o.input) setTimeout(() => inp.focus(), 300);
+}
+function closeSheet(){ $('ov').classList.remove('on'); setTimeout(() => { $('ov').hidden = true; }, 250); run = null; }
+function done(r){
+const i = $('shIcon'); i.className = 'sico ok'; i.innerHTML = ico('i-check');
+$('shTitle').textContent = r.title; $('shText').textContent = r.text;
+$('shInput').hidden = true; $('shErr').hidden = true; $('shNo').hidden = true;
+$('shOk').className = 'b gold'; $('shOk').querySelector('.t').textContent = 'تم';
+run = null;
+}
+$('shNo').onclick = closeSheet;
+$('ov').addEventListener('click', (e) => { if (e.target.id === 'ov') closeSheet(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('ov').hidden) closeSheet(); });
+$('shOk').onclick = async () => {
+if (!run) return closeSheet();
+const b = $('shOk'); b.classList.add('load'); b.disabled = true; $('shErr').hidden = true;
+try {
+const r = await run($('shInput').value.trim());
+if (r) done(r); else closeSheet();
+} catch (e) { $('shErr').textContent = e.message || 'حدث خطأ'; $('shErr').hidden = false; }
+b.classList.remove('load'); b.disabled = false;
+};
+
+/* ---------- تعديل الاسم ---------- */
+$('rName').onclick = () => sheet({
+kind: 'warn', icon: 'i-user', title: 'تعديل الاسم',
+text: 'اكتب الاسم الذي تريد أن يظهر في حسابك.', ok: 'حفظ',
+input: { value: cur.displayName || '', ph: 'الاسم بالكامل' },
+run: async (v) => {
+if (v.length < 2 || v.length > 40) throw new Error('الاسم يجب أن يكون بين 2 و 40 حرفاً');
+try { await T(updateProfile(cur, { displayName: v })); } catch (e) { throw new Error(errText(e)); }
+render(cur);
+return { title: 'تم الحفظ', text: 'تم تحديث اسم حسابك بنجاح.' };
+}
+});
+
+/* ---------- تغيير كلمة السر (برابط على البريد) ---------- */
+$('rPass').onclick = () => sheet({
+kind: 'warn', icon: 'i-key', title: 'تغيير كلمة السر',
+text: 'هل أنت متأكد أنك تريد تغيير كلمة سر الحساب؟ سنرسل رابطاً آمناً إلى ' + (cur.email || '') + ' لتختار منه كلمة سر جديدة.',
+ok: 'نعم، أرسل الرابط',
+run: async () => {
+const wait = 60000 - (Date.now() - (+LS.get('pw_reset_at') || 0));
+if (wait > 0) throw new Error('انتظر ' + Math.ceil(wait / 1000) + ' ثانية قبل طلب رابط جديد');
+try { await T(sendPasswordResetEmail(auth, cur.email)); } catch (e) { throw new Error(errText(e)); }
+LS.set('pw_reset_at', String(Date.now()));
+return { title: 'تم إرسال الرابط', text: 'أرسلنا رابط تغيير كلمة السر إلى ' + cur.email + '. افتح الرسالة واتبع الرابط، وراجع صندوق Spam إن لم تجدها.' };
+}
+});
+
+/* ---------- تسجيل الخروج ---------- */
+$('rOut').onclick = () => sheet({
+kind: 'bad', icon: 'i-out', title: 'تسجيل الخروج',
+text: 'هل تريد تسجيل الخروج من حسابك على هذا الجهاز؟', ok: 'تسجيل الخروج', danger: true,
+run: async () => {
+['hyper_user', 'hyper_user_logged', 'hyper_user_email', 'hyper_user_name'].forEach((k) => LS.del(k));
+try { await signOut(auth); } catch (_) {}
+location.href = 'account.html';
+}
+});
+</script>
 </body>
 </html>
