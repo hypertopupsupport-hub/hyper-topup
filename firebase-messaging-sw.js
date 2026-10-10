@@ -1,3 +1,4 @@
+
 importScripts(
   "https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"
 );
@@ -17,86 +18,32 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging();
 
-messaging.onBackgroundMessage(function(payload) {
+// لا تعرض إشعارًا يدويًا هنا؛ رسائل notification
+// يعرضها Firebase تلقائيًا عندما يكون الموقع في الخلفية.
 
-  console.log(
-    "[firebase-messaging-sw.js] Background message:",
-    payload
-  );
+self.addEventListener("notificationclick", function(event) {
+  event.notification.close();
 
-  const notificationTitle =
-    payload.notification?.title ||
-    "HYPER TOPUP";
+  const targetUrl =
+    "https://hypertopup.online/account.html";
 
-  
-const notificationOptions = {
-  body: payload.notification?.body || "لديك تحديث جديد لطلبك.",
-  icon: "/icon-512.png",
-  badge: "/notification-badge.png",
-  data: payload.data || {},
-  dir: "rtl",
-  lang: "ar"
-};
-
-
-  self.registration.showNotification(
-    notificationTitle,
-    notificationOptions
-  );
-
-});
-
-
-self.addEventListener(
-  "notificationclick",
-  function(event) {
-
-    event.notification.close();
-
-    const targetUrl =
-      "https://hypertopup.online/account.html";
-
-
-    event.waitUntil(
-
-      clients.matchAll({
-        type: "window",
-        includeUncontrolled: true
-      })
-
-      .then(function(clientList) {
-
-        for (
-          const client of clientList
-        ) {
-
-          if (
-            client.url.includes(
-              "hypertopup.online"
-            ) &&
-            "focus" in client
-          ) {
-
-            return client.focus();
-
-          }
-
-        }
-
-
+  event.waitUntil(
+    clients.matchAll({
+      type: "window",
+      includeUncontrolled: true
+    }).then(function(clientList) {
+      for (const client of clientList) {
         if (
-          clients.openWindow
+          client.url.includes("hypertopup.online") &&
+          "focus" in client
         ) {
-
-          return clients.openWindow(
-            targetUrl
-          );
-
+          return client.focus();
         }
+      }
 
-      })
-
-    );
-
-  }
-);
+      if (clients.openWindow) {
+        return clients.openWindow(targetUrl);
+      }
+    })
+  );
+});
