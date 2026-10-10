@@ -101,7 +101,8 @@ form.signup .forgot{display:none}
 
 /* stepper */
 .steps{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:18px;font-size:.72rem;color:var(--mute)}
-.steps[hidden]{display:none}
+[hidden]{display:none!important}
+a.link{display:inline-block;margin-bottom:10px}
 .steps span{display:flex;align-items:center;gap:6px;font-weight:700}
 .steps b{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;border:1px solid rgba(255,255,255,.25);font-size:.72rem}
 .steps .done b,.steps .act b{background:linear-gradient(135deg,var(--gold2),var(--gold3));border-color:transparent;color:#1a1204}
@@ -198,6 +199,7 @@ h2{margin:0 0 6px;font-size:1.4rem;font-weight:900;color:var(--gold2)}
 <li>لم تصلك؟ راجع صندوق الرسائل غير المرغوبة (Spam).</li>
 <li>بعد التفعيل سيتم تحويلك تلقائياً.</li>
 </ul>
+<a class="link" id="gm" href="https://mail.google.com/mail/u/0/#search/firebaseapp" target="_blank" rel="noopener" hidden>افتح Gmail وابحث عن الرسالة</a>
 <p class="msg" id="vMsg" role="alert"></p>
 <div class="stack">
 <button class="btn gold" id="check" type="button"><span class="t">فعّلت الحساب، تحقق الآن</span></button>
@@ -331,7 +333,7 @@ return m[e && e.code] || 'حدث خطأ غير متوقع، حاول مرة أخ
 
 /* ---------- تفعيل البريد ---------- */
 async function sendVerif(user){
-try { await sendEmailVerification(user, { url: location.origin + '/auth.html?verified=1' }); }
+try { await sendEmailVerification(user, { url: location.origin + location.pathname + '?verified=1' }); }
 catch (e) {
 if (e.code === 'auth/unauthorized-continue-uri' || e.code === 'auth/invalid-continue-uri') await sendEmailVerification(user);
 else throw e;
@@ -358,6 +360,7 @@ else if (!silent) say($('vMsg'), 'لم يتم التفعيل بعد. افتح ا
 function startVerify(user, sent){
 LS.del('hyper_user');
 $('vEmail').textContent = user.email;
+$('gm').hidden = !/@gmail\.com$/i.test(user.email || '');
 say($('vMsg'), '');
 show('vVerify');
 startCooldown(sent ? 60 : 0);
@@ -368,7 +371,7 @@ $('check').onclick = async () => { if (busy) return; loading($('check'), true); 
 $('resend').onclick = async () => {
 const u = auth.currentUser; if (!u || $('resend').disabled) return;
 try { await T(sendVerif(u)); say($('vMsg'), 'تم إرسال رابط جديد إلى بريدك', 'ok'); startCooldown(60); }
-catch (e) { say($('vMsg'), errMsg(e), 'err'); }
+catch (e) { say($('vMsg'), errMsg(e) + (e && e.code ? ' (' + e.code + ')' : ''), 'err'); }
 };
 $('change').onclick = async () => {
 clearInterval(poll); clearInterval(cd);
@@ -405,10 +408,11 @@ if (mode === 'signup') {
 const r = await T(createUserWithEmailAndPassword(auth, email, pass));
 fresh = true;
 try { await T(updateProfile(r.user, { displayName: fn + ' ' + ln })); } catch (_) {}
-let sent = true;
-try { await T(sendVerif(r.user)); } catch (_) { sent = false; }
+let sent = true, why = '';
+try { await T(sendVerif(r.user)); } catch (x) { sent = false; why = x && x.code ? ' (' + x.code + ')' : ''; }
 startVerify(r.user, sent);
-if (!sent) say($('vMsg'), 'تم إنشاء حسابك، لكن تعذّر إرسال الرابط الآن. اضغط "إعادة إرسال الرابط".', 'err');
+if (sent) say($('vMsg'), 'تم إرسال رابط التفعيل بنجاح. قد يصل خلال دقيقة، وراجع صندوق Spam.', 'ok');
+else say($('vMsg'), 'تم إنشاء حسابك، لكن تعذّر إرسال الرابط' + why + '. اضغط "إعادة إرسال الرابط".', 'err');
 } else {
 const r = await T(signInWithEmailAndPassword(auth, email, pass));
 if (needsVerify(r.user)) startVerify(r.user, false); else finish(r.user);
@@ -447,6 +451,7 @@ if (!u) { LS.del('hyper_user'); return; }
 if (needsVerify(u)) startVerify(u, false); else finish(u);
 });
 if (new URLSearchParams(location.search).get('mode') === 'signup') setMode('signup');
+if (new URLSearchParams(location.search).get('verified') === '1') say($('msg'), 'تم تفعيل بريدك بنجاح. سجّل دخولك للمتابعة.', 'ok');
 if (!/^https?:$/.test(location.protocol)) say($('msg'), 'أنت تفتح الصفحة كملف على الهاتف. افتحها من موقعك (hypertopup.online/auth.html) ليعمل التسجيل.', 'err');
 </script>
 </body>
