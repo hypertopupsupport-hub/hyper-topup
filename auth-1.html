@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#060a16">
+<meta name="robots" content="noindex">
+<title>تسجيل الدخول | HYPER TOPUP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<style>
+@property --a{syntax:'<angle>';initial-value:0deg;inherits:false}
+:root{--gold:#f4c95d;--gold2:#ffe49a;--gold3:#d49a32;--ink:#f6f1e4;--mute:#a9aec6;--err:#f87171;--ok:#34e39a;--f:'Cairo',Tahoma,Arial,sans-serif;--d:'Orbitron',Impact,sans-serif;--ease:cubic-bezier(.22,1,.36,1);box-sizing:border-box}
+*,*::before,*::after{box-sizing:inherit}
+html,body{margin:0;min-height:100%}
+body{background:#060a16;color:var(--ink);font:500 15px/1.7 var(--f);overflow-x:hidden;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:12px}
+
+/* background */
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:radial-gradient(70% 45% at 50% 0%,#14264a,transparent),linear-gradient(180deg,#0a1226,#060a16)}
+.bg i{position:absolute;border-radius:50%;filter:blur(70px);animation:fl 16s ease-in-out infinite alternate}
+.bg i:nth-child(1){width:340px;height:340px;background:#f4c95d;top:-110px;right:-100px;opacity:.2}
+.bg i:nth-child(2){width:300px;height:300px;background:#2563eb;bottom:6%;left:-120px;opacity:.38;animation-delay:-5s}
+.bg i:nth-child(3){width:260px;height:260px;background:#38bdf8;bottom:-90px;right:10%;opacity:.2;animation-delay:-9s}
+@keyframes fl{to{transform:translate3d(30px,-40px,0) scale(1.15)}}
+.bg::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 30%,#000 20%,transparent 75%)}
+
+.shell{width:min(100%,440px);margin:0 auto;padding:16px 18px 34px}
+.back{display:inline-flex;padding:7px 15px;border:1px solid rgba(244,201,93,.25);border-radius:999px;background:rgba(255,255,255,.05);color:var(--gold2);font-weight:800;font-size:.82rem}
+.brand{text-align:center;margin:14px 0 22px}
+.mark{position:relative;width:78px;height:78px;margin:0 auto 12px;display:grid;place-items:center;border-radius:50%;border:2px solid var(--gold);box-shadow:0 0 30px rgba(244,201,93,.4),inset 0 0 18px rgba(244,201,93,.18);font:900 32px var(--d);color:var(--gold2);text-shadow:0 0 14px rgba(244,201,93,.6)}
+.mark::before{content:"";position:absolute;inset:-9px;border-radius:50%;border:1px dashed rgba(244,201,93,.45);animation:rot 22s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+.brand b{display:block;font:900 1.25rem var(--d);letter-spacing:.16em;direction:ltr}
+.brand em{font-style:normal;color:var(--gold)}
+.brand p{margin:6px 0 0;color:var(--mute);font-size:.92rem}
+
+/* card */
+.card{position:relative;padding:22px 20px 20px;border-radius:28px;background:linear-gradient(160deg,rgba(255,255,255,.1),rgba(255,255,255,.03));-webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px);box-shadow:0 30px 70px rgba(0,0,0,.55),0 0 50px rgba(244,201,93,.1)}
+.card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--a),rgba(244,201,93,.12) 0 55%,var(--gold) 80%,rgba(244,201,93,.12));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:spin 7s linear infinite;pointer-events:none}
+@keyframes spin{to{--a:360deg}}
+.card.shake{animation:shake .45s}
+@keyframes shake{20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+.view{display:none}
+.view.on{display:block;animation:in .55s var(--ease)}
+@keyframes in{from{opacity:0;transform:translateY(14px) scale(.985)}}
+
+/* tabs */
+.tabs{position:relative;display:grid;grid-template-columns:1fr 1fr;padding:5px;margin-bottom:20px;border-radius:16px;background:rgba(6,10,22,.62);border:1px solid rgba(255,255,255,.1)}
+.tabs button{position:relative;z-index:1;padding:10px;border:0;background:none;color:var(--mute);font-weight:800;font-size:.92rem;cursor:pointer;transition:color .3s}
+.tabs button.on{color:#1a1204}
+.pill{position:absolute;top:5px;bottom:5px;right:5px;width:calc(50% - 5px);border-radius:12px;background:linear-gradient(135deg,var(--gold3),var(--gold2) 50%,var(--gold3));box-shadow:0 6px 18px rgba(244,201,93,.35);transition:transform .5s cubic-bezier(.34,1.4,.64,1)}
+.tabs[data-mode=signup] .pill{transform:translateX(-100%)}
+
+/* fields */
+.fld{position:relative;margin-bottom:12px}
+.fld input{width:100%;height:56px;padding:20px 46px 6px 46px;border-radius:16px;border:1px solid rgba(255,255,255,.14);background:rgba(6,10,22,.62);color:#fff;font:600 15px var(--f);direction:ltr;text-align:right;transition:border-color .25s,box-shadow .25s}
+.fld input:focus{outline:0;border-color:var(--gold);box-shadow:0 0 0 4px rgba(244,201,93,.14)}
+.fld label{position:absolute;right:46px;top:15px;color:var(--mute);pointer-events:none;transform-origin:right;transition:transform .25s var(--ease),color .25s}
+.fld input:focus+label,.fld input:not(:placeholder-shown)+label{transform:translateY(-10px) scale(.78);color:var(--gold2)}
+.ic{position:absolute;right:15px;top:17px;width:20px;height:20px;stroke:var(--mute);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke .25s;pointer-events:none}
+.fld input:focus~.ic{stroke:var(--gold)}
+.eye{position:absolute;left:6px;top:8px;width:40px;height:40px;border:0;background:none;color:var(--mute);cursor:pointer;display:grid;place-items:center}
+.eye svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.row2{display:none;grid-template-columns:1fr 1fr;gap:10px}
+.row2 .fld input{padding:20px 14px 6px;direction:rtl}
+.row2 .fld label{right:14px}
+form.signup .row2{display:grid}
+.str{display:none;gap:5px;margin:-2px 2px 12px}
+form.signup .str{display:flex}
+.str i{flex:1;height:4px;border-radius:4px;background:rgba(255,255,255,.12);transition:background .3s}
+.str[data-s="1"] i:nth-child(1){background:#f87171}
+.str[data-s="2"] i:nth-child(-n+2){background:#ffb347}
+.str[data-s="3"] i:nth-child(-n+3){background:#e6e04a}
+.str[data-s="4"] i{background:var(--ok)}
+.forgot{display:block;margin:-2px 2px 14px;text-align:left;color:var(--gold2);font-size:.82rem;font-weight:700;background:none;border:0;cursor:pointer;padding:0;width:100%}
+form.signup .forgot{display:none}
+.msg{display:none;margin:0 0 12px;padding:10px 14px;border-radius:12px;font-size:.85rem;font-weight:700}
+.msg.show{display:block}
+.msg.err{background:rgba(248,113,113,.12);border:1px solid rgba(248,113,113,.4);color:#fecaca}
+.msg.ok{background:rgba(52,227,154,.1);border:1px solid rgba(52,227,154,.4);color:#b8ffe0}
+
+/* buttons */
+.btn{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:9px;width:100%;height:54px;border:0;border-radius:16px;font:800 1rem var(--f);cursor:pointer;transition:transform .25s,box-shadow .25s,opacity .25s}
+.btn:active{transform:scale(.97)}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.gold{color:#1a1204;background:linear-gradient(135deg,var(--gold3),var(--gold2) 50%,var(--gold3));box-shadow:0 10px 30px rgba(244,201,93,.35),inset 0 1px 0 rgba(255,255,255,.5)}
+.gold::after{content:"";position:absolute;top:0;bottom:0;width:60px;left:-80px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:sh 3.6s infinite}
+@keyframes sh{40%,100%{left:120%}}
+.goog{background:#fff;color:#1b1b1b}
+.ghost{height:46px;background:rgba(255,255,255,.06);border:1px solid rgba(244,201,93,.28);color:var(--gold2)}
+.btn.load .t{opacity:0}
+.btn.load::before{content:"";position:absolute;width:22px;height:22px;border-radius:50%;border:3px solid rgba(26,18,4,.25);border-top-color:#1a1204;animation:rot .7s linear infinite;z-index:2}
+.or{display:flex;align-items:center;gap:12px;margin:16px 0;color:var(--mute);font-size:.8rem}
+.or::before,.or::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.14)}
+.legal{margin:14px 0 0;text-align:center;color:var(--mute);font-size:.76rem}
+.legal a{color:var(--gold2);font-weight:700}
+
+/* stepper */
+.steps{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:18px;font-size:.72rem;color:var(--mute)}
+.steps[hidden]{display:none}
+.steps span{display:flex;align-items:center;gap:6px;font-weight:700}
+.steps b{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;border:1px solid rgba(255,255,255,.25);font-size:.72rem}
+.steps .done b,.steps .act b{background:linear-gradient(135deg,var(--gold2),var(--gold3));border-color:transparent;color:#1a1204}
+.steps .act,.steps .done{color:var(--gold2)}
+.steps hr{width:22px;height:1px;border:0;background:rgba(255,255,255,.2);margin:0}
+
+/* verify / done */
+.center{text-align:center}
+.env{position:relative;width:92px;height:92px;margin:4px auto 16px;display:grid;place-items:center;border-radius:50%;background:rgba(244,201,93,.1);border:1px solid rgba(244,201,93,.4);color:var(--gold2)}
+.env svg{width:40px;height:40px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.env::before,.env::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--gold);opacity:0;animation:ring 2.6s infinite}
+.env::after{animation-delay:1.3s}
+@keyframes ring{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.7);opacity:0}}
+.ok .env{background:rgba(52,227,154,.12);border-color:rgba(52,227,154,.5);color:var(--ok)}
+.ok .env::before,.ok .env::after{border-color:var(--ok)}
+h2{margin:0 0 6px;font-size:1.4rem;font-weight:900;color:var(--gold2)}
+.sub{margin:0 auto 14px;max-width:32ch;color:var(--mute);font-size:.9rem}
+.mail{display:inline-block;direction:ltr;margin:0 0 14px;padding:8px 16px;border-radius:999px;background:rgba(244,201,93,.1);border:1px solid rgba(244,201,93,.35);color:var(--gold2);font-weight:800;font-size:.9rem;word-break:break-all}
+.tips{margin:0 0 16px;padding:12px 14px;list-style:none;border-radius:16px;background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.16);text-align:right;font-size:.82rem;color:var(--mute)}
+.tips li{padding:3px 0 3px 0}
+.tips li::before{content:"•";color:var(--gold);margin-left:8px}
+.stack{display:grid;gap:10px}
+.link{background:none;border:0;color:var(--mute);font-size:.82rem;font-weight:700;cursor:pointer;text-decoration:underline;padding:6px}
+
+.trust{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;margin:20px 0 0;padding:0;list-style:none;color:var(--mute);font-size:.76rem}
+.trust li::before{content:"✓";color:var(--ok);margin-left:6px;font-weight:900}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="bg"><i></i><i></i><i></i></div>
+
+<main class="shell">
+<a class="back" href="index.html">‹ الرئيسية</a>
+
+<header class="brand">
+<div class="mark">H</div>
+<b>HYPER<em>TOPUP</em></b>
+<p id="tag">أهلاً بعودتك، سجّل دخولك للمتابعة</p>
+</header>
+
+<section class="card" id="card">
+<div class="steps" id="steps" hidden>
+<span class="done"><b>✓</b>بياناتك</span><hr>
+<span id="st2" class="act"><b>2</b>التفعيل</span><hr>
+<span id="st3"><b>3</b>تم</span>
+</div>
+
+<!-- تسجيل / حساب جديد -->
+<div class="view on" id="vAuth">
+<div class="tabs" id="tabs" data-mode="signin">
+<i class="pill"></i>
+<button type="button" data-m="signin" class="on">تسجيل الدخول</button>
+<button type="button" data-m="signup">حساب جديد</button>
+</div>
+
+<form id="fAuth" novalidate>
+<div class="row2">
+<div class="fld"><input id="fn" type="text" placeholder=" " autocomplete="given-name"><label for="fn">الاسم الأول</label></div>
+<div class="fld"><input id="ln" type="text" placeholder=" " autocomplete="family-name"><label for="ln">الاسم الأخير</label></div>
+</div>
+<div class="fld">
+<input id="email" type="email" placeholder=" " autocomplete="username" inputmode="email">
+<label for="email">البريد الإلكتروني</label>
+<svg class="ic" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3.5 7.5 8.5 6 8.5-6"/></svg>
+</div>
+<div class="fld">
+<input id="pass" type="password" placeholder=" " autocomplete="current-password">
+<label for="pass">كلمة السر</label>
+<svg class="ic" viewBox="0 0 24 24"><rect x="4" y="10.5" width="16" height="10" rx="3"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>
+<button class="eye" type="button" id="eye" aria-label="إظهار كلمة السر"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+</div>
+<div class="str" id="str" data-s="0"><i></i><i></i><i></i><i></i></div>
+<button type="button" class="forgot" id="forgotLink">نسيت كلمة السر؟</button>
+<p class="msg" id="msg" role="alert"></p>
+<button class="btn gold" id="go" type="submit"><span class="t" id="goT">تسجيل الدخول</span></button>
+<div class="or"><span>أو</span></div>
+<button class="btn goog" id="google" type="button">
+<svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+المتابعة باستخدام Google
+</button>
+<p class="legal">بالمتابعة أنت توافق على <a href="terms.html">الشروط والأحكام</a> و<a href="privacy.html">سياسة الخصوصية</a></p>
+</form>
+</div>
+
+<!-- تفعيل البريد -->
+<div class="view center" id="vVerify">
+<div class="env"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3.5 7.5 8.5 6 8.5-6"/></svg></div>
+<h2>تحقق من بريدك الإلكتروني</h2>
+<p class="sub">أرسلنا رابط التفعيل إلى</p>
+<div class="mail" id="vEmail"></div>
+<ul class="tips">
+<li>افتح الرسالة واضغط على رابط التفعيل.</li>
+<li>لم تصلك؟ راجع صندوق الرسائل غير المرغوبة (Spam).</li>
+<li>بعد التفعيل سيتم تحويلك تلقائياً.</li>
+</ul>
+<p class="msg" id="vMsg" role="alert"></p>
+<div class="stack">
+<button class="btn gold" id="check" type="button"><span class="t">فعّلت الحساب، تحقق الآن</span></button>
+<button class="btn ghost" id="resend" type="button">إعادة إرسال الرابط</button>
+<button class="link" id="change" type="button">تغيير البريد الإلكتروني</button>
+</div>
+</div>
+
+<!-- نسيت كلمة السر -->
+<div class="view center" id="vForgot">
+<div class="env"><svg viewBox="0 0 24 24"><rect x="4" y="10.5" width="16" height="10" rx="3"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg></div>
+<h2>استعادة كلمة السر</h2>
+<p class="sub">اكتب بريدك وسنرسل لك رابطاً لإنشاء كلمة سر جديدة.</p>
+<form id="fForgot" novalidate>
+<div class="fld"><input id="femail" type="email" placeholder=" " autocomplete="email" inputmode="email"><label for="femail">البريد الإلكتروني</label>
+<svg class="ic" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3.5 7.5 8.5 6 8.5-6"/></svg></div>
+<p class="msg" id="fMsg" role="alert"></p>
+<div class="stack">
+<button class="btn gold" id="fGo" type="submit"><span class="t">إرسال الرابط</span></button>
+<button class="link" id="fBack" type="button">الرجوع لتسجيل الدخول</button>
+</div>
+</form>
+</div>
+
+<!-- تم -->
+<div class="view center ok" id="vDone">
+<div class="env"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div>
+<h2 style="color:#b8ffe0">تم بنجاح</h2>
+<p class="sub" id="doneT">جارٍ تحويلك الآن…</p>
+<a class="btn gold" id="doneGo" href="index.html"><span class="t">المتابعة</span></a>
+</div>
+</section>
+
+<ul class="trust">
+<li>اتصال مشفّر</li>
+<li>لا نطلب كلمة سر اللعبة أبداً</li>
+<li>بياناتك محمية</li>
+</ul>
+</main>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import {
+getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged,
+updateProfile, GoogleAuthProvider, signInWithPopup, sendEmailVerification,
+sendPasswordResetEmail, signOut, deleteUser
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+const app = initializeApp({
+apiKey: "AIzaSyAQnlfsncuDN2iK3VV_rEQvg4GIisWr7oc",
+authDomain: "hyper-topup-59844.firebaseapp.com",
+projectId: "hyper-topup-59844",
+storageBucket: "hyper-topup-59844.firebasestorage.app",
+messagingSenderId: "683467344388",
+appId: "1:683467344388:web:5b32652c913051d4790351",
+measurementId: "G-F7E53L2PFN"
+});
+const auth = getAuth(app);
+auth.languageCode = 'ar';
+
+const $ = (id) => document.getElementById(id);
+const NEXT = (() => {
+const n = new URLSearchParams(location.search).get('next');
+return n && /^[\w\-.]+\.html(\?[\w=&%\-.]*)?$/.test(n) ? n : 'index.html';
+})();
+const LS = { set(k,v){ try{ localStorage.setItem(k,v); }catch(_){} }, del(k){ try{ localStorage.removeItem(k); }catch(_){} } };
+const T = (p, ms = 20000) => Promise.race([p, new Promise((_, rej) => setTimeout(() => rej({ code: 'x/timeout' }), ms))]);
+let mode = 'signin', busy = false, poll = null, cd = null, fresh = false, boot = true;
+
+/* ---------- واجهة ---------- */
+function show(id){
+document.querySelectorAll('.view').forEach(v => v.classList.toggle('on', v.id === id));
+$('steps').hidden = !(id === 'vVerify' || id === 'vDone');
+$('st2').className = id === 'vDone' ? 'done' : 'act';
+$('st3').className = id === 'vDone' ? 'act' : '';
+const tags = {
+vAuth: mode === 'signup' ? 'أنشئ حسابك في ثوانٍ' : 'أهلاً بعودتك، سجّل دخولك للمتابعة',
+vVerify: 'خطوة أخيرة لتأمين حسابك',
+vForgot: 'سنساعدك على استعادة حسابك',
+vDone: 'مرحباً بك في HYPER TOPUP'
+};
+$('tag').textContent = tags[id];
+}
+function say(el, text, type){ el.textContent = text || ''; el.className = 'msg' + (text ? ' show ' + type : ''); }
+function fail(text, el){
+say(el || $('msg'), text, 'err');
+const c = $('card'); c.classList.remove('shake'); void c.offsetWidth; c.classList.add('shake');
+}
+function loading(btn, on){ busy = on; btn.classList.toggle('load', on); btn.disabled = on; }
+
+function setMode(m){
+mode = m;
+$('tabs').dataset.mode = m;
+document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('on', b.dataset.m === m));
+$('fAuth').classList.toggle('signup', m === 'signup');
+$('goT').textContent = m === 'signup' ? 'إنشاء الحساب' : 'تسجيل الدخول';
+$('pass').autocomplete = m === 'signup' ? 'new-password' : 'current-password';
+say($('msg'), '');
+$('tag').textContent = m === 'signup' ? 'أنشئ حسابك في ثوانٍ' : 'أهلاً بعودتك، سجّل دخولك للمتابعة';
+}
+document.querySelectorAll('#tabs button').forEach(b => b.onclick = () => setMode(b.dataset.m));
+$('eye').onclick = () => { const p = $('pass'); p.type = p.type === 'password' ? 'text' : 'password'; };
+$('pass').addEventListener('input', () => {
+const v = $('pass').value;
+let s = 0;
+if (v.length >= 8) s++;
+if (/[A-Z]/.test(v) && /[a-z]/.test(v)) s++;
+if (/\d/.test(v)) s++;
+if (/[^A-Za-z0-9]/.test(v) || v.length >= 12) s++;
+$('str').dataset.s = v ? Math.max(1, s) : 0;
+});
+
+function errMsg(e){
+const m = {
+'auth/email-already-in-use': 'هذا البريد مسجل بالفعل، جرّب تسجيل الدخول',
+'auth/invalid-email': 'البريد الإلكتروني غير صحيح',
+'auth/weak-password': 'كلمة السر ضعيفة، استخدم 8 أحرف أو أكثر',
+'auth/invalid-credential': 'البريد أو كلمة السر غير صحيحة',
+'auth/user-not-found': 'البريد أو كلمة السر غير صحيحة',
+'auth/wrong-password': 'البريد أو كلمة السر غير صحيحة',
+'auth/too-many-requests': 'محاولات كثيرة، انتظر قليلاً ثم حاول مرة أخرى',
+'auth/network-request-failed': 'تأكد من اتصالك بالإنترنت',
+'auth/popup-blocked': 'المتصفح منع نافذة Google، اسمح بالنوافذ المنبثقة',
+'auth/user-disabled': 'تم إيقاف هذا الحساب، تواصل مع الدعم',
+'auth/operation-not-allowed': 'تسجيل الدخول بالبريد غير مفعّل في إعدادات Firebase',
+'auth/unauthorized-domain': 'هذا الدومين غير مضاف في إعدادات Firebase',
+'x/timeout': 'تعذّر الوصول للخادم. تأكد من الإنترنت وافتح الصفحة من موقعك hypertopup.online'
+};
+return m[e && e.code] || 'حدث خطأ غير متوقع، حاول مرة أخرى';
+}
+
+/* ---------- تفعيل البريد ---------- */
+async function sendVerif(user){
+try { await sendEmailVerification(user, { url: location.origin + '/auth.html?verified=1' }); }
+catch (e) {
+if (e.code === 'auth/unauthorized-continue-uri' || e.code === 'auth/invalid-continue-uri') await sendEmailVerification(user);
+else throw e;
+}
+}
+const needsVerify = (u) => !u.emailVerified && u.providerData.every(p => p.providerId === 'password');
+
+function startCooldown(s){
+clearInterval(cd);
+let n = s; const b = $('resend');
+const tick = () => {
+b.disabled = n > 0;
+b.textContent = n > 0 ? 'إعادة الإرسال بعد ' + n + ' ث' : 'إعادة إرسال الرابط';
+if (n-- <= 0) clearInterval(cd);
+};
+tick(); if (s > 0) cd = setInterval(tick, 1000);
+}
+async function checkNow(silent){
+const u = auth.currentUser; if (!u) return;
+try { await u.reload(); } catch (e) { return; }
+if (u.emailVerified) { clearInterval(poll); finish(u); }
+else if (!silent) say($('vMsg'), 'لم يتم التفعيل بعد. افتح الرابط من رسالة البريد ثم عد إلى هنا.', 'err');
+}
+function startVerify(user, sent){
+LS.del('hyper_user');
+$('vEmail').textContent = user.email;
+say($('vMsg'), '');
+show('vVerify');
+startCooldown(sent ? 60 : 0);
+clearInterval(poll); poll = setInterval(() => checkNow(true), 4000);
+}
+document.addEventListener('visibilitychange', () => { if (!document.hidden && $('vVerify').classList.contains('on')) checkNow(true); });
+$('check').onclick = async () => { if (busy) return; loading($('check'), true); await checkNow(false); loading($('check'), false); };
+$('resend').onclick = async () => {
+const u = auth.currentUser; if (!u || $('resend').disabled) return;
+try { await T(sendVerif(u)); say($('vMsg'), 'تم إرسال رابط جديد إلى بريدك', 'ok'); startCooldown(60); }
+catch (e) { say($('vMsg'), errMsg(e), 'err'); }
+};
+$('change').onclick = async () => {
+clearInterval(poll); clearInterval(cd);
+const u = auth.currentUser;
+try { if (fresh && u) await deleteUser(u); else await signOut(auth); } catch (e) { try { await signOut(auth); } catch (_) {} }
+fresh = false; setMode('signup'); show('vAuth');
+};
+
+/* ---------- إنهاء ---------- */
+function finish(user){
+clearInterval(poll); clearInterval(cd);
+const name = user.displayName || 'مستخدم هايبر';
+LS.set('hyper_user', JSON.stringify({ name, email: user.email }));
+$('doneT').textContent = 'أهلاً ' + name + '، جارٍ تحويلك الآن…';
+$('doneGo').href = NEXT;
+show('vDone');
+setTimeout(() => { location.href = NEXT; }, 1800);
+}
+
+/* ---------- تسجيل / إنشاء ---------- */
+$('fAuth').addEventListener('submit', async (e) => {
+e.preventDefault(); if (busy) return;
+const email = $('email').value.trim(), pass = $('pass').value;
+const fn = $('fn').value.trim(), ln = $('ln').value.trim();
+if (!/^\S+@\S+\.\S+$/.test(email)) return fail('اكتب بريداً إلكترونياً صحيحاً');
+if (mode === 'signup') {
+if (!fn || !ln) return fail('اكتب الاسم الأول والاسم الأخير');
+if (pass.length < 8) return fail('كلمة السر يجب أن تكون 8 أحرف على الأقل');
+} else if (!pass) return fail('اكتب كلمة السر');
+say($('msg'), '');
+loading($('go'), true);
+try {
+if (mode === 'signup') {
+const r = await T(createUserWithEmailAndPassword(auth, email, pass));
+fresh = true;
+try { await T(updateProfile(r.user, { displayName: fn + ' ' + ln })); } catch (_) {}
+let sent = true;
+try { await T(sendVerif(r.user)); } catch (_) { sent = false; }
+startVerify(r.user, sent);
+if (!sent) say($('vMsg'), 'تم إنشاء حسابك، لكن تعذّر إرسال الرابط الآن. اضغط "إعادة إرسال الرابط".', 'err');
+} else {
+const r = await T(signInWithEmailAndPassword(auth, email, pass));
+if (needsVerify(r.user)) startVerify(r.user, false); else finish(r.user);
+}
+} catch (err) { fail(errMsg(err)); }
+loading($('go'), false);
+});
+
+$('google').onclick = async () => {
+if (busy) return;
+const p = new GoogleAuthProvider(); p.setCustomParameters({ prompt: 'select_account' });
+try { const r = await signInWithPopup(auth, p); finish(r.user); }
+catch (e) { if (e.code !== 'auth/popup-closed-by-user' && e.code !== 'auth/cancelled-popup-request') fail(errMsg(e)); }
+};
+
+/* ---------- نسيت كلمة السر ---------- */
+$('forgotLink').onclick = () => { $('femail').value = $('email').value; say($('fMsg'), ''); show('vForgot'); };
+$('fBack').onclick = () => show('vAuth');
+$('fForgot').addEventListener('submit', async (e) => {
+e.preventDefault(); if (busy) return;
+const email = $('femail').value.trim();
+if (!/^\S+@\S+\.\S+$/.test(email)) return fail('اكتب بريداً إلكترونياً صحيحاً', $('fMsg'));
+loading($('fGo'), true);
+try { await sendPasswordResetEmail(auth, email); say($('fMsg'), 'إذا كان البريد مسجلاً لدينا فقد أرسلنا إليه رابط إعادة التعيين', 'ok'); }
+catch (err) {
+if (err.code === 'auth/user-not-found') say($('fMsg'), 'إذا كان البريد مسجلاً لدينا فقد أرسلنا إليه رابط إعادة التعيين', 'ok');
+else fail(errMsg(err), $('fMsg'));
+}
+loading($('fGo'), false);
+});
+
+/* ---------- عند فتح الصفحة ---------- */
+onAuthStateChanged(auth, (u) => {
+if (!boot) return; boot = false;
+if (!u) { LS.del('hyper_user'); return; }
+if (needsVerify(u)) startVerify(u, false); else finish(u);
+});
+if (new URLSearchParams(location.search).get('mode') === 'signup') setMode('signup');
+if (!/^https?:$/.test(location.protocol)) say($('msg'), 'أنت تفتح الصفحة كملف على الهاتف. افتحها من موقعك (hypertopup.online/auth.html) ليعمل التسجيل.', 'err');
+</script>
+</body>
+</html>

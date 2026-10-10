@@ -571,11 +571,10 @@
 
     // إتاحة الدوال للغرض المباشر (window Scope)
     window.openAuthModal = function() {
-      if (!auth.currentUser) {
-        const modal = document.getElementById('authModal');
-        if (modal) modal.classList.add('show');
-      }
-    };
+const u = auth.currentUser;
+const ok = u && (u.emailVerified || u.providerData.some(function(p){ return p.providerId !== 'password'; }));
+if (!ok) location.href = 'auth-1.html?next=account.html';
+};
 
     window.closeAuthModal = function() {
       const modal = document.getElementById('authModal');
@@ -695,14 +694,12 @@
       const nameEl = document.getElementById('displayUserName');
       const emailEl = document.getElementById('displayUserEmail');
 
-      if (user) {
+      if (user && (user.emailVerified || user.providerData.some(function(p){ return p.providerId !== 'password'; }))) {
         const userData = {
           name: user.displayName || "مستخدم هايبر",
           email: user.email
         };
         localStorage.setItem('hyper_user', JSON.stringify(userData));
-        var nx=new URLSearchParams(location.search).get('next');
-if(nx&&/^[\w\-.]+\.html(\?[\w=&%\-.]*)?$/.test(nx))location.replace(nx);
         if (nameEl) nameEl.textContent = user.displayName || "أهلاً بك 👋";
         if (emailEl) {
           emailEl.textContent = user.email;

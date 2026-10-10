@@ -726,6 +726,45 @@ async function processPayment() {
   document.getElementById('overlayText').textContent = 'جاري تجهيز طلبك للمراجعة، يرجى عدم إغلاق الصفحة.';
 
   try {
+    // 1. الحصول على حساب Firebase الحالي لجلب الـ UserUID
+    const { getApps, getApp, initializeApp } =
+      await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js");
+
+    const { getAuth, onAuthStateChanged } =
+      await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js");
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAQnlfsncuDN2iK3VV_rEQvg4GIisWr7oc",
+      authDomain: "hyper-topup-59844.firebaseapp.com",
+      projectId: "hyper-topup-59844",
+      storageBucket: "hyper-topup-59844.firebasestorage.app",
+      messagingSenderId: "683467344388",
+      appId: "1:683467344388:web:5b32652c913051d4790351"
+    };
+
+    const app = getApps().length
+      ? getApp()
+      : initializeApp(firebaseConfig);
+
+    const auth = getAuth(app);
+
+    const user = await new Promise((resolve) => {
+      const unsubscribe = onAuthStateChanged(
+        auth,
+        (currentUser) => {
+          unsubscribe();
+          resolve(currentUser);
+        },
+        () => resolve(null)
+      );
+    });
+
+    const userUid = user ? user.uid : "";
+
+    if (!userUid) {
+      console.warn("العميل غير مسجل الدخول؛ الطلب سيُرسل بدون UserUID.");
+    }
+
     const formData = new FormData();
     formData.append('orderId', cleanOrderID);
     formData.append('game', orderData.game);
@@ -734,6 +773,7 @@ async function processPayment() {
     formData.append('amount', orderData.amount);
     formData.append('paymentMethod', orderData.paymentMethod);
     formData.append('sender', document.getElementById('sender').value.trim());
+    formData.append('userUid', userUid); // إرسال الـ UserUID مع البيانات
     
     const receiptFile = document.getElementById('receipt').files[0];
     if (receiptFile) {
@@ -743,7 +783,7 @@ async function processPayment() {
     setTrackerStep(2);
     document.getElementById('overlayTitle').textContent = 'جاري إرسال الإشعار وتأكيد الطلب';
 
-    // 1. الإرسال لسيرفر Supabase (إرسال الإشعار للتليجرام)
+    // 2. الإرسال لسيرفر Supabase (إرسال الإشعار للتليجرام)
     const res = await fetch(PAYMENT_GATEWAY_CONFIG.functionUrl, {
       method: 'POST',
       headers: {
@@ -757,8 +797,7 @@ async function processPayment() {
 
     if (res.ok && (result.success || res.status === 200)) {
 
-      // 2. إرسال الطلب لـ Google Sheets عبر SheetDB
-            // 2. إرسال الطلب لـ Google Sheets عبر SheetDB بشكل متوافق مع أعمدة الشيت
+      // 3. إرسال الطلب لـ Google Sheets عبر SheetDB متضمناً الـ UserUID
       try {
         const fullGameStr = `${orderData.game} - ${orderData.packageName}`;
         
@@ -782,7 +821,8 @@ async function processPayment() {
               'Date': formattedDate,
               'Method': paymentMethodTxt,
               'Coupon': 'بدون كود خصم',
-              'OrderID': '#' + cleanOrderID
+              'OrderID': '#' + cleanOrderID,
+              'UserUID': userUid // إضافة UserUID لعمود الشيت
             }]
           })
         });
@@ -790,7 +830,7 @@ async function processPayment() {
         console.error('فشل التسجيل في الشيت:', sheetErr);
       }
 
-      // 3. حفظ الطلب في ذاكرة العميل LocalStorage ليظهر في orders.html
+      // 4. حفظ الطلب في ذاكرة العميل LocalStorage ليظهر في orders.html
       let userOrders = JSON.parse(localStorage.getItem('hyper_user_orders') || '[]');
       userOrders.push({
         orderID: cleanOrderID,
@@ -799,7 +839,8 @@ async function processPayment() {
         playerID: orderData.playerId,
         method: orderData.paymentMethod === 'link' ? 'محفظة (رابط)' : 'تحويل يدوي',
         status: '⏳ قيد المراجعة',
-        date: new Date().toLocaleString('ar-EG')
+        date: new Date().toLocaleString('ar-EG'),
+        userUID: userUid
       });
       localStorage.setItem('hyper_user_orders', JSON.stringify(userOrders));
 
@@ -817,29 +858,29 @@ async function processPayment() {
   }
 }
 
-  // دالة إظهار التنبيه الاحترافي بديل alert
-  function showToast(message) {
-    let toast = document.getElementById('customToast');
-    let toastMsg = document.getElementById('toastMsg');
-    
-    if (!toast) {
-      toast = document.createElement('div');
-      toast.id = 'customToast';
-      toast.className = 'custom-toast';
-      toast.innerHTML = '<span>⚠️</span><span id="toastMsg"></span>';
-      document.body.appendChild(toast);
-      toastMsg = document.getElementById('toastMsg');
-    }
-    
-    if (toast && toastMsg) {
-      toastMsg.textContent = message;
-      toast.classList.add('show');
-      
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 3000);
-    }
+// دالة إظهار التنبيه الاحترافي بديل alert
+function showToast(message) {
+  let toast = document.getElementById('customToast');
+  let toastMsg = document.getElementById('toastMsg');
+  
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'customToast';
+    toast.className = 'custom-toast';
+    toast.innerHTML = '<span>⚠️</span><span id="toastMsg"></span>';
+    document.body.appendChild(toast);
+    toastMsg = document.getElementById('toastMsg');
   }
+  
+  if (toast && toastMsg) {
+    toastMsg.textContent = message;
+    toast.classList.add('show');
+    
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3000);
+  }
+}
 </script>
 <script src="guard.js?v=1"></script>
 </body>
