@@ -47,7 +47,7 @@ animation:orbBreathe 3s ease-in-out infinite;
 var TABS=[
 {href:'index.html',id:'nav-home',label:'الرئيسية',svg:'<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>'},
 {href:'all-products.html',id:'nav-products',label:'المنتجات',svg:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>'},
-{href:'account.html',id:'nav-account',label:'الحساب',svg:'<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>'}
+{href:'account_1.html',id:'nav-account',label:'الحساب',svg:'<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>'}
 ];
 
 function init(){
@@ -56,7 +56,7 @@ document.querySelectorAll('nav.bottom-nav,.bottom-nav,.nav-glow').forEach(functi
 var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);
 
 var page=(location.pathname.split('/').pop()||'index.html').toLowerCase();
-var activeHref=page==='index.html'?'index.html':(page==='account.html'?'account.html':'all-products.html');
+var activeHref=page==='index.html'?'index.html':(page==='account_1.html'?'account_1.html':'all-products.html');
 
 var nav=document.createElement('nav');nav.className='bottom-nav';
 nav.innerHTML='<span class="dock-glow" aria-hidden="true"></span>'+TABS.map(function(t){

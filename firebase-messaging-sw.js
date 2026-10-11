@@ -25,7 +25,7 @@ self.addEventListener("notificationclick", function(event) {
   event.notification.close();
 
   const targetUrl =
-    "https://hypertopup.online/account.html";
+    "https://hypertopup.online/account_1.html";
 
   event.waitUntil(
     clients.matchAll({

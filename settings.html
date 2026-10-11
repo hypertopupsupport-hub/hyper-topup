@@ -113,7 +113,7 @@ button.row:active,a.row:active{background:rgba(245,200,91,.08)}
 
 <div class="wrap">
 <header class="top">
-<a class="back" href="account.html" aria-label="رجوع"><svg class="ic"><use href="#i-back"/></svg></a>
+<a class="back" href="account_1.html" aria-label="رجوع"><svg class="ic"><use href="#i-back"/></svg></a>
 <h1>إعدادات الحساب</h1>
 <span class="sp"></span>
 </header>
@@ -325,7 +325,7 @@ text: 'هل تريد تسجيل الخروج من حسابك على هذا ال�
 run: async () => {
 ['hyper_user', 'hyper_user_logged', 'hyper_user_email', 'hyper_user_name'].forEach((k) => LS.del(k));
 try { await signOut(auth); } catch (_) {}
-location.href = 'account.html';
+location.href = 'account_1.html';
 }
 });
 </script>

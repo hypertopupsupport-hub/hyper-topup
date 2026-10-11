@@ -16,7 +16,7 @@ if(ok())return;
 var next=encodeURIComponent((location.pathname.split('/').pop()||'index.html')+location.search);
 var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);
 var o=document.createElement('div');o.id='authGate';
-o.innerHTML='<div class="ag-card"><div class="ag-ic">🔒</div><h3>سجّل دخولك أولاً</h3><p>لإتمام أي طلب أو عملية دفع لازم يكون عندك حساب في HYPER TOPUP.</p><a class="ag-btn" href="account.html?auth=1&next='+next+'">تسجيل الدخول / إنشاء حساب</a><a class="ag-back" href="index.html">الرجوع للرئيسية</a></div>';
+o.innerHTML='<div class="ag-card"><div class="ag-ic">🔒</div><h3>سجّل دخولك أولاً</h3><p>لإتمام أي طلب أو عملية دفع لازم يكون عندك حساب في HYPER TOPUP.</p><a class="ag-btn" href="account_1.html?auth=1&next='+next+'">تسجيل الدخول / إنشاء حساب</a><a class="ag-back" href="index.html">الرجوع للرئيسية</a></div>';
 document.body.appendChild(o);
 document.documentElement.style.overflow='hidden';
 }

@@ -503,7 +503,7 @@ opacity:0;pointer-events:none;
 
 <div class="page">
 <header class="header">
-<a href="account.html?auth=1" class="auth-pill" id="authPill">
+<a href="account_1.html?auth=1" class="auth-pill" id="authPill">
 <span class="ap-main" id="apMain">تسجيل الدخول</span>
 <span class="ap-sub" id="apSub">أو إنشاء حساب</span>
 </a>
@@ -891,7 +891,7 @@ transition:none!important;
     <span>المنتجات</span>
   </a>
 
-  <a href="account.html" class="nav-item" id="nav-account">
+  <a href="account_1.html" class="nav-item" id="nav-account">
     <svg class="nav-icon-svg" viewBox="0 0 24 24">
       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
       <circle cx="12" cy="7" r="4"/>
@@ -1187,7 +1187,7 @@ var u=null;
 try{u=JSON.parse(localStorage.getItem('hyper_user')||'null');}catch(e){}
 document.documentElement.classList.toggle('is-auth',!!u);
 var a=document.getElementById('authPill');
-if(a)a.href='account.html?auth=1';
+if(a)a.href='account_1.html?auth=1';
 }
 sync();
 addEventListener('pageshow',sync);

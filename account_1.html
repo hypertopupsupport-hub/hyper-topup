@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070b17">
+<meta name="robots" content="noindex">
+<title>HYPER TOPUP | الحساب</title>
+<link rel="icon" href="icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<style>
+@property --a{syntax:'<angle>';initial-value:0deg;inherits:false}
+:root{--bg:#070b17;--card:rgba(15,23,42,.72);--line:rgba(245,200,91,.22);--gold:#f5c85b;--gold2:#ffe49a;--gold3:#c9922c;--mute:#8b97ad;--red:#f87171;--ok:#34d399;--f:'Cairo',Tahoma,Arial,sans-serif;--d:'Orbitron',Impact,sans-serif;--ease:cubic-bezier(.22,1,.36,1);box-sizing:border-box}
+*,*::before,*::after{box-sizing:inherit;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%}
+body{background:var(--bg);color:#fff;font:500 15px/1.7 var(--f);padding:env(safe-area-inset-top) 0 24px;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(60% 38% at 50% -4%,rgba(245,200,91,.17),transparent),radial-gradient(45% 30% at 100% 32%,rgba(37,99,235,.15),transparent),radial-gradient(40% 28% at 0% 72%,rgba(245,200,91,.07),transparent)}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:radial-gradient(ellipse at 50% 25%,#000 15%,transparent 70%);mask-image:radial-gradient(ellipse at 50% 25%,#000 15%,transparent 70%)}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;color:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:12px}
+.ic{width:1.3em;height:1.3em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ic.fill{fill:currentColor;stroke:none}
+.wrap{width:min(100%,480px);margin:0 auto;padding:12px 16px 0}
+
+/* toast */
+#customToast{position:fixed;top:calc(14px + env(safe-area-inset-top));left:50%;z-index:10000;width:calc(100% - 32px);max-width:400px;padding:13px 18px;border-radius:16px;font-size:.86rem;font-weight:700;text-align:center;color:#fff;background:rgba(15,23,42,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:0 14px 34px rgba(0,0,0,.6);transform:translate(-50%,-140%);opacity:0;visibility:hidden;transition:transform .5s cubic-bezier(.34,1.4,.64,1),opacity .3s}
+#customToast.show{transform:translate(-50%,0);opacity:1;visibility:visible}
+#customToast.success{border-color:rgba(52,211,153,.6);box-shadow:0 14px 34px rgba(0,0,0,.6),0 0 24px rgba(52,211,153,.2)}
+#customToast.error{border-color:rgba(248,113,113,.6);box-shadow:0 14px 34px rgba(0,0,0,.6),0 0 24px rgba(248,113,113,.2)}
+
+/* header */
+.top{display:flex;align-items:center;justify-content:space-between;margin:4px 0 18px}
+.top h1{margin:0;display:flex;align-items:center;gap:10px;font-size:1.45rem;font-weight:900}
+.top h1::before{content:"";width:9px;height:9px;transform:rotate(45deg);background:linear-gradient(135deg,var(--gold2),var(--gold3));box-shadow:0 0 12px rgba(245,200,91,.7)}
+.help{display:inline-flex;align-items:center;gap:7px;padding:7px 15px;border-radius:999px;border:1px solid var(--line);background:rgba(245,200,91,.08);color:var(--gold2);font-weight:800;font-size:.8rem;cursor:pointer;transition:background .25s,transform .2s}
+.help:active{transform:scale(.95)}
+.help .ic{width:17px;height:17px}
+
+/* membership card */
+.mc-wrap{perspective:1000px;margin-bottom:16px}
+.mc{position:relative;min-height:204px;padding:20px 22px;border-radius:28px;overflow:hidden;background:linear-gradient(135deg,#1b2548 0%,#0b1226 46%,#161d3b 100%);box-shadow:0 26px 56px rgba(0,0,0,.6),0 0 46px rgba(245,200,91,.12),inset 0 1px 0 rgba(255,255,255,.14);transition:transform .25s var(--ease);will-change:transform;animation:rise .8s var(--ease)}
+@keyframes rise{from{opacity:0;transform:translateY(22px) scale(.97)}}
+.mc::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--a),rgba(245,200,91,.16) 0 50%,var(--gold) 78%,#fff6d8 84%,rgba(245,200,91,.16));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:spin 8s linear infinite;pointer-events:none;z-index:3}
+@keyframes spin{to{--a:360deg}}
+.mc .wm{position:absolute;left:-18px;bottom:-46px;font:900 190px/1 var(--d);color:rgba(245,200,91,.07);pointer-events:none;user-select:none}
+.mc .ring{position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;border:1px dashed rgba(245,200,91,.25);pointer-events:none}
+.mc .shine{position:absolute;inset:0;background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.13) 50%,transparent 62%);transform:translateX(-120%);animation:sweep 6s 1.2s infinite;pointer-events:none;z-index:2}
+@keyframes sweep{35%,100%{transform:translateX(120%)}}
+.mc-top{position:relative;display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{font:900 .95rem var(--d);letter-spacing:.2em;direction:ltr}
+.brand em{font-style:normal;color:var(--gold)}
+.chipic{width:38px;height:28px;border-radius:7px;background:linear-gradient(135deg,var(--gold2),var(--gold3));position:relative;opacity:.95}
+.chipic::before,.chipic::after{content:"";position:absolute;background:rgba(80,50,0,.35)}
+.chipic::before{left:0;right:0;top:50%;height:1px}
+.chipic::after{top:0;bottom:0;left:38%;width:1px;box-shadow:12px 0 0 rgba(80,50,0,.35)}
+.in,.out{position:relative;z-index:1}
+.mc-mid{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.av{flex:none;width:62px;height:62px;border-radius:50%;padding:2.5px;background:conic-gradient(var(--gold),#fff6d8,var(--gold3),var(--gold));box-shadow:0 0 22px rgba(245,200,91,.35)}
+.av>*{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;object-fit:cover;background:#0d1530;font:900 1.5rem var(--f);color:var(--gold2)}
+.who{min-width:0}
+.who h2{margin:0;font-size:1.25rem;font-weight:900;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:linear-gradient(180deg,#fff6d8,var(--gold) 60%,var(--gold3));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 8px rgba(245,200,91,.25))}
+.who p{margin:0;font-size:.8rem;color:var(--mute);direction:ltr;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mc-bot{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08)}
+.mc-bot span{display:flex;flex-direction:column;font-size:.68rem;color:var(--mute);line-height:1.4}
+.mc-bot b{font-size:.84rem;color:#fff;font-weight:800}
+.mc-bot .vf{flex-direction:row;align-items:center;gap:5px;padding:4px 10px;border-radius:999px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.4);color:#a7f3d0;font-weight:800;font-size:.7rem}
+.out{text-align:center;padding:6px 0 4px}
+.out h2{margin:0 0 6px;font-size:1.3rem;font-weight:900;color:var(--gold2)}
+.out p{margin:0 auto 16px;max-width:30ch;color:var(--mute);font-size:.86rem}
+.mc[data-s="load"] .in,.mc[data-s="load"] .out{visibility:hidden}
+.mc[data-s="load"]::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.07) 50%,transparent 70%) 0 0/200% 100%;animation:shim 1.2s infinite}
+@keyframes shim{to{background-position:-200% 0}}
+.mc[data-s="in"] .out,.mc[data-s="out"] .in{display:none}
+
+.btn{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;height:50px;padding:0 24px;border:0;border-radius:15px;font:800 .95rem var(--f);cursor:pointer;color:#1a1204;background:linear-gradient(135deg,var(--gold3),var(--gold2) 50%,var(--gold3));box-shadow:0 10px 28px rgba(245,200,91,.3),inset 0 1px 0 rgba(255,255,255,.5);transition:transform .2s}
+.btn:active{transform:scale(.97)}
+
+/* quick actions */
+.qa{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:6px}
+.q{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 6px 13px;border-radius:22px;background:var(--card);border:1px solid var(--line);font-weight:800;font-size:.82rem;transition:transform .25s var(--ease),border-color .25s,box-shadow .25s;animation:rise .7s var(--ease) both}
+.q:nth-child(2){animation-delay:.07s}.q:nth-child(3){animation-delay:.14s}
+.q:active{transform:scale(.95);border-color:var(--gold);box-shadow:0 0 24px rgba(245,200,91,.25)}
+.qi{width:46px;height:46px;display:grid;place-items:center;border-radius:15px;color:var(--gold2);background:linear-gradient(145deg,rgba(245,200,91,.2),rgba(245,200,91,.04));border:1px solid var(--line)}
+
+/* groups */
+.gt{margin:22px 6px 8px;font-size:.76rem;font-weight:800;color:var(--gold);letter-spacing:.06em}
+.group{border-radius:22px;background:var(--card);border:1px solid rgba(255,255,255,.08);overflow:hidden;box-shadow:0 12px 30px rgba(0,0,0,.35);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.row{display:flex;align-items:center;gap:13px;width:100%;padding:12px 16px;background:none;border:0;border-bottom:1px solid rgba(255,255,255,.06);font:inherit;text-align:right;cursor:pointer;transition:background .2s}
+.row:last-child{border-bottom:0}
+.row:active{background:rgba(245,200,91,.08)}
+.ri{flex:none;width:40px;height:40px;display:grid;place-items:center;border-radius:13px;color:var(--gold2);background:linear-gradient(145deg,rgba(245,200,91,.16),rgba(245,200,91,.03));border:1px solid var(--line)}
+.rt{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.45}
+.rt b{font-size:.93rem;font-weight:700;color:#e8edf7}
+.rt small{font-size:.74rem;color:var(--mute)}
+.chev{flex:none;width:18px;height:18px;color:#5b6679;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.danger .ri{color:var(--red);background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.35)}
+.danger .rt b{color:#fecaca}
+
+/* social + footer */
+.soc{text-align:center;margin:30px 0 8px}
+.soc p{margin:0;color:var(--mute);font-size:.82rem}
+.soc h3{margin:0 0 14px;color:var(--gold2);font-size:.95rem;font-weight:800}
+.soc div{display:flex;justify-content:center;gap:14px}
+.sb{width:50px;height:50px;display:grid;place-items:center;border-radius:50%;color:var(--gold2);background:rgba(245,200,91,.07);border:1px solid var(--line);transition:transform .25s var(--ease),box-shadow .25s,background .25s}
+.sb:active{transform:scale(.92);background:rgba(245,200,91,.16);box-shadow:0 0 24px rgba(245,200,91,.3)}
+.sb .ic{width:23px;height:23px}
+.ver{margin:18px 0 0;text-align:center;font-size:.72rem;color:#55617a;line-height:1.8}
+
+/* bottom sheet */
+.ov{position:fixed;inset:0;z-index:1000;display:flex;align-items:flex-end;justify-content:center;background:rgba(2,4,9,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;transition:opacity .25s}
+.ov.on{opacity:1}
+.sheet{width:min(100%,480px);padding:10px 22px calc(22px + env(safe-area-inset-bottom));border-radius:28px 28px 0 0;background:#0d1426;border:1px solid rgba(248,113,113,.4);border-bottom:0;text-align:center;transform:translateY(100%);transition:transform .45s cubic-bezier(.34,1.3,.64,1)}
+.ov.on .sheet{transform:none}
+.grab{width:42px;height:4px;margin:0 auto 16px;border-radius:4px;background:rgba(255,255,255,.2)}
+.sico{width:64px;height:64px;margin:0 auto 12px;display:grid;place-items:center;border-radius:50%;background:rgba(248,113,113,.12);border:1px solid rgba(248,113,113,.5);color:var(--red)}
+.sico .ic{width:30px;height:30px}
+.sheet h4{margin:0 0 6px;font-size:1.15rem;font-weight:900}
+.sheet p{margin:0 0 18px;color:var(--mute);font-size:.9rem}
+.sb2{display:grid;gap:10px}
+.sb2 button{height:50px;border:0;border-radius:14px;font:800 .95rem var(--f);cursor:pointer;transition:transform .2s}
+.sb2 button:active{transform:scale(.97)}
+.red{background:linear-gradient(135deg,#dc2626,#f87171);color:#fff}
+.ghost{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14)!important}
+
+/* crisp label (من الملف الأصلي) */
+.crisp-label-left{position:fixed;bottom:65px;left:15px;background:rgba(15,23,42,.95);border:1px solid rgba(59,130,246,.4);border-radius:10px;padding:4px 10px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999999;pointer-events:none;box-shadow:0 4px 12px rgba(0,0,0,.5);direction:rtl}
+.crisp-label-left .main-txt{font-weight:bold;color:#fff;font-size:11px;line-height:1.2}
+.crisp-label-left .sub-txt{color:#38bdf8;font-size:9px;font-weight:500;line-height:1.2}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+<link rel="stylesheet" href="notifications.css">
+</head>
+<body>
+
+<div id="customToast" role="status" aria-live="polite"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></symbol>
+<symbol id="i-set" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></symbol>
+<symbol id="i-head" viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></symbol>
+<symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5.5c0 4.4 3 7.6 7 9.5 4-1.9 7-5.1 7-9.5V6z"/><path d="m9 12 2.2 2.2L15.5 10"/></symbol>
+<symbol id="i-scroll" viewBox="0 0 24 24"><path d="M8 3h9a2 2 0 0 1 2 2v13a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3v-1h12v1a1 1 0 0 0 2 0"/><path d="M8 3a2 2 0 0 0-2 2v12M10 8h6M10 12h6"/></symbol>
+<symbol id="i-undo" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></symbol>
+<symbol id="i-out" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5M21 12H9"/></symbol>
+<symbol id="i-chev" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></symbol>
+<symbol id="i-fb" viewBox="0 0 24 24"><path d="M15 3h-2.5A4.5 4.5 0 0 0 8 7.5V10H5.5v3.5H8V21h3.5v-7.5H14l.7-3.5h-3.2V7.7c0-.6.4-1 1-1H15z"/></symbol>
+<symbol id="i-ig" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".9" fill="currentColor" stroke="none"/></symbol>
+</svg>
+
+<main class="wrap">
+<header class="top">
+<h1>حسابي</h1>
+<button class="help" type="button" onclick="openGabsterChat()"><svg class="ic"><use href="#i-head"/></svg>المساعدة</button>
+</header>
+
+<div class="mc-wrap" id="mcWrap">
+<section class="mc" id="mc" data-s="load">
+<span class="wm" aria-hidden="true">H</span><span class="ring" aria-hidden="true"></span><span class="shine" aria-hidden="true"></span>
+<div class="mc-top"><b class="brand">HYPER<em>TOPUP</em></b><span class="chipic" aria-hidden="true"></span></div>
+
+<div class="in">
+<div class="mc-mid">
+<div class="av"><img id="uPhoto" alt="" referrerpolicy="no-referrer" hidden><span id="uIni">H</span></div>
+<div class="who"><h2 id="uName"></h2><p id="uMail"></p></div>
+</div>
+<div class="mc-bot">
+<span>عضو منذ<b id="uSince">—</b></span>
+<span class="vf">✓ حساب موثّق</span>
+<span>الدخول عبر<b id="uProv">—</b></span>
+</div>
+</div>
+
+<div class="out">
+<h2>مرحباً بك في HYPER TOPUP</h2>
+<p>سجّل دخولك لتتابع طلباتك وتدير حسابك بكل سهولة.</p>
+<button class="btn" type="button" onclick="openAuthModal()" style="margin:0 auto"><svg class="ic"><use href="#i-out"/></svg>تسجيل الدخول / حساب جديد</button>
+</div>
+</section>
+</div>
+
+<nav class="qa" aria-label="اختصارات">
+<a class="q" href="orders.html"><span class="qi"><svg class="ic"><use href="#i-doc"/></svg></span>طلباتي</a>
+<a class="q" href="settings.html"><span class="qi"><svg class="ic"><use href="#i-set"/></svg></span>الإعدادات</a>
+<a class="q" href="support.html"><span class="qi"><svg class="ic"><use href="#i-head"/></svg></span>الدعم</a>
+</nav>
+
+<h3 class="gt">عن المتجر</h3>
+<div class="group">
+<button class="row" id="shareBtn" type="button"><span class="ri"><svg class="ic"><use href="#i-share"/></svg></span><span class="rt"><b>شارك المتجر مع أصحابك</b><small>ادعُ أصدقاءك للشحن بأسعار مميزة</small></span><svg class="chev"><use href="#i-chev"/></svg></button>
+<a class="row" href="support.html"><span class="ri"><svg class="ic"><use href="#i-head"/></svg></span><span class="rt"><b>الدعم الفني</b><small>متاح على مدار الساعة 24/7</small></span><svg class="chev"><use href="#i-chev"/></svg></a>
+<a class="row" href="about.html"><span class="ri"><svg class="ic"><use href="#i-info"/></svg></span><span class="rt"><b>من نحن</b></span><svg class="chev"><use href="#i-chev"/></svg></a>
+<a class="row" href="services.html"><span class="ri"><svg class="ic"><use href="#i-grid"/></svg></span><span class="rt"><b>خدماتنا</b></span><svg class="chev"><use href="#i-chev"/></svg></a>
+</div>
+
+<h3 class="gt">القانونية</h3>
+<div class="group">
+<a class="row" href="privacy.html"><span class="ri"><svg class="ic"><use href="#i-shield"/></svg></span><span class="rt"><b>سياسة الخصوصية</b></span><svg class="chev"><use href="#i-chev"/></svg></a>
+<a class="row" href="terms.html"><span class="ri"><svg class="ic"><use href="#i-scroll"/></svg></span><span class="rt"><b>الشروط والأحكام</b></span><svg class="chev"><use href="#i-chev"/></svg></a>
+<a class="row" href="refund-policy.html"><span class="ri"><svg class="ic"><use href="#i-undo"/></svg></span><span class="rt"><b>الاسترجاع والاسترداد</b></span><svg class="chev"><use href="#i-chev"/></svg></a>
+</div>
+
+<div class="group danger" id="outGroup" style="margin-top:18px" hidden>
+<button class="row" id="logoutBtn" type="button"><span class="ri"><svg class="ic"><use href="#i-out"/></svg></span><span class="rt"><b>تسجيل الخروج</b></span><svg class="chev"><use href="#i-chev"/></svg></button>
+</div>
+
+<section class="soc">
+<p>عاوز تعرف أكثر؟</p>
+<h3>تابعنا على</h3>
+<div>
+<a class="sb" href="https://www.facebook.com/share/19ckDVFVnc/" target="_blank" rel="noopener noreferrer" aria-label="فيسبوك"><svg class="ic fill"><use href="#i-fb"/></svg></a>
+<a class="sb" href="https://www.instagram.com/hypertopup.official?stkn=MWV0aW56NWpnaGN6aw==" target="_blank" rel="noopener noreferrer" aria-label="إنستجرام"><svg class="ic"><use href="#i-ig"/></svg></a>
+</div>
+</section>
+<p class="ver">الإصدار 2.1.0 · © 2026 HYPER TOPUP</p>
+</main>
+
+<!-- نافذة تأكيد تسجيل الخروج -->
+<div class="ov" id="ov" hidden>
+<div class="sheet" role="dialog" aria-modal="true" aria-labelledby="loT">
+<div class="grab"></div>
+<div class="sico"><svg class="ic"><use href="#i-out"/></svg></div>
+<h4 id="loT">تسجيل الخروج</h4>
+<p>هل أنت متأكد أنك تريد تسجيل الخروج من حسابك؟</p>
+<div class="sb2">
+<button class="red" type="button" onclick="confirmLogout()">نعم، تسجيل الخروج</button>
+<button class="ghost" type="button" onclick="closeLogoutModal()">إلغاء</button>
+</div>
+</div>
+</div>
+
+<!-- Crisp -->
+<script>
+window.$crisp = [];
+window.CRISP_WEBSITE_ID = "0316b84d-cdc3-41b7-b06d-1b7a44f2b524";
+(function () {
+const s = document.createElement("script");
+s.src = "https://client.crisp.chat/l.js";
+s.async = 1;
+document.head.appendChild(s);
+})();
+function openGabsterChat() { if (window.$crisp) { $crisp.push(["do", "chat:open"]); } }
+</script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+const AUTH_URL = 'auth-1.html';   // غيّره لو اسم صفحة التسجيل عندك مختلف
+
+const app = initializeApp({
+apiKey: "AIzaSyAQnlfsncuDN2iK3VV_rEQvg4GIisWr7oc",
+authDomain: "hyper-topup-59844.firebaseapp.com",
+projectId: "hyper-topup-59844",
+storageBucket: "hyper-topup-59844.firebasestorage.app",
+messagingSenderId: "683467344388",
+appId: "1:683467344388:web:5b32652c913051d4790351",
+measurementId: "G-F7E53L2PFN"
+});
+const auth = getAuth(app);
+const $ = (id) => document.getElementById(id);
+const LS = {
+get(k){ try{ return localStorage.getItem(k); }catch(_){ return null; } },
+set(k,v){ try{ localStorage.setItem(k,v); }catch(_){} },
+del(k){ try{ localStorage.removeItem(k); }catch(_){} }
+};
+const isOk = (u) => u && (u.emailVerified || u.providerData.some(p => p.providerId !== 'password'));
+
+/* ---------- تنبيه ---------- */
+let tt = null;
+function showToast(msg, type = 'success'){
+const t = $('customToast'); t.textContent = msg; t.className = 'show ' + type;
+clearTimeout(tt); tt = setTimeout(() => { t.className = ''; }, 3800);
+}
+
+/* ---------- عرض الحساب ---------- */
+function renderIn(i){
+const name = i.name || 'مستخدم هايبر';
+$('uName').textContent = name;
+$('uMail').textContent = i.email || '';
+$('uIni').textContent = (name.trim().charAt(0) || 'H').toUpperCase();
+$('uSince').textContent = i.since || '—';
+$('uProv').textContent = i.prov || '—';
+const img = $('uPhoto');
+if (i.photo) { img.src = i.photo; img.hidden = false; $('uIni').hidden = true; img.onerror = () => { img.hidden = true; $('uIni').hidden = false; }; }
+else { img.hidden = true; $('uIni').hidden = false; }
+$('mc').dataset.s = 'in';
+$('outGroup').hidden = false;
+}
+function renderOut(){ $('mc').dataset.s = 'out'; $('outGroup').hidden = true; }
+
+// عرض فوري من الذاكرة المحلية لتفادي الوميض
+try {
+const c = JSON.parse(LS.get('hyper_user') || 'null');
+if (c && c.email) renderIn({ name: c.name, email: c.email });
+} catch (_) {}
+
+onAuthStateChanged(auth, (u) => {
+if (isOk(u)) {
+const name = u.displayName || 'مستخدم هايبر';
+LS.set('hyper_user', JSON.stringify({ name, email: u.email }));
+let since = '—';
+try { since = new Date(u.metadata.creationTime).toLocaleDateString('ar-EG', { month: 'long', year: 'numeric' }); } catch (_) {}
+const g = u.providerData.some(p => p.providerId === 'google.com');
+renderIn({ name, email: u.email, since, prov: g ? 'Google' : 'البريد', photo: u.photoURL });
+} else {
+LS.del('hyper_user');
+renderOut();
+if (new URLSearchParams(location.search).get('auth') === '1') location.href = AUTH_URL + '?next=account.html';
+}
+});
+
+/* ---------- الدخول والخروج ---------- */
+window.openAuthModal = function(){
+if (!isOk(auth.currentUser)) location.href = AUTH_URL + '?next=account.html';
+};
+function sheet(on){
+const o = $('ov');
+if (on) { o.hidden = false; requestAnimationFrame(() => o.classList.add('on')); }
+else { o.classList.remove('on'); setTimeout(() => { o.hidden = true; }, 250); }
+}
+window.openLogoutModal = () => sheet(true);
+window.closeLogoutModal = () => sheet(false);
+$('ov').addEventListener('click', (e) => { if (e.target.id === 'ov') sheet(false); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('ov').hidden) sheet(false); });
+$('logoutBtn').onclick = () => { if (auth.currentUser) sheet(true); else showToast('أنت غير مسجل دخول بالفعل', 'error'); };
+window.confirmLogout = async function(){
+['hyper_user', 'hyper_user_logged', 'hyper_user_email', 'hyper_user_name'].forEach((k) => LS.del(k));
+try { if (auth.currentUser) await signOut(auth); }
+catch (_) { showToast('تعذّر تسجيل الخروج، حاول مرة أخرى', 'error'); return; }
+sheet(false);
+showToast('تم تسجيل الخروج بنجاح', 'success');
+setTimeout(() => location.reload(), 900);
+};
+
+/* ---------- مشاركة المتجر ---------- */
+$('shareBtn').addEventListener('click', async () => {
+const data = { title: 'HYPER TOPUP', text: 'اشحن العابك وتطبيقاتك بأسعار متميزة وسريعة من متجر HYPER TOPUP!', url: 'https://hypertopup.online/' };
+if (navigator.share) { try { await navigator.share(data); } catch (_) {} }
+else {
+try { await navigator.clipboard.writeText(data.url); showToast('تم نسخ رابط المتجر بنجاح', 'success'); }
+catch (_) { showToast('تعذّر نسخ الرابط', 'error'); }
+}
+});
+
+/* ---------- ميلان الكارت عند اللمس/الماوس ---------- */
+const wrap = $('mcWrap'), mc = $('mc');
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+wrap.addEventListener('pointermove', (e) => {
+const r = mc.getBoundingClientRect();
+const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+mc.style.transform = 'rotateY(' + (x * 9) + 'deg) rotateX(' + (-y * 9) + 'deg)';
+});
+const reset = () => { mc.style.transform = ''; };
+wrap.addEventListener('pointerleave', reset);
+wrap.addEventListener('pointerup', reset);
+wrap.addEventListener('pointercancel', reset);
+}
+</script>
+<script src="nav.js?v=1"></script>
+<script type="module" src="notifications.js"></script>
+</body>
+</html>

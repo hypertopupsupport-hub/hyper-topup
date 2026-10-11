@@ -3,9 +3,10 @@ HYPER TOPUP - Notification System
 ========================================= */
 
 #hyper-notification-container {
-position: fixed;
-top: 18px;
-right: 18px;
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    right: auto;
 z-index: 99999;
 direction: rtl;
 font-family: "Tajawal", Arial, sans-serif;
@@ -76,7 +77,8 @@ box-sizing: border-box;
 .notification-panel {
 position: absolute;
 top: 56px;
-right: 0;
+left: 0;
+right: auto;
 width: 360px;
 max-width: calc(100vw - 24px);
 overflow: hidden;
@@ -275,8 +277,9 @@ line-height: 1.6;
 /* موبايل */
 @media (max-width: 600px) {
 #hyper-notification-container {
-top: 12px;
-right: 12px;
+    top: 12px;
+    left: 12px;
+    right: auto;
 }
 
 .notification-bell {
@@ -287,7 +290,8 @@ font-size: 19px;
 
 .notification-panel {
 top: 52px;
-right: -4px;
+left: -4px;
+right: auto;
 width: min(350px, calc(100vw - 24px));
 border-radius: 14px;
 }
@@ -312,4 +316,14 @@ right: 12px;
 width: calc(100vw - 24px);
 max-width: none;
 }
+}
+/* HYPER TOPUP - تثبيت زر الإشعارات أثناء التمرير */
+#hyper-notification-container {
+    position: fixed !important;
+    top: 12px !important;
+    left: 12px !important;
+    right: auto !important;
+    bottom: auto !important;
+    z-index: 2147483647 !important;
+    transform: none !important;
 }
