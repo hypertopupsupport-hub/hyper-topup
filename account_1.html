@@ -312,13 +312,13 @@ renderIn({ name, email: u.email, since, prov: g ? 'Google' : 'البريد', pho
 } else {
 LS.del('hyper_user');
 renderOut();
-if (new URLSearchParams(location.search).get('auth') === '1') location.href = AUTH_URL + '?next=account.html';
+if (new URLSearchParams(location.search).get('auth') === '1') location.href = AUTH_URL + '?next=account_1.html';
 }
 });
 
 /* ---------- الدخول والخروج ---------- */
 window.openAuthModal = function(){
-if (!isOk(auth.currentUser)) location.href = AUTH_URL + '?next=account.html';
+if (!isOk(auth.currentUser)) location.href = AUTH_URL + '?next=account_1.html';
 };
 function sheet(on){
 const o = $('ov');
