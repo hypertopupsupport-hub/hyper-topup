@@ -255,10 +255,26 @@ body.modal-open {
     </div>
 
     <!-- إدخال الأيدي -->
-    <div class="input-group">
-      <label style="font-size:0.85rem; color:#aaa; display:block; margin-bottom:6px;">معرف اللاعب (Player ID)</label>
-      <input type="number" id="playerIdInput" placeholder="اكتب Player ID هنا" style="width:100%; padding:12px; border-radius:8px; border:1px solid #253147; background:#171d2c; color:#fff; direction: rtl;">
-    </div>
+    <!-- قسم معرف اللاعب مع زر التحقق -->
+<div class="input-group" style="margin-bottom: 12px;">
+  <label style="font-size: 0.85rem; color: #aaa; display: block; margin-bottom: 6px;">معرّف اللاعب (Player ID)</label>
+  
+  <div style="display: flex; gap: 8px; align-items: center;">
+    <!-- خانة الإدخال -->
+    <input type="number" id="playerIdInput" placeholder="اكتب Player ID هنا" style="flex: 1; padding: 12px; border-radius: 8px; border: 1px solid #253147; background: #171d2c; color: #fff; direction: rtl;">
+    
+    <!-- زر التحقق الأنيق -->
+    <button onclick="checkPlayer()" style="background: linear-gradient(135deg, #8a2be2, #4a9eff); border: none; color: #fff; padding: 12px 18px; border-radius: 8px; font-weight: bold; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);">
+      تحقّق
+    </button>
+  </div>
+</div>
+
+<!-- صندوق عرض اسم اللاعب (يظهر تحتهم تلقائياً) -->
+<div id="playerResultBox" style="margin-top: 8px; padding: 10px 14px; border-radius: 8px; background: #171d2c; border: 1px solid #253147; display: none; align-items: center; justify-content: space-between; direction: rtl;">
+  <span style="font-size: 0.8rem; color: #aaa;">اسم اللاعب:</span>
+  <span id="resultText" style="font-size: 0.95rem; font-weight: bold; color: #4a9eff;">جاري التحقق...</span>
+</div>
 
     <!-- زر كيف تعثر على معرف اللاعب (شغال 100%) -->
     <div onclick="openModal('idHelpModal')" style="margin-top:8px; font-size:0.8rem; color:#4a9eff; cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
@@ -621,6 +637,49 @@ function saveUsedCoupon() {
 }
 // تشغيل العرض بعد تحميل جميع العناصر
 render();
+  async function checkPlayer() {
+  const idInput = document.getElementById('playerIdInput');
+  const resultBox = document.getElementById('playerResultBox');
+  const resultText = document.getElementById('resultText');
+
+  if (!idInput || !idInput.value) {
+    if (resultBox) resultBox.style.display = 'none';
+    return;
+  }
+
+  const playerId = idInput.value;
+  
+  // إظهار صندوق النتيجة وكتابة "جاري التحقق"
+  resultBox.style.display = 'flex';
+  resultText.innerText = "جاري التحقق...";
+  resultText.style.color = "#f39c12"; // لون أصفر هادئ أثناء البحث
+
+  const url = `https://id-game-checker.p.rapidapi.com/pubgm-global/${playerId}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'x-rapidapi-key': '045679f56bmsh11413575bc20ccap141504jsn5026887f190a',
+      'x-rapidapi-host': 'id-game-checker.p.rapidapi.com'
+    }
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const data = await response.json();
+
+    if (data.status === 200 && data.data) {
+      resultText.innerText = data.data.username;
+      resultText.style.color = "#2ecc71"; // لون أخضر عند إيجاد الاسم بنجاح
+    } else {
+      resultText.innerText = "لم يتم العثور على اللاعب";
+      resultText.style.color = "#e74c3c"; // لون أحمر لو الـ ID خطأ
+    }
+  } catch (error) {
+    console.error(error);
+    resultText.innerText = "حدث خطأ في الاتصال";
+    resultText.style.color = "#e74c3c";
+  }
+}
 </script>
 
 </body>

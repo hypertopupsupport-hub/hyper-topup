@@ -824,7 +824,8 @@ function applyCoupon() {
   const newPrice = Math.max(0, basePrice - discountAmount);
 
   // تحديث السعر المعروض للزبون
-  const totalEl = document.getElementById('totalAmount') || document.querySelector('.EGP-price') || document.querySelector('.total-price');
+  const totalEl = document.getElementById('finalPriceDisplay');
+
   if (totalEl) {
     totalEl.innerHTML = `<span style="text-decoration: line-through; color: #64748b; font-size: 11px; margin-left: 6px;">EGP ${basePrice.toFixed(2)}</span> EGP ${newPrice.toFixed(2)}`;
   }
