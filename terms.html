@@ -1,1032 +1,952 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0907">
 
-    <title>الشروط والأحكام | HYPER TOPUP</title>
+<title>الشروط والأحكام | HYPER TOPUP</title>
+<meta name="description" content="الشروط والأحكام وسياسات استخدام HYPER TOPUP، متجر إلكتروني مستقل للخدمات الرقمية وشحن الألعاب.">
 
-    <meta name="description" content="الشروط والأحكام وسياسات استخدام HYPER TOPUP، متجر إلكتروني مستقل للخدمات الرقمية وشحن الألعاب.">
+<style>
+:root{
+  --ink:#0a0907;
+  --ink-2:#0f0d09;
+  --panel:#15120c;
+  --panel-2:#1b1710;
+  --line:#2a2418;
+  --line-2:#3d3321;
+  --gold:#d8a935;
+  --gold-hi:#f3d37e;
+  --gold-lo:#9a7620;
+  --text:#e8e2d3;
+  --text-soft:#c9c2b0;
+  --muted:#a09883;
+  --danger:#e8736a;
+  --teal:#6cc0b8;
+  --head-h:64px;
+  --font-body:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+  --font-display:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--ink);
+  color:var(--text);
+  font-family:var(--font-body);
+  font-size:16.5px;
+  line-height:2;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px;border-radius:4px}
+::selection{background:rgba(216,169,53,.35);color:#fff}
 
-        body {
-            background-color: #0d111a;
-            color: #e1e7ed;
-            line-height: 1.9;
-            padding: 20px;
-        }
+/* ---------- progress ---------- */
+.progress{position:fixed;inset:0 0 auto 0;height:3px;z-index:60;background:transparent}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(270deg,var(--gold-hi),var(--gold));transform-origin:right}
 
-        .terms-container {
-            max-width: 950px;
-            margin: 40px auto;
-            background: #141a29;
-            border: 1px solid #222d42;
-            border-radius: 14px;
-            padding: 38px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-        }
+/* ---------- header ---------- */
+.site-head{
+  position:sticky;top:0;z-index:50;height:var(--head-h);
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:0 clamp(16px,4vw,40px);
+  background:rgba(10,9,7,.82);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{
+  width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+  background:linear-gradient(145deg,var(--gold-hi),var(--gold) 55%,var(--gold-lo));
+  box-shadow:0 0 0 1px rgba(243,211,126,.35),0 6px 20px rgba(216,169,53,.22);
+}
+.brand-mark svg{width:20px;height:20px}
+.brand-name{font-family:var(--font-display);font-weight:700;font-size:19px;letter-spacing:.06em;color:var(--gold-hi);direction:ltr}
+.back-link{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:14px;font-weight:500;color:var(--text-soft);
+  padding:8px 16px;border:1px solid var(--line-2);border-radius:999px;
+  transition:border-color .2s,color .2s,background .2s;
+}
+.back-link:hover{border-color:var(--gold);color:var(--gold-hi);background:rgba(216,169,53,.07)}
+.back-link svg{width:14px;height:14px;transform:scaleX(-1)}
 
-        .terms-header {
-            text-align: center;
-            border-bottom: 2px solid #ffb703;
-            padding-bottom: 24px;
-            margin-bottom: 35px;
-        }
+/* ---------- hero ---------- */
+.hero{
+  position:relative;overflow:hidden;
+  padding:clamp(56px,9vw,104px) 20px clamp(48px,7vw,80px);
+  text-align:center;border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(60% 80% at 50% 0%,rgba(216,169,53,.16),transparent 70%),
+    var(--ink);
+}
+.hero::before{
+  content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%23d8a935' stroke-opacity='.16' stroke-width='1'%3E%3Cpath d='M44 6l9.2 22.2L76 21l-7.2 22.8L76 67l-22.8-7.2L44 82l-9.2-22.2L12 67l7.2-23.2L12 21l22.8 7.2z'/%3E%3C/g%3E%3C/svg%3E");
+  -webkit-mask-image:radial-gradient(ellipse 70% 90% at 50% 0%,#000 10%,transparent 75%);
+          mask-image:radial-gradient(ellipse 70% 90% at 50% 0%,#000 10%,transparent 75%);
+}
+.hero-inner{position:relative;max-width:760px;margin:0 auto}
+.hero .seal{
+  width:76px;height:76px;margin:0 auto 26px;display:grid;place-items:center;border-radius:50%;
+  border:1px solid rgba(216,169,53,.5);
+  background:radial-gradient(circle at 50% 35%,rgba(216,169,53,.2),rgba(216,169,53,.03) 70%);
+  box-shadow:0 0 0 7px rgba(216,169,53,.05),0 0 60px rgba(216,169,53,.18);
+}
+.hero .seal svg{width:34px;height:34px}
+.hero h1{
+  font-family:var(--font-display);font-weight:700;
+  font-size:clamp(36px,7vw,62px);line-height:1.35;margin-bottom:14px;
+  background:linear-gradient(180deg,#fbe7a8 0%,var(--gold) 70%,#b88a22 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p.lead{color:var(--text-soft);font-size:clamp(15px,2.2vw,18px);max-width:620px;margin:0 auto 26px;line-height:1.95}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.chip{
+  display:inline-flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted);
+  padding:6px 14px;border:1px solid var(--line-2);border-radius:999px;background:rgba(21,18,12,.7);
+}
+.chip b{color:var(--gold-hi);font-weight:500}
 
-        .terms-header h1 {
-            color: #ffb703;
-            font-size: 30px;
-            margin-bottom: 10px;
-        }
+/* ---------- key points ---------- */
+.key-points{max-width:1180px;margin:-34px auto 0;padding:0 clamp(16px,4vw,40px);position:relative;z-index:2}
+.key-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.key{
+  display:flex;flex-direction:column;gap:6px;padding:20px 20px 18px;
+  background:linear-gradient(180deg,var(--panel-2),var(--panel));
+  border:1px solid var(--line-2);border-radius:14px;
+  box-shadow:0 18px 40px rgba(0,0,0,.45);
+  transition:border-color .25s,transform .25s;
+}
+.key:hover{border-color:var(--gold);transform:translateY(-2px)}
+.key .k-title{font-family:var(--font-display);font-weight:600;font-size:17px;color:var(--gold-hi);line-height:1.6}
+.key .k-text{font-size:13.8px;line-height:1.85;color:var(--muted)}
+.key .k-ref{margin-top:auto;padding-top:8px;font-size:12.5px;color:var(--gold)}
 
-        .terms-header p {
-            color: #8b9bb4;
-            font-size: 14px;
-            line-height: 1.8;
-        }
+/* ---------- layout ---------- */
+.layout{
+  max-width:1180px;margin:0 auto;
+  padding:clamp(40px,6vw,72px) clamp(16px,4vw,40px) 40px;
+  display:grid;grid-template-columns:270px minmax(0,1fr);gap:clamp(32px,5vw,72px);
+  align-items:start;
+}
 
-        .terms-section {
-            margin-bottom: 30px;
-        }
+/* ---------- TOC ---------- */
+.toc{
+  position:sticky;top:calc(var(--head-h) + 24px);
+  max-height:calc(100vh - var(--head-h) - 48px);
+  display:flex;flex-direction:column;
+}
+.toc-title{
+  font-family:var(--font-display);font-weight:600;font-size:16px;color:var(--gold-hi);
+  padding:0 14px 12px;border-bottom:1px solid var(--line-2);margin-bottom:8px;
+}
+.toc nav{overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--line-2) transparent;padding-inline-end:6px}
+.toc nav::-webkit-scrollbar{width:5px}
+.toc nav::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:5px}
+.toc a{
+  display:flex;gap:10px;align-items:baseline;
+  padding:6px 14px;font-size:13.5px;line-height:1.7;color:var(--muted);
+  border-inline-start:2px solid transparent;
+  transition:color .2s,background .2s,border-color .2s;
+}
+.toc a .n{min-width:22px;color:var(--gold-lo);font-weight:500;font-variant-numeric:tabular-nums}
+.toc a:hover{color:var(--text);background:rgba(216,169,53,.05)}
+.toc a.active{color:var(--gold-hi);border-inline-start-color:var(--gold);background:rgba(216,169,53,.08)}
+.toc a.active .n{color:var(--gold)}
 
-        .terms-section h2 {
-            color: #00f0ff;
-            font-size: 19px;
-            margin-bottom: 13px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+/* ---------- content ---------- */
+.content{max-width:760px;min-width:0}
+.intro-note{
+  margin-bottom:8px;padding:0 0 28px;color:var(--text-soft);font-size:15.5px;
+}
+.clause{
+  position:relative;padding:40px 0 34px;border-top:1px solid var(--line);
+  scroll-margin-top:calc(var(--head-h) + 12px);
+}
+.clause:first-of-type{border-top:0;padding-top:12px}
+.clause-head{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.clause .no{
+  flex:none;min-width:54px;text-align:center;
+  font-family:var(--font-display);font-weight:700;font-size:44px;line-height:1;
+  color:transparent;-webkit-text-stroke:1px var(--gold);
+  font-variant-numeric:lining-nums;
+}
+.clause h2{
+  font-family:var(--font-display);font-weight:600;font-size:clamp(20px,3vw,25px);
+  line-height:1.6;color:#f6f1e3;
+}
+.clause p{color:var(--text-soft);margin-bottom:14px}
+.clause p:last-child{margin-bottom:0}
+.clause strong{color:#fff;font-weight:600}
+.clause h3{
+  display:flex;align-items:center;gap:12px;
+  font-family:var(--font-display);font-weight:600;font-size:18px;color:var(--gold-hi);
+  margin:28px 0 10px;
+}
+.clause h3::before{content:"";width:22px;height:1px;background:var(--gold)}
 
-        .terms-section h3 {
-            color: #ffb703;
-            font-size: 16px;
-            margin: 18px 0 8px;
-        }
+.term{color:var(--gold-hi);font-weight:600;border-bottom:1px dashed rgba(243,211,126,.45)}
 
-        .terms-section p,
-        .terms-section ul {
-            color: #c1cbd8;
-            font-size: 15px;
-            text-align: justify;
-        }
+/* lists */
+.clause ul{list-style:none;margin:6px 0 4px;display:grid;gap:4px}
+.clause ul li{position:relative;padding-inline-start:30px;color:var(--text-soft)}
+.clause ul li::before{
+  content:"";position:absolute;inset-inline-start:6px;top:.95em;
+  width:7px;height:7px;background:var(--gold);transform:rotate(45deg);
+}
 
-        .terms-section p {
-            margin-bottom: 10px;
-        }
+/* callouts */
+.note{
+  --c:var(--gold);--bg:rgba(216,169,53,.07);
+  margin:22px 0;padding:18px 22px;border-radius:12px;
+  background:linear-gradient(90deg,transparent,var(--bg));
+  background-color:rgba(21,18,12,.6);
+  border:1px solid var(--line-2);border-inline-start:3px solid var(--c);
+}
+.note p{margin:0!important;font-size:15.5px}
+.note p+p{margin-top:10px!important}
+.note strong:first-child{display:block;color:var(--c);margin-bottom:2px;font-family:var(--font-display);font-size:16.5px;font-weight:600}
+.note--info{--c:var(--teal);--bg:rgba(108,192,184,.07)}
+.note--warn{--c:var(--danger);--bg:rgba(232,115,106,.08)}
 
-        .terms-section ul {
-            list-style-type: none;
-            padding-right: 15px;
-        }
+/* info list */
+.facts{display:grid;gap:0;margin-top:8px;border:1px solid var(--line-2);border-radius:14px;overflow:hidden;background:var(--panel)}
+.fact{display:grid;grid-template-columns:150px 1fr;gap:18px;padding:16px 22px;border-top:1px solid var(--line)}
+.fact:first-child{border-top:0}
+.fact dt{color:var(--gold-hi);font-weight:500;font-size:14.5px}
+.fact dd{color:var(--text-soft);font-size:15px;line-height:1.9}
+.fact dd a{color:var(--gold-hi);border-bottom:1px solid rgba(243,211,126,.35);direction:ltr;unicode-bidi:embed}
 
-        .terms-section ul li {
-            position: relative;
-            margin-bottom: 10px;
-            padding-right: 22px;
-        }
+/* footer */
+.site-foot{border-top:1px solid var(--line);background:var(--ink-2);padding:44px 20px 52px;text-align:center}
+.site-foot .brand{justify-content:center;margin-bottom:14px}
+.site-foot p{color:var(--muted);font-size:13.5px;max-width:560px;margin:0 auto 6px;line-height:1.9}
+.site-foot .btn{
+  display:inline-flex;margin-top:18px;padding:11px 28px;border-radius:999px;font-weight:600;font-size:14.5px;
+  color:#1a1303;background:linear-gradient(145deg,var(--gold-hi),var(--gold));
+  box-shadow:0 8px 24px rgba(216,169,53,.22);transition:transform .2s,box-shadow .2s;
+}
+.site-foot .btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(216,169,53,.32)}
 
-        .terms-section ul li::before {
-            content: "■";
-            color: #ffb703;
-            font-size: 9px;
-            position: absolute;
-            right: 0;
-            top: 5px;
-        }
+/* floating controls */
+.fab{
+  position:fixed;bottom:20px;z-index:55;display:grid;place-items:center;
+  border:1px solid var(--line-2);background:rgba(21,18,12,.92);color:var(--gold-hi);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);cursor:pointer;font-family:inherit;
+  transition:opacity .25s,transform .25s,border-color .2s;
+}
+.fab:hover{border-color:var(--gold)}
+.to-top{inset-inline-start:20px;width:46px;height:46px;border-radius:50%;opacity:0;pointer-events:none;transform:translateY(10px)}
+.to-top.show{opacity:1;pointer-events:auto;transform:none}
+.to-top svg{width:18px;height:18px}
+.toc-open{display:none;inset-inline-end:20px;padding:0 20px;height:46px;border-radius:999px;font-size:14.5px;font-weight:600;gap:8px;grid-auto-flow:column}
+.toc-open svg{width:16px;height:16px}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:70;opacity:0;pointer-events:none;transition:opacity .25s}
+.scrim.show{opacity:1;pointer-events:auto}
 
-        .highlight-box {
-            background: rgba(255, 183, 3, 0.08);
-            border-right: 4px solid #ffb703;
-            padding: 18px;
-            border-radius: 6px;
-            margin: 18px 0;
-        }
-
-        .info-box {
-            background: rgba(0, 240, 255, 0.06);
-            border-right: 4px solid #00f0ff;
-            padding: 18px;
-            border-radius: 6px;
-            margin: 18px 0;
-        }
-
-        .warning-box {
-            background: rgba(255, 80, 80, 0.06);
-            border-right: 4px solid #ff5c5c;
-            padding: 18px;
-            border-radius: 6px;
-            margin: 18px 0;
-        }
-
-        strong {
-            color: #f1f5f9;
-        }
-
-        .terms-footer {
-            margin-top: 45px;
-            padding-top: 22px;
-            border-top: 1px solid #222d42;
-            text-align: center;
-            font-size: 13px;
-            color: #6c7d93;
-            line-height: 1.8;
-        }
-
-        .brand-term {
-            color: #ffb703;
-            font-weight: bold;
-        }
-
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
-
-            .terms-container {
-                margin: 15px auto;
-                padding: 22px 18px;
-                border-radius: 10px;
-            }
-
-            .terms-header h1 {
-                font-size: 24px;
-            }
-
-            .terms-section h2 {
-                font-size: 17px;
-            }
-
-            .terms-section p,
-            .terms-section ul {
-                font-size: 14px;
-            }
-        }
-    </style>
+/* ---------- responsive ---------- */
+@media (max-width:1020px){
+  .key-grid{grid-template-columns:repeat(2,1fr)}
+  .layout{grid-template-columns:1fr}
+  .toc-open{display:grid}
+  .toc{
+    position:fixed;inset:auto 0 0 0;z-index:80;max-height:72vh;
+    background:var(--panel);border-top:1px solid var(--gold-lo);border-radius:20px 20px 0 0;
+    padding:20px 10px 16px;transform:translateY(105%);transition:transform .3s ease;
+    box-shadow:0 -20px 60px rgba(0,0,0,.6);
+  }
+  .toc.open{transform:none}
+  .toc a{font-size:14.5px;padding:9px 14px}
+}
+@media (max-width:620px){
+  body{font-size:16px}
+  .key-grid{grid-template-columns:1fr}
+  .key-points{margin-top:-26px}
+  .back-link span{display:none}
+  .back-link{padding:8px 12px}
+  .clause{padding:32px 0 28px}
+  .clause-head{gap:12px;align-items:flex-start}
+  .clause .no{font-size:34px;min-width:40px}
+  .fact{grid-template-columns:1fr;gap:2px;padding:14px 18px}
+  .note{padding:16px 18px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important;animation:none!important}
+}
+@media print{
+  :root{--ink:#fff;--text:#111;--text-soft:#222;--muted:#444;--gold:#8a6510;--gold-hi:#6b4d0b;--line:#ccc;--line-2:#bbb;--panel:#fff;--panel-2:#fff}
+  body{background:#fff;color:#111}
+  .site-head,.toc,.fab,.progress,.key-points,.hero::before,.scrim{display:none!important}
+  .hero{background:#fff;padding:20px 0}
+  .hero h1{background:none;color:#6b4d0b;-webkit-text-fill-color:#6b4d0b}
+  .layout{display:block;padding:0}
+  .clause{break-inside:avoid-page}
+  .clause h2,.clause strong{color:#000}
+  .clause .no{-webkit-text-stroke:1px #8a6510}
+  .site-foot{background:#fff}
+  .site-foot .btn{display:none}
+}
+</style>
 </head>
 
 <body>
 
-<div class="terms-container">
+<div class="progress" aria-hidden="true"><i id="bar"></i></div>
 
-    <div class="terms-header">
-        <h1>شروط وأحكام الخدمة</h1>
-        <p>
-            الشروط والأحكام المنظمة لاستخدام منصة HYPER TOPUP
-            والاستفادة من خدماتها ومنتجاتها الرقمية.
-        </p>
+<!-- Header -->
+<header class="site-head">
+  <a class="brand" href="/" aria-label="HYPER TOPUP — الصفحة الرئيسية">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="#1a1303"><path d="M13.5 2 5 13.5h5.5L9.5 22 19 9.5h-5.8z"/></svg>
+    </span>
+    <span class="brand-name">HYPER TOPUP</span>
+  </a>
+  <a class="back-link" href="/">
+    <span>العودة إلى المتجر</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="seal" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#f3d37e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.2 7.5 9.5 4.3-1.3 7.5-4.9 7.5-9.5V6z"/>
+        <path d="m8.8 12.2 2.4 2.4 4-4.6"/>
+      </svg>
     </div>
+    <h1>شروط وأحكام الخدمة</h1>
+    <p class="lead">
+      الشروط والأحكام المنظمة لاستخدام منصة HYPER TOPUP
+      والاستفادة من خدماتها ومنتجاتها الرقمية.
+    </p>
+    <div class="hero-meta">
+      <span class="chip">آخر تحديث <b>أكتوبر 2026</b></span>
+      <span class="chip"><b>29</b> بندًا</span>
+    </div>
+  </div>
+</section>
 
+<!-- Key points -->
+<section class="key-points" aria-label="أهم النقاط قبل إتمام الطلب">
+  <div class="key-grid">
+    <a class="key" href="#s6">
+      <span class="k-title">راجع الـ ID قبل الدفع</span>
+      <span class="k-text">بعد تنفيذ الشحن على الـ ID الذي أدخلته لا يمكن تحويله أو استرداد قيمته.</span>
+      <span class="k-ref">البند 6</span>
+    </a>
+    <a class="key" href="#s10">
+      <span class="k-title">المنتجات الرقمية والاسترداد</span>
+      <span class="k-text">إمكانية الإلغاء أو الاسترداد تعتمد على حالة الطلب وهل تم تنفيذه أو تسليمه.</span>
+      <span class="k-ref">البند 10</span>
+    </a>
+    <a class="key" href="#s4">
+      <span class="k-title">منصة مستقلة</span>
+      <span class="k-text">HYPER TOPUP ليست ناشرًا ولا فرعًا رسميًا لأي لعبة أو تطبيق خارجي.</span>
+      <span class="k-ref">البند 4</span>
+    </a>
+    <a class="key" href="#s3">
+      <span class="k-title">معنى «موثق» و«الوسيط المعتمد»</span>
+      <span class="k-text">تسميات تجارية لتنظيم الخدمة، وليست شهادة حكومية أو اعتمادًا من ناشر.</span>
+      <span class="k-ref">البند 3</span>
+    </a>
+  </div>
+</section>
+
+<!-- Main layout -->
+<div class="layout">
+
+  <aside class="toc" id="toc" aria-label="فهرس الصفحة">
+    <div class="toc-title">فهرس البنود</div>
+    <nav id="tocNav"></nav>
+  </aside>
+
+  <main class="content" id="content">
+
+    <p class="intro-note">
+      يرجى قراءة هذه الصفحة قبل إتمام أول طلب. تشرح البنود التالية طبيعة المتجر،
+      وما المطلوب منك عند الطلب، وما يمكن أن نقدمه لك وما لا يمكن.
+    </p>
 
     <!-- 1 -->
-    <div class="terms-section">
-        <h2>1. مقدمة وتعريف المنصة</h2>
-
-        <p>
-            مرحبًا بك في <strong>HYPER TOPUP</strong>، وهي منصة إلكترونية
-            مستقلة تهدف إلى توفير قناة سهلة ومنظمة لطلب بعض المنتجات الرقمية
-            وخدمات شحن الألعاب والتطبيقات والخدمات الرقمية الأخرى المتاحة ضمن
-            الكتالوج الحالي للمتجر.
-        </p>
-
-        <p>
-            توضح هذه الشروط والأحكام القواعد المنظمة لاستخدام الموقع،
-            وطريقة تقديم الطلبات، ومتطلبات تنفيذ الخدمات، ومسؤوليات العميل،
-            وسياسات الدفع والاسترداد والدعم الفني.
-        </p>
-
-        <p>
-            باستخدام الموقع أو إنشاء حساب أو إرسال طلب أو إتمام عملية شراء،
-            يقر المستخدم بأنه اطّلع على هذه الشروط وفهم طبيعة الخدمة
-            والمعلومات المطلوبة لتنفيذ الطلب.
-        </p>
-    </div>
-
+    <section class="clause" id="s1">
+      <div class="clause-head"><span class="no">1</span><h2>مقدمة وتعريف المنصة</h2></div>
+      <p>
+        مرحبًا بك في <strong>HYPER TOPUP</strong>، وهي منصة إلكترونية مستقلة تهدف إلى توفير قناة سهلة ومنظمة لطلب بعض المنتجات الرقمية وخدمات شحن الألعاب والتطبيقات والخدمات الرقمية الأخرى المتاحة ضمن الكتالوج الحالي للمتجر.
+      </p>
+      <p>
+        توضح هذه الشروط والأحكام القواعد المنظمة لاستخدام الموقع، وطريقة تقديم الطلبات، ومتطلبات تنفيذ الخدمات، ومسؤوليات العميل، وسياسات الدفع والاسترداد والدعم الفني.
+      </p>
+      <p>
+        باستخدام الموقع أو إنشاء حساب أو إرسال طلب أو إتمام عملية شراء، يقر المستخدم بأنه اطّلع على هذه الشروط وفهم طبيعة الخدمة والمعلومات المطلوبة لتنفيذ الطلب.
+      </p>
+    </section>
 
     <!-- 2 -->
-    <div class="terms-section">
-        <h2>2. طبيعة HYPER TOPUP ونطاق الخدمات</h2>
-
+    <section class="clause" id="s2">
+      <div class="clause-head"><span class="no">2</span><h2>طبيعة HYPER TOPUP ونطاق الخدمات</h2></div>
+      <p>
+        تعمل HYPER TOPUP كـ <strong>متجر إلكتروني مستقل للخدمات والمنتجات الرقمية</strong>. ويشمل ذلك، بحسب المنتجات المتاحة في المتجر، خدمات شحن الألعاب، العملات الرقمية داخل الألعاب، العملات الافتراضية للتطبيقات، الاشتراكات الرقمية وبعض الأكواد أو الخدمات الإلكترونية.
+      </p>
+      <p>
+        قد تختلف المنتجات والأسعار وطرق التسليم ومتطلبات التنفيذ بمرور الوقت وفقًا لتوفر الخدمة والموردين والقنوات المستخدمة لتنفيذ الطلبات.
+      </p>
+      <div class="note note--info">
         <p>
-            تعمل HYPER TOPUP كـ
-            <strong>متجر إلكتروني مستقل للخدمات والمنتجات الرقمية</strong>.
-            ويشمل ذلك، بحسب المنتجات المتاحة في المتجر، خدمات شحن الألعاب،
-            العملات الرقمية داخل الألعاب، العملات الافتراضية للتطبيقات،
-            الاشتراكات الرقمية وبعض الأكواد أو الخدمات الإلكترونية.
+          <strong>ملاحظة مهمة</strong>
+          أسماء الألعاب والتطبيقات والمنصات والعلامات التجارية المذكورة داخل المتجر هي ملك لأصحابها المعنيين. ولا تعني إتاحة منتج مرتبط بخدمة خارجية أن HYPER TOPUP هي مالكة لتلك الخدمة أو ناشرتها أو فرعًا رسميًا لها.
         </p>
-
-        <p>
-            قد تختلف المنتجات والأسعار وطرق التسليم ومتطلبات التنفيذ بمرور
-            الوقت وفقًا لتوفر الخدمة والموردين والقنوات المستخدمة لتنفيذ
-            الطلبات.
-        </p>
-
-        <div class="info-box">
-            <p>
-                <strong>ملاحظة مهمة:</strong>
-                أسماء الألعاب والتطبيقات والمنصات والعلامات التجارية المذكورة
-                داخل المتجر هي ملك لأصحابها المعنيين. ولا تعني إتاحة منتج
-                مرتبط بخدمة خارجية أن HYPER TOPUP هي مالكة لتلك الخدمة أو
-                ناشرتها أو فرعًا رسميًا لها.
-            </p>
-        </div>
-    </div>
-
+      </div>
+    </section>
 
     <!-- 3 -->
-    <div class="terms-section">
-        <h2>3. معنى المصطلحات المستخدمة في المتجر</h2>
+    <section class="clause" id="s3">
+      <div class="clause-head"><span class="no">3</span><h2>معنى المصطلحات المستخدمة في المتجر</h2></div>
 
-        <h3>أولًا: مصطلح "موثق"</h3>
+      <h3>أولًا: مصطلح «موثق»</h3>
+      <p>
+        قد تستخدم HYPER TOPUP مصطلح <span class="term">«موثق»</span> أو عبارات مشابهة في بعض أجزاء الموقع أو المحتوى التسويقي للدلالة على أن معلومات الخدمة أو طريقة الطلب أو هوية المنصة موضحة للمستخدم بصورة منظمة ويمكن الرجوع إليها من خلال القنوات والمعلومات المنشورة بواسطة HYPER TOPUP.
+      </p>
+      <p>
+        ويُقصد باستخدام هذا المصطلح في السياق التجاري للمتجر <strong>وضوح المعلومات وسهولة الرجوع إليها وتنظيم تجربة الطلب</strong>، وليس الادعاء بوجود شهادة حكومية أو اعتماد قانوني أو تصديق خارجي ما لم يتم ذكر الجهة المانحة لذلك الاعتماد بشكل صريح.
+      </p>
+      <p>
+        كما أن وجود الموقع على نطاقه الرسمي، واستخدام HTTPS، وتوفير صفحات وسياسات ومعلومات واضحة عن الخدمات، كلها عناصر تساعد على جعل معلومات المتجر أكثر وضوحًا وقابلية للمراجعة من جانب المستخدم.
+      </p>
 
+      <h3>ثانيًا: مصطلح «الوسيط المعتمد»</h3>
+      <p>
+        قد تستخدم HYPER TOPUP عبارة <span class="term">«الوسيط المعتمد»</span> باعتبارها <strong>تسمية تجارية ووصفًا لدور المنصة في تنفيذ وتنسيق الخدمات الرقمية</strong>.
+      </p>
+      <p>
+        ويقصد بالعبارة، في سياق HYPER TOPUP، أن الشخص المسؤول عن تشغيل وإدارة المتجر يعتمد داخليًا المنتجات وآلية تقديمها ضمن نطاق خدمات المتجر، ويتولى تنظيم عملية الطلب وخدمة العملاء ومتابعة الطلبات من خلال القنوات التي توفرها المنصة.
+      </p>
+      <div class="note">
         <p>
-            قد تستخدم HYPER TOPUP مصطلح
-            <span class="brand-term">"موثق"</span>
-            أو عبارات مشابهة في بعض أجزاء الموقع أو المحتوى التسويقي
-            للدلالة على أن معلومات الخدمة أو طريقة الطلب أو هوية المنصة
-            موضحة للمستخدم بصورة منظمة ويمكن الرجوع إليها من خلال القنوات
-            والمعلومات المنشورة بواسطة HYPER TOPUP.
+          <strong>توضيح مهم حول كلمة «معتمد»</strong>
+          استخدام HYPER TOPUP لعبارة «الوسيط المعتمد» لا يعني تلقائيًا أن المتجر حاصل على اعتماد رسمي من ناشر لعبة أو شركة خارجية أو جهة حكومية. وإذا حصلت المنصة مستقبلًا على اعتماد رسمي من جهة محددة، فسيتم ذكر اسم الجهة ونطاق الاعتماد بصورة واضحة.
         </p>
-
-        <p>
-            ويُقصد باستخدام هذا المصطلح في السياق التجاري للمتجر
-            <strong>وضوح المعلومات وسهولة الرجوع إليها وتنظيم تجربة الطلب</strong>،
-            وليس الادعاء بوجود شهادة حكومية أو اعتماد قانوني أو تصديق خارجي
-            ما لم يتم ذكر الجهة المانحة لذلك الاعتماد بشكل صريح.
-        </p>
-
-        <p>
-            كما أن وجود الموقع على نطاقه الرسمي، واستخدام HTTPS، وتوفير
-            صفحات وسياسات ومعلومات واضحة عن الخدمات، كلها عناصر تساعد على
-            جعل معلومات المتجر أكثر وضوحًا وقابلية للمراجعة من جانب المستخدم.
-        </p>
-
-
-        <h3>ثانيًا: مصطلح "الوسيط المعتمد"</h3>
-
-        <p>
-            قد تستخدم HYPER TOPUP عبارة
-            <span class="brand-term">"الوسيط المعتمد"</span>
-            باعتبارها <strong>تسمية تجارية ووصفًا لدور المنصة في تنفيذ
-            وتنسيق الخدمات الرقمية</strong>.
-        </p>
-
-        <p>
-            ويقصد بالعبارة، في سياق HYPER TOPUP، أن الشخص المسؤول عن تشغيل
-            وإدارة المتجر يعتمد داخليًا المنتجات وآلية تقديمها ضمن نطاق
-            خدمات المتجر، ويتولى تنظيم عملية الطلب وخدمة العملاء ومتابعة
-            الطلبات من خلال القنوات التي توفرها المنصة.
-        </p>
-
-        <div class="highlight-box">
-            <p>
-                <strong>توضيح مهم حول كلمة "معتمد":</strong>
-                استخدام HYPER TOPUP لعبارة "الوسيط المعتمد" لا يعني تلقائيًا
-                أن المتجر حاصل على اعتماد رسمي من ناشر لعبة أو شركة خارجية
-                أو جهة حكومية. وإذا حصلت المنصة مستقبلًا على اعتماد رسمي من
-                جهة محددة، فسيتم ذكر اسم الجهة ونطاق الاعتماد بصورة واضحة.
-            </p>
-        </div>
-
-        <p>
-            وبذلك فإن المصطلح يصف <strong>دور ومسؤولية إدارة المتجر في تنظيم
-            الخدمة</strong> ولا ينبغي تفسيره على أنه ملكية أو تمثيل رسمي
-            لعلامة تجارية أو لعبة أو منصة خارجية.
-        </p>
-    </div>
-
+      </div>
+      <p>
+        وبذلك فإن المصطلح يصف <strong>دور ومسؤولية إدارة المتجر في تنظيم الخدمة</strong> ولا ينبغي تفسيره على أنه ملكية أو تمثيل رسمي لعلامة تجارية أو لعبة أو منصة خارجية.
+      </p>
+    </section>
 
     <!-- 4 -->
-    <div class="terms-section">
-        <h2>4. استقلالية المنصة والعلاقة مع الجهات الخارجية</h2>
-
-        <p>
-            HYPER TOPUP منصة مستقلة. ولا تقدم نفسها على أنها مالك أو ناشر
-            أو فرع رسمي للألعاب أو التطبيقات أو المنصات التابعة لأطراف
-            خارجية، إلا إذا تم الإعلان عن وجود تفويض أو شراكة رسمية محددة
-            مع ذكر الجهة ونطاقها بوضوح.
-        </p>
-
-        <p>
-            جميع أسماء المنتجات والعلامات التجارية والشعارات التي تخص أطرافًا
-            خارجية تظل مملوكة لأصحابها. ويتم استخدام أسمائها عند الحاجة
-            لتحديد الخدمة الرقمية التي يطلبها العميل.
-        </p>
-
-        <p>
-            ويهدف هذا التوضيح إلى منع الخلط بين HYPER TOPUP وبين الشركات
-            أو الناشرين أو المطورين الذين يملكون الخدمات والألعاب الأصلية.
-        </p>
-    </div>
-
+    <section class="clause" id="s4">
+      <div class="clause-head"><span class="no">4</span><h2>استقلالية المنصة والعلاقة مع الجهات الخارجية</h2></div>
+      <p>
+        HYPER TOPUP منصة مستقلة. ولا تقدم نفسها على أنها مالك أو ناشر أو فرع رسمي للألعاب أو التطبيقات أو المنصات التابعة لأطراف خارجية، إلا إذا تم الإعلان عن وجود تفويض أو شراكة رسمية محددة مع ذكر الجهة ونطاقها بوضوح.
+      </p>
+      <p>
+        جميع أسماء المنتجات والعلامات التجارية والشعارات التي تخص أطرافًا خارجية تظل مملوكة لأصحابها. ويتم استخدام أسمائها عند الحاجة لتحديد الخدمة الرقمية التي يطلبها العميل.
+      </p>
+      <p>
+        ويهدف هذا التوضيح إلى منع الخلط بين HYPER TOPUP وبين الشركات أو الناشرين أو المطورين الذين يملكون الخدمات والألعاب الأصلية.
+      </p>
+    </section>
 
     <!-- 5 -->
-    <div class="terms-section">
-        <h2>5. إنشاء الحساب والمعلومات الأساسية</h2>
-
-        <p>
-            قد يتطلب استخدام بعض وظائف المتجر إنشاء حساب أو تسجيل الدخول
-            باستخدام وسائل المصادقة المتاحة.
-        </p>
-
-        <ul>
-            <li>
-                يجب تقديم معلومات صحيحة عند استخدام وظائف الحساب أو الطلب.
-            </li>
-
-            <li>
-                يتحمل المستخدم مسؤولية الحفاظ على إمكانية الوصول إلى حسابه
-                ووسيلة تسجيل الدخول المستخدمة معه.
-            </li>
-
-            <li>
-                لا تطلب خدمات الشحن المعتمدة على Player ID عادةً كلمة مرور
-                حساب اللعبة لتنفيذ عملية الشحن.
-            </li>
-
-            <li>
-                لا ينبغي للمستخدم إرسال كلمات مرور الألعاب أو أرقام PIN
-                الخاصة بالمحافظ أو أي بيانات سرية لا يطلبها المتجر صراحةً.
-            </li>
-        </ul>
-    </div>
-
+    <section class="clause" id="s5">
+      <div class="clause-head"><span class="no">5</span><h2>إنشاء الحساب والمعلومات الأساسية</h2></div>
+      <p>
+        قد يتطلب استخدام بعض وظائف المتجر إنشاء حساب أو تسجيل الدخول باستخدام وسائل المصادقة المتاحة.
+      </p>
+      <ul>
+        <li>يجب تقديم معلومات صحيحة عند استخدام وظائف الحساب أو الطلب.</li>
+        <li>يتحمل المستخدم مسؤولية الحفاظ على إمكانية الوصول إلى حسابه ووسيلة تسجيل الدخول المستخدمة معه.</li>
+        <li>لا تطلب خدمات الشحن المعتمدة على Player ID عادةً كلمة مرور حساب اللعبة لتنفيذ عملية الشحن.</li>
+        <li>لا ينبغي للمستخدم إرسال كلمات مرور الألعاب أو أرقام PIN الخاصة بالمحافظ أو أي بيانات سرية لا يطلبها المتجر صراحةً.</li>
+      </ul>
+    </section>
 
     <!-- 6 -->
-    <div class="terms-section">
-        <h2>6. Player ID ودقة بيانات الطلب</h2>
-
+    <section class="clause" id="s6">
+      <div class="clause-head"><span class="no">6</span><h2>الطلبات التي تعتمد على ID</h2></div>
+      <p>
+        يتم تنفيذ خدمات الشحن التي تعتمد على ID باستخدام البيانات والتحقق الفوري الذي يقدمه العميل أثناء إنشاء الطلب.
+      </p>
+      <ul>
+        <li>العميل مسؤول مسؤولية كاملة عن التأكد من صحة ومطابقة اسم اللاعب الظاهر بعد الضغط على زر (تحقق) قبل تأكيد الطلب والدفع.</li>
+        <li>إذا تم تنفيذ الشحن بنجاح على الـ ID واسم الحساب الذي ظهر للعميل وتم إدخاله في الطلب، فلا يمكن تحويل الشحنة إلى ID آخر أو استرداد قيمتها.</li>
+        <li>في حال تجاهل التحقق أو إدخال ID غير صحيح وتم تنفيذ الطلب عليه، فلا يمكن استرجاع المبلغ أو إعادة توجيه الشحنة.</li>
+      </ul>
+      <div class="note note--warn">
         <p>
-            في الخدمات التي تعتمد على Player ID أو User ID، يعتمد تنفيذ
-            الطلب على البيانات التي يدخلها العميل في نموذج الطلب.
+          <strong>راجع الـ ID واسم الحساب جيدًا قبل الدفع</strong>
+          خطأ بسيط في رقم اللاعب أو عدم التأكد من اسم الحساب الظاهر قد يؤدي إلى تنفيذ الطلب على حساب غير مقصود، وإدارة الموقع غير مسؤولة عن ذلك.
         </p>
-
-        <ul>
-            <li>
-                يجب مراجعة Player ID قبل تأكيد الطلب.
-            </li>
-
-            <li>
-                يجب التأكد من اختيار اللعبة أو الخدمة الصحيحة.
-            </li>
-
-            <li>
-                يجب التأكد من أن جميع البيانات المطلوبة للطلب صحيحة.
-            </li>
-
-            <li>
-                إذا تم تنفيذ الخدمة بنجاح على المعرّف الذي أدخله العميل،
-                فقد لا يكون من الممكن نقل الخدمة إلى حساب آخر.
-            </li>
-        </ul>
-
-        <p>
-            لذلك تنصح HYPER TOPUP العميل بمراجعة بيانات الطلب بالكامل قبل
-            الدفع أو إرسال الطلب.
-        </p>
-    </div>
-
+      </div>
+    </section>
 
     <!-- 7 -->
-    <div class="terms-section">
-        <h2>7. الأسعار والدفع</h2>
-
-        <p>
-            تظهر أسعار المنتجات والخدمات داخل المتجر وفقًا للأسعار المعمول
-            بها وقت عرض المنتج أو إنشاء الطلب.
-        </p>
-
-        <p>
-            قد تتغير الأسعار نتيجة تغير تكاليف الموردين أو أسعار الخدمات
-            الرقمية أو العملات أو أي عوامل تشغيلية أخرى.
-        </p>
-
-        <p>
-            يكون السعر المعروض للعميل وقت تأكيد الطلب هو السعر المرجعي
-            للطلب، ما لم يتم توضيح خلاف ذلك قبل إتمام العملية.
-        </p>
-
-        <p>
-            يجب على العميل اتباع طريقة الدفع الموضحة داخل المتجر للطلب
-            المحدد، وعدم إرسال الأموال إلى أرقام أو حسابات غير معروضة
-            ضمن تعليمات الطلب الرسمية.
-        </p>
-    </div>
-
+    <section class="clause" id="s7">
+      <div class="clause-head"><span class="no">7</span><h2>الأسعار والدفع</h2></div>
+      <p>
+        تظهر أسعار المنتجات والخدمات داخل المتجر وفقًا للأسعار المعمول بها وقت عرض المنتج أو إنشاء الطلب.
+      </p>
+      <p>
+        قد تتغير الأسعار نتيجة تغير تكاليف الموردين أو أسعار الخدمات الرقمية أو العملات أو أي عوامل تشغيلية أخرى.
+      </p>
+      <p>
+        يكون السعر المعروض للعميل وقت تأكيد الطلب هو السعر المرجعي للطلب، ما لم يتم توضيح خلاف ذلك قبل إتمام العملية.
+      </p>
+      <p>
+        يجب على العميل اتباع طريقة الدفع الموضحة داخل المتجر للطلب المحدد، وعدم إرسال الأموال إلى أرقام أو حسابات غير معروضة ضمن تعليمات الطلب الرسمية.
+      </p>
+    </section>
 
     <!-- 8 -->
-    <div class="terms-section">
-        <h2>8. إثبات الدفع والطلبات</h2>
-
-        <p>
-            قد يطلب المتجر من العميل إرسال إثبات الدفع أو بيانات العملية
-            اللازمة للتحقق من الطلب ومعالجته.
-        </p>
-
-        <ul>
-            <li>
-                يجب أن يكون إثبات الدفع حقيقيًا وواضحًا.
-            </li>
-
-            <li>
-                يمنع إرسال إيصالات معدلة أو مزيفة.
-            </li>
-
-            <li>
-                يجب الاحتفاظ برقم الطلب أو مرجع العملية عند توفره.
-            </li>
-
-            <li>
-                قد تستخدم بيانات الطلب للتحقق من حالة الدفع وتنفيذ الخدمة
-                والرد على استفسارات الدعم الفني.
-            </li>
-        </ul>
-    </div>
-
+    <section class="clause" id="s8">
+      <div class="clause-head"><span class="no">8</span><h2>إثبات الدفع والطلبات</h2></div>
+      <p>
+        قد يطلب المتجر من العميل إرسال إثبات الدفع أو بيانات العملية اللازمة للتحقق من الطلب ومعالجته.
+      </p>
+      <ul>
+        <li>يجب أن يكون إثبات الدفع حقيقيًا وواضحًا.</li>
+        <li>يمنع إرسال إيصالات معدلة أو مزيفة.</li>
+        <li>يجب الاحتفاظ برقم الطلب أو مرجع العملية عند توفره.</li>
+        <li>قد تستخدم بيانات الطلب للتحقق من حالة الدفع وتنفيذ الخدمة والرد على استفسارات الدعم الفني.</li>
+      </ul>
+    </section>
 
     <!-- 9 -->
-    <div class="terms-section">
-        <h2>9. تنفيذ وتسليم الخدمات الرقمية</h2>
-
-        <p>
-            تختلف طريقة تنفيذ الخدمة حسب المنتج المحدد. فقد يتم تنفيذ بعض
-            الخدمات باستخدام Player ID، بينما قد تعتمد خدمات أخرى على كود
-            رقمي أو بيانات تسليم مختلفة.
-        </p>
-
-        <p>
-            يتم توضيح المتطلبات الأساسية للمنتج داخل صفحة المنتج أو نموذج
-            الطلب قدر الإمكان.
-        </p>
-
-        <p>
-            الوقت المتوقع للتنفيذ قد يختلف بحسب نوع الخدمة وحالة الأنظمة
-            والموردين، ولا يعني عرض منتج داخل المتجر أن تنفيذ جميع الطلبات
-            يتم في نفس المدة لكل المنتجات.
-        </p>
-    </div>
-
+    <section class="clause" id="s9">
+      <div class="clause-head"><span class="no">9</span><h2>تنفيذ وتسليم الخدمات الرقمية</h2></div>
+      <p>
+        تختلف طريقة تنفيذ الخدمة حسب المنتج المحدد. فقد يتم تنفيذ بعض الخدمات باستخدام Player ID، بينما قد تعتمد خدمات أخرى على كود رقمي أو بيانات تسليم مختلفة.
+      </p>
+      <p>
+        يتم توضيح المتطلبات الأساسية للمنتج داخل صفحة المنتج أو نموذج الطلب قدر الإمكان.
+      </p>
+      <p>
+        الوقت المتوقع للتنفيذ قد يختلف بحسب نوع الخدمة وحالة الأنظمة والموردين، ولا يعني عرض منتج داخل المتجر أن تنفيذ جميع الطلبات يتم في نفس المدة لكل المنتجات.
+      </p>
+    </section>
 
     <!-- 10 -->
-    <div class="terms-section">
-        <h2>10. سياسة الإلغاء والاسترداد</h2>
-
-        <div class="highlight-box">
-
-            <p>
-                نظرًا لطبيعة المنتجات والخدمات الرقمية، فإن إمكانية إلغاء
-                الطلب أو استرداده تعتمد بشكل أساسي على حالة الطلب وما إذا
-                كانت الخدمة قد تم تنفيذها أو تسليمها.
-            </p>
-
-            <p>
-                بعد تنفيذ الشحن أو تسليم المنتج الرقمي بنجاح، قد لا يكون
-                بالإمكان إلغاء العملية أو استرداد قيمتها، لأن المنتج الرقمي
-                قد أصبح مستخدمًا أو غير قابل لإعادة البيع.
-            </p>
-
-            <p>
-                ومع ذلك، إذا ثبت أن الخدمة لم يتم تقديمها بسبب مشكلة من جانب
-                HYPER TOPUP أو حدث خلل أدى إلى عدم وصول الخدمة المطلوبة،
-                فيمكن للعميل التواصل مع الدعم لمراجعة الحالة واتخاذ الإجراء
-                المناسب بحسب تفاصيل الطلب.
-            </p>
-
-        </div>
-
+    <section class="clause" id="s10">
+      <div class="clause-head"><span class="no">10</span><h2>سياسة الإلغاء والاسترداد</h2></div>
+      <div class="note">
         <p>
-            لا يُعتبر مجرد اختلاف العميل في الرأي حول طبيعة المنتج أو
-            استخدامه سببًا تلقائيًا للاسترداد، ولذلك يجب قراءة وصف المنتج
-            ومتطلباته قبل الدفع.
+          نظرًا لطبيعة المنتجات والخدمات الرقمية، فإن إمكانية إلغاء الطلب أو استرداده تعتمد بشكل أساسي على حالة الطلب وما إذا كانت الخدمة قد تم تنفيذها أو تسليمها.
         </p>
-    </div>
-
+        <p>
+          بعد تنفيذ الشحن أو تسليم المنتج الرقمي بنجاح، قد لا يكون بالإمكان إلغاء العملية أو استرداد قيمتها، لأن المنتج الرقمي قد أصبح مستخدمًا أو غير قابل لإعادة البيع.
+        </p>
+        <p>
+          ومع ذلك، إذا ثبت أن الخدمة لم يتم تقديمها بسبب مشكلة من جانب HYPER TOPUP أو حدث خلل أدى إلى عدم وصول الخدمة المطلوبة، فيمكن للعميل التواصل مع الدعم لمراجعة الحالة واتخاذ الإجراء المناسب بحسب تفاصيل الطلب.
+        </p>
+      </div>
+      <p>
+        لا يُعتبر مجرد اختلاف العميل في الرأي حول طبيعة المنتج أو استخدامه سببًا تلقائيًا للاسترداد، ولذلك يجب قراءة وصف المنتج ومتطلباته قبل الدفع.
+      </p>
+    </section>
 
     <!-- 11 -->
-    <div class="terms-section">
-        <h2>11. الأخطاء الناتجة عن بيانات العميل</h2>
-
-        <p>
-            إذا قام العميل بإدخال بيانات غير صحيحة ثم تم تنفيذ الخدمة بناءً
-            على تلك البيانات، فقد لا تتمكن HYPER TOPUP من إعادة تنفيذ الطلب
-            أو استرجاع قيمته.
-        </p>
-
-        <p>
-            ومن أمثلة ذلك إدخال Player ID خاطئ أو اختيار لعبة مختلفة أو
-            إرسال بيانات غير صحيحة مطلوبة لتنفيذ المنتج.
-        </p>
-
-        <p>
-            لذلك يتحمل العميل مسؤولية مراجعة بياناته قبل تأكيد الطلب.
-        </p>
-    </div>
-
+    <section class="clause" id="s11">
+      <div class="clause-head"><span class="no">11</span><h2>الأخطاء الناتجة عن بيانات العميل</h2></div>
+      <p>
+        إذا قام العميل بإدخال بيانات غير صحيحة ثم تم تنفيذ الخدمة بناءً على تلك البيانات، فقد لا تتمكن HYPER TOPUP من إعادة تنفيذ الطلب أو استرجاع قيمته.
+      </p>
+      <p>
+        ومن أمثلة ذلك إدخال Player ID خاطئ أو اختيار لعبة مختلفة أو إرسال بيانات غير صحيحة مطلوبة لتنفيذ المنتج.
+      </p>
+      <p>
+        لذلك يتحمل العميل مسؤولية مراجعة بياناته قبل تأكيد الطلب.
+      </p>
+    </section>
 
     <!-- 12 -->
-    <div class="terms-section">
-        <h2>12. الاستخدامات المحظورة</h2>
-
-        <p>
-            يحظر استخدام الموقع أو خدماته في أي نشاط احتيالي أو غير مشروع
-            أو يهدف إلى الإضرار بالمنصة أو المستخدمين أو أنظمة الأطراف
-            الخارجية.
-        </p>
-
-        <ul>
-            <li>استخدام وسائل دفع غير مصرح باستخدامها.</li>
-            <li>إرسال إثباتات دفع مزيفة أو معدلة.</li>
-            <li>محاولة تنفيذ طلبات وهمية أو متكررة بقصد الإضرار بالنظام.</li>
-            <li>استغلال الثغرات البرمجية أو محاولة الوصول غير المصرح به.</li>
-            <li>إرسال طلبات آلية ضارة أو إغراق الموقع بالطلبات.</li>
-            <li>انتحال شخصية إدارة HYPER TOPUP أو فريق الدعم.</li>
-            <li>استخدام الموقع في أي نشاط مخالف للقوانين أو حقوق الغير.</li>
-        </ul>
-    </div>
-
+    <section class="clause" id="s12">
+      <div class="clause-head"><span class="no">12</span><h2>الاستخدامات المحظورة</h2></div>
+      <p>
+        يحظر استخدام الموقع أو خدماته في أي نشاط احتيالي أو غير مشروع أو يهدف إلى الإضرار بالمنصة أو المستخدمين أو أنظمة الأطراف الخارجية.
+      </p>
+      <ul>
+        <li>استخدام وسائل دفع غير مصرح باستخدامها.</li>
+        <li>إرسال إثباتات دفع مزيفة أو معدلة.</li>
+        <li>محاولة تنفيذ طلبات وهمية أو متكررة بقصد الإضرار بالنظام.</li>
+        <li>استغلال الثغرات البرمجية أو محاولة الوصول غير المصرح به.</li>
+        <li>إرسال طلبات آلية ضارة أو إغراق الموقع بالطلبات.</li>
+        <li>انتحال شخصية إدارة HYPER TOPUP أو فريق الدعم.</li>
+        <li>استخدام الموقع في أي نشاط مخالف للقوانين أو حقوق الغير.</li>
+      </ul>
+    </section>
 
     <!-- 13 -->
-    <div class="terms-section">
-        <h2>13. أمن الحساب والمعلومات</h2>
-
-        <p>
-            تعمل HYPER TOPUP على تطبيق وسائل تقنية وتنظيمية مناسبة لحماية
-            تجربة المستخدم والحد من الوصول غير المصرح به إلى المعلومات
-            المستخدمة في تشغيل الخدمات.
-        </p>
-
-        <p>
-            يستخدم الموقع اتصال HTTPS، وقد يستخدم خدمات مصادقة وخدمات
-            تقنية خارجية بحسب وظائف الموقع الحالية.
-        </p>
-
-        <p>
-            لا يمكن لأي نظام على الإنترنت ضمان الحماية المطلقة من جميع
-            المخاطر التقنية، ولذلك يجب على المستخدم أيضًا المحافظة على
-            أمان حسابه وعدم مشاركة بيانات الدخول الخاصة به مع الآخرين.
-        </p>
-    </div>
-
+    <section class="clause" id="s13">
+      <div class="clause-head"><span class="no">13</span><h2>أمن الحساب والمعلومات</h2></div>
+      <p>
+        تعمل HYPER TOPUP على تطبيق وسائل تقنية وتنظيمية مناسبة لحماية تجربة المستخدم والحد من الوصول غير المصرح به إلى المعلومات المستخدمة في تشغيل الخدمات.
+      </p>
+      <p>
+        يستخدم الموقع اتصال HTTPS، وقد يستخدم خدمات مصادقة وخدمات تقنية خارجية بحسب وظائف الموقع الحالية.
+      </p>
+      <p>
+        لا يمكن لأي نظام على الإنترنت ضمان الحماية المطلقة من جميع المخاطر التقنية، ولذلك يجب على المستخدم أيضًا المحافظة على أمان حسابه وعدم مشاركة بيانات الدخول الخاصة به مع الآخرين.
+      </p>
+    </section>
 
     <!-- 14 -->
-    <div class="terms-section">
-        <h2>14. الخصوصية والمعلومات الشخصية</h2>
-
-        <p>
-            يتم التعامل مع المعلومات التي يقدمها المستخدم وفقًا لسياسة
-            الخصوصية المنشورة في الموقع، وبحسب ما يلزم لتقديم الخدمات
-            وتشغيل الحسابات ومعالجة الطلبات وتقديم الدعم.
-        </p>
-
-        <p>
-            تهدف المنصة إلى طلب المعلومات اللازمة فقط لتنفيذ الوظيفة
-            المطلوبة، ولا تطلب خدمات Player ID العادية كلمات مرور الألعاب
-            أو أرقام PIN الخاصة بالمحافظ.
-        </p>
-
-        <p>
-            يجب على المستخدم مراجعة سياسة الخصوصية لمعرفة تفاصيل إضافية
-            حول أنواع البيانات وطريقة استخدامها.
-        </p>
-    </div>
-
+    <section class="clause" id="s14">
+      <div class="clause-head"><span class="no">14</span><h2>الخصوصية والمعلومات الشخصية</h2></div>
+      <p>
+        يتم التعامل مع المعلومات التي يقدمها المستخدم وفقًا لسياسة الخصوصية المنشورة في الموقع، وبحسب ما يلزم لتقديم الخدمات وتشغيل الحسابات ومعالجة الطلبات وتقديم الدعم.
+      </p>
+      <p>
+        تهدف المنصة إلى طلب المعلومات اللازمة فقط لتنفيذ الوظيفة المطلوبة، ولا تطلب خدمات Player ID العادية كلمات مرور الألعاب أو أرقام PIN الخاصة بالمحافظ.
+      </p>
+      <p>
+        يجب على المستخدم مراجعة سياسة الخصوصية لمعرفة تفاصيل إضافية حول أنواع البيانات وطريقة استخدامها.
+      </p>
+    </section>
 
     <!-- 15 -->
-    <div class="terms-section">
-        <h2>15. الأنظمة والألعاب والمنصات الخارجية</h2>
-
-        <p>
-            تعتمد بعض الخدمات التي يقدمها المتجر على أنظمة أو ألعاب أو
-            تطبيقات أو منصات خارجية.
-        </p>
-
-        <p>
-            لا تتحكم HYPER TOPUP في الخوادم أو سياسات أو تحديثات تلك
-            الجهات الخارجية، وبالتالي قد تتأثر الخدمة في بعض الحالات
-            بالصيانة أو التحديثات أو التغييرات التقنية لدى الطرف الخارجي.
-        </p>
-
-        <p>
-            كما أن أي حظر أو تقييد ناتج عن مخالفة المستخدم لشروط اللعبة
-            أو المنصة الخارجية لا تتحمل HYPER TOPUP مسؤوليته.
-        </p>
-    </div>
-
+    <section class="clause" id="s15">
+      <div class="clause-head"><span class="no">15</span><h2>الأنظمة والألعاب والمنصات الخارجية</h2></div>
+      <p>
+        تعتمد بعض الخدمات التي يقدمها المتجر على أنظمة أو ألعاب أو تطبيقات أو منصات خارجية.
+      </p>
+      <p>
+        لا تتحكم HYPER TOPUP في الخوادم أو سياسات أو تحديثات تلك الجهات الخارجية، وبالتالي قد تتأثر الخدمة في بعض الحالات بالصيانة أو التحديثات أو التغييرات التقنية لدى الطرف الخارجي.
+      </p>
+      <p>
+        كما أن أي حظر أو تقييد ناتج عن مخالفة المستخدم لشروط اللعبة أو المنصة الخارجية لا تتحمل HYPER TOPUP مسؤوليته.
+      </p>
+    </section>
 
     <!-- 16 -->
-    <div class="terms-section">
-        <h2>16. العلامات التجارية وحقوق الملكية</h2>
-
-        <p>
-            جميع الأسماء والعلامات والشعارات المتعلقة بالألعاب والتطبيقات
-            والخدمات الخارجية تعود إلى أصحاب الحقوق المعنيين.
-        </p>
-
-        <p>
-            استخدام اسم لعبة أو تطبيق داخل المتجر يهدف إلى تحديد المنتج أو
-            الخدمة التي يطلبها العميل، ولا يعني انتقال حقوق الملكية أو
-            وجود علاقة ملكية بين HYPER TOPUP والطرف صاحب العلامة.
-        </p>
-    </div>
-
+    <section class="clause" id="s16">
+      <div class="clause-head"><span class="no">16</span><h2>العلامات التجارية وحقوق الملكية</h2></div>
+      <p>
+        جميع الأسماء والعلامات والشعارات المتعلقة بالألعاب والتطبيقات والخدمات الخارجية تعود إلى أصحاب الحقوق المعنيين.
+      </p>
+      <p>
+        استخدام اسم لعبة أو تطبيق داخل المتجر يهدف إلى تحديد المنتج أو الخدمة التي يطلبها العميل، ولا يعني انتقال حقوق الملكية أو وجود علاقة ملكية بين HYPER TOPUP والطرف صاحب العلامة.
+      </p>
+    </section>
 
     <!-- 17 -->
-    <div class="terms-section">
-        <h2>17. مسؤولية المستخدم</h2>
-
-        <ul>
-            <li>
-                قراءة وصف المنتج ومتطلباته قبل إتمام الطلب.
-            </li>
-
-            <li>
-                إدخال بيانات صحيحة ودقيقة.
-            </li>
-
-            <li>
-                استخدام وسيلة دفع مسموحة ومملوكة أو مصرح باستخدامها من
-                صاحبها.
-            </li>
-
-            <li>
-                الاحتفاظ بمعلومات الطلب أو مرجع الدفع عند الحاجة.
-            </li>
-
-            <li>
-                عدم مشاركة بيانات الحساب الحساسة مع أي طرف غير موثوق.
-            </li>
-        </ul>
-    </div>
-
+    <section class="clause" id="s17">
+      <div class="clause-head"><span class="no">17</span><h2>مسؤولية المستخدم</h2></div>
+      <ul>
+        <li>قراءة وصف المنتج ومتطلباته قبل إتمام الطلب.</li>
+        <li>إدخال بيانات صحيحة ودقيقة.</li>
+        <li>استخدام وسيلة دفع مسموحة ومملوكة أو مصرح باستخدامها من صاحبها.</li>
+        <li>الاحتفاظ بمعلومات الطلب أو مرجع الدفع عند الحاجة.</li>
+        <li>عدم مشاركة بيانات الحساب الحساسة مع أي طرف غير موثوق.</li>
+      </ul>
+    </section>
 
     <!-- 18 -->
-    <div class="terms-section">
-        <h2>18. الدعم الفني وخدمة العملاء</h2>
-
-        <p>
-            توفر HYPER TOPUP قنوات دعم لمساعدة العملاء في الاستفسارات
-            المتعلقة بالطلبات والخدمات المتاحة.
-        </p>
-
-        <p>
-            عند التواصل مع الدعم، قد يطلب فريق الخدمة رقم الطلب أو بيانات
-            تساعد على تحديد العملية والتحقق من حالتها.
-        </p>
-
-        <p>
-            لا ينبغي إرسال كلمات مرور الألعاب أو رموز المحافظ أو أي بيانات
-            سرية غير مطلوبة أثناء التواصل مع الدعم.
-        </p>
-    </div>
-
+    <section class="clause" id="s18">
+      <div class="clause-head"><span class="no">18</span><h2>الدعم الفني وخدمة العملاء</h2></div>
+      <p>
+        توفر HYPER TOPUP قنوات دعم لمساعدة العملاء في الاستفسارات المتعلقة بالطلبات والخدمات المتاحة.
+      </p>
+      <p>
+        عند التواصل مع الدعم، قد يطلب فريق الخدمة رقم الطلب أو بيانات تساعد على تحديد العملية والتحقق من حالتها.
+      </p>
+      <p>
+        لا ينبغي إرسال كلمات مرور الألعاب أو رموز المحافظ أو أي بيانات سرية غير مطلوبة أثناء التواصل مع الدعم.
+      </p>
+    </section>
 
     <!-- 19 -->
-    <div class="terms-section">
-        <h2>19. حدود المسؤولية</h2>
-
+    <section class="clause" id="s19">
+      <div class="clause-head"><span class="no">19</span><h2>حدود المسؤولية</h2></div>
+      <p>
+        تبذل HYPER TOPUP جهودًا معقولة للحفاظ على تشغيل الموقع وتوفير الخدمات والمنتجات المعلنة بصورة واضحة ومنظمة. ومع ذلك، قد تتأثر بعض الخدمات أو عمليات التنفيذ بظروف تقنية أو تشغيلية خارجة عن السيطرة المباشرة للمنصة.
+      </p>
+      <p>
+        قد تشمل هذه الظروف، على سبيل المثال، أعطال أو صيانة مؤقتة في خوادم الألعاب أو التطبيقات أو الأنظمة الخارجية، أو مشكلات لدى مزودي خدمات الدفع أو الاتصالات، أو انقطاع الإنترنت، أو تحديثات مفاجئة في الأنظمة التي تعتمد عليها بعض الخدمات الرقمية.
+      </p>
+      <p>
+        وفي الحالات التي يكون فيها الخلل ناتجًا عن نظام خارجي لا تديره HYPER TOPUP، تعمل المنصة على متابعة الحالة وتقديم المساعدة الممكنة للعميل وفق طبيعة المشكلة ومدى إمكانية حلها.
+      </p>
+      <p>
+        لا تضمن HYPER TOPUP أن يكون الموقع أو جميع الخدمات متاحًا دون انقطاع في جميع الأوقات، كما لا تضمن أن تظل جميع المنتجات أو الأسعار أو طرق التنفيذ متاحة بصورة دائمة، إذ قد تتغير هذه العناصر وفقًا للتوفر والظروف التشغيلية.
+      </p>
+      <p>
+        لا تهدف هذه الشروط إلى إعفاء HYPER TOPUP من أي مسؤولية لا يجوز استبعادها بموجب القوانين والأنظمة المعمول بها، وإنما تهدف إلى توضيح طبيعة الخدمات وحدود التحكم في الأنظمة والجهات الخارجية.
+      </p>
+      <div class="note note--info">
         <p>
-                      تبذل HYPER TOPUP جهودًا معقولة للحفاظ على تشغيل الموقع وتوفير
-            الخدمات والمنتجات المعلنة بصورة واضحة ومنظمة. ومع ذلك، قد تتأثر
-            بعض الخدمات أو عمليات التنفيذ بظروف تقنية أو تشغيلية خارجة عن
-            السيطرة المباشرة للمنصة.
+          <strong>مبدأ الشفافية</strong>
+          عندما تحدث مشكلة تؤثر على تنفيذ طلب، تسعى HYPER TOPUP إلى توضيح حالة الطلب للعميل ومتابعة المشكلة من خلال قنوات الدعم المتاحة، بحسب المعلومات المتوفرة وإمكانية التحقق من الحالة.
         </p>
-
-        <p>
-            قد تشمل هذه الظروف، على سبيل المثال، أعطال أو صيانة مؤقتة في
-            خوادم الألعاب أو التطبيقات أو الأنظمة الخارجية، أو مشكلات لدى
-            مزودي خدمات الدفع أو الاتصالات، أو انقطاع الإنترنت، أو تحديثات
-            مفاجئة في الأنظمة التي تعتمد عليها بعض الخدمات الرقمية.
-        </p>
-
-        <p>
-            وفي الحالات التي يكون فيها الخلل ناتجًا عن نظام خارجي لا تديره
-            HYPER TOPUP، تعمل المنصة على متابعة الحالة وتقديم المساعدة
-            الممكنة للعميل وفق طبيعة المشكلة ومدى إمكانية حلها.
-        </p>
-
-        <p>
-            لا تضمن HYPER TOPUP أن يكون الموقع أو جميع الخدمات متاحًا دون
-            انقطاع في جميع الأوقات، كما لا تضمن أن تظل جميع المنتجات أو
-            الأسعار أو طرق التنفيذ متاحة بصورة دائمة، إذ قد تتغير هذه
-            العناصر وفقًا للتوفر والظروف التشغيلية.
-        </p>
-
-        <p>
-            لا تهدف هذه الشروط إلى إعفاء HYPER TOPUP من أي مسؤولية لا يجوز
-            استبعادها بموجب القوانين والأنظمة المعمول بها، وإنما تهدف إلى
-            توضيح طبيعة الخدمات وحدود التحكم في الأنظمة والجهات الخارجية.
-        </p>
-
-        <div class="info-box">
-            <p>
-                <strong>مبدأ الشفافية:</strong>
-                عندما تحدث مشكلة تؤثر على تنفيذ طلب، تسعى HYPER TOPUP إلى
-                توضيح حالة الطلب للعميل ومتابعة المشكلة من خلال قنوات الدعم
-                المتاحة، بحسب المعلومات المتوفرة وإمكانية التحقق من الحالة.
-            </p>
-        </div>
-
-    </div>
-
+      </div>
+    </section>
 
     <!-- 20 -->
-    <div class="terms-section">
-        <h2>20. تحديث الخدمات والمحتوى</h2>
-
-        <p>
-            قد يتم تحديث المنتجات والخدمات والأسعار وطرق الدفع وطرق التسليم
-            والخصائص التقنية للموقع من وقت لآخر، وذلك بهدف تحسين تجربة
-            المستخدم ومواكبة التغييرات في الخدمات الرقمية المتاحة.
-        </p>
-
-        <p>
-            قد تتم إضافة منتجات جديدة أو إيقاف منتجات موجودة أو تعديل
-            متطلبات تنفيذ بعض الخدمات وفقًا لتوفرها أو لتغير متطلبات
-            الموردين والأنظمة الخارجية المرتبطة بها.
-        </p>
-
-        <p>
-            تعتبر المعلومات الظاهرة في صفحة المنتج وقت إنشاء الطلب هي
-            المرجع الأساسي للعميل فيما يتعلق بالمنتج المحدد ومتطلباته
-            وطريقة تنفيذه، ما لم يتم الاتفاق على خلاف ذلك من خلال قناة
-            رسمية تابعة للمتجر.
-        </p>
-
-        <p>
-            تسعى HYPER TOPUP إلى الحفاظ على وضوح المعلومات المنشورة وتحديثها
-            عند حدوث تغييرات جوهرية تؤثر على طريقة استخدام الخدمة.
-        </p>
-    </div>
-
+    <section class="clause" id="s20">
+      <div class="clause-head"><span class="no">20</span><h2>تحديث الخدمات والمحتوى</h2></div>
+      <p>
+        قد يتم تحديث المنتجات والخدمات والأسعار وطرق الدفع وطرق التسليم والخصائص التقنية للموقع من وقت لآخر، وذلك بهدف تحسين تجربة المستخدم ومواكبة التغييرات في الخدمات الرقمية المتاحة.
+      </p>
+      <p>
+        قد تتم إضافة منتجات جديدة أو إيقاف منتجات موجودة أو تعديل متطلبات تنفيذ بعض الخدمات وفقًا لتوفرها أو لتغير متطلبات الموردين والأنظمة الخارجية المرتبطة بها.
+      </p>
+      <p>
+        تعتبر المعلومات الظاهرة في صفحة المنتج وقت إنشاء الطلب هي المرجع الأساسي للعميل فيما يتعلق بالمنتج المحدد ومتطلباته وطريقة تنفيذه، ما لم يتم الاتفاق على خلاف ذلك من خلال قناة رسمية تابعة للمتجر.
+      </p>
+      <p>
+        تسعى HYPER TOPUP إلى الحفاظ على وضوح المعلومات المنشورة وتحديثها عند حدوث تغييرات جوهرية تؤثر على طريقة استخدام الخدمة.
+      </p>
+    </section>
 
     <!-- 21 -->
-    <div class="terms-section">
-        <h2>21. تحديث الشروط والأحكام</h2>
-
-        <p>
-            يجوز لـ HYPER TOPUP تحديث هذه الشروط والأحكام من وقت لآخر بما
-            يتناسب مع تطور الخدمات أو إضافة خصائص جديدة أو تغيير آليات
-            التشغيل أو الدفع أو التنفيذ.
-        </p>
-
-        <p>
-            يتم نشر النسخة المحدثة من الشروط على الموقع، ويُنصح المستخدم
-            بمراجعة النسخة الحالية قبل استخدام الخدمات أو إجراء طلب جديد.
-        </p>
-
-        <p>
-            استمرار استخدام الموقع بعد نشر التحديثات يعني استمرار استخدام
-            الخدمات وفقًا للنسخة الحالية من الشروط، بالقدر المسموح به
-            بموجب القوانين المعمول بها.
-        </p>
-    </div>
-
+    <section class="clause" id="s21">
+      <div class="clause-head"><span class="no">21</span><h2>تحديث الشروط والأحكام</h2></div>
+      <p>
+        يجوز لـ HYPER TOPUP تحديث هذه الشروط والأحكام من وقت لآخر بما يتناسب مع تطور الخدمات أو إضافة خصائص جديدة أو تغيير آليات التشغيل أو الدفع أو التنفيذ.
+      </p>
+      <p>
+        يتم نشر النسخة المحدثة من الشروط على الموقع، ويُنصح المستخدم بمراجعة النسخة الحالية قبل استخدام الخدمات أو إجراء طلب جديد.
+      </p>
+      <p>
+        استمرار استخدام الموقع بعد نشر التحديثات يعني استمرار استخدام الخدمات وفقًا للنسخة الحالية من الشروط، بالقدر المسموح به بموجب القوانين المعمول بها.
+      </p>
+    </section>
 
     <!-- 22 -->
-    <div class="terms-section">
-        <h2>22. وضوح المعلومات وشفافية الخدمة</h2>
-
+    <section class="clause" id="s22">
+      <div class="clause-head"><span class="no">22</span><h2>وضوح المعلومات وشفافية الخدمة</h2></div>
+      <p>
+        تهدف HYPER TOPUP إلى توفير معلومات واضحة عن المنتجات والخدمات المتاحة، بما في ذلك الأسعار ومتطلبات الطلب وطريقة الدفع وطريقة التنفيذ وقنوات الدعم، بحسب طبيعة كل خدمة.
+      </p>
+      <p>
+        ويهدف تنظيم هذه المعلومات إلى تسهيل عملية اختيار المنتج وفهم المتطلبات قبل إتمام الطلب، وتقليل الأخطاء الناتجة عن إدخال بيانات غير صحيحة أو اختيار خدمة غير مناسبة.
+      </p>
+      <p>
+        كما تحرص المنصة على توضيح طبيعتها كمتجر إلكتروني مستقل وعدم تقديم نفسها على أنها مالك أو ناشر للخدمات والألعاب الخارجية التي يتم تقديم منتجات مرتبطة بها.
+      </p>
+      <div class="note note--info">
         <p>
-            تهدف HYPER TOPUP إلى توفير معلومات واضحة عن المنتجات والخدمات
-            المتاحة، بما في ذلك الأسعار ومتطلبات الطلب وطريقة الدفع وطريقة
-            التنفيذ وقنوات الدعم، بحسب طبيعة كل خدمة.
+          <strong>الهدف من هذه الصفحة</strong>
+          توفير مرجع واضح للمستخدم يشرح طبيعة HYPER TOPUP، وآلية استخدام الخدمات، ومسؤوليات العميل، وطبيعة المنتجات الرقمية، وحدود العلاقة بين المتجر والجهات الخارجية.
         </p>
-
-        <p>
-            ويهدف تنظيم هذه المعلومات إلى تسهيل عملية اختيار المنتج وفهم
-            المتطلبات قبل إتمام الطلب، وتقليل الأخطاء الناتجة عن إدخال
-            بيانات غير صحيحة أو اختيار خدمة غير مناسبة.
-        </p>
-
-        <p>
-            كما تحرص المنصة على توضيح طبيعتها كمتجر إلكتروني مستقل وعدم
-            تقديم نفسها على أنها مالك أو ناشر للخدمات والألعاب الخارجية
-            التي يتم تقديم منتجات مرتبطة بها.
-        </p>
-
-        <div class="info-box">
-            <p>
-                <strong>الهدف من هذه الصفحة:</strong>
-                توفير مرجع واضح للمستخدم يشرح طبيعة HYPER TOPUP، وآلية
-                استخدام الخدمات، ومسؤوليات العميل، وطبيعة المنتجات الرقمية،
-                وحدود العلاقة بين المتجر والجهات الخارجية.
-            </p>
-        </div>
-    </div>
-
+      </div>
+    </section>
 
     <!-- 23 -->
-    <div class="terms-section">
-        <h2>23. توضيح مصطلحي "موثق" و"الوسيط المعتمد"</h2>
+    <section class="clause" id="s23">
+      <div class="clause-head"><span class="no">23</span><h2>توضيح مصطلحي «موثق» و«الوسيط المعتمد»</h2></div>
+      <p>
+        قد تظهر في هوية HYPER TOPUP أو في بعض المواد التعريفية والتسويقية مصطلحات مثل <strong>«موثق»</strong> أو <strong>«الوسيط المعتمد»</strong>.
+      </p>
+      <p>
+        تستخدم HYPER TOPUP هذه المصطلحات في سياقها التجاري والتعريفي لوصف طريقة تقديم الخدمة وتنظيمها، ولا ينبغي تفسيرها على أنها شهادة حكومية أو ترخيص قانوني أو اعتماد رسمي من شركة ألعاب أو منصة خارجية، ما لم يتم ذكر الجهة التي منحت هذا الاعتماد ونطاقه بشكل صريح.
+      </p>
 
+      <h3>معنى «موثق»</h3>
+      <p>
+        يقصد بمصطلح <strong>«موثق»</strong> عند استخدامه لوصف معلومات أو خدمات HYPER TOPUP أن المعلومات المتعلقة بالخدمة تكون موضحة ومنظمة ويمكن الرجوع إليها من خلال الموقع أو القنوات الرسمية المعلنة للمتجر.
+      </p>
+      <p>
+        ويهدف هذا الوصف إلى التعبير عن سهولة الوصول إلى معلومات الخدمة ومراجعتها، مثل بيانات المنتج ومتطلبات الطلب وطرق التواصل والمعلومات المنشورة حول الخدمة، وليس إلى الادعاء بوجود شهادة خارجية ما لم يتم ذكرها بشكل مستقل وواضح.
+      </p>
+
+      <h3>معنى «الوسيط المعتمد»</h3>
+      <p>
+        يقصد بعبارة <strong>«الوسيط المعتمد»</strong> في هوية HYPER TOPUP وصف دور المتجر باعتباره جهة مستقلة تتولى تنظيم وتنسيق بعض الخدمات الرقمية المتاحة من خلال المنصة، وإدارة عملية الطلب ومتابعة تنفيذها وخدمة العملاء ضمن نطاق الخدمات التي يقدمها المتجر.
+      </p>
+      <p>
+        وتعبر كلمة «معتمد» في هذا السياق عن اعتماد إدارة المتجر للمنتج أو طريقة الخدمة ضمن كتالوج HYPER TOPUP ونطاق تشغيلها الداخلي، ولا تعني تلقائيًا وجود تفويض رسمي من ناشر اللعبة أو الشركة المالكة للخدمة.
+      </p>
+      <div class="note">
         <p>
-            قد تظهر في هوية HYPER TOPUP أو في بعض المواد التعريفية والتسويقية
-            مصطلحات مثل <strong>"موثق"</strong> أو
-            <strong>"الوسيط المعتمد"</strong>.
+          <strong>توضيح</strong>
+          HYPER TOPUP متجر إلكتروني مستقل. وفي حال وجود اعتماد أو شراكة رسمية مستقبلية مع جهة خارجية، سيتم توضيح اسم الجهة ونطاق الاعتماد بصورة منفصلة وواضحة.
         </p>
-
-        <p>
-            تستخدم HYPER TOPUP هذه المصطلحات في سياقها التجاري والتعريفي
-            لوصف طريقة تقديم الخدمة وتنظيمها، ولا ينبغي تفسيرها على أنها
-            شهادة حكومية أو ترخيص قانوني أو اعتماد رسمي من شركة ألعاب أو
-            منصة خارجية، ما لم يتم ذكر الجهة التي منحت هذا الاعتماد ونطاقه
-            بشكل صريح.
-        </p>
-
-        <h3>معنى "موثق"</h3>
-
-        <p>
-            يقصد بمصطلح <strong>"موثق"</strong> عند استخدامه لوصف معلومات
-            أو خدمات HYPER TOPUP أن المعلومات المتعلقة بالخدمة تكون موضحة
-            ومنظمة ويمكن الرجوع إليها من خلال الموقع أو القنوات الرسمية
-            المعلنة للمتجر.
-        </p>
-
-        <p>
-            ويهدف هذا الوصف إلى التعبير عن سهولة الوصول إلى معلومات الخدمة
-            ومراجعتها، مثل بيانات المنتج ومتطلبات الطلب وطرق التواصل
-            والمعلومات المنشورة حول الخدمة، وليس إلى الادعاء بوجود شهادة
-            خارجية ما لم يتم ذكرها بشكل مستقل وواضح.
-        </p>
-
-        <h3>معنى "الوسيط المعتمد"</h3>
-
-        <p>
-            يقصد بعبارة <strong>"الوسيط المعتمد"</strong> في هوية HYPER TOPUP
-            وصف دور المتجر باعتباره جهة مستقلة تتولى تنظيم وتنسيق بعض
-            الخدمات الرقمية المتاحة من خلال المنصة، وإدارة عملية الطلب
-            ومتابعة تنفيذها وخدمة العملاء ضمن نطاق الخدمات التي يقدمها
-            المتجر.
-        </p>
-
-        <p>
-            وتعبر كلمة "معتمد" في هذا السياق عن اعتماد إدارة المتجر للمنتج
-            أو طريقة الخدمة ضمن كتالوج HYPER TOPUP ونطاق تشغيلها الداخلي،
-            ولا تعني تلقائيًا وجود تفويض رسمي من ناشر اللعبة أو الشركة
-            المالكة للخدمة.
-        </p>
-
-        <div class="highlight-box">
-            <p>
-                <strong>توضيح:</strong>
-                HYPER TOPUP متجر إلكتروني مستقل. وفي حال وجود اعتماد أو
-                شراكة رسمية مستقبلية مع جهة خارجية، سيتم توضيح اسم الجهة
-                ونطاق الاعتماد بصورة منفصلة وواضحة.
-            </p>
-        </div>
-    </div>
-
+      </div>
+    </section>
 
     <!-- 24 -->
-    <div class="terms-section">
-        <h2>24. العلاقة مع العلامات التجارية والخدمات الخارجية</h2>
-
-        <p>
-            قد تتضمن المنتجات المعروضة أسماء ألعاب أو تطبيقات أو منصات
-            مملوكة لأطراف أخرى، ويستخدم المتجر هذه الأسماء فقط لتحديد
-            الخدمة أو المنتج الذي يرغب العميل في الحصول عليه.
-        </p>
-
-        <p>
-            لا تمنح هذه الشروط أو أي محتوى على الموقع HYPER TOPUP ملكية
-            للعلامات التجارية أو حقوق نشر أو حقوق توزيع غير ممنوحة لها
-            صراحةً.
-        </p>
-
-        <p>
-            تظل حقوق الملكية الفكرية والعلامات التجارية والشعارات الخاصة
-            بالجهات الخارجية مملوكة لأصحابها المعنيين.
-        </p>
-    </div>
-
+    <section class="clause" id="s24">
+      <div class="clause-head"><span class="no">24</span><h2>العلاقة مع العلامات التجارية والخدمات الخارجية</h2></div>
+      <p>
+        قد تتضمن المنتجات المعروضة أسماء ألعاب أو تطبيقات أو منصات مملوكة لأطراف أخرى، ويستخدم المتجر هذه الأسماء فقط لتحديد الخدمة أو المنتج الذي يرغب العميل في الحصول عليه.
+      </p>
+      <p>
+        لا تمنح هذه الشروط أو أي محتوى على الموقع HYPER TOPUP ملكية للعلامات التجارية أو حقوق نشر أو حقوق توزيع غير ممنوحة لها صراحةً.
+      </p>
+      <p>
+        تظل حقوق الملكية الفكرية والعلامات التجارية والشعارات الخاصة بالجهات الخارجية مملوكة لأصحابها المعنيين.
+      </p>
+    </section>
 
     <!-- 25 -->
-    <div class="terms-section">
-        <h2>25. التواصل والدعم الفني</h2>
-
-        <p>
-            يمكن للعميل استخدام قنوات الدعم التي توفرها HYPER TOPUP
-            للاستفسار عن المنتجات أو متابعة الطلبات أو الإبلاغ عن مشكلة
-            متعلقة بالخدمة.
-        </p>
-
-        <p>
-            ولتسهيل عملية التحقق والمتابعة، قد يطلب فريق الدعم رقم الطلب
-            أو مرجع العملية أو المعلومات اللازمة لتحديد الطلب.
-        </p>
-
-        <p>
-            لا ينبغي للعميل إرسال كلمات المرور أو رموز المحافظ أو أي بيانات
-            سرية غير مطلوبة أثناء التواصل مع الدعم.
-        </p>
-    </div>
-
+    <section class="clause" id="s25">
+      <div class="clause-head"><span class="no">25</span><h2>التواصل والدعم الفني</h2></div>
+      <p>
+        يمكن للعميل استخدام قنوات الدعم التي توفرها HYPER TOPUP للاستفسار عن المنتجات أو متابعة الطلبات أو الإبلاغ عن مشكلة متعلقة بالخدمة.
+      </p>
+      <p>
+        ولتسهيل عملية التحقق والمتابعة، قد يطلب فريق الدعم رقم الطلب أو مرجع العملية أو المعلومات اللازمة لتحديد الطلب.
+      </p>
+      <p>
+        لا ينبغي للعميل إرسال كلمات المرور أو رموز المحافظ أو أي بيانات سرية غير مطلوبة أثناء التواصل مع الدعم.
+      </p>
+    </section>
 
     <!-- 26 -->
-    <div class="terms-section">
-        <h2>26. الموافقة على الشروط</h2>
-
+    <section class="clause" id="s26">
+      <div class="clause-head"><span class="no">26</span><h2>الموافقة على الشروط</h2></div>
+      <p>
+        باستخدام الموقع أو إنشاء حساب أو تقديم طلب أو إتمام عملية شراء، يقر المستخدم بأنه اطلع على المعلومات والشروط المتعلقة بالخدمة وأنه فهم المتطلبات الأساسية للمنتج الذي اختاره.
+      </p>
+      <p>
+        إذا كان المستخدم لا يوافق على هذه الشروط، فعليه التوقف عن استخدام الخدمات وعدم إتمام الطلبات من خلال المنصة.
+      </p>
+      <div class="note note--warn">
         <p>
-            باستخدام الموقع أو إنشاء حساب أو تقديم طلب أو إتمام عملية شراء،
-            يقر المستخدم بأنه اطلع على المعلومات والشروط المتعلقة بالخدمة
-            وأنه فهم المتطلبات الأساسية للمنتج الذي اختاره.
+          <strong>تنبيه</strong>
+          يجب مراجعة تفاصيل المنتج والسعر وبيانات الطلب وطريقة الدفع قبل إتمام العملية، والتأكد من صحة المعلومات المدخلة، وخاصة Player ID أو أي معرف مطلوب لتنفيذ الخدمة.
         </p>
-
-        <p>
-            إذا كان المستخدم لا يوافق على هذه الشروط، فعليه التوقف عن
-            استخدام الخدمات وعدم إتمام الطلبات من خلال المنصة.
-        </p>
-
-        <div class="warning-box">
-            <p>
-                <strong>تنبيه:</strong>
-                يجب مراجعة تفاصيل المنتج والسعر وبيانات الطلب وطريقة الدفع
-                قبل إتمام العملية، والتأكد من صحة المعلومات المدخلة، وخاصة
-                Player ID أو أي معرف مطلوب لتنفيذ الخدمة.
-            </p>
-        </div>
-    </div>
-
+      </div>
+    </section>
 
     <!-- 27 -->
-    <div class="terms-section">
-        <h2>27. معلومات المنصة</h2>
-
-        <ul>
-            <li>
-                <strong>اسم المنصة:</strong> HYPER TOPUP
-            </li>
-
-            <li>
-                <strong>الموقع الرسمي:</strong>
-                https://hypertopup.online/
-            </li>
-
-            <li>
-                <strong>نوع النشاط:</strong>
-                متجر إلكتروني مستقل للخدمات والمنتجات الرقمية وخدمات الألعاب.
-            </li>
-
-            <li>
-                <strong>طبيعة الخدمة:</strong>
-                طلب وتنسيق وتنفيذ بعض المنتجات والخدمات الرقمية المتاحة
-                داخل المتجر.
-            </li>
-
-            <li>
-                <strong>وصف الدور:</strong>
-                وسيط مستقل لتسهيل بعض الخدمات والمنتجات الرقمية.
-            </li>
-
-            <li>
-                <strong>الدعم:</strong>
-                يتم توفير قنوات دعم إلكترونية مخصصة للاستفسارات المتعلقة
-                بالخدمات والطلبات.
-            </li>
-        </ul>
-    </div>
-
+    <section class="clause" id="s27">
+      <div class="clause-head"><span class="no">27</span><h2>معلومات المنصة</h2></div>
+      <dl class="facts">
+        <div class="fact"><dt>اسم المنصة</dt><dd>HYPER TOPUP</dd></div>
+        <div class="fact"><dt>الموقع الرسمي</dt><dd><a href="https://hypertopup.online/">https://hypertopup.online/</a></dd></div>
+        <div class="fact"><dt>نوع النشاط</dt><dd>متجر إلكتروني مستقل للخدمات والمنتجات الرقمية وخدمات الألعاب.</dd></div>
+        <div class="fact"><dt>طبيعة الخدمة</dt><dd>طلب وتنسيق وتنفيذ بعض المنتجات والخدمات الرقمية المتاحة داخل المتجر.</dd></div>
+        <div class="fact"><dt>وصف الدور</dt><dd>وسيط مستقل لتسهيل بعض الخدمات والمنتجات الرقمية.</dd></div>
+        <div class="fact"><dt>الدعم</dt><dd>يتم توفير قنوات دعم إلكترونية مخصصة للاستفسارات المتعلقة بالخدمات والطلبات.</dd></div>
+      </dl>
+    </section>
 
     <!-- 28 -->
-    <div class="terms-section">
-        <h2>28. مبدأ الدقة والوضوح</h2>
-
-        <p>
-            تسعى HYPER TOPUP إلى أن تكون المعلومات المنشورة حول الخدمات
-            واضحة ومفهومة وقابلة للمراجعة، وأن تعكس طبيعة المنتجات والخدمات
-            التي يوفرها المتجر في الوقت الحالي.
-        </p>
-
-        <p>
-            وفي حال تغيرت إحدى الخدمات أو طرق تنفيذها أو توفرها، يجوز تحديث
-            المعلومات ذات الصلة داخل الموقع بما يعكس الوضع الحالي للخدمة.
-        </p>
-
-        <p>
-            لا يُقصد من أي وصف تسويقي أو تجاري داخل الموقع تغيير طبيعة
-            العلاقة القانونية أو إنشاء اعتماد أو شراكة غير موجودة بالفعل.
-        </p>
-    </div>
-
+    <section class="clause" id="s28">
+      <div class="clause-head"><span class="no">28</span><h2>مبدأ الدقة والوضوح</h2></div>
+      <p>
+        تسعى HYPER TOPUP إلى أن تكون المعلومات المنشورة حول الخدمات واضحة ومفهومة وقابلة للمراجعة، وأن تعكس طبيعة المنتجات والخدمات التي يوفرها المتجر في الوقت الحالي.
+      </p>
+      <p>
+        وفي حال تغيرت إحدى الخدمات أو طرق تنفيذها أو توفرها، يجوز تحديث المعلومات ذات الصلة داخل الموقع بما يعكس الوضع الحالي للخدمة.
+      </p>
+      <p>
+        لا يُقصد من أي وصف تسويقي أو تجاري داخل الموقع تغيير طبيعة العلاقة القانونية أو إنشاء اعتماد أو شراكة غير موجودة بالفعل.
+      </p>
+    </section>
 
     <!-- 29 -->
-    <div class="terms-section">
-        <h2>29. تاريخ التحديث</h2>
+    <section class="clause" id="s29">
+      <div class="clause-head"><span class="no">29</span><h2>تاريخ التحديث</h2></div>
+      <p>
+        تم تحديث هذه الشروط والأحكام لتوضيح طبيعة HYPER TOPUP كمنصة إلكترونية مستقلة، وطبيعة الخدمات الرقمية المقدمة، ومسؤوليات المستخدم، وسياسات الطلب والدفع والتنفيذ والدعم.
+      </p>
+      <p><strong>آخر تحديث: أكتوبر 2026.</strong></p>
+    </section>
 
-        <p>
-            تم تحديث هذه الشروط والأحكام لتوضيح طبيعة HYPER TOPUP كمنصة
-            إلكترونية مستقلة، وطبيعة الخدمات الرقمية المقدمة، ومسؤوليات
-            المستخدم، وسياسات الطلب والدفع والتنفيذ والدعم.
-        </p>
+  </main>
+</div>
 
-        <p>
-            آخر تحديث: أكتوبر 2026.
-        </p>
-    </div>
+<!-- Footer -->
+<footer class="site-foot">
+  <a class="brand" href="/" aria-label="HYPER TOPUP">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="#1a1303"><path d="M13.5 2 5 13.5h5.5L9.5 22 19 9.5h-5.8z"/></svg>
+    </span>
+    <span class="brand-name">HYPER TOPUP</span>
+  </a>
+  <p>متجر إلكتروني مستقل للخدمات الرقمية وشحن الألعاب.</p>
+  <p>آخر تحديث للشروط: أكتوبر 2026</p>
+  <a class="btn" href="/">العودة إلى المتجر</a>
+</footer>
+
+<!-- Floating controls -->
+<button class="fab toc-open" id="tocOpen" type="button" aria-controls="toc" aria-expanded="false">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+  <span>الفهرس</span>
+</button>
+<button class="fab to-top" id="toTop" type="button" aria-label="العودة إلى أعلى الصفحة">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+<div class="scrim" id="scrim"></div>
+
+<script>
+(function () {
+  var clauses = Array.prototype.slice.call(document.querySelectorAll('.clause'));
+  var tocNav  = document.getElementById('tocNav');
+  var toc     = document.getElementById('toc');
+  var scrim   = document.getElementById('scrim');
+  var openBtn = document.getElementById('tocOpen');
+  var topBtn  = document.getElementById('toTop');
+  var bar     = document.getElementById('bar');
+
+  /* Build the table of contents from the clauses */
+  clauses.forEach(function (c) {
+    var a = document.createElement('a');
+    a.href = '#' + c.id;
+    a.innerHTML = '<span class="n">' + c.querySelector('.no').textContent + '</span><span>' +
+                  c.querySelector('h2').textContent + '</span>';
+    a.addEventListener('click', closeToc);
+    tocNav.appendChild(a);
+  });
+  var links = Array.prototype.slice.call(tocNav.querySelectorAll('a'));
+
+  /* Mobile sheet */
+  function openToc() {
+    toc.classList.add('open'); scrim.classList.add('show');
+    openBtn.setAttribute('aria-expanded', 'true');
+  }
+  function closeToc() {
+    toc.classList.remove('open'); scrim.classList.remove('show');
+    openBtn.setAttribute('aria-expanded', 'false');
+  }
+  openBtn.addEventListener('click', openToc);
+  scrim.addEventListener('click', closeToc);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeToc(); });
+
+  topBtn.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* Scroll: progress bar, back-to-top, active clause */
+  var ticking = false, current = -1;
+  function update() {
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - window.innerHeight;
+    var y = window.scrollY || doc.scrollTop;
+    bar.style.width = (max > 0 ? Math.min(100, (y / max) * 100) : 0) + '%';
+    topBtn.classList.toggle('show', y > 700);
+
+    var idx = -1;
+    for (var i = 0; i < clauses.length; i++) {
+      if (clauses[i].getBoundingClientRect().top <= 140) idx = i; else break;
+    }
+    if (idx !== current) {
+      current = idx;
+      links.forEach(function (l, i) { l.classList.toggle('active', i === idx); });
+      if (idx >= 0 && window.innerWidth > 1020) {
+        var l = links[idx], box = tocNav;
+        var top = l.offsetTop - box.offsetTop;
+        if (top < box.scrollTop || top > box.scrollTop + box.clientHeight - 50) {
+          box.scrollTo({ top: top - 60, behavior: 'smooth' });
+        }
+      }
+    }
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+</script>
+
+</body>
+</html>

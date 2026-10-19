@@ -10,6 +10,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<script src="theme.js"></script>
+<script src="orders-store.js"></script>
 <style>
 :root{--bg:#070b17;--card:rgba(15,23,42,.74);--line:rgba(245,200,91,.22);--gold:#f5c85b;--gold2:#ffe49a;--gold3:#c9922c;--mute:#8b97ad;--ok:#34d399;--warn:#fbbf24;--red:#f87171;--f:'Cairo',Tahoma,Arial,sans-serif;--ease:cubic-bezier(.22,1,.36,1);box-sizing:border-box}
 *,*::before,*::after{box-sizing:inherit;-webkit-tap-highlight-color:transparent}
@@ -48,6 +50,9 @@ button{font-family:inherit;color:inherit}
 .tab i{font-style:normal;min-width:20px;padding:0 6px;border-radius:999px;background:rgba(255,255,255,.08);font-size:.7rem;line-height:20px}
 .tab.on{color:#1a1204;border-color:transparent;background:linear-gradient(135deg,var(--gold3),var(--gold2) 50%,var(--gold3));box-shadow:0 6px 20px rgba(245,200,91,.28)}
 .tab.on i{background:rgba(26,18,4,.15)}
+.who{margin:-6px 0 14px;text-align:center;font-size:.74rem;line-height:1.8;color:var(--mute)}
+.who b{display:inline-block;direction:ltr;color:var(--gold2);font-weight:800}
+.who i{display:block;font-style:normal;font-size:.7rem;color:#6f7a8f}
 .note{margin:0 0 12px;padding:9px 14px;border-radius:12px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.35);color:#fde68a;font-size:.8rem;font-weight:700}
 
 /* order cards */
@@ -85,7 +90,8 @@ button{font-family:inherit;color:inherit}
 .oc.open .more .ic{transform:rotate(180deg)}
 .dw{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
 .oc.open .dw{grid-template-rows:1fr}
-.dw>div{overflow:hidden}
+.dw>div{overflow:hidden;visibility:hidden;transition:visibility 0s .4s}
+.oc.open .dw>div{visibility:visible;transition-delay:0s}
 .dl{padding:6px 0 4px}
 .dr{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.84rem}
 .dr span{color:var(--mute)}
@@ -94,6 +100,12 @@ button{font-family:inherit;color:inherit}
 .ab{display:flex;align-items:center;justify-content:center;gap:7px;height:42px;border-radius:13px;border:1px solid var(--line);background:rgba(245,200,91,.08);color:var(--gold2);font:800 .8rem var(--f);cursor:pointer}
 .ab:active{background:rgba(245,200,91,.18)}
 .ab .ic{width:17px;height:17px}
+.ab.full{grid-column:1/-1}
+
+.upd{margin:-6px 0 12px;text-align:center;font-size:.7rem;color:#6f7a8f}
+.srch{display:block;width:100%;height:44px;margin:0 0 12px;padding:0 16px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:#fff;font:600 .88rem var(--f);-webkit-appearance:none;appearance:none}
+.srch::placeholder{color:var(--mute)}
+.list.still .oc{animation:none}
 
 /* empty */
 .empty{padding:38px 20px;text-align:center;border-radius:24px;background:var(--card);border:1px dashed var(--line)}
@@ -121,10 +133,12 @@ button{font-family:inherit;color:inherit}
 
 <main class="wrap">
 <header class="top">
-<a class="rnd" href="account_1.html" aria-label="رجوع"><svg class="ic"><use href="#i-back"/></svg></a>
+<a class="rnd" id="back" href="account.html" aria-label="رجوع"><svg class="ic"><use href="#i-back"/></svg></a>
 <h1>طلباتي</h1>
 <button class="rnd" id="rf" type="button" aria-label="تحديث الحالات"><svg class="ic"><use href="#i-rf"/></svg></button>
 </header>
+<p class="who" id="who" hidden></p>
+<p class="upd" id="upd" hidden></p>
 
 <section class="sum" id="sum" hidden>
 <div class="st"><b id="nAll">0</b><span>إجمالي الطلبات</span></div>
@@ -138,6 +152,7 @@ button{font-family:inherit;color:inherit}
 <button class="tab" data-f="completed" type="button">مكتمل<i id="cDone">0</i></button>
 <button class="tab" data-f="cancelled" type="button">ملغى<i id="cCanc">0</i></button>
 </nav>
+<input class="srch" id="q" type="search" placeholder="ابحث برقم الطلب أو اللعبة أو ID اللاعب" aria-label="بحث في الطلبات" autocomplete="off" hidden>
 
 <p class="note" id="note" hidden></p>
 <div class="list" id="list" aria-live="polite"></div>
@@ -149,8 +164,10 @@ button{font-family:inherit;color:inherit}
 (function () {
 'use strict';
 var SHEETDB_URL = 'https://sheetdb.io/api/v1/ouyhx87gxkpry';
-var KEY = 'hyper_user_orders';
+var ACCOUNT_URL = 'account_1.html';   // غيّره لو اسم صفحة حسابك مختلف
+var U = (window.HyperOrders && HyperOrders.user && HyperOrders.user()) || null;
 var POLL_MS = 45000;      // تحديث كل 45 ثانية فقط والصفحة ظاهرة
+var STATUS_URL = 'https://script.google.com/macros/s/AKfycbyg8mnSxJWLdlexat_EjuVlqBmdXqgDLjXd0lQsIjMqR1AJL341IvDLMO4kIEfu6z29/exec';      // اختياري (موصى به): رابط وسيط يرجّع حالات الأرقام المطلوبة فقط ?ids=1,2,3 بدل سحب الشيت كله
 var MIN_GAP = 20000;      // أقل فاصل بين طلبين للسيرفر
 
 var $ = function (id) { return document.getElementById(id); };
@@ -158,7 +175,7 @@ var LS = {
 get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
 set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
 };
-var orders = [], filter = 'all', lastFetch = 0, busy = false;
+var orders = [], filter = 'all', query = '', lastFetch = 0, lastOk = 0, busy = false, sig = '';
 var opened = {};
 
 /* ---------- أدوات آمنة (بدون innerHTML) ---------- */
@@ -185,7 +202,12 @@ clearTimeout(toastT); toastT = setTimeout(function () { t.className = ''; }, 220
 /* ---------- البيانات ---------- */
 function normId(v) { return String(v == null ? '' : v).replace('#', '').trim(); }
 function readOrders() {
-try { var a = JSON.parse(LS.get(KEY) || '[]'); return Array.isArray(a) ? a : []; } catch (e) { return []; }
+try { var a = window.HyperOrders ? HyperOrders.read() : []; return Array.isArray(a) ? a : []; } catch (e) { return []; }
+}
+function maskEmail(e) {
+var p = String(e || '').split('@');
+if (p.length !== 2) return String(e || '');
+return p[0].slice(0, 2) + '***@' + p[1];
 }
 function classify(st) {
 var s = String(st || '').trim();
@@ -213,7 +235,7 @@ var s = String(a == null ? '' : a).trim();
 if (!s) return '—';
 return /^[\d.,]+$/.test(s) ? s + ' ج.م' : s;
 }
-function load() {
+function load(quiet) {
 var raw = readOrders();
 orders = raw.map(function (o, i) {
 var g = splitGame(o.game);
@@ -225,19 +247,35 @@ status: status, kind: classify(status), player: o.playerID || 'غير مدخل',
 if (a.ts != null && b.ts != null && a.ts !== b.ts) return b.ts - a.ts;
 return b.idx - a.idx;
 });
-render();
+var s = JSON.stringify(orders.map(function (o) { return [o.id, o.status, o.amount, o.date, o.player, o.method, o.coupon]; }));
+if (quiet && s === sig) return;      // لا شيء تغيّر: لا إعادة رسم ولا أنيميشن
+sig = s;
+render(!quiet);
 }
 
 /* ---------- الرسم ---------- */
-function tracker(kind) {
+function tracker(kind, status) {
 var d = h('div', 'trk');
-var steps = ['تم الاستلام', kind === 'cancelled' ? 'ملغى' : 'قيد المراجعة', 'مكتمل'];
+var st = String(status || '').replace(/[^\u0600-\u06FFa-zA-Z0-9\s]/g, '').replace(/\s+/g, ' ').trim();   // بدون إيموجي
+var mid = kind === 'cancelled' ? 'ملغى' : (kind === 'pending' && st && st.length <= 16 ? st : 'قيد المراجعة');
+var steps = ['تم الاستلام', mid, 'مكتمل'];
 var cls = kind === 'completed' ? ['d', 'd', 'g'] : kind === 'cancelled' ? ['d', 'x', ''] : ['d', 'a', ''];
 steps.forEach(function (t, i) {
 d.appendChild(h('span', cls[i], t));
 if (i < 2) d.appendChild(h('hr', (kind === 'completed' || (kind !== 'cancelled' && i === 0) || (kind === 'cancelled' && i === 0)) ? 'd' : ''));
 });
 return d;
+}
+function copyText(t, done) {
+function fb() {
+try {
+var a = document.createElement('textarea'); a.value = t; a.setAttribute('readonly', '');
+a.style.cssText = 'position:fixed;top:0;opacity:0'; document.body.appendChild(a); a.select();
+var ok = document.execCommand('copy'); document.body.removeChild(a); done(ok);
+} catch (e) { done(false); }
+}
+if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(function () { done(true); }, fb);
+else fb();
 }
 function row(k, v) { var r = h('div', 'dr'); r.appendChild(h('span', '', k)); r.appendChild(h('b', '', v)); return r; }
 function card(o, i) {
@@ -251,7 +289,7 @@ var am = h('div', 'amt', o.amount); am.appendChild(h('small', '', '#' + o.id)); 
 c.appendChild(hd);
 
 var os = h('div', 'os'); os.appendChild(h('span', 'bd', o.status)); os.appendChild(h('span', 'dt', o.date)); c.appendChild(os);
-c.appendChild(tracker(o.kind));
+c.appendChild(tracker(o.kind, o.status));
 
 var more = h('button', 'more'); more.type = 'button'; more.setAttribute('aria-expanded', opened[o.id] ? 'true' : 'false');
 more.appendChild(h('span', '', 'تفاصيل الطلب')); more.appendChild(icon('i-dn')); c.appendChild(more);
@@ -265,12 +303,15 @@ inner.appendChild(dl);
 var acts = h('div', 'acts');
 var cp = h('button', 'ab'); cp.type = 'button'; cp.appendChild(icon('i-cp')); cp.appendChild(h('span', '', 'نسخ رقم الطلب'));
 cp.addEventListener('click', function () {
-var t = '#' + o.id;
-if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(function () { toast('تم نسخ رقم الطلب'); }, function () { toast('تعذّر النسخ'); });
-else toast('تعذّر النسخ');
+copyText('#' + o.id, function (ok) { toast(ok ? 'تم نسخ رقم الطلب' : 'تعذّر النسخ'); });
 });
-var sp = h('a', 'ab'); sp.href = 'support.html'; sp.appendChild(icon('i-hd')); sp.appendChild(h('span', '', 'استفسار عن الطلب'));
-acts.appendChild(cp); acts.appendChild(sp); inner.appendChild(acts);
+var sp = h('a', 'ab'); sp.href = 'support.html?order=' + encodeURIComponent(o.id); sp.appendChild(icon('i-hd')); sp.appendChild(h('span', '', 'استفسار عن الطلب'));
+acts.appendChild(cp); acts.appendChild(sp);
+if (o.kind === 'completed') {
+var ro = h('a', 'ab full'); ro.href = 'all-products.html'; ro.appendChild(icon('i-bag')); ro.appendChild(h('span', '', 'اطلب مرة أخرى'));
+acts.appendChild(ro);
+}
+inner.appendChild(acts);
 dw.appendChild(inner); c.appendChild(dw);
 
 more.addEventListener('click', function () {
@@ -279,50 +320,74 @@ more.setAttribute('aria-expanded', on ? 'true' : 'false');
 });
 return c;
 }
-function emptyBox(title, text, withBtn) {
+function emptyBox(title, text, withBtn, label, href) {
 var e = h('div', 'empty'), i = h('div', 'ei'); i.appendChild(icon('i-bag')); e.appendChild(i);
 e.appendChild(h('h2', '', title)); e.appendChild(h('p', '', text));
-if (withBtn) { var a = h('a', 'btn', 'تصفّح المنتجات'); a.href = 'all-products.html'; e.appendChild(a); }
+if (withBtn) { var a = h('a', 'btn', label || 'تصفّح المنتجات'); a.href = href || 'all-products.html'; e.appendChild(a); }
 return e;
 }
-function render() {
+function render(anim) {
 var cnt = { all: orders.length, pending: 0, completed: 0, cancelled: 0 };
 orders.forEach(function (o) { cnt[o.kind]++; });
 $('cAll').textContent = cnt.all; $('cPend').textContent = cnt.pending; $('cDone').textContent = cnt.completed; $('cCanc').textContent = cnt.cancelled;
 $('nAll').textContent = cnt.all; $('nDone').textContent = cnt.completed; $('nWait').textContent = cnt.pending;
-$('sum').hidden = cnt.all === 0;
+$('sum').hidden = cnt.all === 0; $('q').hidden = cnt.all < 6;
 
-var list = $('list'); list.textContent = '';
+var list = $('list'); list.textContent = ''; list.classList.toggle('still', anim === false);
 if (!cnt.all) { list.appendChild(emptyBox('لا توجد طلبات بعد', 'ابدأ أول طلب شحن وستظهر حالته هنا فور تنفيذه.', true)); return; }
-var shown = orders.filter(function (o) { return filter === 'all' || o.kind === filter; });
-if (!shown.length) { list.appendChild(emptyBox('لا توجد طلبات هنا', 'لا يوجد طلبات في هذه الفئة حالياً.', false)); return; }
+var qq = query.trim().toLowerCase().replace('#', '');
+var shown = orders.filter(function (o) {
+return (filter === 'all' || o.kind === filter) && (!qq || (o.id + ' ' + o.game + ' ' + o.pack + ' ' + o.player).toLowerCase().indexOf(qq) > -1);
+});
+if (!shown.length) { list.appendChild(qq ? emptyBox('لا توجد نتائج', 'جرّب رقم طلب أو اسم لعبة آخر.', false) : emptyBox('لا توجد طلبات هنا', 'لا يوجد طلبات في هذه الفئة حالياً.', false)); return; }
 shown.forEach(function (o, i) { list.appendChild(card(o, i)); });
 }
 
 /* ---------- المزامنة مع الشيت (طلب واحد مُنظَّم) ---------- */
 function note(t) { var n = $('note'); n.textContent = t || ''; n.hidden = !t; }
+function ago(ms) {
+var m = Math.floor(ms / 60000);
+if (m < 1) return 'الآن';
+if (m < 60) return m === 1 ? 'منذ دقيقة' : m === 2 ? 'منذ دقيقتين' : m <= 10 ? 'منذ ' + m + ' دقائق' : 'منذ ' + m + ' دقيقة';
+var hr = Math.floor(m / 60);
+if (hr < 24) return hr === 1 ? 'منذ ساعة' : hr === 2 ? 'منذ ساعتين' : hr <= 10 ? 'منذ ' + hr + ' ساعات' : 'منذ ' + hr + ' ساعة';
+return 'منذ أكثر من يوم';
+}
+function updText() {
+var u = $('upd');
+if (!U || !lastOk) { u.hidden = true; return; }
+u.textContent = 'آخر تحديث للحالات: ' + ago(Date.now() - lastOk); u.hidden = false;
+}
 function sync(force) {
-if (busy) return;
-if (!force && Date.now() - lastFetch < MIN_GAP) return;
-var local = readOrders();
-if (!local.length) return;
+if (busy || !U) return;
+var cur0 = readOrders();
+if (!cur0.length) return;
+if (!force) {
+if (Date.now() - lastFetch < MIN_GAP) return;
+if (!orders.some(function (o) { return o.kind === 'pending'; })) return;   // كل الطلبات منتهية: لا داعي للسؤال
+}
+var ids = cur0.map(function (o) { return normId(o.orderID); }).filter(Boolean);
+var url = STATUS_URL
+? STATUS_URL + (STATUS_URL.indexOf('?') < 0 ? '?' : '&') + 'ids=' + encodeURIComponent(ids.join(',')) + '&_=' + Date.now()
+: SHEETDB_URL + '?_=' + Date.now();
 busy = true; $('rf').classList.add('spin');
 var ctrl = typeof AbortController === 'function' ? new AbortController() : null;
 var to = setTimeout(function () { if (ctrl) ctrl.abort(); }, 15000);
-fetch(SHEETDB_URL + '?_=' + Date.now(), { cache: 'no-store', signal: ctrl ? ctrl.signal : undefined })
+fetch(url, { cache: 'no-store', signal: ctrl ? ctrl.signal : undefined })
 .then(function (r) { if (!r.ok) throw new Error('http'); return r.json(); })
 .then(function (rows) {
 if (!Array.isArray(rows)) throw new Error('bad');
 var map = {};
 rows.forEach(function (r) { if (r && r.OrderID && r.Status) map[normId(r.OrderID)] = String(r.Status); });
-var changed = false;
-local.forEach(function (o) {
+var changed = 0, cur = readOrders();
+cur.forEach(function (o) {
 var s = map[normId(o.orderID)];
-if (s && s !== o.status) { o.status = s; changed = true; }
+if (s && s !== o.status) { o.status = s; changed++; }
 });
-if (changed) LS.set(KEY, JSON.stringify(local));
-lastFetch = Date.now(); note('');
-load();
+if (changed && window.HyperOrders) HyperOrders.write(cur);
+lastFetch = Date.now(); lastOk = lastFetch; note(''); updText();
+load(true);
+if (changed) toast(changed === 1 ? 'تم تحديث حالة طلبك' : 'تم تحديث حالة ' + changed + ' طلبات');
 })
 .catch(function () { note('تعذّر تحديث الحالات الآن، نعرض آخر حالة محفوظة.'); })
 .then(function () { clearTimeout(to); busy = false; $('rf').classList.remove('spin'); });
@@ -331,17 +396,41 @@ load();
 /* ---------- الأحداث ---------- */
 $('tabs').addEventListener('click', function (e) {
 var b = e.target.closest('.tab'); if (!b) return;
-document.querySelectorAll('.tab').forEach(function (x) { x.classList.toggle('on', x === b); });
-filter = b.getAttribute('data-f'); render();
+document.querySelectorAll('.tab').forEach(function (x) { var on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+filter = b.getAttribute('data-f'); render(true);
 });
 $('rf').addEventListener('click', function () { sync(true); });
 document.addEventListener('visibilitychange', function () { if (!document.hidden) sync(false); });
 setInterval(function () { if (!document.hidden) sync(false); }, POLL_MS);
 
+$('back').href = ACCOUNT_URL;
+window.addEventListener('storage', function (e) {
+if (e.key === 'hyper_user') location.reload();
+else if (U && e.key && e.key.indexOf('hyper_orders:') === 0) load(true);
+});
+window.addEventListener('pageshow', function (e) {
+if (!e.persisted) return;
+var nu = window.HyperOrders && HyperOrders.user && HyperOrders.user();
+if ((nu && nu.email) !== (U && U.email)) { location.reload(); return; }
+if (U) { load(true); sync(false); }
+});
+$('q').addEventListener('input', function () { query = this.value; render(false); });
+setInterval(updText, 30000);
+document.querySelectorAll('.tab').forEach(function (x) { x.setAttribute('aria-pressed', x.classList.contains('on') ? 'true' : 'false'); });
+
+if (!U) {
+// غير مسجل: السجل مرتبط بالحساب
+$('tabs').hidden = true; $('sum').hidden = true; $('rf').hidden = true;
+$('list').appendChild(emptyBox('يرجى تسجيل الدخول لرؤية طلباتك', 'طلباتك مرتبطة بحسابك، وستظهر هنا فور تسجيل الدخول.', true, 'تسجيل الدخول / حساب جديد', ACCOUNT_URL + '?auth=1'));
+} else {
+var w = $('who'); w.textContent = 'طلبات حساب ';
+w.appendChild(h('b', '', maskEmail(U.email)));
+w.appendChild(h('i', '', 'السجل خاص بحسابك، ويُحفظ على هذا الجهاز 28 يوماً بعد تسجيل الخروج ثم يُحذف تلقائياً.'));
+w.hidden = false;
 load();
 sync(true);
+}
 })();
 </script>
-<script src="nav.js?v=1"></script>
 </body>
 </html>
