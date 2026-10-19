@@ -5,6 +5,6 @@
     document.head.appendChild(script1);
 
     var script2 = document.createElement('script');
-    script2.innerHTML = "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-F7E5J12PFN');";
+    script2.innerHTML = "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-F7E53L2PF');";
     document.head.appendChild(script2);
 })();
