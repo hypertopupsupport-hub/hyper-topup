@@ -1,7 +1,7 @@
 (function() {
     var script1 = document.createElement('script');
     script1.async = true;
-    script1.src = 'https://www.googletagmanager.com/gtag/js?id=G-F7E5J12PFN';
+    script1.src = 'https://www.googletagmanager.com/gtag/js?id=G-F7E53L2PF';
     document.head.appendChild(script1);
 
     var script2 = document.createElement('script');
