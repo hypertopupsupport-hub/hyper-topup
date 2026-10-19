@@ -425,7 +425,6 @@ $('list').appendChild(emptyBox('يرجى تسجيل الدخول لرؤية طل
 } else {
 var w = $('who'); w.textContent = 'طلبات حساب ';
 w.appendChild(h('b', '', maskEmail(U.email)));
-w.appendChild(h('i', '', 'السجل خاص بحسابك، ويُحفظ على هذا الجهاز 28 يوماً بعد تسجيل الخروج ثم يُحذف تلقائياً.'));
 w.hidden = false;
 load();
 sync(true);
