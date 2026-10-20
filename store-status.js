@@ -18,7 +18,7 @@
 
   var TEXT = {
     update: { title: 'المتجر في تحديث الآن', msg: 'نعمل على تحسين تجربة الشحن لك. سنعود خلال وقت قصير، ويُفتح الدفع هنا تلقائياً.' },
-    rest: { title: 'المتجر في وقت الراحة 🌙', msg: 'نستقبل الطلبات يومياً من 9:30 صباحاً حتى 1 بعد منتصف الليل، ويُفتح الدفع هنا تلقائياً.' }
+    rest: { title: 'الخدمة متوقفة مؤقتاً', msg: 'يمكنك حجز طلبك الآن، وسيتم تنفيذه فور عودة الخدمة.' }
   };
   var ICONS = {
     update: '<circle cx="12" cy="12" r="3.2"/><circle cx="12" cy="12" r="7.5"/><path d="M12 1.8v3M12 19.2v3M1.8 12h3M19.2 12h3M4.8 4.8l2.1 2.1M17.1 17.1l2.1 2.1M4.8 19.2l2.1-2.1M17.1 6.9l2.1-2.1"/>',
@@ -130,14 +130,15 @@
     '<div><b id="hs-s">00</b><span>ثانية</span></div>' +
     '</div>' +
     '<p class="hs-at" id="hs-at" hidden></p>' +
-    '<p class="hs-warn">⚠️ من فضلك لا تقم بتحويل أي مبلغ الآن. سنُعلمك فور عودة المتجر لتُكمل طلبك بأمان.</p>' +
+    '<p class="hs-warn">✅ يمكنك حجز طلبك الآن، وسيتم تنفيذه فور عودة الخدمة.</p>' +
     '<div class="hs-act">' +
-    '<a class="hs-b hs-g" id="hs-ai" target="_blank" rel="noopener">💬 التحدث مع الذكاء الاصطناعي</a>' +
+    '<button class="hs-b hs-g" id="hs-go" type="button">⚡ احجز طلبك الآن</button>' +
+    '<a class="hs-b hs-o" id="hs-ai" target="_blank" rel="noopener">💬 التحدث مع الذكاء الاصطناعي</a>' +
     '<button class="hs-b hs-o" id="hs-cal" type="button" hidden>📅 أضف تذكيراً بموعد العودة</button>' +
     '<button class="hs-b hs-o" id="hs-nt" type="button" hidden>🔔 نبّهني عند العودة</button>' +
     '</div>' +
     '<a class="hs-l" id="hs-home">تصفّح المتجر</a>' +
-    '<p class="hs-ft">سيُفتح الدفع هنا تلقائياً بمجرد عودتنا، دون الحاجة لإعادة تحميل الصفحة.</p>' +
+    '<p class="hs-ft">سيُفتح الدفع هنا تلقائياً بمجرد عودة الخدمة، دون الحاجة لإعادة تحميل الصفحة.</p>' +
     '</div>';
 
   var ov, locked = false, lastJson, curState = null, tickT = null, mo = null, origTitle = '', inerted = [], prevOverflow = '', titleT = null;
@@ -153,6 +154,7 @@
     document.body.appendChild(ov);
     $('hs-ai').href = C.aiUrl;
     $('hs-home').href = C.homeUrl;
+    $('hs-go').addEventListener('click', function () { window.__hsDismissed = true; dismissLock(); });
     $('hs-cal').addEventListener('click', function () { if (curState && curState.until) saveIcs(curState.until); });
     var nt = $('hs-nt');
     if ('Notification' in window && Notification.permission === 'default') nt.hidden = false;
@@ -241,6 +243,17 @@
     announce();
   }
 
+  /* الزبون ضغط "احجز طلبك الآن": نخفي الشاشة ويكمل الطلب عادي */
+  function dismissLock() {
+    if (!locked) return;
+    locked = false; curState = null;
+    clearInterval(tickT);
+    ov.classList.remove('hs-on');
+    setTimeout(function () { ov.hidden = true; }, 380);
+    unlockPage();
+    if (origTitle) { document.title = origTitle; origTitle = ''; }
+  }
+
   function announce() {
     var b = $('hs-open');
     if (!b) { b = document.createElement('div'); b.id = 'hs-open'; b.setAttribute('role', 'status'); document.body.appendChild(b); }
@@ -281,7 +294,8 @@
   function evaluate(j) {
     var s = window.__hsForce ? { on: true, until: null, type: 'update', title: '', message: '' } : normalize(j);
     if (window.__hsForce && j && j.until) s.until = parseUntil(j.until);
-    if (s.on) lock(s); else unlock();
+    if (s.on) { if (!window.__hsDismissed) lock(s); }
+    else { window.__hsDismissed = false; unlock(); }
   }
   function check() {
     var url = C.statusUrl + (C.statusUrl.indexOf('?') > -1 ? '&' : '?') + 't=' + Date.now();
