@@ -223,7 +223,7 @@
     locked = true;
     origTitle = origTitle || document.title;
     clearTimeout(titleT);
-    document.title = '🌙 المتجر في وقت الراحة | HYPER TOPUP';
+    document.title = 'الخدمة متوقفة مؤقتاً | HYPER TOPUP';
     ov.hidden = false;
     lockPage();
     requestAnimationFrame(function () { ov.classList.add('hs-on'); });
