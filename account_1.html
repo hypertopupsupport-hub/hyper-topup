@@ -236,17 +236,7 @@ button{font-family:inherit;color:inherit}
 </div>
 
 <!-- Crisp -->
-<script>
-window.$crisp = [];
-window.CRISP_WEBSITE_ID = "0316b84d-cdc3-41b7-b06d-1b7a44f2b524";
-(function () {
-const s = document.createElement("script");
-s.src = "https://client.crisp.chat/l.js";
-s.async = 1;
-document.head.appendChild(s);
-})();
-function openGabsterChat() { if (window.$crisp) { $crisp.push(["do", "chat:open"]); } }
-</script>
+
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -363,8 +353,8 @@ wrap.addEventListener('pointerup', reset);
 wrap.addEventListener('pointercancel', reset);
 }
 </script>
+  <script src="ai-chat.js"></script>
 <script src="nav.js?v=1"></script>
 <script type="module" src="notifications.js"></script>
-  <script src="analytics.js"></script>
 </body>
 </html>

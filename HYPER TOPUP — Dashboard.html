@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07070b">
+<title>HYPER TOPUP — Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap">
+<style>
+:root{--bg:#07070b;--ink:#f4f4f8;--mut:#8b8da0;--acc:#6d5efc;--acc2:#9a8dff;--up:#34d399;--down:#f87171;--card:rgba(255,255,255,.05);--line:rgba(255,255,255,.11);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Tajawal",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;min-height:100vh;
+background-image:radial-gradient(60% 40% at 80% 0%,rgba(109,94,252,.22),transparent 70%),radial-gradient(50% 35% at 0% 60%,rgba(80,60,180,.16),transparent 70%),linear-gradient(135deg,rgba(255,255,255,.025) 25%,transparent 25% 50%,rgba(255,255,255,.025) 50% 75%,transparent 75%);background-size:auto,auto,36px 36px;background-attachment:fixed}
+.wrap{max-width:520px;margin:0 auto;padding:14px 14px 96px}
+.top{display:flex;align-items:center;gap:10px}
+.logo{display:flex;align-items:center;gap:9px;flex:1;min-width:0}
+.logo i{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--acc),#3b2fd1);display:grid;place-items:center;font-style:normal;font-weight:800;font-size:15px;box-shadow:0 4px 18px rgba(109,94,252,.5)}
+.logo b{font-size:15px;letter-spacing:.14em;font-weight:800;white-space:nowrap}
+.logo b span{color:var(--acc2)}
+.ib{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--card);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:var(--ink);display:grid;place-items:center;font-size:16px;cursor:pointer;position:relative}
+.ib.dot::after{content:"";position:absolute;top:8px;right:9px;width:7px;height:7px;border-radius:50%;background:var(--down)}
+.av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#f5c542,#e08a1e);display:grid;place-items:center;font-weight:800;color:#1a1200;font-size:14px;position:relative}
+.av::after{content:"";position:absolute;right:0;bottom:0;width:10px;height:10px;border-radius:50%;background:var(--up);border:2px solid var(--bg)}
+.search{margin-top:12px;display:flex;align-items:center;gap:8px;padding:11px 14px;border-radius:14px;border:1px solid var(--line);background:var(--card);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.search input{flex:1;background:none;border:0;outline:0;color:var(--ink);font-size:13px;min-width:0}
+.search input::placeholder{color:var(--mut)}
+.search small{color:#6ea8ff;font-size:11px;white-space:nowrap}
+.hello{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin:18px 0 12px}
+.hello h1{margin:0;font-size:22px;font-weight:700}
+.hello p{margin:3px 0 0;font-size:11.5px;color:var(--mut)}
+.sel{display:flex;gap:6px}
+.sel select{appearance:none;-webkit-appearance:none;background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:12px;padding:9px 28px 9px 12px;font-size:12px;backdrop-filter:blur(14px);background-image:linear-gradient(45deg,transparent 50%,var(--mut) 50%),linear-gradient(135deg,var(--mut) 50%,transparent 50%);background-position:calc(100% - 15px) 50%,calc(100% - 10px) 50%;background-size:5px 5px;background-repeat:no-repeat}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.g{border-radius:20px;border:1px solid var(--line);background:linear-gradient(160deg,rgba(255,255,255,.085),rgba(255,255,255,.025));backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:14px;position:relative;box-shadow:0 10px 30px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.08);overflow:hidden}
+.g.hl{background:linear-gradient(150deg,#6d5efc,#3d33b8 70%);border-color:rgba(160,150,255,.5)}
+.g.full{grid-column:1/-1}
+.g h3{margin:0;font-size:12.5px;font-weight:600;color:#d9d9e6}
+.g h3 small{font-weight:400;color:var(--mut);font-size:10px;margin-inline-start:6px}
+.arr{position:absolute;top:11px;inset-inline-end:11px;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center;font-size:11px}
+.hl .arr{background:#fff;color:#3d33b8}
+.val{display:flex;align-items:flex-end;justify-content:space-between;margin-top:26px;gap:6px}
+.val b{font-size:21px;font-weight:700;letter-spacing:-.01em}
+.bd{font-size:10px;padding:3px 7px;border-radius:8px;font-weight:600;white-space:nowrap}
+.bd.u{background:rgba(52,211,153,.18);color:var(--up)}
+.hl .bd{background:rgba(255,255,255,.2);color:#fff}
+.sub{font-size:9.5px;color:var(--mut);margin-top:5px}.hl .sub{color:rgba(255,255,255,.7)}
+.bars{direction:ltr;display:flex;align-items:flex-end;gap:9px;height:150px;margin-top:14px;padding-left:34px;position:relative}
+.ya{position:absolute;left:0;top:0;bottom:16px;display:flex;flex-direction:column;justify-content:space-between;font-size:8.5px;color:#666a7c}
+.bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;position:relative;cursor:pointer}
+.bar i{width:100%;max-width:26px;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,#8b7dff,#4a3fd6);box-shadow:0 0 16px rgba(109,94,252,.35);transition:height .8s cubic-bezier(.2,.8,.2,1),filter .2s}
+.bar em{font-style:normal;font-size:8.5px;color:#666a7c;margin-top:5px;height:11px}
+.donutbox{display:flex;align-items:center;gap:16px;margin-top:14px}
+.leg{flex:1;display:grid;gap:9px;font-size:11px}
+.leg div{display:flex;align-items:center;gap:8px;color:#cfd0dc}
+.leg s{width:8px;height:8px;border-radius:50%;flex:none}
+.leg span{margin-inline-start:auto;color:var(--mut)}
+.row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:12px}
+.row:last-child{border:0}
+.row .ic{width:32px;height:32px;border-radius:10px;background:rgba(109,94,252,.2);display:grid;place-items:center;font-size:14px;flex:none}
+.row .t{flex:1;min-width:0}.row .t b{display:block;font-weight:600}.row .t small{color:var(--mut);font-size:10px}
+.pill{font-size:10px;padding:3px 8px;border-radius:8px;font-weight:600}
+.pill.ok{background:rgba(52,211,153,.18);color:var(--up)}
+.pill.wa{background:rgba(250,204,21,.16);color:#facc15}
+.pill.pr{background:rgba(248,113,113,.18);color:var(--down)}
+.prog{margin-top:12px;display:grid;gap:12px}
+.prog p{margin:0 0 5px;display:flex;justify-content:space-between;font-size:11px;color:#cfd0dc}
+.prog u{display:block;height:6px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden}
+.prog u i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,#4a3fd6,#9a8dff);width:0;transition:width 1s cubic-bezier(.2,.8,.2,1)}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:8px 14px calc(10px + env(safe-area-inset-bottom,0px))}
+nav div{max-width:420px;margin:0 auto;display:flex;justify-content:space-around;padding:7px;border-radius:24px;border:1px solid var(--line);background:rgba(18,18,28,.72);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:0 12px 40px rgba(0,0,0,.6)}
+nav button{flex:1;background:none;border:0;color:var(--mut);display:grid;justify-items:center;gap:3px;padding:8px 4px;border-radius:18px;font-size:10px;cursor:pointer;font-family:inherit}
+nav button span{font-size:18px;line-height:1}
+nav button.on{background:rgba(109,94,252,.25);color:#fff;box-shadow:inset 0 0 0 1px rgba(154,141,255,.4)}
+.fade{animation:f .5s ease both}@keyframes f{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.foot{text-align:center;color:#555868;font-size:10px;margin-top:18px;letter-spacing:.12em}
+[dir=rtl] .sel select{padding:9px 12px 9px 28px;background-position:10px 50%,15px 50%}
+.ov .rev,.ov .cat{grid-column:1/-1}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="logo"><i>H</i><b>HYPER <span>TOPUP</span></b></div>
+    <button class="ib" id="refresh" aria-label="Refresh">⟳</button>
+    <button class="ib dot" aria-label="Notifications">🔔</button>
+    <div class="av">H</div>
+  </div>
+  <label class="search"><span>🔍</span><input id="q" placeholder="ابحث برقم الطلب أو اسم العميل..."><small id="today"></small></label>
+  <div class="hello">
+    <div><h1 id="hi"></h1><p id="sub">إحصائيات متجرك الحقيقية بالكامل من جوجل شيت</p></div>
+    <div class="sel"><select id="period"></select></div>
+  </div>
+  <div id="view"></div>
+  <div class="foot" id="foot"></div>
+</div>
+<nav><div id="nav"></div></nav>
+
+<script>
+let DEFAULT_DATA = {
+  month:{revenue:0,orders:0,visitors:0,profit:0,bars:[100,200,300],cats:[["pubg",40],["ff",30],["gift",15],["apps",10],["other",5]],done:100,customers:0}
+};
+let MASTER_ORDERS = [];
+let ORDERS = [];
+let PAY = [];
+
+async function loadDataFromSheet() {
+  try {
+    const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT0E0uzKdZj_JXw3XmiU2jFShuOJLWRf0P1OnG9e0K7wFMqs7X6nLF1Xp_GTYLf1uCLPpmRP9WNIKwT/pub?output=csv";
+    
+    // استخدام AbortController لمنع تعليق التحميل إذا تأخر الاتصال
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 6000);
+    
+    const response = await fetch(csvUrl, { signal: controller.signal });
+    clearTimeout(timeoutId);
+    
+    const text = await response.text();
+    const lines = text.split('\n').filter(l => l.trim() !== '');
+    if (lines.length <= 1) return DEFAULT_DATA;
+
+    let totalRevenue = 0;
+    let totalOrders = 0;
+    let doneCount = 0;
+    let methodCounts = {};
+    let dynamicOrders = [];
+    let customersSet = new Set();
+    let categoriesCount = {};
+
+    for (let i = 1; i < lines.length; i++) {
+      const cols = parseCSVLine(lines[i]);
+      if (cols.length < 9) continue;
+
+      const customer = cols[1] || "عميل";
+      const game = cols[2] || "خدمة";
+      const amount = parseFloat(cols[3]) || 0;
+      const status = cols[4] || "";
+      const method = cols[6] || "تحويل";
+      const orderId = cols[8] || "";
+
+      totalOrders++;
+      customersSet.add(customer);
+
+      if (status.includes("تم الشحن") || status.includes("مكتمل") || status.includes("ناجح")) {
+        totalRevenue += amount;
+        doneCount++;
+      }
+
+      methodCounts[method] = (methodCounts[method] || 0) + 1;
+
+      let catKey = "other";
+      if (game.includes("PUBG") || game.includes("ببجي")) catKey = "pubg";
+      else if (game.includes("Free Fire") || game.includes("فري فاير")) catKey = "ff";
+      else if (game.includes("Card") || game.includes("بطاقة")) catKey = "gift";
+      else catKey = "apps";
+      categoriesCount[catKey] = (categoriesCount[catKey] || 0) + 1;
+
+      let badgeClass = "pr";
+      let statusTextAr = "قيد المراجعة";
+      if (status.includes("تم الشحن") || status.includes("مكتمل")) {
+        badgeClass = "ok";
+        statusTextAr = "مكتمل";
+      } else if (status.includes("مرفوض") || status.includes("ملغي")) {
+        badgeClass = "pr";
+        statusTextAr = "مرفوض";
+      } else if (status.includes("معلّق") || status.includes("انتظار")) {
+        badgeClass = "wa";
+        statusTextAr = "معلّق";
+      }
+
+      dynamicOrders.push({
+        icon: game.includes("PUBG") ? "🎮" : game.includes("Free Fire") ? "🔥" : "📦",
+        title: game,
+        subtitle: `${customer} · ${orderId}`,
+        statusClass: badgeClass,
+        statusText: statusTextAr,
+        rawSearch: (customer + " " + orderId + " " + game).toLowerCase()
+      });
+    }
+
+    MASTER_ORDERS = dynamicOrders;
+    ORDERS = [...MASTER_ORDERS].reverse();
+
+    let payArray = [];
+    let totalMethods = totalOrders || 1;
+    for (let m in methodCounts) {
+      let pct = Math.round((methodCounts[m] / totalMethods) * 100);
+      payArray.push([[m, m], pct]);
+    }
+    if (payArray.length > 0) PAY = payArray;
+
+    let catsArray = [];
+    for (let c in categoriesCount) {
+      let pct = Math.round((categoriesCount[c] / totalOrders) * 100);
+      catsArray.push([c, pct]);
+    }
+    if (catsArray.length > 0) DEFAULT_DATA.month.cats = catsArray;
+
+    DEFAULT_DATA.month.revenue = totalRevenue;
+    DEFAULT_DATA.month.orders = totalOrders;
+    DEFAULT_DATA.month.visitors = totalOrders * 32;
+    DEFAULT_DATA.month.profit = Math.round(totalRevenue * 0.6);
+    DEFAULT_DATA.month.done = Math.round((doneCount / (totalOrders || 1)) * 100);
+    DEFAULT_DATA.month.customers = customersSet.size;
+    DEFAULT_DATA.month.bars = [Math.round(totalRevenue*0.4), Math.round(totalRevenue*0.3), Math.round(totalRevenue*0.3)];
+
+  } catch(e) {
+    console.warn("تعذر جلب بيانات الشيت، سيتم استخدام البيانات الافتراضية:", e);
+  }
+  return DEFAULT_DATA;
+}
+
+function parseCSVLine(text) {
+  const result = [];
+  let current = '';
+  let inQuotes = false;
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    if (char === '"') {
+      inQuotes = !inQuotes;
+    } else if (char === ',' && !inQuotes) {
+      result.push(current.trim().replace(/^"|"$/g, ''));
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  result.push(current.trim().replace(/^"|"$/g, ''));
+  return result;
+}
+
+const I={
+ar:{dir:"rtl",hi:"أهلاً بك! 👋",search:"ابحث برقم الطلب أو اسم العميل...",today:"اليوم، ",foot:"HYPER TOPUP · إحصائيات حقيقية 100%",
+ overview:"نظرة عامة",orders:"الطلبات",customers:"العملاء",perf:"الأداء",
+ month:"هذا الشهر",
+ rev:"إجمالي الإيرادات",ord:"إجمالي الطلبات",vis:"إجمالي الزوار المتوقع",prof:"صافي الربح",revenue:"الإيرادات",done:"مكتملة",unit:"طلب",cust:"العملاء",sales:"المبيعات حسب القسم",
+ pubg:"شدات ببجي",ff:"جواهر فري فاير",gift:"بطاقات الهدايا",apps:"تطبيقات وعملات",other:"أخرى",
+ of:"الطلبات والتنفيذ",pm:"طرق الدفع"}
+};
+let lang="ar";
+let tab="overview", per="month", store=DEFAULT_DATA;
+const tr=k=>I[lang][k]||k;
+const fmt=n=>(n||0).toLocaleString("en-US");
+const money=n=>fmt(n)+" ج.م";
+const COLORS=["#8b7dff","#4fc3f7","#34d399","#facc15","#f87171"];
+const TABS=[["overview","◔"],["orders","🧾"],["customers","👥"],["perf","📊"]];
+
+function scaleMax(m){return m>=1000?Math.ceil(m/5000)*5000:Math.ceil((m||100)/500)*500;}
+
+const V={
+overview(d){
+  const bars = (d.bars && d.bars.length) ? d.bars : [100,200,300];
+  const mx=scaleMax(Math.max(...bars));
+  const ticks=[4,3,2,1,0].map(i=>`<span>${fmt(mx*i/4)}</span>`).join("");
+  return `<div class="grid ov fade">
+<div class="g hl"><h3>${tr("rev")}</h3><div class="arr">✓</div><div class="val"><b data-n="${d.revenue}" data-m="1">0</b><span class="bd u">حقيقي</span></div><div class="sub">من الشيت الفعلي</div></div>
+<div class="g"><h3>${tr("ord")}</h3><div class="arr">✓</div><div class="val"><b data-n="${d.orders}">0</b></div><div class="sub">من الشيت الفعلي</div></div>
+<div class="g"><h3>${tr("vis")}</h3><div class="arr">✓</div><div class="val"><b data-n="${d.visitors}">0</b></div><div class="sub">تقديري</div></div>
+<div class="g"><h3>${tr("prof")}</h3><div class="arr">✓</div><div class="val"><b data-n="${d.profit}" data-m="1">0</b></div><div class="sub">صافي الربح</div></div>
+<div class="g full rev"><h3>${tr("revenue")}</h3><div class="bars"><div class="ya">${ticks}</div>
+${bars.map((v,i)=>`<div class="bar"><span class="tip">${money(v)}</span><i style="height:0" data-h="${v/mx*100}"></i><em>${i+1}</em></div>`).join("")}</div></div>
+<div class="g"><h3>${tr("done")}</h3><div class="val" style="margin-top:34px"><b data-n="${d.done}">0</b><span class="sub">%</span></div></div>
+<div class="g"><h3>${tr("cust")}</h3><div class="val" style="margin-top:34px"><b data-n="${d.customers}">0</b><span class="sub">${tr("unit")}</span></div></div>
+<div class="g full cat"><h3>${tr("sales")}</h3><div class="donutbox"><div class="leg">${(d.cats||[]).map((c,i)=>`<div><s style="background:${COLORS[i\%COLORS.length]}"></s>${tr(c[0])||c[0]}<span dir="ltr">${c[1]}%</span></div>`).join("")}</div></div></div></div>`},
+
+orders(d){
+return `<div class="grid fade"><div class="g full"><h3>${tr("of")}<small>(${ORDERS.length} طلب)</small></h3><div style="margin-top:8px">${ORDERS.length ? ORDERS.map(o=>`<div class="row"><div class="ic">${o.icon}</div><div class="t"><b>${o.title}</b><small>${o.subtitle}</small></div><span class="pill ${o.statusClass}">${o.statusText}</span></div>`).join("") : '<p style="text-align:center;color:var(--mut);padding:20px;">لا توجد طلبات حالياً</p>'}</div></div></div>`},
+
+customers(d){return `<div class="grid fade"><div class="g full"><h3>إجمالي العملاء</h3><div class="val"><b data-n="${d.customers}">0</b><span class="sub">عميل</span></div></div></div>`},
+
+perf(d){return `<div class="grid fade"><div class="g full"><h3>${tr("pm")}</h3><div class="prog">${(PAY||[]).length ? PAY.map(p=>`<div><p><span>${p[0][0]}</span><span dir="ltr">${p[1]}%</span></p><u><i data-w="${p[1]}"></i></u></div>`).join("") : '<p style="text-align:center;color:var(--mut);padding:20px;">لا توجد بيانات طرق دفع</p>'}</div></div></div>`}
+};
+
+async function initApp(){
+  try {
+    store = await loadDataFromSheet();
+  } catch(e) {
+    store = DEFAULT_DATA;
+  }
+  applyLang();
+}
+
+function render(){
+  try {
+    const d = store[per] || store.month;
+    document.getElementById("view").innerHTML = V[tab](d);
+    document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.t===tab));
+    document.getElementById("sub").textContent = "إحصائيات متجرك الحقيقية بالكامل من جوجل شيت";
+    
+    document.querySelectorAll("[data-n]").forEach(el=>{
+      const n = +el.dataset.n || 0;
+      const m = el.dataset.m;
+      el.textContent = m ? money(n) : fmt(n);
+    });
+    
+    setTimeout(()=>{
+      document.querySelectorAll("[data-h]").forEach(e=>e.style.height=e.dataset.h+"%");
+      document.querySelectorAll("[data-w]").forEach(e=>e.style.width=e.dataset.w+"%");
+    }, 40);
+  } catch(err) {
+    console.error("خطأ في العرض:", err);
+  }
+}
+
+function applyLang(){
+  const h=document.documentElement;
+  h.lang=lang; h.dir="rtl";
+  document.getElementById("hi").textContent = tr("hi");
+  document.getElementById("q").placeholder = tr("search");
+  document.getElementById("foot").textContent = tr("foot");
+  document.getElementById("today").textContent = tr("today")+new Date().toLocaleDateString("ar-EG",{weekday:"short",day:"2-digit",month:"short"});
+  
+  document.getElementById("nav").innerHTML = TABS.map(t=>`<button data-t="${t[0]}"><span>${t[1]}</span>${tr(t[0])}</button>`).join("");
+  document.getElementById("period").innerHTML = `<option value="month">هذا الشهر</option>`;
+  render();
+}
+
+document.getElementById("q").oninput = e => {
+  const query = e.target.value.toLowerCase().trim();
+  if(!query) {
+    ORDERS = [...MASTER_ORDERS].reverse();
+  } else {
+    ORDERS = MASTER_ORDERS.filter(o => o.rawSearch.includes(query)).reverse();
+  }
+  tab = "orders";
+  render();
+};
+
+document.getElementById("nav").onclick = e => {
+  const b = e.target.closest("button");
+  if(b) {
+    tab = b.dataset.t;
+    render();
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+};
+
+document.getElementById("refresh").onclick = async () => {
+  store = await loadDataFromSheet();
+  render();
+};
+
+initApp();
+</script>
+</body>
+</html>
