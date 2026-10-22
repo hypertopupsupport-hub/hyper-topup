@@ -327,3 +327,7 @@ max-width: none;
     z-index: 2147483647 !important;
     transform: none !important;
 }
+/* إخفاء زر الجرس مؤقتًا */
+#hyper-notification-container {
+    display: none !important;
+}
