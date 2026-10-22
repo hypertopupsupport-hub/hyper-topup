@@ -59,9 +59,11 @@
   ]
 }
 </script>
+
 <!-- أيقونة المتجر واللوجو الجديد -->
 <link rel="icon" type="image/svg+xml" href="./logo.svg">
-<link rel="apple-touch-icon" href="./logo.svg">
+<link rel="apple-touch-icon" sizes="192x192" href="./icon-192.png">
+
 
 <!-- ربط ملف الـ Manifest والـ PWA -->
 <link rel="manifest" href="./manifest.json">
@@ -1227,7 +1229,6 @@ document.addEventListener('visibilitychange',sync);
 })();
 </script>
 <script type="module" src="notifications.js"></script>
-  <script src="analytics.js"></script>
-  
+  <script src="intro.js?v=1" data-standalone="true" data-duration="2200"></script>
 </body>
 </html>
