@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /hyper-payment.html
+Disallow: /instapay-payment.html
