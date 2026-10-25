@@ -125,7 +125,7 @@
       <section class="htai-panel" id="htaiPanel" role="dialog" aria-label="مساعد HYPER TOPUP الذكي">
         <header class="htai-head">
           <div class="htai-av"><svg viewBox="0 0 48 48"><use href="#htaiBot"/></svg></div>
-          <div class="htai-ttl"><b>مساعد HYPER <i>AI</i></b><small>متصل الآن · يرد خلال ثوانٍ</small></div>
+          <div class="htai-ttl"><b>مساعد HYPER <i>AI</i></b><small style="color: #ffaa00;">غير مستقر · قد يتأخر في الرد</small></div>
           <button class="htai-ib" id="htaiFull" aria-label="فتح المحادثة الكاملة" title="المحادثة الكاملة"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
           <button class="htai-ib" id="htaiX" aria-label="إغلاق"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
         </header>
