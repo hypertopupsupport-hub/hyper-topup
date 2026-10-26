@@ -53,6 +53,15 @@ const GLOBAL_COUPONS = {
     type: 'fixed', value: 25, minPrice: 120,
     game: 'GANGSTAR MIRAGE CITY'
   }
+  
+  // حملة متابعي قناة واتساب
+  'WAHYPER10': {
+    type: 'percent',
+    value: 10,
+    maxDiscount: 20,
+    minPrice: 49,
+    game: 'all'
+}
 };
 
 function validateCouponCode(code, basePrice, currentGameName) {
