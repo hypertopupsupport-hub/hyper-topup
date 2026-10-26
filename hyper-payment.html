@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>HYPER TOPUP — بوابة الدفع</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#05070D">
@@ -279,13 +279,13 @@ input[type=text].err{border-color:var(--danger)}
   <section class="card">
     <div class="card-title"><span class="ico">📦</span>تفاصيل الطلب</div>
     <div class="summary-grid">
-      <div class="info-box"><small>اللعبة</small><b id="game">PUBG MOBILE</b></div>
-      <div class="info-box"><small>الباقة</small><b id="package">60 شدة</b></div>
+      <div class="info-box"><small>اللعبة</small><b id="game">—</b></div>
+      <div class="info-box"><small>الباقة</small><b id="package">—</b></div>
       <div class="info-box"><small>معرف اللاعب</small><b id="player">—</b></div>
       <div class="info-box"><small>رقم الطلب</small><b id="order">يُنشأ عند التأكيد</b></div>
     </div>
     <div class="method-row"><span>وسيلة الدفع</span><b id="methodLabel">لم يتم الاختيار بعد</b></div>
-    <div class="amount-box"><small>إجمالي المطلوب</small><strong id="amount">47.99 ج.م</strong></div>
+    <div class="amount-box"><small>إجمالي المطلوب</small><strong id="amount">—</strong></div>
   </section>
 
   <!-- ============ Payment methods ============ -->
@@ -308,16 +308,16 @@ input[type=text].err{border-color:var(--danger)}
     <!-- Link transfer detail -->
     <div class="detail-panel" id="panelLink">
       <a class="link-btn" id="transferLinkBtn" href="#" target="_blank" rel="noopener">فتح رابط فودافون كاش الرسمي ↗</a>
-      <div class="hint">هذا هو رابط التحويل الرسمي لخدمة فودافون كاش الخاص بمتجر HYPER TOPUP. اضغط براحتك، أكمل التحويل بكل ثقة، ثم ارجع لهذه الصفحة لتأكيد طلبك بالأسفل.</div>
+      <div class="hint">هذا هو رابط التحويل الرسمي لفودافون كاش الخاص بمتجر HYPER TOPUP. حوّل المبلغ المطلوب بالضبط، ثم ارجع لهذه الصفحة وأكمل بيانات التأكيد بالأسفل.</div>
     </div>
 
     <!-- Manual transfer detail -->
     <div class="detail-panel" id="panelManual">
       <div class="numberbox">
         <div class="num" id="walletNumber">01002722164</div>
-        <button class="copy-btn" type="button" onclick="copyNumber()">نسخ الرقم</button>
+        <button class="copy-btn" type="button" onclick="copyNumber(this)">نسخ الرقم</button>
       </div>
-      <div class="hint">حوّل المبلغ المطلوب إلى الرقم أعلاه، ثم أكمل بيانات التأكيد بالأسفل.</div>
+      <div class="hint">حوّل المبلغ المطلوب بالضبط إلى الرقم أعلاه، ثم أكمل بيانات التأكيد بالأسفل.</div>
     </div>
   </section>
 
@@ -326,8 +326,8 @@ input[type=text].err{border-color:var(--danger)}
     <div class="card-title"><span class="ico">🧾</span>تأكيد عملية التحويل</div>
 
     <label for="sender">رقم الهاتف الذي تم التحويل منه</label>
-    <input id="sender" type="text" inputmode="numeric" maxlength="11" placeholder="مثال: 01012345678">
-    <div class="field-err" id="senderErr">من فضلك اكتب رقم هاتف صحيح مكوّن من 11 رقمًا.</div>
+    <input id="sender" type="text" inputmode="numeric" autocomplete="tel" maxlength="11" placeholder="مثال: 01012345678">
+    <div class="field-err" id="senderErr">اكتب رقم موبايل مصري صحيح من 11 رقمًا (يبدأ بـ 010 أو 011 أو 012 أو 015).</div>
 
     <label>إيصال التحويل</label>
     <div class="upload">
@@ -335,7 +335,7 @@ input[type=text].err{border-color:var(--danger)}
       <img id="preview" alt="الإيصال">
       <input id="receipt" type="file" accept="image/*" onchange="previewReceipt(event)">
     </div>
-    <div class="field-err" id="receiptErr">من فضلك ارفع صورة إيصال التحويل.</div>
+    <div class="field-err" id="receiptErr">ارفع صورة إيصال التحويل (صورة فقط، حتى 8 ميجا).</div>
   </section>
 
 <!-- ================== بداية كود زرار الضمان ================== -->
@@ -472,13 +472,13 @@ input[type=text].err{border-color:var(--danger)}
     </div>
 
     <ul class="guarantee-list">
-            <li>• <strong>شحن رسمي 100%:</strong> بنشحنلك بالـ ID بس، يعني حسابك في أمان تام ومفيش أي مخاطرة عليه.</li>
-      <li>• <strong>فلوسك في أمان:</strong> لو حصلت أي مشكلة فنية أو الطلب أتلغى من عندنا، حقك بيرجعلك كاملاً على محفظتك فوراً وبدون أي خصم.</li>
-      <li>• <strong>خدمة سريعة:</strong> أول ما تبعت الإيصال، طلبك ببيتراجع وبيتنفذ في دقائق معدودة.</li>
+      <li>• <strong>شحن رسمي 100%:</strong> بنشحنلك بالـ ID بس، يعني حسابك في أمان تام ومفيش أي مخاطرة عليه.</li>
+      <li>• <strong>فلوسك في أمان:</strong> لو حصلت أي مشكلة فنية أو اتلغى الطلب من عندنا، فلوسك بترجعلك كاملة على محفظتك وبدون أي خصم.</li>
+      <li>• <strong>خدمة سريعة:</strong> أول ما تبعت الإيصال، طلبك بيتراجع وبيتنفذ في دقائق معدودة.</li>
     </ul>
 
     <div class="guarantee-note">
-      💡 إن شاء الله لما الموقع يكبر ويكبر بيكوا، هنجيب بوابات دفع تلقائية بالكامل عشانكم وتدفعوا بضغطة زرار واحدة!
+      💡 إن شاء الله لما الموقع يكبر هنضيف بوابات دفع تلقائية بالكامل، وتدفع بضغطة زرار واحدة!
     </div>
 
     <button type="button" class="guarantee-close-btn" onclick="closeGuaranteeModal()">فهمت، شكراً 👍</button>
@@ -570,34 +570,36 @@ const PAYMENT_GATEWAY_CONFIG = {
    ------------------------------------------------------------ */
 const params = new URLSearchParams(location.search);
 
-// استخراج الأرقام فقط من السعر للتعامل مع EGP أو أي رموز
-let rawAmountStr = params.get('amount') || params.get('price') || '';
-let cleanAmountStr = rawAmountStr.replace(/[^0-9.]/g, ''); 
-
-let parsedAmount = parseFloat(cleanAmountStr);
-
-// وضع قيمة احتياطية فقط لو الرابط مفيش فيه سعر خالص
-if (isNaN(parsedAmount) || parsedAmount <= 0) {
-  parsedAmount = 50;
-}
+/* المبلغ: أرقام فقط. لو مفيش مبلغ صحيح بنوقف الدفع بدل ما نحط رقم افتراضي (كان بيطلع 50) */
+const parsedAmount = parseFloat((params.get('amount') || params.get('price') || '').replace(/[^0-9.]/g, ''));
+const amountOk = Number.isFinite(parsedAmount) && parsedAmount > 0 && parsedAmount <= 100000;
 
 const orderData = {
-  game: params.get('game') || 'Gangstar Mirage',
-  packageName: params.get('package') || params.get('pack') || 'باقة اللعبة',
+  game: params.get('game') || '—',
+  packageName: params.get('package') || params.get('pack') || '—',
   playerId: params.get('id') || params.get('player') || '—',
-  amount: parsedAmount.toString(),
-  orderId: params.get('order') || '',
+  amount: amountOk ? String(Math.round(parsedAmount * 100) / 100) : '',
+  orderId: '',   // رقم الطلب بيتولّد لحظة تأكيد الدفع بس (مش من الرابط)
+  coupon: ((c) => (c && c !== 'لا يوجد' ? c.trim().toUpperCase() : ''))(params.get('coupon')),
   paymentMethod: null,
 };
+const orderIsValid = amountOk && orderData.playerId !== '—' && orderData.packageName !== '—';
 
+const fmtAmount = n => (Number.isInteger(n) ? String(n) : n.toFixed(2)) + ' ج.م';
 document.getElementById('game').textContent = orderData.game;
 document.getElementById('package').textContent = orderData.packageName;
 document.getElementById('player').textContent = orderData.playerId;
-document.getElementById('amount').textContent = Math.round(parseFloat(orderData.amount)).toString() + ' ج.م';
-if (orderData.orderId) document.getElementById('order').textContent = orderData.orderId;
+document.getElementById('amount').textContent = amountOk ? fmtAmount(parseFloat(orderData.amount)) : '—';
 
 document.getElementById('walletNumber').textContent = PAYMENT_GATEWAY_CONFIG.walletNumber;
 document.getElementById('transferLinkBtn').href = PAYMENT_GATEWAY_CONFIG.transferLink;
+
+if (!orderIsValid) {
+  const btn = document.getElementById('payBtn');
+  btn.disabled = true;
+  btn.querySelector('.default-txt').textContent = 'بيانات الطلب غير مكتملة';
+  window.addEventListener('DOMContentLoaded', () => showToast('بيانات الطلب غير مكتملة، ارجع للمتجر واختر الباقة من جديد'));
+}
 
 /* ------------------------------------------------------------
    Payment method selection
@@ -617,19 +619,31 @@ function selectMethod(method) {
   document.getElementById('methodLabel').textContent = labels[method] || '—';
 }
 
-function copyNumber() {
-  navigator.clipboard?.writeText(PAYMENT_GATEWAY_CONFIG.walletNumber);
-  const btn = event.currentTarget;
-  const original = btn.textContent;
-  btn.textContent = 'تم النسخ ✓';
-  setTimeout(() => (btn.textContent = original), 1500);
+function copyNumber(btn) {
+  const done = () => {
+    const original = btn.textContent;
+    btn.textContent = 'تم النسخ ✓';
+    setTimeout(() => (btn.textContent = original), 1500);
+  };
+  if (navigator.clipboard?.writeText) navigator.clipboard.writeText(PAYMENT_GATEWAY_CONFIG.walletNumber).then(done, done);
+  else done();
 }
 
+const MAX_RECEIPT_BYTES = 8 * 1024 * 1024;
 function previewReceipt(e) {
-  const file = e.target.files[0];
-  if (!file) return;
+  const input = e.target, file = input.files[0];
   const img = document.getElementById('preview');
-  img.src = URL.createObjectURL(file);
+  if (!file) return;
+  if (!file.type.startsWith('image/') || file.size > MAX_RECEIPT_BYTES) {
+    input.value = '';
+    img.style.display = 'none';
+    document.getElementById('uploadText').style.display = 'block';
+    document.getElementById('receiptErr').classList.add('show');
+    return;
+  }
+  if (img.dataset.url) URL.revokeObjectURL(img.dataset.url);
+  img.dataset.url = URL.createObjectURL(file);
+  img.src = img.dataset.url;
   img.style.display = 'block';
   document.getElementById('uploadText').style.display = 'none';
   document.getElementById('receiptErr').classList.remove('show');
@@ -647,12 +661,13 @@ function validateForm() {
   }
 
   const senderInput = document.getElementById('sender');
-  const senderOk = /^\d{11}$/.test(senderInput.value.trim());
+  const senderOk = /^01[0125]\d{8}$/.test(senderInput.value.trim());
   senderInput.classList.toggle('err', !senderOk);
   document.getElementById('senderErr').classList.toggle('show', !senderOk);
   if (!senderOk) valid = false;
 
-  const hasReceipt = document.getElementById('receipt').files.length > 0;
+  const f = document.getElementById('receipt').files[0];
+  const hasReceipt = !!f && f.type.startsWith('image/') && f.size <= MAX_RECEIPT_BYTES;
   document.getElementById('receiptErr').classList.toggle('show', !hasReceipt);
   if (!hasReceipt) valid = false;
 
@@ -670,6 +685,9 @@ function closeOverlay() {
   document.getElementById('errorCircle').style.display = 'none';
   document.getElementById('loader').style.display = 'block';
   document.getElementById('overlayRetry').style.display = 'none';
+  document.getElementById('railNode2').classList.add('active');
+  document.getElementById('railNode2').classList.remove('done');
+  document.getElementById('railNode3').classList.remove('active', 'done');
 }
 
 function setTrackerStep(n) {
@@ -686,7 +704,7 @@ function showSuccess(orderId) {
   document.getElementById('checkCircle').style.display = 'flex';
   document.getElementById('overlayTitle').textContent = 'تم تأكيد طلبك ✓';
   document.getElementById('overlayText').textContent =
-    'احتفظ برقم الطلب للمتابعة، ويمكنك في أي وقت الاطمئنان على حالته من سجل الطلبات داخل قسم الحساب. لن يُعتبر الشحن مكتملاً إلا بعد تنفيذه فعليًا من فريق المتجر.';
+    'احتفظ برقم الطلب للمتابعة، وتقدر تتابع حالته في أي وقت من سجل الطلبات. الشحن بيكتمل بعد مراجعة التحويل وتنفيذه من فريق المتجر.';
   document.getElementById('overlayOrder').style.display = 'block';
   document.getElementById('overlayOrderNum').textContent = orderId;
   document.getElementById('overlayBack').style.display = 'inline-block';
@@ -699,23 +717,41 @@ function showError(message) {
   document.getElementById('errorCircle').style.display = 'flex';
   document.getElementById('overlayTitle').textContent = 'تعذّر إرسال الطلب';
   document.getElementById('overlayText').textContent =
-    message || 'حدث خطأ أثناء إرسال البيانات إلى السيرفر، يرجى إعادة المحاولة.';
+    message || 'حدث خطأ أثناء إرسال البيانات، يرجى إعادة المحاولة.';
   document.getElementById('overlayRetry').style.display = 'inline-block';
+}
+
+/* ------------------------------------------------------------
+   كود الخصم: بيتسجل كمستعمل بس بعد ما الطلب يتبعت بنجاح (مش قبل كده)
+   ------------------------------------------------------------ */
+function burnCoupon(code) {
+  if (!code) return;
+  try {
+    const used = JSON.parse(localStorage.getItem('hyper_used_coupons') || '[]');
+    if (!used.includes(code)) {
+      used.push(code);
+      localStorage.setItem('hyper_used_coupons', JSON.stringify(used));
+    }
+  } catch (e) { console.error('تعذّر حفظ الكود كمستعمل:', e); }
 }
 
 /* ------------------------------------------------------------
    processPayment() — الإرسال لـ Supabase + SheetDB + الحفظ المحلي
    ------------------------------------------------------------ */
+let submitting = false;
+
 async function processPayment() {
+  if (submitting || !orderIsValid) return;
   if (!validateForm()) return;
+  submitting = true;
 
   const payBtn = document.getElementById('payBtn');
   payBtn.classList.add('loading');
   payBtn.disabled = true;
 
-  const cleanOrderID = (orderData.orderId || ('HYP' + Math.floor(100000 + Math.random() * 900000))).replace('#', '');
-  const displayOrderID = '#' + cleanOrderID;
-  document.getElementById('order').textContent = displayOrderID;
+  // رقم الطلب بيتولّد هنا لحظة التأكيد (وبيتكرر نفسه لو الزبون أعاد المحاولة بعد خطأ)
+  if (!orderData.orderId) orderData.orderId = 'HYP' + Math.floor(100000 + Math.random() * 900000);
+  let cleanOrderID = orderData.orderId;
 
   document.getElementById('railNode2').classList.add('done');
   document.getElementById('railNode2').classList.remove('active');
@@ -726,46 +762,31 @@ async function processPayment() {
   document.getElementById('overlayTitle').textContent = 'جاري إرسال بيانات الطلب';
   document.getElementById('overlayText').textContent = 'جاري تجهيز طلبك للمراجعة، يرجى عدم إغلاق الصفحة.';
 
+  let ok = false;
   try {
-    // 1. الحصول على حساب Firebase الحالي لجلب الـ UserUID
-    const { getApps, getApp, initializeApp } =
-      await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js");
-
-    const { getAuth, onAuthStateChanged } =
-      await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js");
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyAQnlfsncuDN2iK3VV_rEQvg4GIisWr7oc",
-      authDomain: "hyper-topup-59844.firebaseapp.com",
-      projectId: "hyper-topup-59844",
-      storageBucket: "hyper-topup-59844.firebasestorage.app",
-      messagingSenderId: "683467344388",
-      appId: "1:683467344388:web:5b32652c913051d4790351"
-    };
-
-    const app = getApps().length
-      ? getApp()
-      : initializeApp(firebaseConfig);
-
-    const auth = getAuth(app);
-
-    const user = await new Promise((resolve) => {
-      const unsubscribe = onAuthStateChanged(
-        auth,
-        (currentUser) => {
-          unsubscribe();
-          resolve(currentUser);
-        },
-        () => resolve(null)
-      );
-    });
-
-    const userUid = user ? user.uid : "";
-
-    if (!userUid) {
-      console.warn("العميل غير مسجل الدخول؛ الطلب سيُرسل بدون UserUID.");
+    // 1. جلب حساب Firebase الحالي (لو العميل مسجل دخول) لإرفاق الـ UserUID
+    let userUid = '';
+    try {
+      const { getApps, getApp, initializeApp } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js");
+      const { getAuth, onAuthStateChanged } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js");
+      const app = getApps().length ? getApp() : initializeApp({
+        apiKey: "AIzaSyAQnlfsncuDN2iK3VV_rEQvg4GIisWr7oc",
+        authDomain: "hyper-topup-59844.firebaseapp.com",
+        projectId: "hyper-topup-59844",
+        storageBucket: "hyper-topup-59844.firebasestorage.app",
+        messagingSenderId: "683467344388",
+        appId: "1:683467344388:web:5b32652c913051d4790351"
+      });
+      const user = await new Promise((resolve) => {
+        const unsub = onAuthStateChanged(getAuth(app), (u) => { unsub(); resolve(u); }, () => resolve(null));
+      });
+      userUid = user ? user.uid : '';
+    } catch (authErr) {
+      console.warn('تعذّر جلب حساب العميل، الطلب سيُرسل بدون UserUID:', authErr);
     }
+    if (!userUid) console.warn('العميل غير مسجل الدخول؛ الطلب سيُرسل بدون UserUID.');
 
+    const senderNumber = document.getElementById('sender').value.trim();
     const formData = new FormData();
     formData.append('orderId', cleanOrderID);
     formData.append('game', orderData.game);
@@ -773,18 +794,17 @@ async function processPayment() {
     formData.append('playerId', orderData.playerId);
     formData.append('amount', orderData.amount);
     formData.append('paymentMethod', orderData.paymentMethod);
-    formData.append('sender', document.getElementById('sender').value.trim());
-    formData.append('userUid', userUid); // إرسال الـ UserUID مع البيانات
-    
+    formData.append('sender', senderNumber);
+    formData.append('coupon', orderData.coupon || 'بدون كود خصم');
+    formData.append('userUid', userUid);
+
     const receiptFile = document.getElementById('receipt').files[0];
-    if (receiptFile) {
-      formData.append('receipt', receiptFile);
-    }
+    if (receiptFile) formData.append('receipt', receiptFile);
 
     setTrackerStep(2);
     document.getElementById('overlayTitle').textContent = 'جاري إرسال الإشعار وتأكيد الطلب';
 
-    // 2. الإرسال لسيرفر Supabase (إرسال الإشعار للتليجرام)
+    // 2. الإرسال لـ Supabase (إشعار تيليجرام)
     const res = await fetch(PAYMENT_GATEWAY_CONFIG.functionUrl, {
       method: 'POST',
       headers: {
@@ -793,22 +813,25 @@ async function processPayment() {
       },
       body: formData
     });
-
     const result = await res.json().catch(() => ({}));
 
-    if (res.ok && (result.success || res.status === 200)) {
+    if (res.ok && result.success !== false && !result.error) {
+      ok = true;
 
-      // 3. إرسال الطلب لـ Google Sheets عبر SheetDB متضمناً الـ UserUID
+      // لو السيرفر رجّع رقم طلب خاص بيه نعتمده بدل المولَّد هنا
+      const serverId = result.orderId || result.order_id;
+      if (serverId) cleanOrderID = String(serverId).replace('#', '');
+      const displayOrderID = '#' + cleanOrderID;
+      document.getElementById('order').textContent = displayOrderID;
+
+      // الطلب اتبعت فعلاً: دلوقتي بس نحرق كود الخصم
+      burnCoupon(orderData.coupon);
+
+      // 3. تسجيل الطلب في Google Sheets عبر SheetDB
       try {
-        const fullGameStr = `${orderData.game} - ${orderData.packageName}`;
-        
-        // تنسيق التاريخ والوقت
         const now = new Date();
-        const formattedDate = `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${now.getHours()}:${now.getMinutes() < 10 ? '0' : ''}${now.getMinutes()}`;
-        
-        const senderNumber = document.getElementById('sender').value.trim();
-        const paymentMethodTxt = orderData.paymentMethod === 'link' ? 'فودافون كاش' : 'تحويل يدوي';
-
+        const pad = n => String(n).padStart(2, '0');
+        const formattedDate = `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${now.getHours()}:${pad(now.getMinutes())}`;
         await fetch(PAYMENT_GATEWAY_CONFIG.sheetDbUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -816,14 +839,14 @@ async function processPayment() {
             data: [{
               'ID': orderData.playerId,
               'Customer': senderNumber,
-              'Game': fullGameStr,
+              'Game': `${orderData.game} - ${orderData.packageName}`,
               'Amount': orderData.amount,
               'Status': '⏳ قيد المراجعة',
               'Date': formattedDate,
-              'Method': paymentMethodTxt,
-              'Coupon': 'بدون كود خصم',
+              'Method': orderData.paymentMethod === 'link' ? 'فودافون كاش' : 'تحويل يدوي',
+              'Coupon': orderData.coupon || 'بدون كود خصم',
               'OrderID': '#' + cleanOrderID,
-              'UserUID': userUid // إضافة UserUID لعمود الشيت
+              'UserUID': userUid
             }]
           })
         });
@@ -831,31 +854,35 @@ async function processPayment() {
         console.error('فشل التسجيل في الشيت:', sheetErr);
       }
 
-      // 4. حفظ الطلب في ذاكرة العميل LocalStorage ليظهر في orders.html
-      let userOrders = JSON.parse(localStorage.getItem('hyper_user_orders') || '[]');
-      userOrders.push({
-        orderID: cleanOrderID,
-        game: `${orderData.game} - ${orderData.packageName}`,
-        amount: orderData.amount,
-        playerID: orderData.playerId,
-        method: orderData.paymentMethod === 'link' ? 'محفظة (رابط)' : 'تحويل يدوي',
-        status: '⏳ قيد المراجعة',
-        date: new Date().toLocaleString('ar-EG'),
-        userUID: userUid
-      });
-      localStorage.setItem('hyper_user_orders', JSON.stringify(userOrders));
+      // 4. حفظ الطلب محلياً ليظهر في orders.html
+      try {
+        const userOrders = JSON.parse(localStorage.getItem('hyper_user_orders') || '[]');
+        userOrders.push({
+          orderID: cleanOrderID,
+          game: `${orderData.game} - ${orderData.packageName}`,
+          amount: orderData.amount,
+          playerID: orderData.playerId,
+          method: orderData.paymentMethod === 'link' ? 'محفظة (رابط)' : 'تحويل يدوي',
+          status: '⏳ قيد المراجعة',
+          date: new Date().toLocaleString('ar-EG'),
+          userUID: userUid
+        });
+        localStorage.setItem('hyper_user_orders', JSON.stringify(userOrders));
+      } catch (storeErr) {
+        console.error('تعذّر حفظ الطلب محلياً:', storeErr);
+      }
 
       setTrackerStep(3);
       showSuccess(displayOrderID);
     } else {
-      showError(result.error || 'فشل إرسال بيانات الطلب، تأكد من صحة الإعدادات.');
+      showError(result.error || 'فشل إرسال بيانات الطلب، حاول مرة أخرى.');
     }
   } catch (err) {
     console.error('Fetch error:', err);
-    showError('تعذّر الاتصال بالسيرفر، تأكد من إعدادات الشبكة وإعادة المحاولة.');
+    showError('تعذّر الاتصال بالسيرفر، تأكد من الإنترنت وأعد المحاولة.');
   } finally {
     payBtn.classList.remove('loading');
-    payBtn.disabled = false;
+    if (!ok) { submitting = false; payBtn.disabled = false; }
   }
 }
 

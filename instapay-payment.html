@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>HYPER TOPUP — بوابة الدفع (إنستا باي)</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#05070D">
@@ -305,6 +305,32 @@ input[type=text].err{border-color:var(--danger)}
 
 .overlay-btn{display:none;margin-top:22px;border:0;border-radius:var(--radius-sm);padding:12px 28px;min-height:46px;background:var(--gold);color:#0a0a0a;font-weight:800;font-size:13.5px;cursor:pointer}
 .overlay-btn.retry{background:transparent;border:1px solid var(--border);color:var(--ink)}
+
+/* toast */
+.custom-toast {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #171221;
+    border: 1px solid #ff4a4a;
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 5px 20px rgba(255, 74, 74, 0.35);
+    z-index: 99999;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    opacity: 0;
+  }
+.custom-toast.show {
+    bottom: 30px;
+    opacity: 1;
+  }
 </style>
 </head>
 <body>
@@ -326,13 +352,13 @@ input[type=text].err{border-color:var(--danger)}
   <section class="card">
     <div class="card-title"><span class="ico">📦</span>تفاصيل الطلب</div>
     <div class="summary-grid">
-      <div class="info-box"><small>اللعبة</small><b id="game">PUBG MOBILE</b></div>
-      <div class="info-box"><small>الباقة</small><b id="package">غير محددة</b></div>
+      <div class="info-box"><small>اللعبة</small><b id="game">—</b></div>
+      <div class="info-box"><small>الباقة</small><b id="package">—</b></div>
       <div class="info-box"><small>معرف اللاعب</small><b id="player">—</b></div>
       <div class="info-box"><small>رقم الطلب</small><b id="order">يُنشأ عند التأكيد</b></div>
     </div>
     <div class="method-row"><span>وسيلة الدفع</span><b id="methodLabel">لم يتم الاختيار بعد</b></div>
-    <div class="amount-box"><small>إجمالي المطلوب</small><strong id="amount">0 ج.م</strong></div>
+    <div class="amount-box"><small>إجمالي المطلوب</small><strong id="amount">—</strong></div>
   </section>
 
   <section class="card">
@@ -353,7 +379,7 @@ input[type=text].err{border-color:var(--danger)}
 
     <div class="detail-panel" id="panelLink">
       <a class="link-btn" id="transferLinkBtn" href="#" target="_blank" rel="noopener">فتح رابط إنستاباي الرسمي ↗</a>
-      <div class="hint">اضغط للفتح المباشر واكتمل التحويل بكل ثقة، ثم ارجع لتأكيد طلبك بالأسفل.</div>
+      <div class="hint">افتح رابط إنستاباي الرسمي وحوّل المبلغ المطلوب بالضبط، ثم ارجع لهذه الصفحة وأكمل بيانات التأكيد بالأسفل.</div>
     </div>
 
     <div class="detail-panel" id="panelManual">
@@ -365,7 +391,7 @@ input[type=text].err{border-color:var(--danger)}
         <div class="num" id="instapayNumber">01201271620</div>
         <button class="copy-btn" type="button" onclick="copyText('instapayNumber', this)">نسخ الرقم</button>
       </div>
-      <div class="hint">حوّل المبلغ المطلوب على يوزر إنستاباي أو الرقم أعلاه، ثم أكمل بيانات التأكيد بالأسفل.</div>
+      <div class="hint">حوّل المبلغ المطلوب بالضبط على يوزر إنستاباي أو الرقم أعلاه، ثم أكمل بيانات التأكيد بالأسفل.</div>
     </div>
   </section>
 
@@ -374,7 +400,7 @@ input[type=text].err{border-color:var(--danger)}
 
     <label for="sender">عنوان إنستاباي أو رقم المحوّل</label>
     <input id="sender" type="text" placeholder="مثال: name@instapay أو 01012345678">
-    <div class="field-err" id="senderErr">من فضلك اكتب عنوان إنستاباي أو الرقم الذي تم التحويل منه.</div>
+    <div class="field-err" id="senderErr">اكتب عنوان إنستاباي (مثل name@instapay) أو رقم موبايل مصري صحيح من 11 رقمًا.</div>
 
     <label>إيصال التحويل</label>
     <div class="upload">
@@ -382,7 +408,7 @@ input[type=text].err{border-color:var(--danger)}
       <img id="preview" alt="الإيصال">
       <input id="receipt" type="file" accept="image/*" onchange="previewReceipt(event)">
     </div>
-    <div class="field-err" id="receiptErr">من فضلك ارفع صورة إيصال التحويل.</div>
+    <div class="field-err" id="receiptErr">ارفع صورة إيصال التحويل (صورة فقط، حتى 8 ميجا).</div>
   </section>
 
   <!-- زرار الضمان -->
@@ -402,12 +428,12 @@ input[type=text].err{border-color:var(--danger)}
 
       <ul class="guarantee-list">
         <li>• <strong>شحن رسمي 100%:</strong> بنشحنلك بالـ ID بس، يعني حسابك في أمان تام ومفيش أي مخاطرة عليه.</li>
-        <li>• <strong>فلوسك في أمان:</strong> لوحصلت أي مشكلة فنية أو الطلب أتلغى من عندنا، حقك بيرجعلك كاملاً على محفظتك فوراً وبدون أي خصم.</li>
-        <li>• <strong>خدمة سريعة:</strong> أول ما تبعت الإيصال، طلبك ببيتراجع وبيتنفذ في دقائق معدودة.</li>
+        <li>• <strong>فلوسك في أمان:</strong> لو حصلت أي مشكلة فنية أو اتلغى الطلب من عندنا، فلوسك بترجعلك كاملة وبدون أي خصم.</li>
+        <li>• <strong>خدمة سريعة:</strong> أول ما تبعت الإيصال، طلبك بيتراجع وبيتنفذ في دقائق معدودة.</li>
       </ul>
 
       <div class="guarantee-note">
-        💡 إن شاء الله لما الموقع يكبر ويكبر بيكوا، هنجيب بوابات دفع تلقائية بالكامل عشانكم وتدفعوا بضغطة زرار واحدة!
+        💡 إن شاء الله لما الموقع يكبر هنضيف بوابات دفع تلقائية بالكامل، وتدفع بضغطة زرار واحدة!
       </div>
 
       <button type="button" class="guarantee-close-btn" onclick="closeGuaranteeModal()">فهمت، شكراً 👍</button>
@@ -478,31 +504,41 @@ function extractParam(keys) {
 }
 
 // استخراج البيانات بكافة احتمالات المسميات
-const extractedGame = extractParam(['game', 'gameName', 'game_name']) || 'PUBG MOBILE';
-const extractedPackage = extractParam(['package', 'packageName', 'pkg', 'package_name', 'pkgName', 'item']) || 'غير محددة';
-const extractedPlayer = extractParam(['id', 'player', 'playerId', 'player_id', 'user_id', 'userId', 'account_id']) || 'غير مدخل';
-const extractedAmount = extractParam(['amount', 'price']) || '0';
-const extractedOrder = extractParam(['order', 'orderId', 'order_id']) || ('#HYP' + Math.floor(100000 + Math.random() * 900000));
+const extractedGame = extractParam(['game', 'gameName', 'game_name']) || '—';
+const extractedPackage = extractParam(['package', 'packageName', 'pkg', 'package_name', 'pkgName', 'item']) || '—';
+const extractedPlayer = extractParam(['id', 'player', 'playerId', 'player_id', 'user_id', 'userId', 'account_id']) || '—';
+const extractedAmount = parseFloat(String(extractParam(['amount', 'price']) || '').replace(/[^0-9.]/g, ''));
+const amountOk = Number.isFinite(extractedAmount) && Math.round(extractedAmount) > 0 && extractedAmount <= 100000;
+const extractedCoupon = ((c) => (c && c !== 'لا يوجد' ? c.trim().toUpperCase() : ''))(new URLSearchParams(location.search).get('coupon'));
 
+/* إنستاباي: المبلغ بيتقرّب لرقم صحيح (زي ما كان). ولو مفيش مبلغ صحيح بنوقف الدفع */
 const orderData = {
   game: extractedGame,
   packageName: extractedPackage,
   playerId: extractedPlayer,
-  amount: Math.round(parseFloat(extractedAmount) || 0).toString(),
-  orderId: extractedOrder,
+  amount: amountOk ? String(Math.round(extractedAmount)) : '',
+  orderId: '',   // رقم الطلب بيتولّد لحظة تأكيد الدفع بس (مش من الرابط)
+  coupon: extractedCoupon,
   paymentMethod: null,
 };
+const orderIsValid = amountOk && orderData.playerId !== '—' && orderData.packageName !== '—';
 
 // عرض البيانات فوراً على الشاشة عند فتح الصفحة
 document.getElementById('game').textContent = orderData.game;
 document.getElementById('package').textContent = orderData.packageName;
 document.getElementById('player').textContent = orderData.playerId;
-document.getElementById('amount').textContent = (orderData.amount !== '0' ? orderData.amount : '0') + ' ج.م';
-document.getElementById('order').textContent = orderData.orderId;
+document.getElementById('amount').textContent = amountOk ? orderData.amount + ' ج.م' : '—';
 
 document.getElementById('instapayUsername').textContent = PAYMENT_GATEWAY_CONFIG.instapayUsername;
 document.getElementById('instapayNumber').textContent = PAYMENT_GATEWAY_CONFIG.instapayNumber;
 document.getElementById('transferLinkBtn').href = PAYMENT_GATEWAY_CONFIG.transferLink;
+
+if (!orderIsValid) {
+  const btn = document.getElementById('payBtn');
+  btn.disabled = true;
+  btn.querySelector('.default-txt').textContent = 'بيانات الطلب غير مكتملة';
+  window.addEventListener('DOMContentLoaded', () => showToast('بيانات الطلب غير مكتملة، ارجع للمتجر واختر الباقة من جديد'));
+}
 
 function openGuaranteeModal() {
   document.getElementById('guaranteeModal').classList.remove('hidden-guarantee');
@@ -524,17 +560,30 @@ function selectMethod(method) {
 
 function copyText(elementId, btn) {
   const value = document.getElementById(elementId).textContent;
-  navigator.clipboard?.writeText(value);
-  const original = btn.textContent;
-  btn.textContent = 'تم النسخ ✓';
-  setTimeout(() => (btn.textContent = original), 1500);
+  const done = () => {
+    const original = btn.textContent;
+    btn.textContent = 'تم النسخ ✓';
+    setTimeout(() => (btn.textContent = original), 1500);
+  };
+  if (navigator.clipboard?.writeText) navigator.clipboard.writeText(value).then(done, done);
+  else done();
 }
 
+const MAX_RECEIPT_BYTES = 8 * 1024 * 1024;
 function previewReceipt(e) {
-  const file = e.target.files[0];
-  if (!file) return;
+  const input = e.target, file = input.files[0];
   const img = document.getElementById('preview');
-  img.src = URL.createObjectURL(file);
+  if (!file) return;
+  if (!file.type.startsWith('image/') || file.size > MAX_RECEIPT_BYTES) {
+    input.value = '';
+    img.style.display = 'none';
+    document.getElementById('uploadText').style.display = 'block';
+    document.getElementById('receiptErr').classList.add('show');
+    return;
+  }
+  if (img.dataset.url) URL.revokeObjectURL(img.dataset.url);
+  img.dataset.url = URL.createObjectURL(file);
+  img.src = img.dataset.url;
   img.style.display = 'block';
   document.getElementById('uploadText').style.display = 'none';
   document.getElementById('receiptErr').classList.remove('show');
@@ -542,15 +591,17 @@ function previewReceipt(e) {
 
 function validateForm() {
   if (!orderData.paymentMethod) {
-    alert('من فضلك اختر طريقة التحويل أولاً.');
+    showToast('من فضلك اختر طريقة التحويل أولاً');
     return false;
   }
   const senderInput = document.getElementById('sender');
-  const senderOk = senderInput.value.trim().length > 3;
+  const v = senderInput.value.trim();
+  const senderOk = /^01[0125]\d{8}$/.test(v) || /^[\w.\-]{2,}@[A-Za-z][\w.\-]*$/.test(v);
   senderInput.classList.toggle('err', !senderOk);
   document.getElementById('senderErr').classList.toggle('show', !senderOk);
 
-  const hasReceipt = document.getElementById('receipt').files.length > 0;
+  const f = document.getElementById('receipt').files[0];
+  const hasReceipt = !!f && f.type.startsWith('image/') && f.size <= MAX_RECEIPT_BYTES;
   document.getElementById('receiptErr').classList.toggle('show', !hasReceipt);
 
   return senderOk && hasReceipt;
@@ -573,145 +624,11 @@ function setTrackerStep(n) {
   }
 }
 
-function getOrderDataValues() {
-  const pkg = document.getElementById('package')?.textContent?.trim() || orderData.packageName;
-  const player = document.getElementById('player')?.textContent?.trim() || orderData.playerId;
-  const game = document.getElementById('game')?.textContent?.trim() || orderData.game;
-  const amount = orderData.amount;
-
-  return {
-    pkg: (pkg && pkg !== '—' && pkg !== 'null') ? pkg : 'غير محددة',
-    player: (player && player !== '—' && player !== 'null') ? player : 'غير مدخل',
-    game: (game && game !== '—' && game !== 'null') ? game : '-',
-    amount: amount
-  };
-}
-
-async function sendToGoogleSheet(senderNumber) {
-try {
-const currentData = getOrderDataValues();
-
-// الحصول على حساب Firebase الحالي
-const { getApps, getApp, initializeApp } =
-  await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js");
-
-const { getAuth, onAuthStateChanged } =
-  await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js");
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAQnlfsncuDN2iK3VV_rEQvg4GIisWr7oc",
-  authDomain: "hyper-topup-59844.firebaseapp.com",
-  projectId: "hyper-topup-59844",
-  storageBucket: "hyper-topup-59844.firebasestorage.app",
-  messagingSenderId: "683467344388",
-  appId: "1:683467344388:web:5b32652c913051d4790351"
-};
-
-const app = getApps().length
-  ? getApp()
-  : initializeApp(firebaseConfig);
-
-const auth = getAuth(app);
-
-const user = await new Promise((resolve) => {
-  const unsubscribe = onAuthStateChanged(
-    auth,
-    (currentUser) => {
-      unsubscribe();
-      resolve(currentUser);
-    },
-    () => resolve(null)
-  );
-});
-
-const userUid = user ? user.uid : "";
-
-if (!userUid) {
-  console.warn(
-    "العميل غير مسجل الدخول؛ الطلب سيُرسل بدون UserUID."
-  );
-}
-
-const sheetData = {
-  data: [{
-    'ID': currentData.player,
-    'Customer': senderNumber,
-    'Game': currentData.game + ' - ' + currentData.pkg,
-    'Amount': currentData.amount + ' ج.م',
-    'Status': 'قيد المراجعه',
-    'Date': new Date().toLocaleString('en-US', {
-      hour12: true
-    }),
-    'Method': (
-      typeof orderData !== 'undefined' &&
-      orderData.paymentMethod
-    ) ? orderData.paymentMethod : 'إنستاباي',
-    'Coupon': 'بدون كود خصم',
-    'OrderID': orderData.orderId,
-    'UserUID': userUid
-  }]
-};
-
-const response = await fetch(
-  PAYMENT_GATEWAY_CONFIG.sheetDbUrl,
-  {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(sheetData)
-  }
-);
-
-if (!response.ok) {
-  throw new Error(
-    'فشل التسجيل في Google Sheets: HTTP ' +
-    response.status
-  );
-}
-
-console.log(
-  'تم إرسال الطلب إلى Google Sheets. UserUID:',
-  userUid || 'غير متوفر'
-);
-
-} catch (err) {
-console.error(
-'فشل التسجيل في شيت جوجل:',
-err
-);
-}
-  }
-
-function saveToLocalOrders(senderNumber) {
-  try {
-    let orders = JSON.parse(localStorage.getItem('hyper_user_orders') || '[]');
-    const currentData = getOrderDataValues();
-
-    const newOrder = {
-      orderID: orderData.orderId,
-      game: `${currentData.game} - ${currentData.pkg}`,
-      playerID: currentData.player,
-      amount: currentData.amount,
-      method: (typeof orderData !== 'undefined' && orderData.paymentMethod) ? orderData.paymentMethod : 'إنستاباي',
-      sender: senderNumber,
-      status: 'قيد المراجعة',
-      date: new Date().toLocaleString('en-US', { hour12: true }),
-      coupon: 'لا يوجد'
-    };
-
-    orders.push(newOrder);
-    localStorage.setItem('hyper_user_orders', JSON.stringify(orders));
-  } catch (err) {
-    console.error('فشل التخزين المحلي للطلب:', err);
-  }
-}
-
 function showSuccess(orderId) {
   document.getElementById('loader').style.display = 'none';
   document.getElementById('checkCircle').style.display = 'flex';
   document.getElementById('overlayTitle').textContent = 'تم تأكيد طلبك ✓';
-  document.getElementById('overlayText').textContent = 'تم إرسال طلبك بنجاح، ويمكنك متابعة حالته فوراً في صفحة سجل الطلبات.';
+  document.getElementById('overlayText').textContent = 'تم إرسال طلبك بنجاح. احتفظ برقم الطلب، وتقدر تتابع حالته في أي وقت من سجل الطلبات.';
   document.getElementById('overlayOrder').style.display = 'block';
   document.getElementById('overlayOrderNum').textContent = orderId;
   
@@ -725,12 +642,114 @@ function showError(message) {
   document.getElementById('loader').style.display = 'none';
   document.getElementById('errorCircle').style.display = 'flex';
   document.getElementById('overlayTitle').textContent = 'تعذّر إرسال الطلب';
-  document.getElementById('overlayText').textContent = message || 'حدث خطأ أثناء الاتصال بالخادم، يُرجى التأكد من الإنترنت وإعادة المحاولة.';
+  document.getElementById('overlayText').textContent = message || 'حدث خطأ أثناء الاتصال بالخادم، تأكد من الإنترنت وأعد المحاولة.';
   document.getElementById('overlayRetry').style.display = 'inline-block';
 }
 
+function showToast(message) {
+  let toast = document.getElementById('customToast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'customToast';
+    toast.className = 'custom-toast';
+    toast.innerHTML = '<span>⚠️</span><span id="toastMsg"></span>';
+    document.body.appendChild(toast);
+  }
+  document.getElementById('toastMsg').textContent = message;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+/* كود الخصم: بيتسجل كمستعمل بس بعد ما الطلب يتبعت بنجاح (مش قبل كده) */
+function burnCoupon(code) {
+  if (!code) return;
+  try {
+    const used = JSON.parse(localStorage.getItem('hyper_used_coupons') || '[]');
+    if (!used.includes(code)) {
+      used.push(code);
+      localStorage.setItem('hyper_used_coupons', JSON.stringify(used));
+    }
+  } catch (e) { console.error('تعذّر حفظ الكود كمستعمل:', e); }
+}
+
+async function getUserUid() {
+  try {
+    const { getApps, getApp, initializeApp } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js");
+    const { getAuth, onAuthStateChanged } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js");
+    const app = getApps().length ? getApp() : initializeApp({
+      apiKey: "AIzaSyAQnlfsncuDN2iK3VV_rEQvg4GIisWr7oc",
+      authDomain: "hyper-topup-59844.firebaseapp.com",
+      projectId: "hyper-topup-59844",
+      storageBucket: "hyper-topup-59844.firebasestorage.app",
+      messagingSenderId: "683467344388",
+      appId: "1:683467344388:web:5b32652c913051d4790351"
+    });
+    const user = await new Promise((resolve) => {
+      const unsub = onAuthStateChanged(getAuth(app), (u) => { unsub(); resolve(u); }, () => resolve(null));
+    });
+    return user ? user.uid : '';
+  } catch (e) {
+    console.warn('تعذّر جلب حساب العميل، الطلب سيُرسل بدون UserUID:', e);
+    return '';
+  }
+}
+
+async function sendToGoogleSheet(senderNumber, userUid) {
+  try {
+    const now = new Date();
+    const pad = n => String(n).padStart(2, '0');
+    const formattedDate = `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${now.getHours()}:${pad(now.getMinutes())}`;
+    const response = await fetch(PAYMENT_GATEWAY_CONFIG.sheetDbUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        data: [{
+          'ID': orderData.playerId,
+          'Customer': senderNumber,
+          'Game': `${orderData.game} - ${orderData.packageName}`,
+          'Amount': orderData.amount,
+          'Status': '⏳ قيد المراجعة',
+          'Date': formattedDate,
+          'Method': orderData.paymentMethod || 'إنستاباي',
+          'Coupon': orderData.coupon || 'بدون كود خصم',
+          'OrderID': orderData.orderId,
+          'UserUID': userUid
+        }]
+      })
+    });
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+  } catch (err) {
+    console.error('فشل التسجيل في شيت جوجل:', err);
+  }
+}
+
+function saveToLocalOrders(senderNumber, userUid) {
+  try {
+    const orders = JSON.parse(localStorage.getItem('hyper_user_orders') || '[]');
+    orders.push({
+      orderID: orderData.orderId.replace('#', ''),
+      game: `${orderData.game} - ${orderData.packageName}`,
+      playerID: orderData.playerId,
+      amount: orderData.amount,
+      method: orderData.paymentMethod || 'إنستاباي',
+      sender: senderNumber,
+      status: '⏳ قيد المراجعة',
+      date: new Date().toLocaleString('ar-EG'),
+      coupon: orderData.coupon || 'لا يوجد',
+      userUID: userUid
+    });
+    localStorage.setItem('hyper_user_orders', JSON.stringify(orders));
+  } catch (err) {
+    console.error('فشل التخزين المحلي للطلب:', err);
+  }
+}
+
+let submitting = false;
+
 async function processPayment() {
+  if (submitting || !orderIsValid) return;
   if (!validateForm()) return;
+  submitting = true;
 
   const payBtn = document.getElementById('payBtn');
   payBtn.classList.add('loading');
@@ -739,32 +758,31 @@ async function processPayment() {
   openOverlay();
   setTrackerStep(1);
 
-  const receiptFile = document.getElementById('receipt').files[0];
-  const senderNumber = document.getElementById('sender').value.trim();
-  const currentData = getOrderDataValues();
+  // رقم الطلب بيتولّد هنا لحظة التأكيد (وبيتكرر نفسه لو الزبون أعاد المحاولة بعد خطأ)
+  if (!orderData.orderId) orderData.orderId = '#HYP' + Math.floor(100000 + Math.random() * 900000);
 
-  const formData = new FormData();
-  formData.append('game', currentData.game);
-  formData.append('package', currentData.pkg);
-  formData.append('packageName', currentData.pkg);
-  formData.append('pkg', currentData.pkg);
-  formData.append('playerId', currentData.player);
-  formData.append('player', currentData.player);
-  formData.append('id', currentData.player);
-  formData.append('amount', currentData.amount);
-  formData.append('orderId', orderData.orderId);
-  formData.append('paymentMethod', orderData.paymentMethod || 'إنستاباي');
-  formData.append('sender', senderNumber);
-  if (receiptFile) {
-    formData.append('receipt', receiptFile);
-  }
+  const senderNumber = document.getElementById('sender').value.trim();
+  const receiptFile = document.getElementById('receipt').files[0];
+  let ok = false;
 
   try {
-    setTrackerStep(2);
-    
-    saveToLocalOrders(senderNumber);
-    await sendToGoogleSheet(senderNumber);
+    const userUid = await getUserUid();
 
+    const formData = new FormData();
+    formData.append('orderId', orderData.orderId.replace('#', ''));
+    formData.append('game', orderData.game);
+    formData.append('package', orderData.packageName);
+    formData.append('playerId', orderData.playerId);
+    formData.append('amount', orderData.amount);
+    formData.append('paymentMethod', orderData.paymentMethod || 'إنستاباي');
+    formData.append('sender', senderNumber);
+    formData.append('coupon', orderData.coupon || 'بدون كود خصم');
+    formData.append('userUid', userUid);
+    if (receiptFile) formData.append('receipt', receiptFile);
+
+    setTrackerStep(2);
+
+    // الإرسال للسيرفر أولاً. الشيت والتخزين المحلي والكود بعد النجاح بس
     const res = await fetch(PAYMENT_GATEWAY_CONFIG.functionUrl, {
       method: 'POST',
       headers: {
@@ -773,24 +791,32 @@ async function processPayment() {
       },
       body: formData
     });
+    const data = await res.json().catch(() => ({}));
 
-    setTrackerStep(3);
-    const data = await res.json();
-
-    if (res.ok && data.success) {
+    if (res.ok && data.success !== false && !data.error) {
+      ok = true;
+      // لو السيرفر رجّع رقم طلب خاص بيه نعتمده بدل المولَّد هنا
+      const serverId = data.orderId || data.order_id;
+      if (serverId) orderData.orderId = '#' + String(serverId).replace('#', '');
+      document.getElementById('order').textContent = orderData.orderId;
+      setTrackerStep(3);
+      burnCoupon(orderData.coupon);
+      await sendToGoogleSheet(senderNumber, userUid);
+      saveToLocalOrders(senderNumber, userUid);
       showSuccess(orderData.orderId);
     } else {
-      showError(data.message || 'حدث خطأ أثناء التأكيد مع الخادم، يُرجى التواصل مع الدعم الفني.');
+      showError(data.message || data.error || 'حدث خطأ أثناء التأكيد مع الخادم، يُرجى التواصل مع الدعم الفني.');
     }
   } catch (err) {
     console.error('خطأ أثناء إرسال البيانات:', err);
-    showError('حدث خطأ أثناء الاتصال بالخادم، يُرجى التأكد من اتصال الإنترنت وإعادة المحاولة.');
+    showError('حدث خطأ أثناء الاتصال بالخادم، تأكد من الإنترنت وأعد المحاولة.');
   } finally {
     payBtn.classList.remove('loading');
-    payBtn.disabled = false;
+    if (!ok) { submitting = false; payBtn.disabled = false; }
   }
 }
 </script>
 <script src="guard.js?v=1"></script>
+<script src="store-status.js"></script>
 </body>
 </html>

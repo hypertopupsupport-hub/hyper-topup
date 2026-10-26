@@ -1,554 +1,22 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Honor of Kings - HYPER TOPUP</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0d12">
+<meta name="description" content="شحن توكنز وبطاقات Honor of Kings بأسعار واضحة بالجنيه المصري وشحن فوري - HYPER TOPUP">
+<title>Honor of Kings - HYPER TOPUP</title>
+<link rel="preconnect" href="https://i.ibb.co" crossorigin>
+<!-- الأكواد كلها بتيجي من coupons.js (مفيش أكواد جوه الصفحة دي) -->
+<script src="coupons.js"></script>
 
-    html, body {
-      background-color: #0b0d12;
-      color: #e2e8f0;
-      min-height: 100vh;
-      overflow-x: hidden;
-      width: 100%;
-    }
-
-    body.modal-open {
-      overflow: hidden !important;
-      position: fixed;
-      width: 100%;
-      height: 100%;
-    }
-
-    body {
-      padding: 20px 15px;
-    }
-
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    /* الهيدر والعناوين */
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 15px;
-    }
-
-    .brand-title {
-      font-size: 22px;
-      font-weight: 900;
-      color: #ffffff;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      text-shadow: 0 0 12px rgba(6, 182, 212, 0.4);
-    }
-
-    .sub-title {
-      display: inline-block;
-      background: rgba(6, 182, 212, 0.1);
-      border: 1px solid rgba(6, 182, 212, 0.4);
-      color: #22d3ee;
-      font-size: 11px;
-      padding: 3px 12px;
-      border-radius: 4px;
-      margin-top: 4px;
-      font-weight: bold;
-    }
-
-    .back-btn {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(6, 182, 212, 0.4);
-      color: #ffffff;
-      width: 38px;
-      height: 38px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      text-decoration: none;
-      transition: 0.2s;
-    }
-
-    .back-btn:hover {
-      border-color: #a855f7;
-      color: #a855f7;
-    }
-
-    /* البانر العلوي */
-    .banner-container {
-      width: 100%;
-      height: 160px;
-      margin-bottom: 18px;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid rgba(6, 182, 212, 0.3);
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
-      position: relative;
-    }
-
-    .banner-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* المستوى الأول: الأقسام الرئيسية */
-    .main-tabs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-
-    .main-tab-btn {
-      background: #10141e;
-      border: 1px solid #1c2536;
-      color: #94a3b8;
-      padding: 12px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-      text-align: center;
-      transition: all 0.25s ease;
-    }
-
-    .main-tab-btn.active {
-      background: linear-gradient(135deg, rgba(6, 182, 212, 0.25) 0%, rgba(168, 85, 247, 0.2) 100%);
-      border-color: #22d3ee;
-      color: #ffffff;
-      box-shadow: 0 0 12px rgba(6, 182, 212, 0.25);
-    }
-
-    /* المستوى الثاني: الأقسام الفرعية داخل قسم متجر (3 أزرار) */
-    .sub-tabs {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-bottom: 20px;
-      animation: fadeIn 0.3s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .sub-tab-btn {
-      background: #0d111a;
-      border: 1px solid #172030;
-      color: #64748b;
-      padding: 10px 2px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: bold;
-      cursor: pointer;
-      text-align: center;
-      transition: all 0.2s ease;
-    }
-
-    .sub-tab-btn.active {
-      background: rgba(168, 85, 247, 0.15);
-      border-color: #a855f7;
-      color: #e9d5ff;
-      box-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
-    }
-
-    /* شبكة الكروت */
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .product-card {
-      background: #0f131c;
-      border: 1px solid #1a2233;
-      border-radius: 10px;
-      padding: 15px 10px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-      transition: all 0.2s ease;
-    }
-
-    .product-card:hover {
-      border-color: #22d3ee;
-      box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
-    }
-
-    /* إطار الصورة */
-    .img-box {
-      width: 100%;
-      height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 8px;
-      overflow: hidden;
-    }
-
-    /* حجم الصورة الطبيعي لقسم الشراء */
-    .pkg-img {
-      max-width: 80%;
-      max-height: 80%;
-      object-fit: contain;
-      filter: drop-shadow(0 0 6px rgba(6, 182, 212, 0.3));
-    }
-
-    /* حجم كبير خاص لصور قسم المتجر فقط */
-    .product-card.store-item .pkg-img {
-      max-width: 100%;
-      max-height: 100%;
-      transform: scale(2.2); /* تكبير ممتاز لصور المتجر الصغيرة */
-      filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.5));
-    }
-
-    .pkg-name {
-      color: #cbd5e1;
-      font-size: 13px;
-      font-weight: bold;
-      margin-bottom: 8px;
-      line-height: 1.3;
-      min-height: 34px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .price {
-      color: #22d3ee;
-      font-size: 15px;
-      font-weight: 800;
-      margin-bottom: 12px;
-      text-shadow: 0 0 8px rgba(6, 182, 212, 0.4);
-    }
-
-    .buy-btn {
-      width: 100%;
-      background: linear-gradient(180deg, #102a3a 0%, #0a1b26 100%);
-      border: 1px solid #22d3ee;
-      color: #ffffff;
-      padding: 9px;
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .buy-btn:active {
-      background: #22d3ee;
-      color: #000000;
-      box-shadow: 0 0 10px #22d3ee;
-    }
-
-    /* مودال الشحن Popup Overlay */
-    .hidden {
-      display: none !important;
-    }
-
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 9999;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-    }
-
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(6px);
-    }
-
-    .modal-content {
-      position: relative;
-      z-index: 10000;
-      background: #0d1017;
-      border-top-left-radius: 16px;
-      border-top-right-radius: 16px;
-      border: 1px solid #1c263b;
-      border-top: 2px solid #22d3ee;
-      width: 100%;
-      max-width: 500px;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 20px;
-      box-shadow: 0 -5px 30px rgba(6, 182, 212, 0.25);
-    }
-
-    .modal-top-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 15px;
-    }
-
-    .modal-title-text {
-      font-size: 16px;
-      font-weight: bold;
-      color: #ffffff;
-    }
-
-    .close-btn {
-      background: none;
-      border: none;
-      color: #94a3b8;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    .selected-pkg-card {
-      background: #141a26;
-      border: 1px solid #202b40;
-      border-radius: 8px;
-      padding: 12px 16px;
-      display: flex;
-      align-items: center;
-      flex-direction: row-reverse;
-      justify-content: flex-end;
-      gap: 15px;
-      margin-bottom: 18px;
-    }
-
-    .pkg-title-display {
-      font-size: 15px;
-      font-weight: bold;
-      color: #ffffff;
-    }
-
-    .pkg-icon-box img {
-      width: 50px;
-      height: 50px;
-      object-fit: contain;
-    }
-
-    .input-label {
-      display: block;
-      font-size: 13px;
-      color: #94a3b8;
-      margin-bottom: 8px;
-      text-align: right;
-    }
-
-    .id-input-field {
-      width: 100%;
-      padding: 13px;
-      background: #101420;
-      border: 1px solid #212c42;
-      border-radius: 6px;
-      color: #ffffff;
-      font-size: 14px;
-      outline: none;
-      margin-bottom: 20px;
-    }
-
-    .id-input-field:focus {
-      border-color: #22d3ee;
-    }
-
-    .section-title {
-      font-size: 13px;
-      color: #94a3b8;
-      margin-bottom: 10px;
-      text-align: right;
-    }
-
-    .payment-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 15px;
-    }
-
-    .pay-item {
-      background: #101420;
-      border: 1px solid #212c42;
-      border-radius: 6px;
-      padding: 13px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-    }
-
-    .pay-item.selected {
-      border-color: #22d3ee;
-      background: #132333;
-    }
-
-    .pay-item-name {
-      font-size: 14px;
-      color: #ffffff;
-      font-weight: bold;
-    }
-
-    .badge-recommended {
-      background: #22d3ee;
-      color: #000000;
-      font-size: 10px;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-weight: bold;
-    }
-
-    .modal-bottom-action {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 10px;
-    }
-
-    .price-display-box {
-      text-align: right;
-    }
-
-    .price-label-sub {
-      font-size: 12px;
-      color: #94a3b8;
-      display: block;
-    }
-
-    .final-price-text {
-      font-size: 18px;
-      font-weight: bold;
-      color: #22d3ee;
-    }
-
-    .submit-pay-btn {
-      background: #22d3ee;
-      color: #000000;
-      border: none;
-      padding: 12px 34px;
-      border-radius: 6px;
-      font-size: 15px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
-    }
-  /* ==========================================
-   تنسيق قسم كود الخصم (Promo Code)
-   ========================================== */
-
-.promo-code-group {
-  margin: 16px 0;
-  text-align: right;
-}
-
-.promo-label {
-  display: block;
-  font-size: 13px;
-  color: #94a3b8;
-  margin-bottom: 8px;
-  font-weight: 500;
-}
-
-/* الإطار الخارجي للخانة والزر */
-.promo-input-box {
-  display: flex;
-  align-items: center;
-  background: #101420;
-  border: 1px solid #212c42;
-  border-radius: 6px;
-  padding: 4px;
-  gap: 8px;
-  transition: all 0.3s ease;
-}
-
-.promo-input-box:focus-within {
-  border-color: #00d2ff;
-  box-shadow: 0 0 10px rgba(0, 210, 255, 0.2);
-}
-
-/* خانة الكتابة */
-.promo-input-box input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #ffffff;
-  font-size: 13px;
-  padding: 8px 10px;
-  text-align: right;
-  font-family: inherit;
-}
-
-.promo-input-box input::placeholder {
-  color: #64748b;
-  font-size: 12px;
-}
-
-/* زر التفعيل متناسق مع زر الدفع الأزرق */
-.promo-input-box button {
-  background: #00d2ff;
-  color: #000000;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 16px;
-  font-size: 12px;
-  font-weight: bold;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.2s ease;
-}
-
-.promo-input-box button:active {
-  opacity: 0.8;
-  transform: scale(0.98);
-}
-
-/* رسائل الخطأ والنجاح */
-.promo-message {
-  font-size: 12px;
-  margin-top: 6px;
-  font-weight: 600;
-  display: none;
-}
-
-.promo-message.success {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  color: #00d2ff;
-}
-
-.promo-message.error {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  color: #ef4444;
-}
-  </style>
-  <!-- Schema.org Data for AI & Search Engines (Honor of Kings) -->
-<script type="application/ld+json">
+<!-- بيانات الأسعار للمحركات والذكاء الاصطناعي (الأسعار بتتحدّث تلقائياً من الكروت أول ما الصفحة تفتح) -->
+<script type="application/ld+json" id="ld">
 {
   "@context": "https://schema.org/",
   "@type": "Product",
   "name": "Honor of Kings Tokens & Cards - HYPER TOPUP",
+  "image": "https://i.ibb.co/mrqKkwRy/Gemini-Generated-Image-n9qkc4n9qkc4n9qk.jpg",
   "description": "شحن توكنز وبطاقات لعبة Honor of Kings (HOK) بأفضل الأسعار وبشحن فوري عن طريق معرف اللاعب (Player ID).",
   "brand": {
     "@type": "Brand",
@@ -560,356 +28,459 @@
     "url": "https://hypertopup.online"
   },
   "offers": [
-    { "@type": "Offer", "name": "باقة 16 + 16 Token", "price": "15.00", "priceCurrency": "EGP", "availability": "https://schema.org/InStock" },
-    { "@type": "Offer", "name": "باقة 23 + 23 Token", "price": "20.00", "priceCurrency": "EGP", "availability": "https://schema.org/InStock" },
-    { "@type": "Offer", "name": "باقة 80 + 80 Token", "price": "55.00", "priceCurrency": "EGP", "availability": "https://schema.org/InStock" },
-    { "@type": "Offer", "name": "باقة 48 + 240 Token", "price": "155.00", "priceCurrency": "EGP", "availability": "https://schema.org/InStock" },
-    { "@type": "Offer", "name": "باقة 80 + 400 Token", "price": "255.00", "priceCurrency": "EGP", "availability": "https://schema.org/InStock" },
-    { "@type": "Offer", "name": "باقة 112 + 560 Token", "price": "350.00", "priceCurrency": "EGP", "availability": "https://schema.org/InStock" },
-    { "@type": "Offer", "name": "باقة 160 + 800 Token", "price": "500.00", "priceCurrency": "EGP", "availability": "https://schema.org/InStock" },
-    { "@type": "Offer", "name": "باقة 240 + 1200 Token", "price": "745.00", "priceCurrency": "EGP", "availability": "https://schema.org/InStock" },
-    { "@type": "Offer", "name": "باقة 480 + 2400 Token", "price": "1470.00", "priceCurrency": "EGP", "availability": "https://schema.org/InStock" },
-    { "@type": "Offer", "name": "باقة 800 + 4000 Token", "price": "2420.00", "priceCurrency": "EGP", "availability": "https://schema.org/InStock" },
-    { "@type": "Offer", "name": "باقة 1600 + 8000 Token", "price": "4790.00", "priceCurrency": "EGP", "availability": "https://schema.org/InStock" },
-
-    { "@type": "Offer", "name": "حقيبة حظ ضعف العملات", "price": "20.00", "priceCurrency": "EGP", "availability": "https://schema.org/InStock" },
-    { "@type": "Offer", "name": "حزمة خصم الشراء العادي", "price": "20.00", "priceCurrency": "EGP", "availability": "https://schema.org/InStock" },
-    { "@type": "Offer", "name": "حزمة توفير نقاط الشرف", "price": "20.00", "priceCurrency": "EGP", "availability": "https://schema.org/InStock" },
-    { "@type": "Offer", "name": "حزمة خصم الشراء المميز", "price": "75.00", "priceCurrency": "EGP", "availability": "https://schema.org/InStock" },
-
-    { "@type": "Offer", "name": "البطاقة الأسبوعية (العادية)", "price": "55.00", "priceCurrency": "EGP", "availability": "https://schema.org/InStock" },
-    { "@type": "Offer", "name": "Card Plus", "price": "155.00", "priceCurrency": "EGP", "availability": "https://schema.org/InStock" }
+    {
+      "@type": "Offer",
+      "name": "باقة 16 + 16 Token",
+      "price": "15.00",
+      "priceCurrency": "EGP",
+      "availability": "https://schema.org/InStock"
+    },
+    {
+      "@type": "Offer",
+      "name": "باقة 23 + 23 Token",
+      "price": "20.00",
+      "priceCurrency": "EGP",
+      "availability": "https://schema.org/InStock"
+    },
+    {
+      "@type": "Offer",
+      "name": "باقة 80 + 80 Token",
+      "price": "55.00",
+      "priceCurrency": "EGP",
+      "availability": "https://schema.org/InStock"
+    },
+    {
+      "@type": "Offer",
+      "name": "باقة 48 + 240 Token",
+      "price": "155.00",
+      "priceCurrency": "EGP",
+      "availability": "https://schema.org/InStock"
+    },
+    {
+      "@type": "Offer",
+      "name": "باقة 80 + 400 Token",
+      "price": "255.00",
+      "priceCurrency": "EGP",
+      "availability": "https://schema.org/InStock"
+    },
+    {
+      "@type": "Offer",
+      "name": "باقة 112 + 560 Token",
+      "price": "350.00",
+      "priceCurrency": "EGP",
+      "availability": "https://schema.org/InStock"
+    },
+    {
+      "@type": "Offer",
+      "name": "باقة 160 + 800 Token",
+      "price": "500.00",
+      "priceCurrency": "EGP",
+      "availability": "https://schema.org/InStock"
+    },
+    {
+      "@type": "Offer",
+      "name": "باقة 240 + 1200 Token",
+      "price": "745.00",
+      "priceCurrency": "EGP",
+      "availability": "https://schema.org/InStock"
+    },
+    {
+      "@type": "Offer",
+      "name": "باقة 480 + 2400 Token",
+      "price": "1470.00",
+      "priceCurrency": "EGP",
+      "availability": "https://schema.org/InStock"
+    },
+    {
+      "@type": "Offer",
+      "name": "باقة 800 + 4000 Token",
+      "price": "2420.00",
+      "priceCurrency": "EGP",
+      "availability": "https://schema.org/InStock"
+    },
+    {
+      "@type": "Offer",
+      "name": "باقة 1600 + 8000 Token",
+      "price": "4790.00",
+      "priceCurrency": "EGP",
+      "availability": "https://schema.org/InStock"
+    },
+    {
+      "@type": "Offer",
+      "name": "حقيبة حظ ضعف العملات",
+      "price": "20.00",
+      "priceCurrency": "EGP",
+      "availability": "https://schema.org/InStock"
+    },
+    {
+      "@type": "Offer",
+      "name": "حزمة خصم الشراء العادي",
+      "price": "20.00",
+      "priceCurrency": "EGP",
+      "availability": "https://schema.org/InStock"
+    },
+    {
+      "@type": "Offer",
+      "name": "حزمة توفير نقاط الشرف",
+      "price": "20.00",
+      "priceCurrency": "EGP",
+      "availability": "https://schema.org/InStock"
+    },
+    {
+      "@type": "Offer",
+      "name": "حزمة خصم الشراء المميز",
+      "price": "75.00",
+      "priceCurrency": "EGP",
+      "availability": "https://schema.org/InStock"
+    },
+    {
+      "@type": "Offer",
+      "name": "البطاقة الأسبوعية (العادية)",
+      "price": "55.00",
+      "priceCurrency": "EGP",
+      "availability": "https://schema.org/InStock"
+    },
+    {
+      "@type": "Offer",
+      "name": "Card Plus",
+      "price": "155.00",
+      "priceCurrency": "EGP",
+      "availability": "https://schema.org/InStock"
+    }
   ]
 }
 </script>
+
+<style>
+:root{--bg:#0b0d12;--card:#0f131c;--cardl:#1a2233;--s2:#101420;--line:#212c42;--ac:#22d3ee;--pu:#a855f7;--tx:#e2e8f0;--mute:#94a3b8;--err:#ef4444;--ok:#22c55e}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--bg);color:var(--tx);font-family:"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.6;min-height:100vh;overflow-x:hidden}
+body{background:radial-gradient(520px 300px at 50% -50px,rgba(34,211,238,.2),transparent 70%),var(--bg)}
+button,input{font:inherit}.hidden,.hidden-grid{display:none!important}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.page{width:min(100%,640px);margin:0 auto;padding:18px 15px calc(34px + env(safe-area-inset-bottom))}
+
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.brand{font-size:22px;font-weight:900;letter-spacing:1.5px;color:#fff;text-shadow:0 0 12px rgba(34,211,238,.45);line-height:1.3}
+.sub{display:inline-block;margin-top:3px;padding:3px 12px;border-radius:5px;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.4);color:var(--ac);font-size:11px;font-weight:700}
+.back{width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(34,211,238,.4);color:#fff;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}
+.back:hover{border-color:var(--ac);box-shadow:0 0 12px rgba(34,211,238,.4)}
+.banner{height:160px;margin-bottom:18px;border-radius:14px;overflow:hidden;border:1px solid rgba(34,211,238,.3);background:var(--card);box-shadow:0 8px 28px rgba(0,0,0,.6)}
+.banner img{display:block;width:100%;height:100%;object-fit:cover}
+
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.tab{padding:12px;border-radius:8px;background:#10141e;border:1px solid #1c2536;color:var(--mute);font-size:14px;font-weight:700;cursor:pointer;text-align:center;transition:.25s}
+.tab.active{background:linear-gradient(135deg,rgba(34,211,238,.25),rgba(168,85,247,.2));border-color:var(--ac);color:#fff;box-shadow:0 0 12px rgba(34,211,238,.25)}
+.subs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px}
+.sub-t{padding:9px 2px;border-radius:6px;background:#0d111a;border:1px solid #172030;color:#64748b;font-size:12px;font-weight:700;cursor:pointer;text-align:center;transition:.2s}
+.sub-t.active{background:rgba(168,85,247,.15);border-color:#a855f7;color:#e9d5ff;box-shadow:0 0 10px rgba(168,85,247,.2)}
+.subs.hidden{display:none}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:560px){.grid{grid-template-columns:repeat(3,1fr)}}
+.card{display:flex;flex-direction:column;align-items:center;text-align:center;background:var(--card);border:1px solid var(--cardl);border-radius:12px;padding:15px 10px 12px;transition:border-color .2s,box-shadow .2s,transform .15s;animation:in .4s ease both;cursor:pointer}
+.card:hover{border-color:var(--ac);box-shadow:0 0 16px rgba(34,211,238,.25)}
+.card:active{transform:scale(.98)}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.imgbox{width:100%;height:84px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:8px}
+.pimg{max-width:70px;max-height:70px;object-fit:contain;filter:drop-shadow(0 0 8px rgba(34,211,238,.35))}
+.pimg.zoom{max-width:100%;max-height:100%;transform:scale(2.2)}
+.name{font-size:13.5px;font-weight:700;color:#cbd5e1;line-height:1.4;min-height:38px;display:flex;align-items:center;justify-content:center;margin-bottom:6px}
+.price{direction:ltr;color:var(--ac);font-size:17px;font-weight:800;margin-bottom:11px;text-shadow:0 0 8px rgba(34,211,238,.35)}
+.buy{width:100%;margin-top:auto;padding:9px;border-radius:7px;background:linear-gradient(180deg,#102a3a,#0a1b26);border:1px solid var(--ac);color:#fff;font-size:13.5px;font-weight:700;cursor:pointer;transition:.2s}
+.buy:hover{box-shadow:0 0 12px rgba(34,211,238,.35)}
+.foot{margin-top:26px;text-align:center;font-size:12px;color:var(--mute)}
+.foot b{color:var(--ac);letter-spacing:1px}
+
+.modal{position:fixed;inset:0;z-index:50;display:flex;align-items:flex-end;justify-content:center}
+.overlay{position:absolute;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(6px)}
+.sheet{position:relative;width:100%;max-width:500px;max-height:92vh;overflow-y:auto;background:#0d1017;border:1px solid #1c263b;border-top:2px solid var(--ac);border-radius:16px 16px 0 0;padding:18px 18px 0;box-shadow:0 -5px 30px rgba(34,211,238,.28);animation:up .25s ease-out}
+@media(min-width:600px){.modal{align-items:center}.sheet{border-radius:16px}}
+@keyframes up{from{transform:translateY(36px);opacity:0}to{transform:none;opacity:1}}
+@media(prefers-reduced-motion:reduce){.card,.sheet{animation:none}}
+.sh{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.sh h3{font-size:17px;color:#fff}
+.x{background:none;border:0;color:var(--mute);font-size:26px;line-height:1;cursor:pointer}
+.sel{display:flex;align-items:center;gap:14px;background:#141a26;border:1px solid #202b40;border-radius:10px;padding:10px 14px;margin-bottom:16px}
+.sel img{width:46px;height:46px;object-fit:contain}
+.sel b{font-size:15px;color:#fff}
+label{display:block;margin-bottom:7px;color:var(--mute);font-size:13px}
+input{width:100%;padding:11px 12px;background:var(--s2);border:1px solid var(--line);border-radius:8px;color:#fff;font-size:14px;outline:none;transition:.2s}
+input:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(34,211,238,.18)}
+.grp{margin-top:14px}
+.row{display:flex;gap:8px}
+.apply{border:0;border-radius:8px;padding:0 18px;color:#fff;font-weight:700;font-size:13px;white-space:nowrap;cursor:pointer;background:linear-gradient(135deg,#00d2ff,#0099cc)}
+.msg{display:none;margin-top:7px;font-size:12.5px;font-weight:600}
+.msg.error{display:block;color:var(--err)}.msg.success{display:block;color:var(--ac)}
+.sec{margin:16px 0 8px;font-size:13px;color:var(--mute)}
+.pay{display:flex;align-items:center;gap:12px;background:var(--s2);border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin-bottom:9px;font-size:14px;font-weight:600;cursor:pointer;transition:.2s}
+.pay.selected{border-color:var(--ac);background:#132333}
+.pl{height:28px;max-width:84px;width:auto;object-fit:contain;border-radius:6px;flex:none}
+.pn{flex:1}
+.rec{background:var(--ac);color:#000;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px}
+.bar{position:sticky;bottom:0;margin:16px -18px 0;padding:12px 18px calc(12px + env(safe-area-inset-bottom));display:flex;justify-content:space-between;align-items:center;background:#0d1017;border-top:1px solid #1c263b}
+.bar small{display:block;font-size:12px;color:var(--mute)}
+.bar b{font-size:19px;color:var(--ac);direction:ltr;display:inline-block}
+.go{border:0;border-radius:8px;padding:12px 36px;background:var(--ac);color:#000;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 0 12px rgba(34,211,238,.35)}
+.go:active{transform:scale(.97)}
+</style>
 </head>
 <body>
+<main class="page">
+  <header class="top">
+    <div><h1 class="brand">HYPER TOPUP</h1><span class="sub">Honor of Kings - شحن معتمد</span></div>
+    <button class="back" type="button" aria-label="رجوع" onclick="history.length>1?history.back():location.href='games.html'">›</button>
+  </header>
 
-  <div class="container">
-    <div class="header">
-      <div>
-        <h1 class="brand-title">HYPER TOPUP</h1>
-        <span class="sub-title">Honor of Kings - شحن معتمد</span>
+  <section class="banner"><img src="https://i.ibb.co/mrqKkwRy/Gemini-Generated-Image-n9qkc4n9qkc4n9qk.jpg" alt="Honor of Kings" onerror="this.style.display='none'"></section>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab active" type="button" role="tab" data-main="buy">شراء</button>
+    <button class="tab" type="button" role="tab" data-main="store">متجر</button>
+  </nav>
+  <nav class="subs hidden" id="subs">
+    <button class="sub-t active" type="button" data-sub="all">الجميع</button>
+    <button class="sub-t" type="button" data-sub="share_limit">Share Limit</button>
+    <button class="sub-t" type="button" data-sub="weekly_card">البطاقة الأسبوعية</button>
+  </nav>
+
+  <!-- تعديل الأسعار: غيّر الرقم جوه class="pv" في أي كارت (الباقي بيتحدّث لوحده، وبيانات JSON-LD كمان) -->
+  <section class="grid" id="g-buy" data-k="buy" aria-label="باقات Token">
+    <article class="card">
+      <div class="imgbox"><img class="pimg" src="https://i.ibb.co/5W9v067j/d8ff36f3bcde316bb9e82e1ee73797eb.png" alt="باقة 16 + 16 Token" loading="lazy" onerror="this.style.visibility='hidden'"></div>
+      <h2 class="name">باقة 16 + 16 Token</h2>
+      <div class="price">EGP <span class="pv">15.00</span></div>
+      <button class="buy" type="button">شحن فوري</button>
+    </article>
+    <article class="card">
+      <div class="imgbox"><img class="pimg" src="https://i.ibb.co/5W9v067j/d8ff36f3bcde316bb9e82e1ee73797eb.png" alt="باقة 23 + 23 Token" loading="lazy" onerror="this.style.visibility='hidden'"></div>
+      <h2 class="name">باقة 23 + 23 Token</h2>
+      <div class="price">EGP <span class="pv">20.00</span></div>
+      <button class="buy" type="button">شحن فوري</button>
+    </article>
+    <article class="card">
+      <div class="imgbox"><img class="pimg" src="https://i.ibb.co/SDYz67N0/e6dcce33a62e2a7e233376aea341b366.png" alt="باقة 80 + 80 Token" loading="lazy" onerror="this.style.visibility='hidden'"></div>
+      <h2 class="name">باقة 80 + 80 Token</h2>
+      <div class="price">EGP <span class="pv">55.00</span></div>
+      <button class="buy" type="button">شحن فوري</button>
+    </article>
+    <article class="card">
+      <div class="imgbox"><img class="pimg" src="https://i.ibb.co/SDYz67N0/e6dcce33a62e2a7e233376aea341b366.png" alt="باقة 48 + 240 Token" loading="lazy" onerror="this.style.visibility='hidden'"></div>
+      <h2 class="name">باقة 48 + 240 Token</h2>
+      <div class="price">EGP <span class="pv">155.00</span></div>
+      <button class="buy" type="button">شحن فوري</button>
+    </article>
+    <article class="card">
+      <div class="imgbox"><img class="pimg" src="https://i.ibb.co/LzCHNGyH/e24ecc8e4dceb69e56b63778d136ec26.png" alt="باقة 80 + 400 Token" loading="lazy" onerror="this.style.visibility='hidden'"></div>
+      <h2 class="name">باقة 80 + 400 Token</h2>
+      <div class="price">EGP <span class="pv">255.00</span></div>
+      <button class="buy" type="button">شحن فوري</button>
+    </article>
+    <article class="card">
+      <div class="imgbox"><img class="pimg" src="https://i.ibb.co/LzCHNGyH/e24ecc8e4dceb69e56b63778d136ec26.png" alt="باقة 112 + 560 Token" loading="lazy" onerror="this.style.visibility='hidden'"></div>
+      <h2 class="name">باقة 112 + 560 Token</h2>
+      <div class="price">EGP <span class="pv">350.00</span></div>
+      <button class="buy" type="button">شحن فوري</button>
+    </article>
+    <article class="card">
+      <div class="imgbox"><img class="pimg" src="https://i.ibb.co/3ypZdcgD/3d50a9b34940d0e3505a46100672cdac.png" alt="باقة 160 + 800 Token" loading="lazy" onerror="this.style.visibility='hidden'"></div>
+      <h2 class="name">باقة 160 + 800 Token</h2>
+      <div class="price">EGP <span class="pv">500.00</span></div>
+      <button class="buy" type="button">شحن فوري</button>
+    </article>
+    <article class="card">
+      <div class="imgbox"><img class="pimg" src="https://i.ibb.co/39sJQ8tc/5df9b33de1d89c172d324d8415ed7888.png" alt="باقة 240 + 1200 Token" loading="lazy" onerror="this.style.visibility='hidden'"></div>
+      <h2 class="name">باقة 240 + 1200 Token</h2>
+      <div class="price">EGP <span class="pv">745.00</span></div>
+      <button class="buy" type="button">شحن فوري</button>
+    </article>
+    <article class="card">
+      <div class="imgbox"><img class="pimg" src="https://i.ibb.co/n8mjvpXx/5e3f9c1c70d2af157b9c1c5a2c9b2d96.png" alt="باقة 480 + 2400 Token" loading="lazy" onerror="this.style.visibility='hidden'"></div>
+      <h2 class="name">باقة 480 + 2400 Token</h2>
+      <div class="price">EGP <span class="pv">1470.00</span></div>
+      <button class="buy" type="button">شحن فوري</button>
+    </article>
+    <article class="card">
+      <div class="imgbox"><img class="pimg" src="https://i.ibb.co/mVQxPMcy/20394d44dcd34949253863196976a5e4.png" alt="باقة 800 + 4000 Token" loading="lazy" onerror="this.style.visibility='hidden'"></div>
+      <h2 class="name">باقة 800 + 4000 Token</h2>
+      <div class="price">EGP <span class="pv">2420.00</span></div>
+      <button class="buy" type="button">شحن فوري</button>
+    </article>
+    <article class="card">
+      <div class="imgbox"><img class="pimg" src="https://i.ibb.co/NdmxVCDH/b90717b741b250577d8dd5c8b6317dac.png" alt="باقة 1600 + 8000 Token" loading="lazy" onerror="this.style.visibility='hidden'"></div>
+      <h2 class="name">باقة 1600 + 8000 Token</h2>
+      <div class="price">EGP <span class="pv">4790.00</span></div>
+      <button class="buy" type="button">شحن فوري</button>
+    </article>
+  </section>
+  <section class="grid hidden-grid" id="g-share_limit" data-k="share_limit" aria-label="Share Limit">
+    <article class="card">
+      <div class="imgbox"><img class="pimg zoom" src="https://i.ibb.co/NgR1MWq9/a0a4c834.png" alt="حقيبة حظ ضعف العملات" loading="lazy" onerror="this.style.visibility='hidden'"></div>
+      <h2 class="name">حقيبة حظ ضعف العملات</h2>
+      <div class="price">EGP <span class="pv">20.00</span></div>
+      <button class="buy" type="button">شحن فوري</button>
+    </article>
+    <article class="card">
+      <div class="imgbox"><img class="pimg zoom" src="https://i.ibb.co/xtccrYtH/40e1325f.png" alt="حزمة خصم الشراء العادي" loading="lazy" onerror="this.style.visibility='hidden'"></div>
+      <h2 class="name">حزمة خصم الشراء العادي</h2>
+      <div class="price">EGP <span class="pv">20.00</span></div>
+      <button class="buy" type="button">شحن فوري</button>
+    </article>
+    <article class="card">
+      <div class="imgbox"><img class="pimg zoom" src="https://i.ibb.co/cSpgtP0R/6ba9e7e4.png" alt="حزمة توفير نقاط الشرف" loading="lazy" onerror="this.style.visibility='hidden'"></div>
+      <h2 class="name">حزمة توفير نقاط الشرف</h2>
+      <div class="price">EGP <span class="pv">20.00</span></div>
+      <button class="buy" type="button">شحن فوري</button>
+    </article>
+    <article class="card">
+      <div class="imgbox"><img class="pimg zoom" src="https://i.ibb.co/tP1ncjCs/735d4149.png" alt="حزمة خصم الشراء المميز" loading="lazy" onerror="this.style.visibility='hidden'"></div>
+      <h2 class="name">حزمة خصم الشراء المميز</h2>
+      <div class="price">EGP <span class="pv">75.00</span></div>
+      <button class="buy" type="button">شحن فوري</button>
+    </article>
+  </section>
+  <section class="grid hidden-grid" id="g-weekly_card" data-k="weekly_card" aria-label="البطاقة الأسبوعية">
+    <article class="card">
+      <div class="imgbox"><img class="pimg zoom" src="https://i.ibb.co/9mQGm48D/1-90981e9a.jpg" alt="البطاقة الأسبوعية (العادية)" loading="lazy" onerror="this.style.visibility='hidden'"></div>
+      <h2 class="name">البطاقة الأسبوعية (العادية)</h2>
+      <div class="price">EGP <span class="pv">55.00</span></div>
+      <button class="buy" type="button">شحن فوري</button>
+    </article>
+    <article class="card">
+      <div class="imgbox"><img class="pimg zoom" src="https://i.ibb.co/MxTKDmSN/plus-6b8e5a72.jpg" alt="Card Plus" loading="lazy" onerror="this.style.visibility='hidden'"></div>
+      <h2 class="name">Card Plus</h2>
+      <div class="price">EGP <span class="pv">155.00</span></div>
+      <button class="buy" type="button">شحن فوري</button>
+    </article>
+  </section>
+
+  <footer class="foot"><b>HYPER TOPUP</b><br>شحن آمن وسريع لجميع ألعابك المفضلة</footer>
+</main>
+
+<div id="orderModal" class="modal hidden" role="dialog" aria-modal="true" aria-label="إتمام طلب الشحن">
+  <div class="overlay" id="overlay"></div>
+  <div class="sheet">
+    <div class="sh"><h3>إتمام طلب الشحن - HOK</h3><button class="x" type="button" id="closeBtn" aria-label="إغلاق">&times;</button></div>
+
+    <div class="sel"><img id="selImg" src="" alt="" onerror="this.style.visibility='hidden'"><b id="selName"></b></div>
+
+    <label for="playerId">معرف اللاعب (Player ID)</label>
+    <input id="playerId" type="tel" inputmode="numeric" maxlength="20" autocomplete="off" dir="ltr" style="text-align:right" placeholder="اكتب Player ID هنا">
+
+    <div class="grp">
+      <label for="couponInput">كود الخصم (اختياري)</label>
+      <div class="row">
+        <input id="couponInput" type="text" autocomplete="off" autocapitalize="characters" dir="ltr" style="text-align:right" placeholder="أدخل كود الخصم هنا">
+        <button class="apply" type="button" id="applyBtn">تطبيق</button>
       </div>
-      <a href="games.html" class="back-btn">&gt;</a>
+      <div id="couponMsg" class="msg" role="status"></div>
     </div>
 
-    <!-- بانر اللعبة -->
-    <div class="banner-container">
-      <img src="https://i.ibb.co/mrqKkwRy/Gemini-Generated-Image-n9qkc4n9qkc4n9qk.jpg" alt="HOK Banner" class="banner-img">
-    </div>
+    <div class="sec">اختر طريقة الدفع</div>
+    <div class="pay selected" data-m="wallet" role="button" tabindex="0"><img class="pl" src="https://i.ibb.co/q3TTFChf/Telecom-Brand-Logo-Collage-1.webp" alt="" onerror="this.style.display='none'"><span class="pn">فودافون كاش / أورنج / اتصالات</span><span class="rec">مستحسن</span></div>
+    <div class="pay" data-m="instapay" role="button" tabindex="0"><img class="pl" src="https://i.ibb.co/qLDjp4Bh/IMG-20261003-225209.webp" alt="" onerror="this.style.display='none'"><span class="pn">إنستا باي (InstaPay)</span></div>
 
-    <!-- المستوى الأول: الأقسام الرئيسية -->
-    <div class="main-tabs">
-      <button id="buyMainTab" class="main-tab-btn active" onclick="switchMainTab('buy')">شراء</button>
-      <button id="storeMainTab" class="main-tab-btn" onclick="switchMainTab('store')">متجر</button>
+    <div class="bar">
+      <div><small>الإجمالي:</small><b id="total">EGP 0.00</b> <s id="oldTotal" style="color:#64748b;font-size:12px;margin-inline-start:6px;display:none;direction:ltr"></s></div>
+      <button class="go" type="button" id="goBtn">دفع</button>
     </div>
-
-    <!-- المستوى الثاني: الأقسام الفرعية (3 أزرار: الجميع، Share Limit، البطاقة الأسبوعية) -->
-    <div id="subTabsContainer" class="sub-tabs hidden">
-      <button id="allSubTab" class="sub-tab-btn active" onclick="switchSubTab('all')">الجميع</button>
-      <button id="shareLimitSubTab" class="sub-tab-btn" onclick="switchSubTab('share_limit')">Share Limit</button>
-      <button id="weeklyCardSubTab" class="sub-tab-btn" onclick="switchSubTab('weekly_card')">البطاقة الأسبوعية</button>
-    </div>
-
-    <!-- شبكة المنتجات -->
-    <div id="productsGrid" class="products-grid"></div>
   </div>
-
-  <!-- مودال الشحن Popup Overlay -->
-  <div id="orderModal" class="modal hidden">
-    <div class="modal-overlay" onclick="closeModal()"></div>
-    <div class="modal-content">
-      
-      <div class="modal-top-bar">
-        <span class="modal-title-text">إتمام طلب الشحن - HOK</span>
-        <button class="close-btn" onclick="closeModal()">&times;</button>
-      </div>
-
-      <div class="selected-pkg-card">
-        <div class="pkg-icon-box">
-          <img id="modalPkgImg" src="" alt="Selected Package">
-        </div>
-        <span id="packageTitleDisplay" class="pkg-title-display">-</span>
-      </div>
-
-      <label class="input-label" for="playerIdInput">معرف اللاعب (Player ID)</label>
-      <input type="tel" inputmode="numeric" id="playerIdInput" class="id-input-field" placeholder="اكتب Player ID هنا" dir="rtl" style="text-align: right;">
-<!-- قسم كود الخصم الاحترافي -->
-<div class="promo-code-group">
-  <div class="promo-label">
-    <span>كود الخصم (Promo Code)</span>
-    <span class="promo-icon"></span>
-  </div>
-  <div class="promo-input-box">
-    <input type="text" id="couponInput" placeholder="أدخل كود الخصم هنا..." autocomplete="off">
-    <button type="button" id="applyCouponBtn" onclick="applyCoupon()">تطبيق</button>
-  </div>
-  <div id="couponMessage" class="promo-message"></div>
 </div>
-      <div class="section-title">اختر طريقة الدفع</div>
-      <div class="payment-list">
-        <div class="pay-item selected" onclick="selectPayOption(this, 'فودافون كاش / أورنج / اتصالات')">
-          <span class="pay-item-name">فودافون كاش / أورنج / اتصالات</span>
-          <span class="badge-recommended">مستحسن</span>
-        </div>
-
-        <div class="pay-item" onclick="selectPayOption(this, 'إنستا باي (InstaPay)')">
-          <span class="pay-item-name">إنستا باي (InstaPay)</span>
-        </div>
-      </div>
-
-      <div class="modal-bottom-action">
-        <button class="submit-pay-btn" onclick="submitOrder()">دفع</button>
-
-        <div class="price-display-box">
-          <span class="price-label-sub">الإجمالي:</span>
-          <span id="finalPriceDisplay" class="final-price-text">0.00 EGP</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
 
 <script>
-// بيانات المنتجات
-const storeData = {
-  buy: [
-    { name: 'باقة 16 + 16 Token', price: 15.00, img: 'https://i.ibb.co/5W9v067j/d8ff36f3bcde316bb9e82e1ee73797eb.png' },
-    { name: 'باقة 23 + 23 Token', price: 20.00, img: 'https://i.ibb.co/5W9v067j/d8ff36f3bcde316bb9e82e1ee73797eb.png' },
-    { name: 'باقة 80 + 80 Token', price: 55.00, img: 'https://i.ibb.co/SDYz67N0/e6dcce33a62e2a7e233376aea341b366.png' },
-    { name: 'باقة 48 + 240 Token', price: 155.00, img: 'https://i.ibb.co/SDYz67N0/e6dcce33a62e2a7e233376aea341b366.png' },
-    { name: 'باقة 80 + 400 Token', price: 255.00, img: 'https://i.ibb.co/LzCHNGyH/e24ecc8e4dceb69e56b63778d136ec26.png' },
-    { name: 'باقة 112 + 560 Token', price: 350.00, img: 'https://i.ibb.co/LzCHNGyH/e24ecc8e4dceb69e56b63778d136ec26.png' },
-    { name: 'باقة 160 + 800 Token', price: 500.00, img: 'https://i.ibb.co/3ypZdcgD/3d50a9b34940d0e3505a46100672cdac.png' },
-    { name: 'باقة 240 + 1200 Token', price: 745.00, img: 'https://i.ibb.co/39sJQ8tc/5df9b33de1d89c172d324d8415ed7888.png' },
-    { name: 'باقة 480 + 2400 Token', price: 1470.00, img: 'https://i.ibb.co/n8mjvpXx/5e3f9c1c70d2af157b9c1c5a2c9b2d96.png' },
-    { name: 'باقة 800 + 4000 Token', price: 2420.00, img: 'https://i.ibb.co/mVQxPMcy/20394d44dcd34949253863196976a5e4.png' },
-    { name: 'باقة 1600 + 8000 Token', price: 4790.00, img: 'https://i.ibb.co/NdmxVCDH/b90717b741b250577d8dd5c8b6317dac.png' }
-  ],
-  share_limit: [
-    { name: 'حقيبة حظ ضعف العملات', price: 20.00, img: 'https://i.ibb.co/NgR1MWq9/a0a4c834.png' },
-    { name: 'حزمة خصم الشراء العادي', price: 20.00, img: 'https://i.ibb.co/xtccrYtH/40e1325f.png' },
-    { name: 'حزمة توفير نقاط الشرف', price: 20.00, img: 'https://i.ibb.co/cSpgtP0R/6ba9e7e4.png' },
-    { name: 'حزمة خصم الشراء المميز', price: 75.00, img: 'https://i.ibb.co/tP1ncjCs/735d4149.png' }
-  ],
-  weekly_card: [
-    { name: 'البطاقة الأسبوعية (العادية)', price: 55.00, img: 'https://i.ibb.co/9mQGm48D/1-90981e9a.jpg' },
-    { name: 'Card Plus', price: 155.00, img: 'https://i.ibb.co/MxTKDmSN/plus-6b8e5a72.jpg' }
-  ]
-};
-
-let currentMainTab = 'buy';
-let currentSubTab = 'all';
-let currentOrderData = {};
-let selectedMethod = 'فودافون كاش / أورنج / اتصالات';
-
+const CONFIG = { game: 'HONOR OF KINGS', walletPage: 'hyper-payment.html', instapayPage: 'instapay-payment.html' };
 const $ = id => document.getElementById(id);
+const fmt = n => 'EGP ' + Number(n).toFixed(2);
 
-function getActiveProducts() {
-  if (currentMainTab === 'buy') {
-    return storeData.buy;
-  } else {
-    if (currentSubTab === 'share_limit') {
-      return storeData.share_limit;
-    } else if (currentSubTab === 'weekly_card') {
-      return storeData.weekly_card;
-    } else {
-      return [...storeData.share_limit, ...storeData.weekly_card];
-    }
+/* مصدر الأسعار الوحيد: الأرقام الظاهرة في الكروت */
+const cards = [...document.querySelectorAll('.card')];
+const products = cards.map(c => ({
+  name: c.querySelector('.name').textContent.replace(/\s+/g, ' ').trim(),
+  price: parseFloat(c.querySelector('.pv').textContent) || 0,
+  img: c.querySelector('.pimg').getAttribute('src')
+}));
+cards.forEach((c, i) => { c.style.animationDelay = ((i % 6) * 45) + 'ms'; c.addEventListener('click', () => openOrder(i)); });
+
+/* مزامنة بيانات JSON-LD مع الأسعار الظاهرة */
+try {
+  const ld = JSON.parse($('ld').textContent);
+  ld.offers.forEach((o, i) => { if (products[i]) { o.name = products[i].name; o.price = products[i].price.toFixed(2); } });
+  $('ld').textContent = JSON.stringify(ld);
+} catch (e) {}
+
+let mainTab = 'buy', subTab = 'all';
+function showGrids() {
+  const want = mainTab === 'buy' ? ['buy'] : (subTab === 'all' ? ['share_limit', 'weekly_card'] : [subTab]);
+  document.querySelectorAll('.grid').forEach(g => g.classList.toggle('hidden-grid', !want.includes(g.dataset.k)));
+  $('subs').classList.toggle('hidden', mainTab === 'buy');
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.main === mainTab));
+  document.querySelectorAll('.sub-t').forEach(t => t.classList.toggle('active', t.dataset.sub === subTab));
+}
+document.querySelectorAll('.tab').forEach(t => t.onclick = () => { mainTab = t.dataset.main; showGrids(); });
+document.querySelectorAll('.sub-t').forEach(t => t.onclick = () => { subTab = t.dataset.sub; showGrids(); });
+
+const state = { pkg: null, method: 'wallet', coupon: null, discount: 0 };
+
+function recalc() {
+  const final = Math.max(0, state.pkg.price - state.discount);
+  $('total').textContent = fmt(final);
+  const o = $('oldTotal');
+  o.style.display = state.discount > 0 ? 'inline' : 'none';
+  o.textContent = fmt(state.pkg.price);
+}
+function openOrder(i) {
+  const p = products[i]; if (!p) return;
+  Object.assign(state, { pkg: p, coupon: null, discount: 0 });
+  $('selName').textContent = p.name; $('selImg').style.visibility = 'visible'; $('selImg').src = p.img;
+  $('playerId').value = ''; $('couponInput').value = '';
+  $('couponMsg').className = 'msg'; $('couponMsg').textContent = '';
+  recalc();
+  $('orderModal').classList.remove('hidden'); document.body.style.overflow = 'hidden';
+  setTimeout(() => $('playerId').focus({ preventScroll: true }), 300);
+}
+function closeModal() { $('orderModal').classList.add('hidden'); document.body.style.overflow = ''; }
+$('closeBtn').onclick = closeModal; $('overlay').onclick = closeModal;
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('orderModal').classList.contains('hidden')) closeModal(); });
+
+document.querySelectorAll('.pay').forEach(el => {
+  const pick = () => { document.querySelectorAll('.pay').forEach(x => x.classList.remove('selected')); el.classList.add('selected'); state.method = el.dataset.m; };
+  el.onclick = pick;
+  el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+});
+$('playerId').addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g, ''); });
+
+/* كود الخصم: بيتحقق منه coupons.js بس (validateCouponCode) – مفيش أكواد هنا */
+function applyCoupon() {
+  const msg = $('couponMsg'), code = $('couponInput').value.trim().toUpperCase();
+  if (!code) { msg.className = 'msg error'; msg.textContent = 'اكتب كود الخصم الأول'; return; }
+  if (typeof validateCouponCode !== 'function') { msg.className = 'msg error'; msg.textContent = 'تعذّر تحميل نظام الكوبونات، حاول تاني'; return; }
+  const r = validateCouponCode(code, state.pkg.price, CONFIG.game);
+  if (!r || !r.success) {
+    state.coupon = null; state.discount = 0; recalc();
+    msg.className = 'msg error'; msg.innerHTML = (r && r.message) || 'الكود غير صالح'; return;
   }
+  state.coupon = code;
+  state.discount = Math.min(Number(r.discountAmount) || 0, state.pkg.price);
+  recalc();
+  msg.className = 'msg success'; msg.innerHTML = `✓ تم تفعيل الخصم! وفّرت <b>${state.discount.toFixed(2)} ج.م</b>`;
 }
-
-function renderProducts() {
-  const grid = $('productsGrid');
-  grid.innerHTML = '';
-  const products = getActiveProducts();
-  const isStoreTab = currentMainTab === 'store';
-
-  products.forEach((item, index) => {
-    const card = document.createElement('div');
-    card.className = `product-card ${isStoreTab ? 'store-item' : ''}`;
-    card.innerHTML = `
-      <div class="img-box">
-        <img src="${item.img}" class="pkg-img" loading="lazy" alt="${item.name}">
-      </div>
-      <div class="pkg-name">${item.name}</div>
-      <div class="price">${item.price.toFixed(2)} EGP</div>
-      <button class="buy-btn" onclick="openOrder(${index})">شحن فوري</button>
-    `;
-    grid.appendChild(card);
-  });
-}
-
-function switchMainTab(tab) {
-  currentMainTab = tab;
-  
-  if (tab === 'buy') {
-    $('buyMainTab').classList.add('active');
-    $('storeMainTab').classList.remove('active');$('subTabsContainer').classList.add('hidden');
-  } else {
-    $('storeMainTab').classList.add('active');
-    $('buyMainTab').classList.remove('active');$('subTabsContainer').classList.remove('hidden');
-  }
-  
-  renderProducts();
-}
-
-function switchSubTab(subTab) {
-  currentSubTab = subTab;
-  
-  $('allSubTab').classList.toggle('active', subTab === 'all');
-  $('shareLimitSubTab').classList.toggle('active', subTab === 'share_limit');$('weeklyCardSubTab').classList.toggle('active', subTab === 'weekly_card');
-
-  renderProducts();
-}
-
-function openOrder(index) {
-  const products = getActiveProducts();
-  const item = products[index];
-  if (!item) return;
-
-  currentOrderData = item;
-
-  $('packageTitleDisplay').textContent = item.name;
-  $('modalPkgImg').src = item.img;
-  $('finalPriceDisplay').textContent = item.price.toFixed(2) + ' EGP';$('playerIdInput').value = '';
-
-  $('orderModal').classList.remove('hidden');
-  document.body.classList.add('modal-open');
-}
-
-function closeModal() {
-  $('orderModal').classList.add('hidden');
-  document.body.classList.remove('modal-open');
-}
-
-function selectPayOption(el, method) {
-  document.querySelectorAll('.pay-item').forEach(i => i.classList.remove('selected'));
-  el.classList.add('selected');
-  selectedMethod = method;
-}
+$('applyBtn').onclick = applyCoupon;
+$('couponInput').addEventListener('keydown', e => { if (e.key === 'Enter') applyCoupon(); });
 
 function submitOrder() {
-  const idInput = document.getElementById('playerIdInput');
-  const playerId = idInput ? idInput.value.trim() : '';
-
-  if (!playerId) {
-    alert('⚠️ يرجى كتابة الـ Player ID الخاص بك أولاً!');
-    return;
-  }
-
-  const isInstaPaySelected = (typeof selectedMethod !== 'undefined' && selectedMethod.includes('InstaPay')) ||
-                             (document.querySelector('.pay-item.selected')?.innerText.includes('InstaPay'));
-
-  const packageName = (typeof currentOrderData !== 'undefined' && currentOrderData.name) ? currentOrderData.name : 'باقة Honor of Kings';
-  const rawPrice = (typeof currentOrderData !== 'undefined' && currentOrderData.price) ? currentOrderData.price : 0;
-  
-  const finalPrice = typeof discountAmount !== 'undefined' ? Math.max(0, rawPrice - discountAmount) : rawPrice;
-  const roundedPrice = Math.round(parseFloat(finalPrice));
+  const id = $('playerId').value.trim();
+  if (id.length < 5) { alert('⚠️ يرجى كتابة الـ Player ID الخاص بك أولاً!'); $('playerId').focus(); return; }
+  const final = Math.max(0, state.pkg.price - state.discount);
+  const insta = state.method === 'instapay';
   const orderId = '#HYP' + Math.floor(1000 + Math.random() * 9000);
-
-  if (typeof saveUsedCouponGlobally === 'function') {
-    saveUsedCouponGlobally();
-  }
-
-          const couponParam = (typeof appliedCoupon !== 'undefined' && appliedCoupon) ? encodeURIComponent(appliedCoupon) : 'لا يوجد';
-
-        if (isInstaPaySelected) {
-          // التوجيه لصفحة إنستا باي
-          window.location.href = `instapay-payment.html?game=Honor%20of%20Kings&package=${encodeURIComponent(packageName)}&amount=${roundedPrice}&id=${encodeURIComponent(playerId)}&order=${orderId}&coupon=${couponParam}`;
-        } else {
-          // التوجيه لصفحة الكاش والمحفظة الإلكترونية
-          window.location.href = `hyper-payment.html?game=Honor%20of%20Kings&package=${encodeURIComponent(packageName)}&amount=${finalPrice}&id=${encodeURIComponent(playerId)}&order=${orderId}&coupon=${couponParam}`;
-        }
-      }
-// --- نظام كود الخصم الخاص بصفحة Honor of Kings ---
-const AVAILABLE_COUPONS = {
-  'WELCOME':       { type: 'percent', value: 5,  minPrice: 100 },
-  'HYPER-9K2X-77': { type: 'percent', value: 10, minPrice: 100 },
-  'VIP-8M3P-15':   { type: 'fixed',   value: 15, minPrice: 100 },
-  'HOK-2026':      { type: 'percent', value: 15, minPrice: 100 },
-  'PROMO-4W1Z':    { type: 'fixed',   value: 20, minPrice: 100 }
-};
-
-let appliedCoupon = null;
-let discountAmount = 0;
-
-function applyCoupon() {
-  const inputEl = document.getElementById('couponInput');
-  const msgEl = document.getElementById('couponMessage');
-  if (!inputEl || !msgEl) return;
-
-  const code = inputEl.value.trim().toUpperCase();
-
-  if (!code) {
-    msgEl.className = 'promo-message error';
-    msgEl.style.display = 'flex';
-    msgEl.innerHTML = '⚠️ يُرجى إدخال كود الخصم أولاً';
-    return;
-  }
-
-  if (!AVAILABLE_COUPONS[code]) {
-    msgEl.className = 'promo-message error';
-    msgEl.style.display = 'flex';
-    msgEl.innerHTML = '✕ كود الخصم غير صحيح أو انتهت صلاحيته';
-    return;
-  }
-
-  // التأكد من عدم استخدام الكود مسبقاً في أي لعبة على الموقع
-  let globalUsedCoupons = JSON.parse(localStorage.getItem('hyper_global_used_coupons') || '[]');
-  if (globalUsedCoupons.includes(code)) {
-    msgEl.className = 'promo-message error';
-    msgEl.style.display = 'flex';
-    msgEl.innerHTML = '⚠️ تم استخدام هذا الكود من قبل في طلب آخر!';
-    return;
-  }
-
-  const basePrice = (typeof currentOrderData !== 'undefined' && currentOrderData.price) ? currentOrderData.price : 0;
-  const coupon = AVAILABLE_COUPONS[code];
-
-  // شرط عدم قبول الخصم للباقات الأقل من 100 جنيه
-  if (basePrice < coupon.minPrice) {
-    msgEl.className = 'promo-message error';
-    msgEl.style.display = 'flex';
-    msgEl.innerHTML = `⚠️ هذا الكود يعمل فقط على الباقات من ${coupon.minPrice} ج.م وأكثر`;
-    return;
-  }
-
-  appliedCoupon = code;
-  if (coupon.type === 'percent') {
-    discountAmount = (basePrice * coupon.value) / 100;
-  } else {
-    discountAmount = coupon.value;
-  }
-
-  if (discountAmount > basePrice) discountAmount = basePrice;
-  const newPrice = Math.max(0, basePrice - discountAmount);
-
-  // تحديث السعر المعروض للزبون
-  const totalEl = document.getElementById('finalPriceDisplay') || document.getElementById('totalAmount') || document.querySelector('.EGP-price');
-  if (totalEl) {
-    totalEl.innerHTML = `<span style="text-decoration: line-through; color: #64748b; font-size: 11px; margin-left: 6px;">EGP ${basePrice.toFixed(2)}</span> EGP ${newPrice.toFixed(2)}`;
-  }
-
-  msgEl.className = 'promo-message success';
-  msgEl.style.display = 'flex';
-  msgEl.innerHTML = `✓ تم تفعيل الخصم! ووفرت <b>${discountAmount.toFixed(2)} ج.م</b>`;
+  /* تسجيل الكود كمستعمل بيحصل في صفحة الدفع؛ ننادي الدالة هنا بس لو موجودة في coupons.js */
+  if (state.coupon && typeof saveUsedCouponGlobally === 'function') { try { saveUsedCouponGlobally(); } catch (e) {} }
+  const q = new URLSearchParams({
+    game: 'Honor of Kings', package: state.pkg.name, amount: insta ? String(Math.round(final)) : final.toFixed(2),
+    id: id, order: orderId, coupon: state.coupon || 'لا يوجد'
+  });
+  location.href = (insta ? CONFIG.instapayPage : CONFIG.walletPage) + '?' + q.toString();
 }
-
-function saveUsedCouponGlobally() {
-  if (appliedCoupon) {
-    let globalUsedCoupons = JSON.parse(localStorage.getItem('hyper_global_used_coupons') || '[]');
-    if (!globalUsedCoupons.includes(appliedCoupon)) {
-      globalUsedCoupons.push(appliedCoupon);
-      localStorage.setItem('hyper_global_used_coupons', JSON.stringify(globalUsedCoupons));
-    }
-  }
-}
-// --- تشغيل كود العرض التلقائي فور فتح الصفحة مباشرة ---
-window.addEventListener('DOMContentLoaded', () => {
-  renderProducts();
-});
+$('goBtn').onclick = submitOrder;
 </script>
 </body>
-</html
+</html>
