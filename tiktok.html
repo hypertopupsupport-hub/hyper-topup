@@ -1,455 +1,242 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#000000">
-<title>HYPER TOPUP - شحن وخدمات TikTok</title>
-
+<meta name="theme-color" content="#050508">
+<title>HYPER TOPUP | شحن عملات TikTok</title>
+<meta name="description" content="شحن عملات TikTok من HYPER TOPUP بأسعار واضحة بالجنيه المصري وتسليم سريع ودفع آمن.">
+<link rel="icon" href="icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+<script src="coupons.js"></script>
 <style>
-/* ================= HYPER TOPUP — TIKTOK NEON PINK EDITION ================= */
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Orbitron:wght@700;800;900&display=swap');
-
-:root {
-  --bg-dark: #050508;
-  --card-bg: rgba(18, 18, 26, 0.75);
-  --pink-neon: #ff0055;
-  --pink-glow: #ff2a75;
-  --pink-light: #ff80ab;
-  --text-white: #ffffff;
-  --text-muted: #8e8ea0;
-  --border-pink: rgba(255, 0, 85, 0.35);
-}
-
-* {
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  background-color: #000;
-  font-family: 'Cairo', system-ui, sans-serif;
-  color: var(--text-white);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow-x: hidden;
-}
-
-/* Modal Overlay Wrapper */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, rgba(255, 0, 85, 0.12) 0%, rgba(0, 0, 0, 0.95) 100%);
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  z-index: 9999;
-  overflow-y: auto;
-  padding: 12px 12px 30px;
-}
-
-.modal-container {
-  width: min(100%, 480px);
-  background: var(--bg-dark);
-  border: 1px solid var(--border-pink);
-  border-radius: 24px;
-  padding: 18px 16px 24px;
-  box-shadow: 0 0 35px rgba(255, 0, 85, 0.25), inset 0 0 15px rgba(255, 0, 85, 0.1);
-  backdrop-filter: blur(16px);
-  margin: auto;
-  position: relative;
-}
-
-/* Custom Header Layout */
-.modal-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 14px;
-}
-
-.header-titles {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 4px;
-}
-
-.brand-title {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 20px;
-  font-weight: 900;
-  color: #fff;
-  letter-spacing: 1px;
-  text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
-}
-
-.sub-badge {
-  background: linear-gradient(135deg, rgba(255, 0, 85, 0.2), rgba(138, 43, 226, 0.3));
-  border: 1px solid var(--border-pink);
-  color: var(--pink-light);
-  font-size: 11px;
-  font-weight: 800;
-  padding: 3px 12px;
-  border-radius: 8px;
-  display: inline-block;
-}
-
-.back-btn {
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
-  background: rgba(255, 0, 85, 0.08);
-  border: 1px solid var(--border-pink);
-  color: var(--pink-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: 800;
-  transition: all 0.2s ease;
-  box-shadow: 0 0 10px rgba(255, 0, 85, 0.15);
-}
-
-.back-btn:active {
-  transform: scale(0.92);
-  background: var(--pink-neon);
-  color: #fff;
-  box-shadow: 0 0 15px var(--pink-neon);
-}
-
-/* Compact Top Banner Image */
-.hero-banner {
-  width: 100%;
-  max-height: 130px;
-  border-radius: 16px;
-  overflow: hidden;
-  margin-bottom: 16px;
-  border: 1px solid var(--border-pink);
-  box-shadow: 0 0 18px rgba(255, 0, 85, 0.2);
-}
-
-.hero-banner img {
-  width: 100%;
-  height: 130px;
-  display: block;
-  object-fit: cover;
-  object-position: center;
-}
-
-/* Products Grid */
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-}
-
-.product-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border-pink);
-  border-radius: 18px;
-  padding: 14px 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-}
-
-.product-card:active {
-  transform: translateY(-2px);
-  border-color: var(--pink-neon);
-  box-shadow: 0 0 20px rgba(255, 0, 85, 0.4);
-}
-
-.coin-icon {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
-  margin-bottom: 8px;
-  filter: drop-shadow(0 0 8px rgba(255, 0, 85, 0.4));
-}
-
-.coin-amount {
-  font-family: 'Orbitron', 'Cairo', sans-serif;
-  font-size: 15px;
-  font-weight: 800;
-  color: #fff;
-  margin-bottom: 2px;
-}
-
-.coin-price {
-  font-size: 12px;
-  font-weight: 800;
-  color: var(--pink-light);
-  margin-bottom: 10px;
-  direction: ltr;
-}
-
-/* Charge Button */
-.btn-charge {
-  width: 100%;
-  padding: 7px 0;
-  border: 1px solid var(--border-pink);
-  border-radius: 10px;
-  background: rgba(255, 0, 85, 0.12);
-  color: #fff;
-  font-family: 'Cairo', sans-serif;
-  font-size: 11px;
-  font-weight: 800;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.btn-charge:active {
-  background: var(--pink-neon);
-  box-shadow: 0 0 12px var(--pink-neon);
-  border-color: #fff;
-}
-
-/* Custom Input Section */
-.custom-section {
-  margin-top: 16px;
-  padding: 14px;
-  background: var(--card-bg);
-  border: 1px solid var(--border-pink);
-  border-radius: 18px;
-  box-shadow: 0 0 15px rgba(255, 0, 85, 0.08);
-}
-
-.custom-title {
-  font-size: 12px;
-  font-weight: 800;
-  color: var(--pink-light);
-  margin-bottom: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.min-badge {
-  font-size: 10px;
-  color: var(--text-muted);
-  background: rgba(255, 255, 255, 0.05);
-  padding: 2px 8px;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 0, 85, 0.2);
-}
-
-.input-wrapper {
-  position: relative;
-  margin-bottom: 10px;
-}
-
-.custom-input {
-  width: 100%;
-  height: 44px;
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid var(--border-pink);
-  border-radius: 12px;
-  padding: 0 12px;
-  color: #fff;
-  font-family: 'Orbitron', 'Cairo', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  outline: none;
-  transition: all 0.2s ease;
-}
-
-.custom-input:focus {
-  border-color: var(--pink-neon);
-  box-shadow: 0 0 12px rgba(255, 0, 85, 0.35);
-}
-
-.custom-input::placeholder {
-  color: var(--text-muted);
-  font-size: 11px;
-  font-family: 'Cairo', sans-serif;
-}
-
-.price-display {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 10px;
-  background: rgba(255, 0, 85, 0.05);
-  border-radius: 10px;
-  border: 1px dashed var(--border-pink);
-  margin-bottom: 10px;
-}
-
-.price-label {
-  font-size: 11px;
-  color: var(--text-muted);
-  font-weight: 700;
-}
-
-.price-value {
-  font-family: 'Orbitron', 'Cairo', sans-serif;
-  font-size: 14px;
-  font-weight: 800;
-  color: #fff;
-  text-shadow: 0 0 8px var(--pink-glow);
-}
+:root{--bg:#050508;--s1:#0e0e16;--s2:#151522;--line:rgba(255,0,85,.28);--pink:#ff0055;--pink2:#ff2a75;--pl:#ff80ab;--text:#fff;--muted:#8e8ea0;--green:#22c55e;--red:#ef4444}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%}
+body{background:radial-gradient(circle at 50% -10%,rgba(255,0,85,.2),transparent 42%),radial-gradient(circle at 90% 60%,rgba(138,43,226,.1),transparent 40%),var(--bg);color:var(--text);font-family:'Cairo',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:-20%;pointer-events:none;opacity:.12;background:repeating-linear-gradient(120deg,transparent 0 75px,rgba(255,0,85,.2) 76px,transparent 78px 150px);transform:rotate(-5deg)}
+button,input{font:inherit}.hidden{display:none!important}
+.page{position:relative;z-index:1;width:min(100%,980px);margin:auto;padding:12px 16px 34px}
+.top{display:flex;align-items:center;justify-content:space-between;padding:6px 0 16px}
+.back{width:42px;height:42px;border:1px solid var(--line);border-radius:14px;background:rgba(255,0,85,.08);color:var(--pl);font-size:24px;cursor:pointer;transition:.2s}
+.back:active{background:var(--pink);color:#fff;transform:scale(.94)}
+.brand{text-align:center}.brand b{display:block;font-family:Orbitron,sans-serif;font-size:19px;font-weight:900;letter-spacing:1.5px}
+.pill{display:inline-block;margin-top:4px;padding:2px 14px;border:1px solid var(--line);border-radius:99px;background:linear-gradient(135deg,rgba(255,0,85,.18),rgba(138,43,226,.22));color:var(--pl);font-size:11px;font-weight:800}
+.hero{border-radius:22px;overflow:hidden;border:1px solid var(--line);background:#000;box-shadow:0 0 30px rgba(255,0,85,.18)}
+.hero img{display:block;width:100%;height:clamp(176px,26vw,260px);object-fit:cover;object-position:center}
+.hero{position:relative}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 28%,rgba(5,5,8,.9))}
+.hero-txt{position:absolute;z-index:1;right:16px;left:16px;bottom:12px}
+.hero .gi{display:block;width:56px;height:56px;margin-bottom:6px;border-radius:13px;object-fit:cover;border:1px solid rgba(255,255,255,.3);box-shadow:0 4px 16px rgba(0,0,0,.65)}
+.hero-txt h1{margin:0 0 7px;font-family:Orbitron,sans-serif;font-size:21px;font-weight:900;letter-spacing:2px;text-shadow:0 2px 12px #000}
+.hero-txt .chip{margin:0 0 0 6px;padding:3px 12px;background:rgba(0,0,0,.45);backdrop-filter:blur(6px)}
+.hint{margin:8px 2px 12px;color:var(--muted);font-size:11.5px;text-align:center}
+.trust{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:14px 0 4px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border:1px solid var(--line);border-radius:99px;background:var(--s1);color:var(--pl);font-size:12px;font-weight:700}.chip svg{width:15px;height:15px}
+.head{display:flex;justify-content:space-between;align-items:baseline;margin:22px 4px 14px}
+.head h2{margin:0;font-size:17px;font-weight:900;display:flex;align-items:center;gap:10px}.head h2:before{content:"";width:4px;height:18px;border-radius:4px;background:linear-gradient(180deg,var(--pink2),var(--pink))}
+.head span{color:var(--muted);font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.card{background:linear-gradient(160deg,var(--s1),var(--s2));border:1px solid var(--line);border-radius:18px;overflow:hidden;text-align:center;transition:.2s;animation:in .45s ease both}
+.card:hover{border-color:var(--pink);box-shadow:0 0 24px rgba(255,0,85,.28)}
+@keyframes in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.card .img{display:flex;align-items:center;justify-content:center;height:90px;background:radial-gradient(circle at 50% 70%,rgba(255,0,85,.2),transparent 72%)}
+.card .img img{height:62px;width:auto;max-width:80%;object-fit:contain;filter:drop-shadow(0 0 10px rgba(255,0,85,.45));transition:transform .3s}.card:hover .img img{transform:scale(1.1)}
+.body{padding:4px 10px 14px}
+.name{font-size:15px;font-weight:800}
+.price{margin:2px 0 10px;color:var(--pl);font-weight:800;font-size:14px}.price small{font-size:11px;color:var(--muted)}
+.buy,.go,.btn{border:0;color:#fff;font-weight:800;cursor:pointer;background:linear-gradient(135deg,var(--pink2),var(--pink));box-shadow:0 6px 18px rgba(255,0,85,.28)}
+.buy{width:100%;height:36px;border-radius:11px;font-size:12.5px}.buy:active,.go:active{transform:scale(.97)}
+.custom{margin-top:16px;padding:16px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(160deg,var(--s1),var(--s2))}
+.ct{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-weight:800;font-size:14px;color:var(--pl)}
+.min{padding:2px 10px;border:1px solid var(--line);border-radius:7px;color:var(--muted);font-size:10.5px;font-weight:600}
+input[type=text],input[type=tel]{width:100%;height:44px;padding:0 14px;border:1px solid var(--line);border-radius:12px;background:rgba(0,0,0,.55);color:#fff;font-size:14px;font-weight:700;outline:none;transition:.2s}
+input:focus{border-color:var(--pink);box-shadow:0 0 12px rgba(255,0,85,.3)}input::placeholder{color:var(--muted);font-weight:600;font-size:12px}input.bad{border-color:var(--red)}
+.pd{display:flex;justify-content:space-between;align-items:center;margin:10px 0;padding:10px 12px;border:1px dashed var(--line);border-radius:12px;background:rgba(255,0,85,.05);font-size:12.5px;color:var(--muted)}
+.pd b{font-family:Orbitron,Cairo,sans-serif;font-size:15px;color:#fff;text-shadow:0 0 8px var(--pink2)}
+.wide{width:100%;height:44px;border-radius:12px;font-size:14px}
+.foot{margin-top:30px;padding-top:18px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:12px}.foot b{font-family:Orbitron,sans-serif;color:var(--pl);letter-spacing:1px}
+/* sheet */
+.ov{position:fixed;inset:0;z-index:50;display:flex;align-items:flex-end;justify-content:center;background:rgba(2,0,5,.82);backdrop-filter:blur(8px)}
+.sheet{width:100%;max-width:520px;max-height:92vh;overflow-y:auto;background:#09090f;border:1px solid var(--line);border-radius:24px 24px 0 0;padding:20px 20px 0;box-shadow:0 -10px 50px rgba(255,0,85,.18);animation:up .25s ease-out}
+@keyframes up{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.sh{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.sh h3{margin:0;font-size:17px;font-weight:900}
+.x{border:0;background:none;color:var(--muted);font-size:28px;cursor:pointer}
+.pk{display:flex;align-items:center;gap:12px;padding:10px 12px;margin-bottom:16px;border-radius:14px;background:var(--s2);border:1px solid var(--line)}
+.pk img{width:48px;height:48px;object-fit:contain;filter:drop-shadow(0 0 8px rgba(255,0,85,.5))}.pk b{font-size:15px}.pk small{display:block;color:var(--pl);font-weight:700}
+label{display:block;margin:12px 0 7px;color:var(--muted);font-size:12.5px;font-weight:700}
+.row{display:flex;gap:8px}.btn{padding:0 18px;border-radius:12px;font-size:13px;white-space:nowrap}
+.err{min-height:16px;margin-top:5px;color:var(--red);font-size:11.5px}
+.msg{display:none;margin-top:8px;font-size:12px;font-weight:700}.msg.error{display:block;color:var(--red)}.msg.success{display:block;color:var(--green)}
+h4{margin:20px 0 10px;font-size:14px;font-weight:800}
+.pay{position:relative;display:flex;align-items:center;gap:12px;padding:12px 14px;margin-bottom:10px;border:1px solid var(--line);border-radius:14px;background:var(--s1);cursor:pointer;font-size:13.5px;font-weight:700;transition:.2s}
+.pay.selected{border-color:var(--pink);background:rgba(255,0,85,.1);box-shadow:0 0 16px rgba(255,0,85,.2)}
+.pl{height:28px;max-width:84px;width:auto;object-fit:contain;border-radius:6px;flex:none}
+.rec{position:absolute;top:8px;left:12px;padding:1px 9px;border-radius:6px;background:var(--pink);font-size:10.5px}
+.det{display:none;margin-top:4px;padding:12px 14px;border-radius:14px;background:var(--s1);border:1px solid var(--line);font-size:12.5px;color:var(--muted)}.det.show{display:block}
+.det div{display:flex;justify-content:space-between;margin-bottom:7px}.det .t{margin:0;color:#fff;font-weight:800;font-size:14px}
+.bar{position:sticky;bottom:0;margin:16px -20px 0;padding:12px 20px calc(12px + env(safe-area-inset-bottom));display:flex;justify-content:space-between;align-items:center;background:#06060b;border-top:1px solid var(--line)}
+.bar small{display:flex;align-items:center;gap:4px;color:var(--muted);font-size:12px;cursor:pointer}.bar b{font-family:Orbitron,Cairo,sans-serif;font-size:17px;color:var(--pl)}
+.go{padding:12px 22px;border-radius:13px;font-size:14.5px}
+@media(prefers-reduced-motion:reduce){.card,.sheet{animation:none}}
 </style>
 </head>
-
 <body>
+<main class="page">
+  <header class="top">
+    <button class="back" onclick="closeModal()" aria-label="رجوع">&#8250;</button>
+    <div class="brand"><b>HYPER TOPUP</b><span class="pill">TIKTOK • شحن وخدمات</span></div>
+    <div style="width:42px"></div>
+  </header>
 
-<div class="modal-overlay" id="tiktokModal">
-  <div class="modal-container">
-    
-    <!-- Top Header Layout -->
-    <div class="modal-header">
-      <button class="tiktok.html" onclick="closeModal()" title="إغلاق">&lt;</button>
-      
-      <div class="header-titles">
-        <div class="brand-title">HYPER TOPUP</div>
-        <div class="sub-badge">شحن وخدمات TikTok</div>
-      </div>
+  <section class="hero"><img src="images/IMG_20261031_140442.jpg" alt="شحن وخدمات TikTok من HYPER TOPUP">
+    <div class="hero-txt"><img class="gi" src="images/fcfc601aae83b709753d140f968a44d0.jpg" alt="TikTok"><h1>TIKTOK</h1>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>شحن سريع</span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/></svg>دفع آمن</span>
+    </div></section>
+
+  <div class="head"><h2>باقات العملات</h2><span>7 باقات</span></div>
+  <!-- لتغيير السعر عدّل الرقم داخل class="pv" فقط -->
+  <section class="grid" id="grid" aria-label="باقات عملات TikTok">
+    <article class="card"><div class="img"><img src="images/1000131566%20(1).png" alt="30 عملة تيك توك" loading="lazy"></div><div class="body"><div class="name">30 عملة</div><div class="price"><span class="pv">25</span> <small>ج.م</small></div><button class="buy" type="button">شحن فوري</button></div></article>
+    <article class="card"><div class="img"><img src="images/1000131566%20(1).png" alt="350 عملة تيك توك" loading="lazy"></div><div class="body"><div class="name">350 عملة</div><div class="price"><span class="pv">265</span> <small>ج.م</small></div><button class="buy" type="button">شحن فوري</button></div></article>
+    <article class="card"><div class="img"><img src="images/1000131566%20(1).png" alt="700 عملة تيك توك" loading="lazy"></div><div class="body"><div class="name">700 عملة</div><div class="price"><span class="pv">525</span> <small>ج.م</small></div><button class="buy" type="button">شحن فوري</button></div></article>
+    <article class="card"><div class="img"><img src="images/1000131566%20(1).png" alt="1,400 عملة تيك توك" loading="lazy"></div><div class="body"><div class="name">1,400 عملة</div><div class="price"><span class="pv">1,035</span> <small>ج.م</small></div><button class="buy" type="button">شحن فوري</button></div></article>
+    <article class="card"><div class="img"><img src="images/1000131566%20(1).png" alt="3,500 عملة تيك توك" loading="lazy"></div><div class="body"><div class="name">3,500 عملة</div><div class="price"><span class="pv">2,560</span> <small>ج.م</small></div><button class="buy" type="button">شحن فوري</button></div></article>
+    <article class="card"><div class="img"><img src="images/1000131566%20(1).png" alt="7,000 عملة تيك توك" loading="lazy"></div><div class="body"><div class="name">7,000 عملة</div><div class="price"><span class="pv">5,075</span> <small>ج.م</small></div><button class="buy" type="button">شحن فوري</button></div></article>
+    <article class="card"><div class="img"><img src="images/1000131566%20(1).png" alt="17,500 عملة تيك توك" loading="lazy"></div><div class="body"><div class="name">17,500 عملة</div><div class="price"><span class="pv">12,560</span> <small>ج.م</small></div><button class="buy" type="button">شحن فوري</button></div></article>
+  </section>
+
+  <section class="custom">
+    <div class="ct"><span>شحن كمية مخصصة</span><span class="min">30 - 2,500,000 عملة</span></div>
+    <input type="tel" inputmode="numeric" id="customInput" placeholder="اكتب عدد العملات المطلوب" autocomplete="off">
+    <div class="pd"><span>سعر العملة</span><b id="customRate">—</b></div>
+    <div class="pd"><span>السعر الإجمالي</span><b id="customTotal">0 ج.م</b></div>
+    <div class="hint">كلما زادت الكمية قلّ سعر العملة، وسعر الكمية المخصصة أرخص من الباقات المماثلة.</div>
+    <button class="buy wide" type="button" onclick="orderCustom()">شحن فوري</button>
+  </section>
+
+  <footer class="foot"><b>HYPER TOPUP</b><br>شحن آمن وسريع لجميع تطبيقاتك المفضلة</footer>
+</main>
+
+<div id="orderModal" class="ov hidden" onclick="if(event.target===this)closeOrder()">
+  <div class="sheet" role="dialog" aria-modal="true" aria-label="إتمام الطلب">
+    <div class="sh"><h3>إتمام طلب الشحن</h3><button class="x" onclick="closeOrder()" aria-label="إغلاق">&times;</button></div>
+    <div class="pk"><img id="pkImg" alt=""><div><b id="pkName"></b><small>TikTok</small></div></div>
+
+    <label for="couponInput">كود الخصم (Promo Code)</label>
+    <div class="row"><input type="text" id="couponInput" placeholder="أدخل كود الخصم" autocomplete="off"><button class="btn" type="button" onclick="applyCoupon()">تطبيق</button></div>
+    <div id="couponMessage" class="msg"></div>
+
+    <h4>اختر طريقة الدفع</h4>
+    <div class="pay selected" onclick="selectPay(this,'فودافون كاش / أورنج / اتصالات')"><img class="pl" id="logoTelecom" alt=""><span>فودافون كاش / أورنج / اتصالات</span><span class="rec">مستحسن</span></div>
+    <div class="pay" onclick="selectPay(this,'إنستا باي (InstaPay)')"><img class="pl" id="logoInsta" alt=""><span>إنستا باي (InstaPay)</span></div>
+
+    <div id="det" class="det">
+      <div id="dOldRow"><span>السعر الأصلي</span><span id="dOld"></span></div>
+      <div id="dCpRow" class="hidden"><span>كود الخصم</span><span id="dCp" style="color:var(--green)"></span></div>
+      <div class="t"><span>الإجمالي النهائي</span><span id="dTot"></span></div>
     </div>
-
-    <!-- Hero Banner Image (Resized & Compact) -->
-    <div class="hero-banner">
-      <img src="https://i.ibb.co/FbSMg2ZW/IMG-20260911-214638.png" alt="شحن وخدمات TikTok">
+    <div class="bar">
+      <div onclick="document.getElementById('det').classList.toggle('show')"><small><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 15l6-6 6 6"/></svg>الإجمالي (تفاصيل)</small><b id="total"></b></div>
+      <button class="go" type="button" onclick="proceed()">متابعة عبر واتساب</button>
     </div>
-
-    <!-- Products Grid -->
-    <div class="products-grid">
-
-      <!-- 30 Coins -->
-      <div class="product-card">
-        <img src="https://i.ibb.co/DDd8Grzt/1000131566.png" class="coin-icon" alt="عملات تيك توك">
-        <div class="coin-amount">30 عملة</div>
-        <div class="coin-price">25 ج.م</div>
-        <button class="btn-charge" onclick="orderCoins('30 عملة', '25 ج.م')">شحن فوري</button>
-      </div>
-
-      <!-- 350 Coins -->
-      <div class="product-card">
-        <img src="https://i.ibb.co/DDd8Grzt/1000131566.png" class="coin-icon" alt="عملات تيك توك">
-        <div class="coin-amount">350 عملة</div>
-        <div class="coin-price">245 ج.م</div>
-        <button class="btn-charge" onclick="orderCoins('350 عملة', '245 ج.م')">شحن فوري</button>
-      </div>
-
-      <!-- 700 Coins -->
-      <div class="product-card">
-        <img src="https://i.ibb.co/DDd8Grzt/1000131566.png" class="coin-icon" alt="عملات تيك توك">
-        <div class="coin-amount">700 عملة</div>
-        <div class="coin-price">475 ج.م</div>
-        <button class="btn-charge" onclick="orderCoins('700 عملة', '475 ج.م')">شحن فوري</button>
-      </div>
-
-      <!-- 1,400 Coins -->
-      <div class="product-card">
-        <img src="https://i.ibb.co/DDd8Grzt/1000131566.png" class="coin-icon" alt="عملات تيك توك">
-        <div class="coin-amount">1,400 عملة</div>
-        <div class="coin-price">935 ج.م</div>
-        <button class="btn-charge" onclick="orderCoins('1,400 عملة', '935 ج.م')">شحن فوري</button>
-      </div>
-
-      <!-- 3,500 Coins -->
-      <div class="product-card">
-        <img src="https://i.ibb.co/DDd8Grzt/1000131566.png" class="coin-icon" alt="عملات تيك توك">
-        <div class="coin-amount">3,500 عملة</div>
-        <div class="coin-price">2,295 ج.م</div>
-        <button class="btn-charge" onclick="orderCoins('3,500 عملة', '2,295 ج.م')">شحن فوري</button>
-      </div>
-
-      <!-- 7,000 Coins -->
-      <div class="product-card">
-        <img src="https://i.ibb.co/DDd8Grzt/1000131566.png" class="coin-icon" alt="عملات تيك توك">
-        <div class="coin-amount">7,000 عملة</div>
-        <div class="coin-price">4,550 ج.م</div>
-        <button class="btn-charge" onclick="orderCoins('7,000 عملة', '4,550 ج.م')">شحن فوري</button>
-      </div>
-
-    </div>
-
-    <!-- Full-Width Card for 17,500 Coins -->
-    <div class="product-card" style="margin-top: 12px;">
-      <img src="https://i.ibb.co/DDd8Grzt/1000131566.png" class="coin-icon" alt="عملات تيك توك">
-      <div class="coin-amount">17,500 عملة</div>
-      <div class="coin-price">11,150 ج.م</div>
-      <button class="btn-charge" onclick="orderCoins('17,500 عملة', '11,150 ج.م')">شحن فوري</button>
-    </div>
-
-    <!-- Custom Amount Calculation -->
-    <div class="custom-section">
-      <div class="custom-title">
-        <span>شحن كمية مخصصة</span>
-        <span class="min-badge">30 - 2,500,000 عملة</span>
-      </div>
-      <div class="input-wrapper">
-        <input type="number" id="customInput" class="custom-input" placeholder="اكتب عدد العملات المطلوب..." min="30" max="2500000" oninput="if(this.value > 2500000) this.value = 2500000; calculatePrice();">
-      </div>
-      <div class="price-display">
-        <span class="price-label">السعر الإجمالي:</span>
-        <span class="price-value" id="customTotalPrice">0 ج.م</span>
-      </div>
-      <button class="btn-charge" style="padding: 10px 0; font-size: 12px;" onclick="orderCustomCoins()">شحن فوري</button>
-    </div>
-
   </div>
 </div>
 
 <script>
-// Live Custom Amount Price Calculation (0.65 EGP per coin with 30 coins minimum)
-function calculatePrice() {
-  const input = document.getElementById('customInput');
-  const display = document.getElementById('customTotalPrice');
-  const amount = parseFloat(input.value);
+/* ===== إعدادات الصفحة ===== */
+const CFG={
+  game:'TikTok',
+  whatsapp:'201221182845',      // رقم الواتس اللي توصله الطلبات (بدون + أو 00)
+  costPerCoin:0.6834,           // تكلفة العملة عندك = السعر الرسمي لتيك توك (1000 عملة = 683.4 ج.م)
+  // هامش ربح الكمية المخصصة حسب الكمية [عدد العملات، نسبة الربح]، وينزل تدريجياً مع زيادة الكمية
+  customMargins:[[30,0.12],[350,0.07],[1400,0.055],[7000,0.045],[17500,0.04]],
+  minCoins:30,maxCoins:2500000,
+  backPage:'apps.html',
+  logos:{telecom:'https://i.ibb.co/q3TTFChf/Telecom-Brand-Logo-Collage-1.webp',insta:'https://i.ibb.co/qLDjp4Bh/IMG-20261003-225209.webp'}
+};
+const $=id=>document.getElementById(id);
+const fmt=n=>n.toLocaleString('en-US',{maximumFractionDigits:2});
+let cur=null,appliedCoupon=null,discount=0,payMethod='فودافون كاش / أورنج / اتصالات';
 
-  if (!isNaN(amount) && amount >= 30) {
-    const total = amount * 0.65;
-    display.textContent = total.toLocaleString('ar-EG', { maximumFractionDigits: 2 }) + ' ج.م';
-  } else if (!isNaN(amount) && amount < 30) {
-    display.textContent = 'أقل شحن 30 عملة';
-  } else {
-    display.textContent = '0 ج.م';
-  }
+[['logoTelecom','telecom'],['logoInsta','insta']].forEach(([id,k])=>{const el=$(id);if(CFG.logos[k]){el.src=CFG.logos[k];el.onerror=()=>el.style.display='none'}else el.style.display='none'});
+function closeModal(){location.href=CFG.backPage}
+
+/* الأسعار من النص الظاهر في الكروت */
+const priceOf=c=>parseFloat(c.querySelector('.pv').textContent.replace(/,/g,''))||0;
+document.querySelectorAll('.card').forEach((c,i)=>{
+  c.style.animationDelay=(i*45)+'ms';
+  const open=()=>openOrder(c.querySelector('.name').textContent.trim(),priceOf(c),c.querySelector('img').getAttribute('src'));
+  c.querySelector('.buy').onclick=open;
+});
+
+/* كمية مخصصة: التكلفة الرسمية + هامش ربح ينزل تدريجياً مع زيادة الكمية (لا يقل أبداً عن التكلفة) */
+function marginFor(n){
+  const A=CFG.customMargins;
+  if(n<=A[0][0])return A[0][1];
+  const L=A[A.length-1];if(n>=L[0])return L[1];
+  for(let i=1;i<A.length;i++){const[n1,m1]=A[i-1],[n2,m2]=A[i];if(n<=n2)return m1+(m2-m1)*Math.log(n/n1)/Math.log(n2/n1)}
+}
+const total=n=>Math.ceil(n*CFG.costPerCoin*(1+marginFor(n))*100)/100;
+const customN=()=>parseInt($('customInput').value.replace(/\D/g,''),10)||0;
+$('customInput').oninput=e=>{
+  let n=customN();if(n>CFG.maxCoins)n=CFG.maxCoins;
+  e.target.value=n?String(n):'';
+  const ok=n>=CFG.minCoins;
+  $('customRate').textContent=ok?(total(n)/n).toFixed(2)+' ج.م':'—';
+  $('customTotal').textContent=!n?'0 ج.م':ok?fmt(total(n))+' ج.م':'أقل شحن '+CFG.minCoins+' عملة';
+  e.target.classList.remove('bad');
+};
+function orderCustom(){
+  const n=customN();
+  if(n<CFG.minCoins||n>CFG.maxCoins){$('customInput').classList.add('bad');$('customTotal').textContent=`من ${CFG.minCoins} إلى ${fmt(CFG.maxCoins)} عملة`;return}
+  openOrder(fmt(n)+' عملة (كمية مخصصة)',total(n),$('grid').querySelector('img').getAttribute('src'));
 }
 
-// WhatsApp Order Handler for Standard Packages
-function orderCoins(packageAmount, price) {
-  const phone = "201221182845";
-  const message = encodeURIComponent(`مرحباً، أريد شحن عملات تيك توك:\nالباقة: ${packageAmount}\nالسعر: ${price}\nمن متجر HYPER TOPUP`);
-  window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${message}`, '_blank');
+/* نافذة الطلب */
+function openOrder(name,price,img){
+  cur={name,price};appliedCoupon=null;discount=0;
+  $('pkName').textContent=name;$('pkImg').src=img;
+  
+  $('couponInput').value='';$('couponMessage').className='msg';$('det').classList.remove('show');
+  recalc();$('orderModal').classList.remove('hidden');document.body.style.overflow='hidden';
+}
+function closeOrder(){$('orderModal').classList.add('hidden');document.body.style.overflow=''}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeOrder()});
+function recalc(){
+  const fin=Math.max(0,cur.price-discount),f=n=>'EGP '+n.toFixed(2);
+  $('dOld').textContent=f(cur.price);$('dOldRow').classList.toggle('hidden',!discount);
+  $('dCpRow').classList.toggle('hidden',!discount);$('dCp').textContent='- '+discount.toFixed(2);
+  $('dTot').textContent=$('total').textContent=f(fin);
+}
+function selectPay(el,m){document.querySelectorAll('.pay').forEach(c=>c.classList.remove('selected'));el.classList.add('selected');payMethod=m}
+
+function applyCoupon(){
+  const msg=$('couponMessage'),code=$('couponInput').value.trim().toUpperCase();
+  if(!code)return;
+  if(typeof validateCouponCode!=='function'){msg.className='msg error';msg.textContent='تعذّر تحميل نظام الكوبونات';return}
+  const r=validateCouponCode(code,cur.price,CFG.game);
+  if(!r.success){appliedCoupon=null;discount=0;msg.className='msg error';msg.innerHTML=r.message;recalc();return}
+  appliedCoupon=code;discount=r.discountAmount;recalc();
+  msg.className='msg success';msg.innerHTML=`تم تفعيل الخصم! توفير <b>${discount.toFixed(2)} ج.م</b>`;
+}
+function proceed(){
+  const final=Math.max(0,cur.price-discount),f=n=>n.toFixed(2)+' ج.م';
+  const lines=['مرحباً، أريد شحن عملات TikTok','الباقة: '+cur.name,'السعر: '+f(cur.price)];
+  if(appliedCoupon)lines.push('كود الخصم: '+appliedCoupon,'الإجمالي بعد الخصم: '+f(final));
+  else lines.push('الإجمالي: '+f(final));
+  lines.push('طريقة الدفع: '+payMethod,'من متجر HYPER TOPUP');
+  if(appliedCoupon&&typeof saveUsedCouponGlobally==='function')saveUsedCouponGlobally();
+  const url='https://api.whatsapp.com/send?phone='+CFG.whatsapp+'&text='+encodeURIComponent(lines.join('\n'));
+  if(!window.open(url,'_blank'))location.href=url;
 }
 
-// WhatsApp Order Handler for Custom Amount
-function orderCustomCoins() {
-    const input = document.getElementById('customInput');
-    const amount = parseFloat(input.value);
-
-    if (isNaN(amount) || amount < 30 || amount > 2500000) {
-        alert('تنبيه: الحد الأدنى للشحن هو 30 عملة، والحد الأقصى هو 2,500,000 عملة!');
-        return;
-    }
-
-    const total = (amount * 0.65).toFixed(2);
-    const phone = "201002722164";
-    const message = encodeURIComponent(`مرحباً، أريد شحن كمية مخصصة من عملات تيك توك\nالكمية: ${amount} عملة\nالإجمالي: ${total} ج.م\nمن متجر HYPER TOPUP`);
-    window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${message}`, '_blank');
-}
-
-// Close Modal / Go Back
-function closeModal() {
-  window.location.href = "apps.html";
-}
+/* بيانات المنتجات لمحركات البحث (من الأسعار الظاهرة) */
+(()=>{const o=[...document.querySelectorAll('.card')].map(c=>({'@type':'Offer',name:c.querySelector('.name').textContent.trim(),price:String(priceOf(c)),priceCurrency:'EGP',availability:'https://schema.org/InStock'}));
+const s=document.createElement('script');s.type='application/ld+json';
+s.textContent=JSON.stringify({'@context':'https://schema.org/','@type':'Product',name:'عملات TikTok - HYPER TOPUP',brand:{'@type':'Brand',name:'TikTok'},seller:{'@type':'Organization',name:'HYPER TOPUP'},offers:o});document.head.appendChild(s)})();
 </script>
-
 </body>
 </html>
