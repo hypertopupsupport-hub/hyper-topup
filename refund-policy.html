@@ -1,759 +1,409 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>سياسة الاسترجاع والاسترداد | HYPER TOPUP</title>
+<meta name="description" content="سياسة الاسترجاع والاسترداد في HYPER TOPUP: متى يحق لك الاسترداد، حالات عدم الاسترداد، مدة المعالجة، وخطوات تقديم الطلب للخدمات الرقمية وشحن الألعاب.">
+<meta name="robots" content="index, follow, max-snippet:-1">
+<meta name="theme-color" content="#060d1a">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:site_name" content="HYPER TOPUP">
+<meta property="og:title" content="سياسة الاسترجاع والاسترداد | HYPER TOPUP">
+<meta property="og:description" content="كل ما تحتاج معرفته عن الاسترداد وإلغاء الطلبات في HYPER TOPUP، بشكل واضح ومختصر.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 
-    <title>سياسة الاسترجاع والاسترداد | HYPER TOPUP</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebPage","name":"سياسة الاسترجاع والاسترداد","inLanguage":"ar","dateModified":"2026-11-02","isPartOf":{"@type":"WebSite","name":"HYPER TOPUP"},"about":"سياسة استرداد الخدمات الرقمية وشحن الألعاب"},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"هل أقدر ألغي الطلب بعد الدفع؟","acceptedAnswer":{"@type":"Answer","text":"الإلغاء ممكن فقط قبل بدء التنفيذ وبشرط التواصل مع الدعم فورًا. بعد بدء الشحن أو التسليم لا يمكن ضمان الإلغاء."}},
+{"@type":"Question","name":"كتبت ID خاطئ، ماذا أفعل؟","acceptedAnswer":{"@type":"Answer","text":"تواصل مع الدعم فورًا. إذا لم يبدأ التنفيذ قد نتمكن من تصحيح البيانات، أما إذا نُفّذ الطلب فلا يمكن تحويل الشحنة أو استرداد قيمتها."}},
+{"@type":"Question","name":"كم تستغرق عملية الاسترداد؟","acceptedAnswer":{"@type":"Answer","text":"بعد الموافقة على الطلب يتم الاسترداد عادةً خلال 1 إلى 3 أيام عمل، وقد تزيد المدة حسب وسيلة الدفع."}},
+{"@type":"Question","name":"هل أحتاج حسابًا لطلب الاسترداد؟","acceptedAnswer":{"@type":"Answer","text":"لا. يكفي رقم الطلب وإثبات الدفع، سواء كان الطلب بحساب أو كضيف."}}
+]}]}
+</script>
 
-    <meta name="description" content="سياسة الاسترجاع والاسترداد في HYPER TOPUP للخدمات والمنتجات الرقمية وشحن الألعاب.">
+<style>
+:root{--bg:#060d1a;--panel:rgba(13,24,43,.94);--line:rgba(255,255,255,.08);--tx:#eef3fa;--mu:#a9b8cb;--gold:#ffd166;--cy:#35bbff;--ok:#36d391;--no:#ff6b78;--wn:#ffc14d}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{font-family:Tajawal,system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.95;min-height:100vh;overflow-x:hidden;counter-reset:s}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:8px}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+/* خلفية متحركة */
+.aurora{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.aurora i{position:absolute;width:70vmax;height:70vmax;border-radius:50%;will-change:transform;animation:drift 26s ease-in-out infinite alternate}
+.aurora i:nth-child(1){background:radial-gradient(circle,rgba(10,108,255,.30),transparent 68%);top:-30vmax;right:-20vmax}
+.aurora i:nth-child(2){background:radial-gradient(circle,rgba(201,138,0,.20),transparent 68%);bottom:-35vmax;left:-25vmax;animation-delay:-9s}
+.aurora i:nth-child(3){display:none}
+.aurora::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:56px 56px}
+@keyframes drift{to{transform:translate3d(-5vmax,4vmax,0)}}
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+#bar{position:fixed;top:0;right:0;left:0;height:3px;z-index:60;transform-origin:right;transform:scaleX(0);background:linear-gradient(90deg,var(--gold),var(--cy))}
 
-        html {
-            scroll-behavior: smooth;
-        }
+.wrap{width:min(1180px,calc(100% - 28px));margin:auto}
 
-        body {
-            font-family: "Tajawal", sans-serif;
-            background: #07111f;
-            color: #f5f7fa;
-            line-height: 1.9;
-            min-height: 100vh;
-        }
+/* الهيرو */
+.hero{padding:clamp(48px,9vw,96px) 0 36px;text-align:center}
+.live{display:inline-flex;align-items:center;gap:10px;padding:7px 16px;border-radius:99px;border:1px solid rgba(255,209,102,.28);background:rgba(255,209,102,.07);color:var(--gold);font-size:13.5px;font-weight:700}
+.live b{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(54,211,145,.7);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+h1{margin:20px 0 14px;font-size:clamp(32px,6.4vw,58px);font-weight:800;line-height:1.35;background:linear-gradient(100deg,#fff 20%,var(--gold) 45%,#fff 60%,#bfe0ff 85%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.lead{max-width:700px;margin:auto;color:var(--mu);font-size:clamp(15px,2.2vw,17.5px)}
+.meta{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;margin-top:22px;color:var(--mu);font-size:13px}
+.meta span{display:inline-flex;align-items:center;gap:7px}.meta span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--cy)}
 
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            background:
-                radial-gradient(circle at 15% 10%, rgba(0, 174, 255, 0.08), transparent 30%),
-                radial-gradient(circle at 85% 20%, rgba(255, 193, 7, 0.06), transparent 30%);
-            z-index: -1;
-        }
+/* الكروت */
+.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:22px;box-shadow:0 10px 28px rgba(0,0,0,.22)}
+.card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(380px circle at var(--x,50%) var(--y,0),rgba(255,209,102,.11),transparent 60%)}
+@media(hover:hover){.card:hover::after{opacity:1}}
 
-        .container {
-            width: min(1100px, calc(100% - 30px));
-            margin: auto;
-        }
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:6px 0 34px}
+.stat{padding:22px 18px;text-align:center;transition:transform .3s,border-color .3s}
+.stat:hover{transform:translateY(-4px);border-color:rgba(255,209,102,.35)}
+.stat strong{display:block;font-size:clamp(26px,4.5vw,38px);font-weight:800;color:var(--gold);line-height:1.3}
+.stat span{display:block;font-weight:700;margin-top:2px}
+.stat small{display:block;color:var(--mu);font-size:12.5px;line-height:1.7;margin-top:4px}
 
-        /* Hero */
-        .hero {
-            padding: 75px 0 45px;
-            text-align: center;
-        }
+/* التخطيط */
+.layout{display:grid;grid-template-columns:230px 1fr;gap:26px;align-items:start}
+.toc{position:sticky;top:18px;display:grid;gap:3px;padding:12px;border-radius:18px;background:var(--panel);border:1px solid var(--line);max-height:calc(100vh - 36px);overflow:auto}
+.toc a{padding:8px 12px;border-radius:10px;color:var(--mu);font-size:13.5px;line-height:1.6;text-decoration:none;border-inline-start:2px solid transparent;transition:.2s}
+.toc a:hover{color:#fff;background:rgba(255,255,255,.04)}
+.toc a.on{color:var(--gold);background:rgba(255,209,102,.08);border-inline-start-color:var(--gold);font-weight:700}
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            border: 1px solid rgba(255, 193, 7, 0.25);
-            border-radius: 30px;
-            background: rgba(255, 193, 7, 0.07);
-            color: #ffd54f;
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
+.sec{padding:clamp(22px,4vw,36px);margin-bottom:20px;counter-increment:s}
+.sec>header{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.sec>header::before{content:counter(s,decimal-leading-zero);flex:none;display:grid;place-items:center;width:46px;height:46px;border-radius:14px;font-weight:800;font-size:16px;color:#1a1304;background:linear-gradient(135deg,#ffd166,#ffe9a8 55%,#e0a93a);box-shadow:0 8px 22px rgba(255,209,102,.25)}
+h2{font-size:clamp(19px,3.2vw,24px);font-weight:800;line-height:1.5}
+.sec p{color:var(--mu);font-size:15.5px;margin-bottom:12px}
+.sec p strong,.sec li strong{color:var(--tx)}
 
-        .hero h1 {
-            font-size: clamp(30px, 6vw, 50px);
-            font-weight: 800;
-            margin-bottom: 15px;
-            background: linear-gradient(90deg, #ffffff, #d9e8ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
 
-        .hero p {
-            max-width: 720px;
-            margin: auto;
-            color: #aebccc;
-            font-size: 16px;
-        }
+.list{list-style:none;display:grid;gap:9px;margin:12px 0}
+.list li{position:relative;padding:12px 44px 12px 14px;border-radius:13px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);color:#c6d2e0;font-size:14.5px;transition:transform .25s,background .25s}
+.list li:hover{transform:translateX(-4px);background:rgba(255,255,255,.055)}
+.list li::before{content:"•";position:absolute;right:12px;top:50%;width:22px;height:22px;margin-top:-11px;display:grid;place-items:center;border-radius:50%;font-size:13px;font-weight:800;line-height:1;color:#10151f;background:var(--c,var(--gold))}
+.list{--c:var(--gold)}
+.list.ok{--c:var(--ok)}.list.ok li::before{content:"✓"}
+.list.no{--c:var(--no)}.list.no li::before{content:"✕"}
 
-        /* Main */
-        .policy-card {
-            background: rgba(15, 29, 48, 0.88);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 22px;
-            padding: clamp(22px, 5vw, 42px);
-            margin-bottom: 28px;
-            box-shadow: 0 18px 55px rgba(0, 0, 0, 0.22);
-        }
+.cal{margin:14px 0 4px;padding:16px 18px;border-radius:14px;border-inline-start:3px solid var(--c);background:color-mix(in srgb,var(--c) 8%,transparent);color:#dde7f2;font-size:14.5px}
+.cal b{color:var(--c)}
+.cal.info{--c:var(--cy)}.cal.warn{--c:var(--wn)}.cal.good{--c:var(--ok)}.cal.bad{--c:var(--no)}
 
-        .section {
-            margin-bottom: 38px;
-        }
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.two h3{font-size:16px;margin-bottom:4px;color:var(--c)}
 
-        .section:last-child {
-            margin-bottom: 0;
-        }
+/* الفاحص */
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0}
+.chip{font:inherit;font-size:14px;cursor:pointer;padding:10px 16px;border-radius:99px;color:var(--tx);background:rgba(255,255,255,.04);border:1px solid var(--line);transition:.2s}
+.chip:hover{border-color:rgba(255,209,102,.5);transform:translateY(-2px)}
+.chip[aria-pressed=true]{color:#1a1304;background:var(--gold);border-color:var(--gold);font-weight:700}
+.res{min-height:20px}
+.res .out{padding:18px 20px;border-radius:16px;border:1px solid var(--c);background:color-mix(in srgb,var(--c) 9%,transparent);animation:pop .45s cubic-bezier(.2,.8,.2,1)}
+.res .tag{display:inline-block;padding:2px 12px;border-radius:99px;background:var(--c);color:#10151f;font-weight:800;font-size:13px;margin-bottom:8px}
+.res p{margin:0 0 6px;color:#dce6f1}.res small{color:var(--mu)}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.97)}}
 
-        .section-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 23px;
-            font-weight: 800;
-            margin-bottom: 14px;
-            color: #ffffff;
-        }
+/* الخطوات */
+.tl{list-style:none;position:relative;display:grid;gap:14px;margin-top:18px;counter-reset:t}
+.tl::before{content:"";position:absolute;right:21px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--gold),var(--cy));transform-origin:top;transform:scaleY(0);transition:transform 1.6s ease .2s}
+.in .tl::before{transform:scaleY(1)}
+.tl li{position:relative;padding:4px 62px 4px 0;color:#c6d2e0;font-size:15px;counter-increment:t}
+.tl li::before{content:counter(t);position:absolute;right:0;top:0;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;font-weight:800;color:var(--gold);background:#0b1a30;border:2px solid var(--gold);box-shadow:0 0 22px rgba(255,209,102,.25)}
+.tl li strong{display:block;color:#fff;font-size:16px}
 
-        .section-title .icon {
-            width: 42px;
-            height: 42px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            border-radius: 12px;
-            background: rgba(0, 174, 255, 0.1);
-            border: 1px solid rgba(0, 174, 255, 0.15);
-            color: #31baff;
-            font-size: 19px;
-        }
+/* الأسئلة */
+details{border-radius:14px;background:rgba(255,255,255,.03);border:1px solid var(--line);margin-bottom:10px;transition:border-color .25s}
+details[open]{border-color:rgba(255,209,102,.4)}
+summary{cursor:pointer;list-style:none;padding:15px 18px;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";flex:none;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:rgba(255,209,102,.12);color:var(--gold);font-size:19px;transition:transform .3s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 18px 16px;margin:0}
 
-        .section p {
-            color: #b8c5d3;
-            font-size: 15px;
-            margin-bottom: 12px;
-        }
+/* التواصل */
+.contact{position:relative;text-align:center;padding:clamp(30px,6vw,52px) 20px;margin:10px 0 40px;border-radius:26px;overflow:hidden;background:linear-gradient(145deg,rgba(20,38,66,.9),rgba(8,15,30,.95));border:1px solid rgba(255,209,102,.3)}
+.contact::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0,rgba(255,209,102,.16),transparent 65%)}
+.contact>*{position:relative}
+.contact h2{font-size:clamp(22px,4vw,30px);margin-bottom:8px}
+.contact p{color:var(--mu);max-width:560px;margin:0 auto 20px}
+.btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:12px 28px;border-radius:15px;font-weight:800;text-decoration:none;font-size:15px;transition:transform .2s,box-shadow .3s}
+.btn.p{color:#1a1304;background:linear-gradient(135deg,#e0a93a,#ffe9a8 50%,#d49a32);box-shadow:0 12px 30px rgba(255,209,102,.28)}
+.btn.s{color:var(--gold);border:1px solid rgba(255,209,102,.45);background:rgba(255,209,102,.06)}
+.btn:hover{transform:translateY(-3px)}.btn:active{transform:scale(.97)}
 
-        .section ul {
-            list-style: none;
-            display: grid;
-            gap: 10px;
-            margin-top: 12px;
-        }
+footer{padding:10px 0 80px;text-align:center;color:var(--mu);font-size:13px}
+footer strong{color:var(--gold);letter-spacing:2px}
+.back{position:fixed;bottom:18px;left:18px;z-index:50;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;text-decoration:none;font-size:20px;background:var(--panel);border:1px solid rgba(255,209,102,.35);color:var(--gold)}
 
-        .section li {
-            position: relative;
-            padding: 13px 18px 13px 15px;
-            background: rgba(255, 255, 255, 0.025);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            color: #c3ced9;
-            font-size: 14px;
-        }
-
-        .section li::before {
-            content: "•";
-            position: absolute;
-            right: 7px;
-            color: #ffd54f;
-            font-size: 20px;
-            line-height: 1;
-        }
-
-        .highlight {
-            padding: 18px 20px;
-            border-radius: 14px;
-            background: rgba(0, 174, 255, 0.06);
-            border-right: 3px solid #12aef5;
-            color: #d8e7f5;
-            margin-top: 15px;
-        }
-
-        .warning {
-            padding: 18px 20px;
-            border-radius: 14px;
-            background: rgba(255, 193, 7, 0.06);
-            border-right: 3px solid #ffc107;
-            color: #e6dcc0;
-            margin-top: 15px;
-        }
-
-        .success {
-            padding: 18px 20px;
-            border-radius: 14px;
-            background: rgba(40, 200, 130, 0.06);
-            border-right: 3px solid #36d391;
-            color: #d0eee0;
-            margin-top: 15px;
-        }
-
-        .number-list {
-            counter-reset: policy;
-            list-style: none;
-            display: grid;
-            gap: 12px;
-            margin-top: 15px;
-        }
-
-        .number-list li {
-            counter-increment: policy;
-            padding: 15px 55px 15px 18px;
-            position: relative;
-            background: rgba(255, 255, 255, 0.025);
-            border-radius: 13px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .number-list li::before {
-            content: counter(policy);
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: rgba(255, 193, 7, 0.12);
-            color: #ffd54f;
-            font-weight: 800;
-            font-size: 13px;
-        }
-
-        /* Quick summary */
-        .summary {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
-            margin-bottom: 28px;
-        }
-
-        .summary-box {
-            padding: 22px 16px;
-            text-align: center;
-            background: rgba(15, 29, 48, 0.82);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 18px;
-        }
-
-        .summary-icon {
-            font-size: 25px;
-            margin-bottom: 8px;
-        }
-
-        .summary-box h3 {
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
-
-        .summary-box p {
-            color: #99a9ba;
-            font-size: 13px;
-        }
-
-        /* CTA */
-        .contact-box {
-            text-align: center;
-            padding: 30px 20px;
-            border-radius: 20px;
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(0, 174, 255, 0.09),
-                    rgba(255, 193, 7, 0.06)
-                );
-            border: 1px solid rgba(255, 255, 255, 0.07);
-        }
-
-        .contact-box h2 {
-            font-size: 25px;
-            margin-bottom: 8px;
-        }
-
-        .contact-box p {
-            color: #aebccc;
-            margin-bottom: 20px;
-        }
-
-        .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 25px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #0aa8f5, #087fd0);
-            color: #fff;
-            text-decoration: none;
-            font-weight: 800;
-            transition: 0.25s ease;
-            box-shadow: 0 8px 25px rgba(0, 157, 235, 0.18);
-        }
-
-        .contact-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 35px 15px 45px;
-            color: #738397;
-            font-size: 13px;
-        }
-
-        footer strong {
-            color: #aebccc;
-        }
-
-        /* Back button */
-        .back-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(15, 29, 48, 0.95);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #fff;
-            text-decoration: none;
-            font-size: 19px;
-            z-index: 50;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
-            transition: 0.25s ease;
-        }
-
-        .back-btn:hover {
-            transform: translateY(-3px);
-            border-color: rgba(0, 174, 255, 0.35);
-        }
-
-        /* Responsive */
-        @media (max-width: 700px) {
-            .hero {
-                padding-top: 55px;
-            }
-
-            .summary {
-                grid-template-columns: 1fr;
-            }
-
-            .policy-card {
-                border-radius: 18px;
-            }
-
-            .section-title {
-                font-size: 20px;
-            }
-
-            .section-title .icon {
-                width: 38px;
-                height: 38px;
-            }
-
-            .section p,
-            .section li {
-                font-size: 14px;
-            }
-        }
-    </style>
+@media(max-width:900px){
+.aurora i{animation:none}
+.layout{grid-template-columns:1fr}
+.toc{position:sticky;top:6px;z-index:40;display:flex;overflow-x:auto;max-height:none;padding:8px;gap:6px;border-radius:16px;scrollbar-width:none}
+.toc::-webkit-scrollbar{display:none}
+.toc a{white-space:nowrap;border-inline-start:0;border-radius:99px;padding:7px 14px}
+.stats,.two{grid-template-columns:1fr}
+.stat{display:grid;grid-template-columns:auto 1fr;gap:2px 16px;text-align:right;align-items:center}
+.stat strong{grid-row:span 3}
+}
+@media(max-width:600px){
+body{font-size:15px;line-height:1.8}
+.wrap{width:calc(100% - 20px)}
+.hero{padding:36px 0 24px}
+.live{font-size:12px;padding:6px 12px}
+h1{font-size:28px;margin:14px 0 10px;line-height:1.4}
+.lead{font-size:14px;line-height:1.8}
+.meta{font-size:12px;gap:8px 14px;margin-top:16px}
+.stats{gap:10px;margin:0 0 22px}
+.stat{padding:16px 14px}
+.stat strong{font-size:24px}
+.stat span{font-size:14px}
+.stat small{font-size:12px}
+.toc{padding:6px}
+.toc a{font-size:12.5px;padding:6px 12px}
+.sec{padding:20px 16px;margin-bottom:14px;border-radius:18px}
+.sec>header{gap:10px;margin-bottom:10px}
+.sec>header::before{width:38px;height:38px;border-radius:12px;font-size:14px}
+h2{font-size:18px}
+.sec p{font-size:14px;margin-bottom:10px}
+.list{gap:7px;margin:10px 0}
+.list li{font-size:13.5px;padding:10px 38px 10px 12px;line-height:1.7}
+.list li::before{right:10px;width:20px;height:20px;margin-top:-10px;font-size:12px}
+.cal{font-size:13.5px;padding:13px 14px;line-height:1.8}
+.chips{gap:7px}
+.chip{font-size:13px;padding:8px 13px}
+.res .out{padding:14px 15px}
+.res p{font-size:14px}
+.tl{gap:12px}
+.tl::before{right:17px}
+.tl li{padding:2px 50px 2px 0;font-size:14px}
+.tl li::before{width:36px;height:36px;font-size:13px}
+.tl li strong{font-size:15px}
+summary{padding:13px 14px;font-size:14.5px;gap:10px}
+summary::after{width:24px;height:24px;font-size:17px}
+details p{padding:0 14px 14px;font-size:13.5px}
+.contact{padding:28px 16px;margin:8px 0 28px;border-radius:20px}
+.contact h2{font-size:21px}
+.contact p{font-size:14px;margin-bottom:16px}
+.btns{width:100%;gap:10px}
+.btn{min-height:46px;padding:10px 20px;font-size:14px;width:100%}
+footer{font-size:12px;padding:8px 0 90px}
+.back{width:42px;height:42px;bottom:14px;left:14px;font-size:18px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.tl::before{transform:none}html{scroll-behavior:auto}}
+@media print{.aurora,.toc,#bar,.back,.contact::before,.chips,.res{display:none!important}body{background:#fff;color:#000}.card,.contact{background:#fff;border:1px solid #ccc;box-shadow:none}.sec p,.list li,.cal,.lead,.meta{color:#222}h1{-webkit-text-fill-color:#000;color:#000}.rv{opacity:1;transform:none}details p{display:block}}
+</style>
 </head>
-
 <body>
-
-    <main class="container">
-
-        <!-- Hero -->
-        <section class="hero">
-            <div class="hero-badge">
-                🔄 سياسة الاسترجاع والاسترداد
-            </div>
-
-            <h1>سياسة الاسترجاع والاسترداد</h1>
-
-            <p>
-                نحرص في HYPER TOPUP على تقديم تجربة واضحة وآمنة،
-                لذلك نوضح هنا الحالات المتعلقة بإلغاء الطلبات والاسترداد
-                والتعامل مع أي مشكلة قد تحدث أثناء تنفيذ الخدمة.
-            </p>
-        </section>
-
-        <!-- Summary -->
-        <section class="summary">
-
-            <div class="summary-box">
-                <div class="summary-icon">⚡</div>
-                <h3>تنفيذ سريع</h3>
-                <p>تُنفذ الطلبات عادةً خلال ثوانٍ بعد تأكيد الدفع.</p>
-            </div>
-
-            <div class="summary-box">
-                <div class="summary-icon">🛡️</div>
-                <h3>حماية العميل</h3>
-                <p>نراجع المشكلات المرتبطة بالطلبات ونسعى لحلها.</p>
-            </div>
-
-            <div class="summary-box">
-                <div class="summary-icon">💬</div>
-                <h3>دعم متواصل</h3>
-                <p>يمكنك التواصل مع الدعم عند وجود أي مشكلة.</p>
-            </div>
-
-        </section>
-
-        <!-- Policy -->
-        <section class="policy-card">
-
-            <!-- 1 -->
-            <div class="section">
-
-                <h2 class="section-title">
-                    <span class="icon">📌</span>
-                    قبل إتمام الطلب
-                </h2>
-
-                <p>
-                    قبل الدفع، يرجى مراجعة تفاصيل المنتج أو الخدمة
-                    والتأكد من صحة جميع البيانات التي أدخلتها، خصوصًا
-                    معرف اللاعب أو الحساب وطريقة الدفع.
-                </p>
-
-                <ul>
-                    <li>تأكد من اختيار اللعبة أو الخدمة الصحيحة.</li>
-                    <li>تأكد من إدخال ID اللاعب أو الحساب بشكل صحيح.</li>
-                    <li>في خدمات TikTok Coins، تأكد من استخدام رمز QR الصحيح للحساب.</li>
-                    <li>راجع الكمية والسعر وطريقة الدفع قبل تأكيد الطلب.</li>
-                </ul>
-
-            </div>
-
-            <!-- 2 -->
-            <div class="section">
-
-                <h2 class="section-title">
-                    <span class="icon">💳</span>
-                    بعد إتمام الدفع
-                </h2>
-
-                <p>
-                    بمجرد تأكيد الدفع وإرسال الطلب إلى نظام التنفيذ،
-                    قد تبدأ عملية الشحن مباشرة، ولذلك لا يمكن ضمان إمكانية
-                    إلغاء الطلب بعد بدء تنفيذه.
-                </p>
-
-                <div class="highlight">
-                    <strong>مهم:</strong>
-                    الخدمات الرقمية تختلف عن المنتجات العادية، حيث يتم
-                    تنفيذها إلكترونيًا وقد تصبح غير قابلة للإلغاء بمجرد
-                    بدء عملية الشحن أو التسليم.
-                </div>
-
-            </div>
-
-            <!-- 3 -->
-            <div class="section">
-
-                <h2 class="section-title">
-                    <span class="icon">🎮</span>
-                    الطلبات التي تعتمد على ID
-                </h2>
-
-                <p>
-                    يتم تنفيذ خدمات الشحن التي تعتمد على ID باستخدام
-                    البيانات التي يقدمها العميل أثناء إنشاء الطلب.
-                </p>
-
-                <ul>
-                    <li>
-                        العميل مسؤول عن التأكد من صحة الـID قبل تأكيد الطلب.
-                    </li>
-
-                    <li>
-                        إذا تم تنفيذ الشحن بنجاح على الـID الذي تم إدخاله
-                        في الطلب، فلا يمكن تحويل الشحنة إلى ID آخر أو
-                        استرداد قيمتها بسبب تغيير الـID بعد التنفيذ.
-                    </li>
-
-                    <li>
-                        إذا تم إدخال ID غير صحيح وتم تنفيذ الطلب عليه،
-                        فقد لا يمكن استرجاع المبلغ أو إعادة توجيه الشحنة.
-                    </li>
-                </ul>
-
-                <div class="warning">
-                    ⚠️ <strong>راجع الـID جيدًا قبل الدفع.</strong>
-                    خطأ بسيط في رقم اللاعب أو الحساب قد يؤدي إلى تنفيذ
-                    الطلب على حساب غير المقصود.
-                </div>
-
-            </div>
-
-            <!-- 4 -->
-            <div class="section">
-
-                <h2 class="section-title">
-                    <span class="icon">📱</span>
-                    خدمات TikTok عبر QR
-                </h2>
-
-                <p>
-                    بالنسبة لخدمات TikTok Coins التي تعتمد على QR،
-                    يجب على العميل التأكد من أن رمز QR يعود للحساب
-                    المطلوب شحنه قبل إتمام الطلب.
-                </p>
-
-                <ul>
-                    <li>استخدم رمز QR الصحيح للحساب.</li>
-                    <li>لا ترسل رمزًا يخص حسابًا آخر.</li>
-                    <li>بعد بدء التنفيذ، قد لا يمكن تغيير الحساب أو إلغاء الطلب.</li>
-                </ul>
-
-            </div>
-
-            <!-- 5 -->
-            <div class="section">
-
-                <h2 class="section-title">
-                    <span class="icon">⏳</span>
-                    التأخير في تنفيذ الطلب
-                </h2>
-
-                <p>
-                    نعمل على تنفيذ الطلبات بأسرع وقت ممكن، وغالبًا يتم
-                    التنفيذ خلال ثوانٍ بعد تأكيد الدفع، ولكن قد يحدث
-                    تأخير أحيانًا بسبب مزود الخدمة أو النظام الخاص
-                    باللعبة أو الخدمة أو وجود تحديثات وصيانة.
-                </p>
-
-                <div class="highlight">
-                    في حالة حدوث تأخير، يتم متابعة الطلب والتحقق من حالته
-                    قبل اتخاذ قرار بشأن الاسترداد أو التعويض.
-                </div>
-
-            </div>
-
-            <!-- 6 -->
-            <div class="section">
-
-                <h2 class="section-title">
-                    <span class="icon">🔎</span>
-                    متى يمكن طلب الاسترداد؟
-                </h2>
-
-                <p>
-                    يمكن للعميل التواصل مع الدعم لطلب مراجعة واسترداد
-                    المبلغ في الحالات التي تستدعي ذلك، ومنها:
-                </p>
-
-                <ul>
-                    <li>دفع ناجح مع عدم تنفيذ الخدمة بسبب مشكلة من جانب النظام.</li>
-                    <li>وجود خطأ تقني أدى إلى عدم وصول المنتج أو الخدمة.</li>
-                    <li>تعذر تنفيذ الطلب بشكل نهائي بعد التحقق من حالته.</li>
-                    <li>وجود خصم مالي ناجح دون استلام الخدمة المستحقة.</li>
-                </ul>
-
-                <div class="success">
-                    عند ثبوت أن المشكلة من جانب HYPER TOPUP أو من نظام
-                    التنفيذ، سيتم التعامل مع الحالة بما يحفظ حق العميل،
-                    سواء بإعادة تنفيذ الخدمة أو تقديم تعويض أو استرداد
-                    المبلغ حسب طبيعة الحالة.
-                </div>
-
-            </div>
-
-            <!-- 7 -->
-            <div class="section">
-
-                <h2 class="section-title">
-                    <span class="icon">🚫</span>
-                    حالات قد لا يشملها الاسترداد
-                </h2>
-
-                <p>
-                    قد لا يكون الاسترداد متاحًا في الحالات الناتجة عن
-                    بيانات غير صحيحة أو بعد اكتمال تنفيذ الخدمة.
-                </p>
-
-                <ul>
-                    <li>إدخال ID أو بيانات حساب خاطئة من العميل ثم تنفيذ الطلب بنجاح.</li>
-                    <li>اختيار لعبة أو خدمة أو منتج غير صحيح قبل الدفع.</li>
-                    <li>طلب تغيير الـID بعد تنفيذ الشحن.</li>
-                    <li>طلب إلغاء خدمة رقمية بعد بدء تنفيذها.</li>
-                    <li>المشكلات الناتجة عن الحساب نفسه إذا تم تنفيذ الخدمة بنجاح على البيانات الصحيحة.</li>
-                    <li>أي طلب تم تنفيذه بنجاح وفق البيانات التي قدمها العميل.</li>
-                </ul>
-
-            </div>
-
-            <!-- 8 -->
-            <div class="section">
-
-                <h2 class="section-title">
-                    <span class="icon">🧾</span>
-                    إثبات الدفع ومراجعة الطلب
-                </h2>
-
-                <p>
-                    قد نطلب من العميل تقديم بيانات أو إثباتات متعلقة
-                    بالطلب لمساعدتنا في التحقق من حالة الدفع والتنفيذ.
-                </p>
-
-                <ul>
-                    <li>رقم الطلب إن وجد.</li>
-                    <li>وسيلة الدفع المستخدمة.</li>
-                    <li>إثبات الدفع عند الحاجة.</li>
-                    <li>تفاصيل المنتج أو الخدمة المطلوبة.</li>
-                    <li>أي معلومات إضافية تساعد فريق الدعم في مراجعة المشكلة.</li>
-                </ul>
-
-                <div class="warning">
-                    لا ترسل كلمات المرور الخاصة بحسابات الألعاب أو التطبيقات.
-                    HYPER TOPUP لا يحتاج إلى كلمة مرور لتنفيذ خدمات الشحن
-                    التي تعتمد على ID أو QR.
-                </div>
-
-            </div>
-
-            <!-- 9 -->
-            <div class="section">
-
-                <h2 class="section-title">
-                    <span class="icon">🔄</span>
-                    طريقة معالجة طلبات الاسترداد
-                </h2>
-
-                <ol class="number-list">
-                    <li>
-                        يتواصل العميل مع الدعم ويذكر رقم الطلب وتفاصيل المشكلة.
-                    </li>
-
-                    <li>
-                        يتم مراجعة حالة الدفع والطلب ونتيجة التنفيذ.
-                    </li>
-
-                    <li>
-                        إذا ثبت وجود مشكلة تستحق التعويض، يتم تحديد الحل المناسب
-                        حسب طبيعة الحالة.
-                    </li>
-
-                    <li>
-                        قد يكون الحل إعادة تنفيذ الخدمة، أو تعويض العميل،
-                        أو استرداد قيمة الطلب حسب الحالة.
-                    </li>
-                </ol>
-
-            </div>
-
-            <!-- 10 -->
-            <div class="section">
-
-                <h2 class="section-title">
-                    <span class="icon">💰</span>
-                    الاسترداد بسبب تعذر التنفيذ
-                </h2>
-
-                <p>
-                    إذا تعذر تنفيذ الطلب بشكل نهائي بسبب مشكلة تقنية أو
-                    عدم توفر الخدمة، وبعد التأكد من حالة الطلب، يمكن
-                    مراجعة إمكانية استرداد المبلغ المدفوع.
-                </p>
-
-                <p>
-                    في بعض الحالات قد يكون الحل الأسرع هو إعادة تنفيذ
-                    نفس الخدمة بدلًا من الاسترداد، ويتم تحديد ذلك حسب
-                    طبيعة المشكلة ورغبة العميل عندما يكون ذلك ممكنًا.
-                </p>
-
-            </div>
-
-            <!-- 11 -->
-            <div class="section">
-
-                <h2 class="section-title">
-                    <span class="icon">🛡️</span>
-              التزامنا تجاه العميل
-                </h2>
-
-                <p>
-                    هدف HYPER TOPUP هو تقديم خدمات رقمية سهلة وسريعة
-                    مع الحفاظ على أمان وخصوصية العملاء.
-                </p>
-
-                <ul>
-                    <li>نتعامل مع مشكلات الطلبات بجدية.</li>
-                    <li>نراجع الحالات التي يحدث فيها خلل في التنفيذ.</li>
-                    <li>نسعى لتقديم الحل المناسب عند ثبوت وجود خطأ من جانب الخدمة.</li>
-                    <li>نوضح للعميل حالة طلبه قدر الإمكان.</li>
-                </ul>
-
-            </div>
-
-            <!-- 12 -->
-            <div class="section">
-
-                <h2 class="section-title">
-                    <span class="icon">📢</span>
-                    ملاحظات مهمة
-                </h2>
-
-                <ul>
-                    <li>
-                        إتمام الدفع يعني أن العميل راجع بيانات الطلب ووافق
-                        على تفاصيل الخدمة المختارة.
-                    </li>
-
-                    <li>
-                        المنتجات والخدمات الرقمية قد تختلف طبيعة إمكانية
-                        إلغائها أو استردادها حسب مرحلة التنفيذ.
-                    </li>
-
-                    <li>
-                        أي حالة استرداد يتم تقييمها بناءً على تفاصيل الطلب
-                        وحالة الدفع والتنفيذ.
-                    </li>
-
-                    <li>
-                        HYPER TOPUP يحتفظ بحقه في التحقق من أي طلب أو عملية
-                        دفع عند وجود سبب يستدعي ذلك لحماية العميل والمتجر.
-                    </li>
-                </ul>
-
-            </div>
-
-        </section>
-
-        <!-- Contact -->
-        <section class="contact-box">
-
-            <h2>واجهت مشكلة في طلبك؟</h2>
-
-            <p>
-                فريق الدعم جاهز لمساعدتك ومراجعة حالة طلبك.
-                أرسل رقم الطلب وتفاصيل المشكلة وسنعمل على مساعدتك.
-            </p>
-
-            <a href="index.html" class="contact-btn">
-                العودة إلى المتجر
-            </a>
-
-        </section>
-
-    </main>
-
-    <footer>
-        <strong>HYPER TOPUP</strong>
-        <br>
-        سياسة الاسترجاع والاسترداد
-        <br>
-        جميع الحقوق محفوظة © 2026
-    </footer>
-
-    <!-- Back -->
-    <a href="javascript:history.back()" class="back-btn" aria-label="رجوع">
-        ←
-    </a>
-
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<div id="bar" aria-hidden="true"></div>
+
+<main class="wrap">
+<header class="hero">
+  <span class="live"><b></b> سياسة سارية ومحدّثة</span>
+  <h1>سياسة الاسترجاع والاسترداد</h1>
+  <p class="lead">نوضّح هنا بشكل مباشر متى يمكنك إلغاء الطلب أو استرداد المبلغ، وكيف نعالج أي مشكلة تحدث أثناء تنفيذ الخدمات الرقمية وشحن الألعاب في HYPER TOPUP.</p>
+  <div class="meta">
+    <span>آخر تحديث: <time datetime="2026-11-02">2 نوفمبر 2026</time></span>
+    <span>الإصدار 2.0</span>
+    <span>قراءة في دقيقتين</span>
+  </div>
+</header>
+
+<section class="stats" aria-label="ملخص سريع">
+  <div class="card stat rv"><strong>ثوانٍ</strong><span>مدة التنفيذ المعتادة</span><small>بعد تأكيد الدفع مباشرة.</small></div>
+  <div class="card stat rv"><strong><span data-count="48" style="display:inline">0</span> ساعة</strong><span>أفضل وقت للإبلاغ</span><small>أبلغنا بأي مشكلة خلال 48 ساعة من الدفع.</small></div>
+  <div class="card stat rv"><strong>1–3 أيام</strong><span>مدة الاسترداد بعد الموافقة</span><small>حسب وسيلة الدفع المستخدمة.</small></div>
+</section>
+
+<div class="layout">
+<nav class="toc" id="toc" aria-label="فهرس الصفحة"></nav>
+
+<article>
+
+<section class="card sec rv" id="before">
+  <header><h2>قبل إتمام الطلب</h2></header>
+  <p>الخدمات الرقمية تُنفَّذ إلكترونيًا وبشكل فوري تقريبًا، لذلك المراجعة قبل الدفع هي أهم خطوة.</p>
+  <ul class="list">
+    <li>تأكد من اختيار <strong>اللعبة أو الخدمة</strong> والكمية الصحيحة.</li>
+    <li>تأكد من كتابة <strong>ID اللاعب أو الحساب</strong> بدون أخطاء.</li>
+    <li>في خدمات TikTok Coins استخدم <strong>رمز QR الخاص بالحساب المطلوب شحنه</strong> فقط.</li>
+    <li>راجع السعر وطريقة الدفع قبل تأكيد الطلب.</li>
+  </ul>
+</section>
+
+<section class="card sec rv" id="after">
+  <header><h2>بعد إتمام الدفع</h2></header>
+  <p>بمجرد تأكيد الدفع يُرسل الطلب إلى نظام التنفيذ وقد يبدأ الشحن فورًا، ولذلك لا يمكن ضمان الإلغاء بعد بدء التنفيذ.</p>
+  <div class="cal info"><b>مهم:</b> الخدمات الرقمية تختلف عن المنتجات المادية؛ فبمجرد بدء الشحن أو التسليم تصبح غير قابلة للإرجاع بطبيعتها.</div>
+  <div class="cal good"><b>إلغاء قبل التنفيذ:</b> إذا تواصلت معنا فورًا وقبل بدء التنفيذ، نحاول إلغاء الطلب أو تعديله قدر الإمكان.</div>
+</section>
+
+<section class="card sec rv" id="ids">
+  <header><h2>طلبات ID وخدمات QR</h2></header>
+  <p>يُنفَّذ الشحن على البيانات التي يدخلها العميل وقت الطلب، والعميل مسؤول عن صحتها.</p>
+  <ul class="list">
+    <li>إذا نُفّذ الشحن بنجاح على الـ ID المُدخل، <strong>لا يمكن تحويله إلى ID آخر</strong> أو استرداد قيمته.</li>
+    <li>في خدمات TikTok عبر QR، لا ترسل رمزًا يخص حسابًا آخر، وبعد بدء التنفيذ قد لا يمكن تغيير الحساب.</li>
+    <li>إذا اكتشفت الخطأ قبل التنفيذ، تواصل معنا فورًا وسنحاول التصحيح.</li>
+  </ul>
+  <div class="cal warn"><b>راجع الـ ID مرتين قبل الدفع.</b> خطأ في رقم واحد قد ينفّذ الطلب على حساب غير مقصود.</div>
+</section>
+
+<section class="card sec rv" id="delay">
+  <header><h2>التأخير في تنفيذ الطلب</h2></header>
+  <p>غالبًا يتم التنفيذ خلال ثوانٍ، لكن قد يحدث تأخير بسبب مزوّد الخدمة أو صيانة اللعبة أو تحديثاتها. عند التأخير نتابع حالة الطلب ونتحقق منها قبل اتخاذ قرار الاسترداد أو التعويض.</p>
+  <div class="cal info"><b>نصيحة:</b> انتظر بضع دقائق وأعد فتح اللعبة قبل الإبلاغ، فالتحديث قد يتأخر في ظهوره.</div>
+</section>
+
+<section class="card sec rv" id="rules">
+  <header><h2>متى يحق الاسترداد ومتى لا يحق</h2></header>
+  <div class="two">
+    <div><h3 style="--c:var(--ok)">✓ يشمله الاسترداد أو التعويض</h3>
+      <ul class="list ok">
+        <li>دفع ناجح مع عدم تنفيذ الخدمة بسبب مشكلة من النظام.</li>
+        <li>خطأ تقني منع وصول المنتج أو الخدمة.</li>
+        <li>تعذّر تنفيذ الطلب نهائيًا بعد التحقق من حالته.</li>
+        <li>خصم مالي ناجح دون استلام الخدمة.</li>
+        <li>خصم المبلغ أكثر من مرة لنفس الطلب.</li>
+      </ul></div>
+    <div><h3 style="--c:var(--no)">✕ لا يشمله غالبًا</h3>
+      <ul class="list no">
+        <li>إدخال ID أو بيانات خاطئة ثم تنفيذ الطلب بنجاح.</li>
+        <li>اختيار لعبة أو خدمة أو فئة غير صحيحة قبل الدفع.</li>
+        <li>طلب تغيير الـ ID أو الإلغاء بعد التنفيذ.</li>
+        <li>تغيير الرأي بعد اكتمال الخدمة.</li>
+        <li>قيود من الحساب نفسه أو من الناشر (مثل منطقة غير مدعومة أو حساب محظور) رغم نجاح التنفيذ.</li>
+      </ul></div>
+  </div>
+  <div class="cal good">عند ثبوت أن المشكلة من جانبنا أو من نظام التنفيذ، يكون الحل: <b>إعادة التنفيذ، أو تعويض، أو استرداد المبلغ</b> حسب الحالة.</div>
+</section>
+
+<section class="card sec rv" id="checker">
+  <header><h2>افحص حالتك بسرعة</h2></header>
+  <p>اختر الموقف الأقرب لحالتك وسنعطيك إرشادًا مبدئيًا.</p>
+  <div class="chips" id="chips" role="group" aria-label="اختر حالتك"></div>
+  <div class="res" id="res" aria-live="polite"></div>
+  <p><small style="color:var(--mu)">هذا إرشاد مبدئي وليس قرارًا نهائيًا؛ القرار يعتمد على مراجعة الطلب والدفع.</small></p>
+</section>
+
+<section class="card sec rv" id="steps">
+  <header><h2>كيف نعالج طلب الاسترداد</h2></header>
+  <ol class="tl">
+    <li><strong>تواصل معنا</strong>أرسل رقم الطلب وتفاصيل المشكلة (يُفضّل خلال 48 ساعة من الدفع).</li>
+    <li><strong>نراجع الطلب</strong>نتحقق من حالة الدفع ونتيجة التنفيذ مع مزوّد الخدمة.</li>
+    <li><strong>نحدد الحل</strong>إعادة تنفيذ الخدمة، أو تعويض، أو استرداد القيمة حسب الحالة.</li>
+    <li><strong>نبلغك بالنتيجة</strong>يُرد المبلغ على نفس وسيلة الدفع، عادةً خلال 1–3 أيام عمل بعد الموافقة.</li>
+  </ol>
+  <div class="cal info">قد يكون الحل الأسرع أحيانًا هو إعادة تنفيذ نفس الخدمة بدل الاسترداد، ونراعي رغبتك عندما يكون ذلك ممكنًا.</div>
+</section>
+
+<section class="card sec rv" id="special">
+  <header><h2>حالات خاصة</h2></header>
+  <ul class="list">
+    <li><strong>الدفع المزدوج:</strong> إذا خُصم المبلغ مرتين لنفس الطلب، أرسل إثبات العمليتين وسنرد المبلغ الزائد بعد التحقق.</li>
+    <li><strong>تحويل بدون طلب مسجّل:</strong> إذا حوّلت المبلغ ولم يظهر طلبك، أرسل إثبات التحويل وسنراجعه ونُنفّذ الطلب أو نرد المبلغ.</li>
+    <li><strong>طلبات الضيف:</strong> لا تحتاج حسابًا لطلب الاسترداد، لكن لا يوجد سجل طلبات للضيف، فاحتفظ برقم الطلب وإثبات الدفع.</li>
+    <li><strong>العروض والأسعار:</strong> السعر المعتمد هو السعر وقت إتمام الدفع، ولا يُسترد الفرق عند تغيّر الأسعار أو انتهاء العرض لاحقًا.</li>
+    <li><strong>إساءة الاستخدام:</strong> نحتفظ بحق رفض طلبات الاسترداد المتكررة أو المشبوهة، وبالتحقق من أي عملية دفع لحماية العملاء والمتجر.</li>
+  </ul>
+</section>
+
+<section class="card sec rv" id="proof">
+  <header><h2>ما نحتاجه لمراجعة طلبك</h2></header>
+  <ul class="list">
+    <li>رقم الطلب.</li>
+    <li>وسيلة الدفع وإثبات الدفع (لقطة شاشة أو رقم العملية).</li>
+    <li>اسم اللعبة أو الخدمة والكمية المطلوبة.</li>
+    <li>أي تفاصيل تساعدنا على فهم المشكلة.</li>
+  </ul>
+  <div class="cal bad"><b>تنبيه أمني:</b> لا ترسل كلمات مرور حسابات الألعاب أو التطبيقات أبدًا. HYPER TOPUP لا يحتاج كلمة مرور لتنفيذ خدمات الـ ID أو الـ QR.</div>
+</section>
+
+<section class="card sec rv" id="faq">
+  <header><h2>أسئلة شائعة</h2></header>
+  <details><summary>هل أقدر ألغي الطلب بعد الدفع؟</summary><p>الإلغاء ممكن فقط قبل بدء التنفيذ وبشرط التواصل مع الدعم فورًا. بعد بدء الشحن أو التسليم لا يمكن ضمان الإلغاء.</p></details>
+  <details><summary>كتبت ID خاطئ، ماذا أفعل؟</summary><p>تواصل مع الدعم فورًا. إذا لم يبدأ التنفيذ قد نتمكن من تصحيح البيانات، أما إذا نُفّذ الطلب فلا يمكن تحويل الشحنة أو استرداد قيمتها.</p></details>
+  <details><summary>كم تستغرق عملية الاسترداد؟</summary><p>بعد الموافقة على الطلب يتم الاسترداد عادةً خلال 1 إلى 3 أيام عمل، وقد تزيد المدة حسب وسيلة الدفع.</p></details>
+  <details><summary>هل أحتاج حسابًا لطلب الاسترداد؟</summary><p>لا. يكفي رقم الطلب وإثبات الدفع، سواء كان الطلب بحساب أو كضيف.</p></details>
+  <p style="margin-top:14px;font-size:13px">لا تُخلّ هذه السياسة بأي حقوق يكفلها لك القانون المعمول به. وقد نحدّث هذه السياسة من وقت لآخر، ويُعتمد التاريخ المذكور أعلى الصفحة.</p>
+</section>
+
+</article>
+</div>
+
+<section class="contact rv">
+   <h2>واجهت مشكلة في طلبك؟</h2>
+  <p>فريق الدعم جاهز لمراجعة حالة طلبك. أرسل رقم الطلب وتفاصيل المشكلة وسنساعدك بأسرع وقت.</p>
+  <div class="btns" id="sup"></div>
+</section>
+</main>
+
+<footer><strong>HYPER TOPUP</strong><br>سياسة الاسترجاع والاسترداد · جميع الحقوق محفوظة © 2026</footer>
+<a href="javascript:history.back()" class="back" aria-label="رجوع">→</a>
+
+<script>
+/* ===== إعدادات الدعم: اكتب بياناتك هنا، والفاضي لا يظهر ===== */
+var SUPPORT={whatsapp:"",telegram:"",email:""}; /* whatsapp: رقم دولي بدون + مثل 201000000000 | telegram: اليوزر بدون @ */
+
+(function(){
+var $=function(s,r){return(r||document).querySelector(s)},$$=function(s,r){return[].slice.call((r||document).querySelectorAll(s))};
+var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* شريط التقدم */
+var bar=$('#bar');
+function prog(){var h=document.documentElement;bar.style.transform='scaleX('+Math.min(1,h.scrollTop/((h.scrollHeight-h.clientHeight)||1))+')'}
+addEventListener('scroll',prog,{passive:true});prog();
+
+/* الظهور عند التمرير + العدّاد */
+function count(el){var t=+el.dataset.count,s=performance.now();if(reduce){el.textContent=t;return}
+(function f(n){var p=Math.min(1,(n-s)/1200);el.textContent=Math.round(t*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(s)}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');$$('[data-count]',e.target).forEach(count);io.unobserve(e.target)}})},{threshold:.12});
+$$('.rv').forEach(function(el){io.observe(el)});
+
+/* الفهرس + تتبع القسم الحالي */
+var toc=$('#toc'),secs=$$('.sec[id]');
+secs.forEach(function(s){var a=document.createElement('a');a.href='#'+s.id;a.textContent=$('h2',s).textContent;toc.appendChild(a)});
+var links=$$('a',toc);
+var spy=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;
+links.forEach(function(l){l.classList.toggle('on',l.hash==='#'+e.target.id)});
+var on=$('.on',toc);if(on&&innerWidth<900){toc.scrollLeft=on.offsetLeft-(toc.clientWidth-on.offsetWidth)/2-(toc.scrollWidth-toc.clientWidth)}})},{rootMargin:'-30% 0px -60% 0px'});
+secs.forEach(function(s){spy.observe(s)});
+
+/* لمعة تتبع المؤشر */
+document.addEventListener('pointermove',function(e){if(e.pointerType!=='mouse')return;var c=e.target.closest&&e.target.closest('.card');if(!c)return;var r=c.getBoundingClientRect();c.style.setProperty('--x',(e.clientX-r.left)+'px');c.style.setProperty('--y',(e.clientY-r.top)+'px')},{passive:true});
+
+/* فاحص الحالة */
+var D=[
+{q:'دفعت ولم تصل الخدمة',c:'var(--ok)',t:'مؤهّل للمراجعة',p:'هذه الحالة تستحق المراجعة، وغالبًا الحل إعادة التنفيذ أو الاسترداد.',n:'أرسل رقم الطلب وإثبات الدفع للدعم.'},
+{q:'خُصم المبلغ مرتين',c:'var(--ok)',t:'مؤهّل للمراجعة',p:'نرد المبلغ الزائد بعد التحقق من العمليتين.',n:'أرسل إثبات الخصمين ورقم الطلب.'},
+{q:'حوّلت المبلغ ولم يظهر طلبي',c:'var(--ok)',t:'مؤهّل للمراجعة',p:'نراجع التحويل ثم ننفّذ الطلب أو نرد المبلغ.',n:'أرسل إثبات التحويل ووقته.'},
+{q:'الطلب متأخر',c:'var(--wn)',t:'يحتاج متابعة',p:'قد يكون التأخير من مزوّد الخدمة أو صيانة اللعبة. نتحقق من الحالة قبل أي قرار.',n:'انتظر بضع دقائق، وإن استمر التأخير أرسل رقم الطلب.'},
+{q:'كتبت ID خاطئ',c:'var(--wn)',t:'يعتمد على وقت التواصل',p:'إن لم يبدأ التنفيذ قد نتمكن من التصحيح. وإن نُفّذ فلا يمكن تحويل الشحنة أو استرداد قيمتها.',n:'تواصل معنا فورًا وبأسرع وقت.'},
+{q:'غيّرت رأيي بعد التنفيذ',c:'var(--no)',t:'غير مشمول غالبًا',p:'الخدمات الرقمية المنفّذة بنجاح لا تُسترد بسبب تغيير الرأي.',n:'إذا كان لديك خطأ تقني فعلي، أرسل تفاصيله للمراجعة.'}];
+var chips=$('#chips'),res=$('#res');
+D.forEach(function(d,i){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=d.q;b.setAttribute('aria-pressed','false');
+b.onclick=function(){$$('.chip').forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');
+res.innerHTML='<div class="out" style="--c:'+d.c+'"><span class="tag">'+d.t+'</span><p>'+d.p+'</p><small><b>الخطوة التالية:</b> '+d.n+'</small></div>'};chips.appendChild(b)});
+
+/* أزرار الدعم */
+var sup=$('#sup'),h='';
+if(SUPPORT.whatsapp)h+='<a class="btn p" href="https://wa.me/'+SUPPORT.whatsapp+'" target="_blank" rel="noopener">واتساب</a>';
+if(SUPPORT.telegram)h+='<a class="btn p" href="https://t.me/'+SUPPORT.telegram+'" target="_blank" rel="noopener">تيليجرام</a>';
+if(SUPPORT.email)h+='<a class="btn p" href="mailto:'+SUPPORT.email+'">البريد الإلكتروني</a>';
+sup.innerHTML='<a class="btn p" href="https://wa.me/201002722164" target="_blank" rel="noopener">الدعم الفني المباشر</a>'+'<a class="btn s" href="index.html">العودة إلى المتجر</a>';
+})();
+</script>
 </body>
 </html>
