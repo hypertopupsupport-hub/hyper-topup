@@ -1,5 +1,5 @@
 {
-  "maintenance": false,
+  "maintenance": true,
   "type": "rest",
   "title": "الخدمة متوقفة مؤقتاً",
   "message": "الطلبات متوقفة حالياً، ويُفتح الدفع هنا تلقائياً فور عودة الخدمة.",
