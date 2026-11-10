@@ -572,13 +572,13 @@ const params = new URLSearchParams(location.search);
 
 /* المبلغ: أرقام فقط. لو مفيش مبلغ صحيح بنوقف الدفع بدل ما نحط رقم افتراضي (كان بيطلع 50) */
 const parsedAmount = parseFloat((params.get('amount') || params.get('price') || '').replace(/[^0-9.]/g, ''));
-const amountOk = Number.isFinite(parsedAmount) && parsedAmount > 0 && parsedAmount <= 100000;
+const amountOk = Number.isFinite(parsedAmount) && Math.round(parsedAmount) > 0 && parsedAmount <= 100000;
 
 const orderData = {
   game: params.get('game') || '—',
   packageName: params.get('package') || params.get('pack') || '—',
   playerId: params.get('id') || params.get('player') || '—',
-  amount: amountOk ? String(Math.round(parsedAmount * 100) / 100) : '',
+  amount: amountOk ? String(Math.round(parsedAmount)) : '',
   orderId: '',   // رقم الطلب بيتولّد لحظة تأكيد الدفع بس (مش من الرابط)
   coupon: ((c) => (c && c !== 'لا يوجد' ? c.trim().toUpperCase() : ''))(params.get('coupon')),
   paymentMethod: null,
