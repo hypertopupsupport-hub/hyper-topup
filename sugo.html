@@ -1,324 +1,196 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HYPER TOPUP - شحن عملات Sugo</title>
-  <style>
-    /* Global Styles & Reset */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
-    }
-
-    body {
-      background-color: #050508;
-      color: #ffffff;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow-x: hidden;
-    }
-
-    /* Modal Overlay Container */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(5, 5, 8, 0.95);
-      backdrop-filter: blur(8px);
-      z-index: 9999;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      overflow-y: auto;
-      padding: 15px;
-    }
-
-    .modal-container {
-      width: 100%;
-      max-width: 480px;
-      background: #0b0814;
-      border: 1px solid rgba(168, 85, 247, 0.35);
-      border-radius: 20px;
-      padding: 20px;
-      box-shadow: 0 0 25px rgba(168, 85, 247, 0.2);
-      margin: auto 0;
-    }
-
-    /* Header Layout */
-    .modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 16px;
-    }
-
-    .back-btn {
-      background: rgba(168, 85, 247, 0.1);
-      border: 1px solid rgba(168, 85, 247, 0.4);
-      color: #c084fc;
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-    }
-
-    .back-btn:active {
-      transform: scale(0.9);
-      background: #a855f7;
-      color: #ffffff;
-      box-shadow: 0 0 15px #a855f7;
-    }
-
-    .header-titles {
-      text-align: left;
-    }
-
-    .brand-title {
-      font-size: 16px;
-      font-weight: 900;
-      letter-spacing: 1px;
-      color: #ffffff;
-      text-shadow: 0 0 8px rgba(168, 85, 247, 0.6);
-    }
-
-    .sub-badge {
-      font-size: 11px;
-      color: #c084fc;
-      background: rgba(168, 85, 247, 0.12);
-      padding: 2px 8px;
-      border-radius: 6px;
-      display: inline-block;
-      margin-top: 2px;
-      border: 1px solid rgba(168, 85, 247, 0.25);
-    }
-
-    /* Hero Banner Image */
-    .hero-banner {
-      width: 100%;
-      max-height: 130px;
-      border-radius: 16px;
-      overflow: hidden;
-      margin-bottom: 16px;
-      border: 1px solid rgba(168, 85, 247, 0.35);
-      box-shadow: 0 0 18px rgba(168, 85, 247, 0.2);
-    }
-
-    .hero-banner img {
-      width: 100%;
-      height: 130px;
-      display: block;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    /* Products Grid Layout */
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    /* Individual Product Card */
-    .product-card {
-      background: #120b22;
-      border: 1px solid rgba(168, 85, 247, 0.2);
-      border-radius: 14px;
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      transition: all 0.25s ease;
-      position: relative;
-    }
-
-    .product-card:hover, .product-card:active {
-      border-color: #a855f7;
-      box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
-      transform: translateY(-2px);
-    }
-
-    /* Custom Unique Card Image Container */
-    .sugo-card-img-wrapper {
-      width: 100%;
-      height: 100px;
-      border-radius: 10px;
-      overflow: hidden;
-      margin-bottom: 8px;
-      background: #000;
-      border: 1px solid rgba(168, 85, 247, 0.15);
-    }
-
-    .sugo-card-img-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* Package Title & Price */
-    .pkg-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 3px;
-    }
-
-    .pkg-price {
-      font-size: 13px;
-      font-weight: 800;
-      color: #c084fc;
-      margin-bottom: 8px;
-      text-shadow: 0 0 5px rgba(168, 85, 247, 0.4);
-    }
-
-    /* Action Charge Button */
-    .charge-btn {
-      width: 100%;
-      padding: 8px 0;
-      background: transparent;
-      border: 1px solid #a855f7;
-      color: #c084fc;
-      border-radius: 8px;
-      font-size: 11px;
-      font-weight: 800;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-transform: uppercase;
-    }
-
-    .charge-btn:active {
-      background: #a855f7;
-      color: #ffffff;
-      box-shadow: 0 0 12px #a855f7;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050508">
+<title>HYPER TOPUP | شحن عملات SUGO</title>
+<meta name="description" content="شحن عملات SUGO من HYPER TOPUP بأسعار واضحة بالجنيه المصري وتسليم سريع ودفع آمن.">
+<link rel="icon" href="icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+<script src="coupons.js"></script>
+<style>
+:root{--bg:#050508;--s1:#0e0a18;--s2:#150f24;--line:rgba(168,85,247,.32);--purp:#a855f7;--purp2:#9333ea;--pl:#c084fc;--text:#fff;--muted:#8e8ea0;--green:#22c55e;--red:#ef4444}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%}
+body{background:radial-gradient(circle at 50% -10%,rgba(168,85,247,.22),transparent 42%),radial-gradient(circle at 90% 60%,rgba(138,43,226,.12),transparent 40%),var(--bg);color:var(--text);font-family:'Cairo',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:-20%;pointer-events:none;opacity:.12;background:repeating-linear-gradient(120deg,transparent 0 75px,rgba(168,85,247,.2) 76px,transparent 78px 150px);transform:rotate(-5deg)}
+button,input{font:inherit}.hidden{display:none!important}
+.page{position:relative;z-index:1;width:min(100%,980px);margin:auto;padding:12px 16px 34px}
+.top{display:flex;align-items:center;justify-content:space-between;padding:6px 0 16px}
+.back{width:42px;height:42px;border:1px solid var(--line);border-radius:14px;background:rgba(168,85,247,.08);color:var(--pl);font-size:24px;cursor:pointer;transition:.2s}
+.back:active{background:var(--purp);color:#fff;transform:scale(.94)}
+.brand{text-align:center}.brand b{display:block;font-family:Orbitron,sans-serif;font-size:19px;font-weight:900;letter-spacing:1.5px}
+.pill{display:inline-block;margin-top:4px;padding:2px 14px;border:1px solid var(--line);border-radius:99px;background:linear-gradient(135deg,rgba(168,85,247,.18),rgba(138,43,226,.22));color:var(--pl);font-size:11px;font-weight:800}
+.hero{border-radius:22px;overflow:hidden;border:1px solid var(--line);background:#000;box-shadow:0 0 30px rgba(168,85,247,.2)}
+.hero img{display:block;width:100%;height:clamp(176px,26vw,260px);object-fit:cover;object-position:center}
+.hero{position:relative}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 28%,rgba(5,5,8,.9))}
+.hero-txt{position:absolute;z-index:1;right:16px;left:16px;bottom:12px}
+.hero .gi{display:block;width:56px;height:56px;margin-bottom:6px;border-radius:13px;object-fit:cover;border:1px solid rgba(255,255,255,.3);box-shadow:0 4px 16px rgba(0,0,0,.65)}
+.hero-txt h1{margin:0 0 7px;font-family:Orbitron,sans-serif;font-size:21px;font-weight:900;letter-spacing:2px;text-shadow:0 2px 12px #000}
+.hero-txt .chip{margin:0 0 0 6px;padding:3px 12px;background:rgba(0,0,0,.45);backdrop-filter:blur(6px)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border:1px solid var(--line);border-radius:99px;background:var(--s1);color:var(--pl);font-size:12px;font-weight:700}.chip svg{width:15px;height:15px}
+.head{display:flex;justify-content:space-between;align-items:baseline;margin:22px 4px 14px}
+.head h2{margin:0;font-size:17px;font-weight:900;display:flex;align-items:center;gap:10px}.head h2:before{content:"";width:4px;height:18px;border-radius:4px;background:linear-gradient(180deg,var(--pl),var(--purp))}
+.head span{color:var(--muted);font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.card{background:linear-gradient(160deg,var(--s1),var(--s2));border:1px solid var(--line);border-radius:18px;overflow:hidden;text-align:center;transition:.2s;animation:in .45s ease both}
+.card:hover{border-color:var(--purp);box-shadow:0 0 24px rgba(168,85,247,.32)}
+@keyframes in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.card .img{display:flex;align-items:center;justify-content:center;height:90px;background:radial-gradient(circle at 50% 70%,rgba(168,85,247,.22),transparent 72%)}
+.card .img img{height:62px;width:auto;max-width:80%;object-fit:contain;filter:drop-shadow(0 0 10px rgba(168,85,247,.45));transition:transform .3s}.card:hover .img img{transform:scale(1.1)}
+.body{padding:4px 10px 14px}
+.name{font-size:15px;font-weight:800}
+.price{margin:2px 0 10px;color:var(--pl);font-weight:800;font-size:14px}.price small{font-size:11px;color:var(--muted)}
+.buy,.go,.btn{border:0;color:#fff;font-weight:800;cursor:pointer;background:linear-gradient(135deg,var(--purp),var(--purp2));box-shadow:0 6px 18px rgba(168,85,247,.3)}
+.buy{width:100%;height:36px;border-radius:11px;font-size:12.5px}.buy:active,.go:active{transform:scale(.97)}
+input[type=text],input[type=tel]{width:100%;height:44px;padding:0 14px;border:1px solid var(--line);border-radius:12px;background:rgba(0,0,0,.55);color:#fff;font-size:14px;font-weight:700;outline:none;transition:.2s}
+input:focus{border-color:var(--purp);box-shadow:0 0 12px rgba(168,85,247,.3)}input::placeholder{color:var(--muted);font-weight:600;font-size:12px}
+.foot{margin-top:30px;padding-top:18px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:12px}.foot b{font-family:Orbitron,sans-serif;color:var(--pl);letter-spacing:1px}
+/* sheet */
+.ov{position:fixed;inset:0;z-index:50;display:flex;align-items:flex-end;justify-content:center;background:rgba(2,0,5,.82);backdrop-filter:blur(8px)}
+.sheet{width:100%;max-width:520px;max-height:92vh;overflow-y:auto;background:#09090f;border:1px solid var(--line);border-radius:24px 24px 0 0;padding:20px 20px 0;box-shadow:0 -10px 50px rgba(168,85,247,.2);animation:up .25s ease-out}
+@keyframes up{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.sh{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.sh h3{margin:0;font-size:17px;font-weight:900}
+.x{border:0;background:none;color:var(--muted);font-size:28px;cursor:pointer}
+.pk{display:flex;align-items:center;gap:12px;padding:10px 12px;margin-bottom:16px;border-radius:14px;background:var(--s2);border:1px solid var(--line)}
+.pk img{width:48px;height:48px;object-fit:contain;filter:drop-shadow(0 0 8px rgba(168,85,247,.5))}.pk b{font-size:15px}.pk small{display:block;color:var(--pl);font-weight:700}
+label{display:block;margin:12px 0 7px;color:var(--muted);font-size:12.5px;font-weight:700}
+.row{display:flex;gap:8px}.btn{padding:0 18px;border-radius:12px;font-size:13px;white-space:nowrap}
+.msg{display:none;margin-top:8px;font-size:12px;font-weight:700}.msg.error{display:block;color:var(--red)}.msg.success{display:block;color:var(--green)}
+h4{margin:20px 0 10px;font-size:14px;font-weight:800}
+.pay{position:relative;display:flex;align-items:center;gap:12px;padding:12px 14px;margin-bottom:10px;border:1px solid var(--line);border-radius:14px;background:var(--s1);cursor:pointer;font-size:13.5px;font-weight:700;transition:.2s}
+.pay.selected{border-color:var(--purp);background:rgba(168,85,247,.12);box-shadow:0 0 16px rgba(168,85,247,.25)}
+.pl{height:28px;max-width:84px;width:auto;object-fit:contain;border-radius:6px;flex:none}
+.rec{position:absolute;top:8px;left:12px;padding:1px 9px;border-radius:6px;background:var(--purp);font-size:10.5px}
+.det{display:none;margin-top:4px;padding:12px 14px;border-radius:14px;background:var(--s1);border:1px solid var(--line);font-size:12.5px;color:var(--muted)}.det.show{display:block}
+.det div{display:flex;justify-content:space-between;margin-bottom:7px}.det .t{margin:0;color:#fff;font-weight:800;font-size:14px}
+.bar{position:sticky;bottom:0;margin:16px -20px 0;padding:12px 20px calc(12px + env(safe-area-inset-bottom));display:flex;justify-content:space-between;align-items:center;background:#06060b;border-top:1px solid var(--line)}
+.bar small{display:flex;align-items:center;gap:4px;color:var(--muted);font-size:12px;cursor:pointer}.bar b{font-family:Orbitron,Cairo,sans-serif;font-size:17px;color:var(--pl)}
+.go{padding:12px 22px;border-radius:13px;font-size:14.5px}
+@media(prefers-reduced-motion:reduce){.card,.sheet{animation:none}}
+</style>
 </head>
 <body>
+<main class="page">
+  <header class="top">
+    <button class="back" onclick="closeModal()" aria-label="رجوع">&#8250;</button>
+    <div class="brand"><b>HYPER TOPUP</b><span class="pill">SUGO • شحن عملات</span></div>
+    <div style="width:42px"></div>
+  </header>
 
-  <!-- Overlay Modal Wrapper -->
-  <div class="modal-overlay">
-    <div class="modal-container">
-      
-      <!-- Top Header Layout -->
-      <div class="modal-header">
-        <button class="back-btn" onclick="closeModal()" title="إغلاق">&lt;</button>
-        <div class="header-titles">
-          <div class="brand-title">HYPER TOPUP</div>
-          <div class="sub-badge">شحن عملات SUGO</div>
-        </div>
-      </div>
+  <section class="hero"><img src="images/image_bf0395c1.jpg" alt="شحن عملات SUGO من HYPER TOPUP">
+    <div class="hero-txt"><img class="gi" src="images/IMG_20261116_164851%20(1).png" alt="SUGO MENA"><h1>SUGO MENA</h1>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>شحن سريع</span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/></svg>دفع آمن</span>
+    </div></section>
 
-      <!-- Hero Banner Image -->
-      <div class="hero-banner">
-        <img src="https://i.ibb.co/G4KsQXWb/sugo-tile.png" alt="شحن عملات سوجو">
-      </div>
+  <div class="head"><h2>باقات العملات</h2><span>7 باقات</span></div>
+  <!-- لتغيير السعر عدّل الرقم داخل class="pv" فقط -->
+  <section class="grid" id="grid" aria-label="باقات عملات SUGO">
+    <article class="card"><div class="img"><img src="images/e848445002feef6a06563212f4f1efce.png" alt="4,800 عملة سوجو" loading="lazy"></div><div class="body"><div class="name">4,800 عملة</div><div class="price"><span class="pv">65</span> <small>ج.م</small></div><button class="buy" type="button">شحن فوري</button></div></article>
+    <article class="card"><div class="img"><img src="images/e0d9ca885734dbd73ed53350c0b1b9f1.png" alt="9,600 عملة سوجو" loading="lazy"></div><div class="body"><div class="name">9,600 عملة</div><div class="price"><span class="pv">125</span> <small>ج.م</small></div><button class="buy" type="button">شحن فوري</button></div></article>
+    <article class="card"><div class="img"><img src="images/6fea5979644f514703b44febe36fb95c.png" alt="25,000 عملة سوجو" loading="lazy"></div><div class="body"><div class="name">25,000 عملة</div><div class="price"><span class="pv">295</span> <small>ج.م</small></div><button class="buy" type="button">شحن فوري</button></div></article>
+    <article class="card"><div class="img"><img src="images/de4b4c74691f2608745f41ffcc2c36ab.png" alt="50,000 عملة سوجو" loading="lazy"></div><div class="body"><div class="name">50,000 عملة</div><div class="price"><span class="pv">580</span> <small>ج.م</small></div><button class="buy" type="button">شحن فوري</button></div></article>
+    <article class="card"><div class="img"><img src="images/1d5b0808513ece6cc0aebb638d69b027.png" alt="150,000 عملة سوجو" loading="lazy"></div><div class="body"><div class="name">150,000 عملة</div><div class="price"><span class="pv">1,650</span> <small>ج.م</small></div><button class="buy" type="button">شحن فوري</button></div></article>
+    <article class="card"><div class="img"><img src="images/50a569607715b7a1e2785d2ec03cc926%20(1).png" alt="260,000 عملة سوجو" loading="lazy"></div><div class="body"><div class="name">260,000 عملة</div><div class="price"><span class="pv">2,750</span> <small>ج.م</small></div><button class="buy" type="button">شحن فوري</button></div></article>
+    <article class="card"><div class="img"><img src="images/d7d1e5e8eb01cf7880d86d53b00f531b%20(1).png" alt="520,000 عملة سوجو" loading="lazy"></div><div class="body"><div class="name">520,000 عملة</div><div class="price"><span class="pv">5,450</span> <small>ج.م</small></div><button class="buy" type="button">شحن فوري</button></div></article>
+  </section>
 
-      <!-- Products Grid -->
-      <div class="products-grid">
+  <footer class="foot"><b>HYPER TOPUP</b><br>شحن آمن وسريع لجميع تطبيقاتك المفضلة</footer>
+</main>
 
-        <!-- Package 1 -->
-        <div class="product-card">
-          <div class="sugo-card-img-wrapper">
-            <img src="https://i.ibb.co/ccKDKj0m/e848445002feef6a06563212f4f1efce.png" alt="4,800 عملة" loading="lazy">
-          </div>
-          <div class="pkg-title">باقة 4,800 عملة</div>
-          <div class="pkg-price">65 ج.م</div>
-          <button class="charge-btn" onclick="orderCoins('باقة 4,800 عملة', '65 ج.م')">شحن فوري</button>
-        </div>
+<div id="orderModal" class="ov hidden" onclick="if(event.target===this)closeOrder()">
+  <div class="sheet" role="dialog" aria-modal="true" aria-label="إتمام الطلب">
+    <div class="sh"><h3>إتمام طلب الشحن</h3><button class="x" onclick="closeOrder()" aria-label="إغلاق">&times;</button></div>
+    <div class="pk"><img id="pkImg" alt=""><div><b id="pkName"></b><small>SUGO MENA</small></div></div>
 
-        <!-- Package 2 -->
-        <div class="product-card">
-          <div class="sugo-card-img-wrapper">
-            <img src="https://i.ibb.co/6K2ZmDw/e0d9ca885734dbd73ed53350c0b1b9f1.png" alt="9,600 عملة" loading="lazy">
-          </div>
-          <div class="pkg-title">باقة 9,600 عملة</div>
-          <div class="pkg-price">125 ج.م</div>
-          <button class="charge-btn" onclick="orderCoins('باقة 9,600 عملة', '125 ج.م')">شحن فوري</button>
-        </div>
+    <label for="couponInput">كود الخصم (Promo Code)</label>
+    <div class="row"><input type="text" id="couponInput" placeholder="أدخل كود الخصم" autocomplete="off"><button class="btn" type="button" onclick="applyCoupon()">تطبيق</button></div>
+    <div id="couponMessage" class="msg"></div>
 
-        <!-- Package 3 -->
-        <div class="product-card">
-          <div class="sugo-card-img-wrapper">
-            <img src="https://i.ibb.co/Swc5mKWy/6fea5979644f514703b44febe36fb95c.png" alt="25,000 عملة" loading="lazy">
-          </div>
-          <div class="pkg-title">باقة 25,000 عملة</div>
-          <div class="pkg-price">295 ج.م</div>
-          <button class="charge-btn" onclick="orderCoins('باقة 25,000 عملة', '295 ج.م')">شحن فوري</button>
-        </div>
+    <h4>اختر طريقة الدفع</h4>
+    <div class="pay selected" onclick="selectPay(this,'فودافون كاش / أورنج / اتصالات')"><img class="pl" id="logoTelecom" alt=""><span>فودافون كاش / أورنج / اتصالات</span><span class="rec">مستحسن</span></div>
+    <div class="pay" onclick="selectPay(this,'إنستا باي (InstaPay)')"><img class="pl" id="logoInsta" alt=""><span>إنستا باي (InstaPay)</span></div>
 
-        <!-- Package 4 -->
-        <div class="product-card">
-          <div class="sugo-card-img-wrapper">
-            <img src="https://i.ibb.co/kshp50gh/de4b4c74691f2608745f41ffcc2c36ab.png" alt="50,000 عملة" loading="lazy">
-          </div>
-          <div class="pkg-title">باقة 50,000 عملة</div>
-          <div class="pkg-price">580 ج.م</div>
-          <button class="charge-btn" onclick="orderCoins('باقة 50,000 عملة', '580 ج.م')">شحن فوري</button>
-        </div>
-
-        <!-- Package 5 -->
-        <div class="product-card">
-          <div class="sugo-card-img-wrapper">
-            <img src="https://i.ibb.co/B5P3qPcM/1d5b0808513ece6cc0aebb638d69b027.png" alt="150,000 عملة" loading="lazy">
-          </div>
-          <div class="pkg-title">باقة 150,000 عملة</div>
-          <div class="pkg-price">1,650 ج.م</div>
-          <button class="charge-btn" onclick="orderCoins('باقة 150,000 عملة', '1,650 ج.م')">شحن فوري</button>
-        </div>
-
-        <!-- Package 6 -->
-        <div class="product-card">
-          <div class="sugo-card-img-wrapper">
-            <img src="https://i.ibb.co/SwHTZkzK/50a569607715b7a1e2785d2ec03cc926.png" alt="260,000 عملة" loading="lazy">
-          </div>
-          <div class="pkg-title">باقة 260,000 عملة</div>
-          <div class="pkg-price">2,750 ج.م</div>
-          <button class="charge-btn" onclick="orderCoins('باقة 260,000 عملة', '2,750 ج.م')">شحن فوري</button>
-        </div>
-
-        <!-- Package 7 -->
-        <div class="product-card">
-          <div class="sugo-card-img-wrapper">
-            <img src="https://i.ibb.co/CsK9fW7g/d7d1e5e8eb01cf7880d86d53b00f531b.png" alt="520,000 عملة" loading="lazy">
-          </div>
-          <div class="pkg-title">باقة 520,000 عملة</div>
-          <div class="pkg-price">5,450 ج.م</div>
-          <button class="charge-btn" onclick="orderCoins('باقة 520,000 عملة', '5,450 ج.م')">شحن فوري</button>
-        </div>
-
-      </div>
-
+    <div id="det" class="det">
+      <div id="dOldRow"><span>السعر الأصلي</span><span id="dOld"></span></div>
+      <div id="dCpRow" class="hidden"><span>كود الخصم</span><span id="dCp" style="color:var(--green)"></span></div>
+      <div class="t"><span>الإجمالي النهائي</span><span id="dTot"></span></div>
+    </div>
+    <div class="bar">
+      <div onclick="document.getElementById('det').classList.toggle('show')"><small><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 15l6-6 6 6"/></svg>الإجمالي (تفاصيل)</small><b id="total"></b></div>
+      <button class="go" type="button" onclick="proceed()">متابعة عبر واتساب</button>
     </div>
   </div>
+</div>
 
-  <script>
-    // Navigation Function
-    function closeModal() {
-      window.location.href = "apps.html";
-    }
+<script>
+/* ===== إعدادات الصفحة ===== */
+const CFG={
+  game:'Sugo',
+  whatsapp:'201221182845',
+  backPage:'apps.html',
+  logos:{telecom:'https://i.ibb.co/q3TTFChf/Telecom-Brand-Logo-Collage-1.webp',insta:'https://i.ibb.co/qLDjp4Bh/IMG-20261003-225209.webp'}
+};
+const $=id=>document.getElementById(id);
+let cur=null,appliedCoupon=null,discount=0,payMethod='فودافون كاش / أورنج / اتصالات';
 
-    // Direct WhatsApp Order Handler
-    function orderCoins(pkgName, price) {
-      const phone = "201221182845";
-      const message = encodeURIComponent(`مرحباً، أريد شحن عملات تطبيق Sugo:\nالباقة: ${pkgName}\nالسعر: ${price}\nمن متجر HYPER TOPUP`);
-      window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${message}`, '_blank');
-    }
-  </script>
+[['logoTelecom','telecom'],['logoInsta','insta']].forEach(([id,k])=>{const el=$(id);if(CFG.logos[k]){el.src=CFG.logos[k];el.onerror=()=>el.style.display='none'}else el.style.display='none'});
+function closeModal(){location.href=CFG.backPage}
+
+/* الأسعار من النص الظاهر في الكروت */
+const priceOf=c=>parseFloat(c.querySelector('.pv').textContent.replace(/,/g,''))||0;
+document.querySelectorAll('.card').forEach((c,i)=>{
+  c.style.animationDelay=(i*45)+'ms';
+  const open=()=>openOrder(c.querySelector('.name').textContent.trim(),priceOf(c),c.querySelector('img').getAttribute('src'));
+  c.querySelector('.buy').onclick=open;
+});
+
+/* نافذة الطلب */
+function openOrder(name,price,img){
+  cur={name,price};appliedCoupon=null;discount=0;
+  $('pkName').textContent=name;$('pkImg').src=img;
+  
+  $('couponInput').value='';$('couponMessage').className='msg';$('det').classList.remove('show');
+  recalc();$('orderModal').classList.remove('hidden');document.body.style.overflow='hidden';
+}
+function closeOrder(){$('orderModal').classList.add('hidden');document.body.style.overflow=''}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeOrder()});
+function recalc(){
+  const fin=Math.max(0,cur.price-discount),f=n=>'EGP '+n.toFixed(2);
+  $('dOld').textContent=f(cur.price);$('dOldRow').classList.toggle('hidden',!discount);
+  $('dCpRow').classList.toggle('hidden',!discount);$('dCp').textContent='- '+discount.toFixed(2);
+  $('dTot').textContent=$('total').textContent=f(fin);
+}
+function selectPay(el,m){document.querySelectorAll('.pay').forEach(c=>c.classList.remove('selected'));el.classList.add('selected');payMethod=m}
+
+function applyCoupon(){
+  const msg=$('couponMessage'),code=$('couponInput').value.trim().toUpperCase();
+  if(!code)return;
+  if(typeof validateCouponCode!=='function'){msg.className='msg error';msg.textContent='تعذّر تحميل نظام الكوبونات';return}
+  const r=validateCouponCode(code,cur.price,CFG.game);
+  if(!r.success){appliedCoupon=null;discount=0;msg.className='msg error';msg.innerHTML=r.message;recalc();return}
+  appliedCoupon=code;discount=r.discountAmount;recalc();
+  msg.className='msg success';msg.innerHTML=`تم تفعيل الخصم! توفير <b>${discount.toFixed(2)} ج.م</b>`;
+}
+function proceed(){
+  const final=Math.max(0,cur.price-discount),f=n=>n.toFixed(2)+' ج.م';
+  const lines=['مرحباً، أريد شحن عملات SUGO','الباقة: '+cur.name,'السعر: '+f(cur.price)];
+  if(appliedCoupon)lines.push('كود الخصم: '+appliedCoupon,'الإجمالي بعد الخصم: '+f(final));
+  else lines.push('الإجمالي: '+f(final));
+  lines.push('طريقة الدفع: '+payMethod,'من متجر HYPER TOPUP');
+  if(appliedCoupon&&typeof saveUsedCouponGlobally==='function')saveUsedCouponGlobally();
+  const url='https://api.whatsapp.com/send?phone='+CFG.whatsapp+'&text='+encodeURIComponent(lines.join('\n'));
+  if(!window.open(url,'_blank'))location.href=url;
+}
+
+/* بيانات المنتجات لمحركات البحث (من الأسعار الظاهرة) */
+(()=>{const o=[...document.querySelectorAll('.card')].map(c=>({'@type':'Offer',name:c.querySelector('.name').textContent.trime?c.querySelector('.name').textContent.trim():c.querySelector('.name').textContent.trim(),price:String(priceOf(c)),priceCurrency:'EGP',availability:'https://schema.org/InStock'}));
+const s=document.createElement('script');s.type='application/ld+json';
+s.textContent=JSON.stringify({'@context':'https://schema.org/','@type':'Product',name:'عملات SUGO - HYPER TOPUP',brand:{'@type':'Brand',name:'SUGO'},seller:{'@type':'Organization',name:'HYPER TOPUP'},offers:o});document.head.appendChild(s)})();
+</script>
 </body>
 </html>
