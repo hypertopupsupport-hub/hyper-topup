@@ -1,5 +1,5 @@
 {
   "maintenance": false,
   "type": "rest",
-  "schedule": { "enabled": true, "from": "01:00", "to": "08:30" }
+  "schedule": { "enabled": true, "from": "12:30", "to": "08:30" }
 }
