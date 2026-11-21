@@ -1,524 +1,215 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>خدماتنا | HYPER TOPUP</title>
+<meta name="description" content="خدمات HYPER TOPUP لشحن الألعاب والعملات الرقمية والتطبيقات باستخدام ID أو رمز QR، بسهولة وأمان.">
+<meta name="theme-color" content="#05070b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--ink:#05070b;--ink2:#0a0e16;--panel:#0d121c;--gold:#f2b632;--gold2:#ffd36b;--blue:#2f8cff;--text:#f4efe4;--muted:#9aa3b2;--line:rgba(255,255,255,.09)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;background:var(--ink);color:var(--text);line-height:1.9;overflow-x:hidden;padding-bottom:96px}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+.wrap{width:min(100% - 36px,1080px);margin-inline:auto}
 
-    <title>خدماتنا | HYPER TOPUP</title>
+.bar{position:sticky;top:0;z-index:20;background:rgba(5,7,11,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
+.brand{font-weight:700;font-size:17px;display:flex;align-items:center;gap:10px}
+.brand b{color:var(--gold)}
+.brand i{width:26px;height:26px;border-radius:50%;border:2px solid var(--blue);display:inline-block;position:relative}
+.brand i::after{content:"";position:absolute;inset:4px 8px;border:1.5px solid var(--blue);border-radius:50%}
+.back{font-size:13px;color:var(--muted);border:1px solid var(--line);padding:6px 14px;border-radius:999px;transition:.2s}
+.back:hover{color:#1a1204;background:var(--gold);border-color:var(--gold)}
 
-    <meta name="description" content="تعرف على خدمات HYPER TOPUP لشحن الألعاب والعملات الرقمية والتطبيقات باستخدام ID بسهولة وأمان وفي ثوانٍ.">
+.hero{position:relative;padding:60px 0 34px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-30% auto auto -10%;width:560px;height:560px;background:radial-gradient(circle,rgba(47,140,255,.14),transparent 62%);pointer-events:none}
+.hero .wrap{position:relative}
+.kicker{color:var(--gold);font-size:14px;font-weight:600;margin-bottom:8px}
+.hero h1{font-size:clamp(32px,6vw,56px);line-height:1.3;font-weight:700;margin-bottom:14px;max-width:760px}
+.hero p{color:var(--muted);font-size:17px;max-width:600px}
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+.tools{border-bottom:1px solid var(--line);padding:12px 0}
+.add{display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:14px;font-weight:600;color:var(--gold2);border:1px dashed rgba(242,182,50,.55);border-radius:12px;padding:10px 16px;white-space:nowrap;transition:.2s}
+.add:hover{background:rgba(242,182,50,.1);border-style:solid}
+.tools .wrap{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.search{flex:1;min-width:200px;position:relative}
+.search i{position:absolute;inset-inline-start:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px}
+.search input{width:100%;font:inherit;font-size:14px;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 40px 11px 14px;padding-inline-start:40px}
+.search input::placeholder{color:var(--muted)}
+.search input:focus{outline:none;border-color:var(--gold)}
+.chips{display:flex;gap:8px}
+.chip{font:inherit;font-size:14px;font-weight:500;color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:999px;padding:8px 18px;cursor:pointer;transition:.2s}
+.chip[aria-pressed=true]{background:var(--gold);border-color:var(--gold);color:#1a1204;font-weight:600}
 
-    <style>
-        :root {
-            --bg-dark: #0b0f19;
-            --card-bg: #131b2e;
-            --card-border: rgba(255, 255, 255, 0.08);
-            --accent-gold: #f59e0b;
-            --accent-blue: #38bdf8;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-        }
+.how{padding:44px 0 8px}
+.how .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.how .box{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px}
+.how .box i{color:var(--gold);font-size:20px;margin-bottom:8px;display:block}
+.how h3{font-size:17px;margin-bottom:4px}
+.how p{color:var(--muted);font-size:14px;line-height:1.8}
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-tap-highlight-color: transparent;
-        }
+.group{padding:40px 0 4px}
+.group h2{font-size:clamp(22px,3.6vw,30px);font-weight:700;display:flex;align-items:center;gap:12px}
+.group h2 small{font-size:13px;font-weight:500;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:0 12px}
+.group>.wrap>p{color:var(--muted);font-size:15px;margin:4px 0 22px;max-width:620px}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:24px;display:flex;flex-direction:column;transition:border-color .2s,transform .2s}
+.card:hover{border-color:rgba(242,182,50,.45);transform:translateY(-3px)}
+.card.hide{display:none}
+.top{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.ic{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--gold);background:rgba(242,182,50,.1);border:1px solid rgba(242,182,50,.25);flex-shrink:0}
+.top h3{font-size:19px;font-weight:700;line-height:1.4}
+.tag{display:inline-block;font-size:12px;font-weight:600;color:var(--blue);border:1px solid rgba(47,140,255,.35);border-radius:999px;padding:0 10px;margin-top:2px}
+.card>p{color:var(--muted);font-size:14.5px;margin-bottom:16px}
+.meta{margin-top:auto;border-top:1px solid var(--line);padding-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:13px}
+.meta span{display:block;color:var(--muted);font-size:12px}
+.meta strong{font-weight:600;color:var(--text)}
+.go{margin-top:16px;display:flex;align-items:center;justify-content:center;gap:8px;padding:11px;border-radius:12px;font-weight:600;font-size:14px;color:#1a1204;background:linear-gradient(135deg,var(--gold2),var(--gold));transition:.2s}
+.go:hover{box-shadow:0 8px 22px rgba(242,182,50,.28)}
+.empty{display:none;text-align:center;color:var(--muted);padding:56px 0 20px}
+.empty.on{display:block}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                         Roboto, Oxygen, Cantarell, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
-            padding: 20px 16px 100px;
-            direction: rtl;
-            overflow-x: hidden;
-        }
+.faq{padding:56px 0 20px}
+.faq h2{font-size:clamp(22px,3.6vw,30px);margin-bottom:18px}
+details{border-top:1px solid var(--line);padding:16px 0}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:600;font-size:16px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--gold);font-size:22px;line-height:1.3}
+details[open] summary::after{content:"−"}
+details p{color:var(--muted);font-size:14.5px;margin-top:8px;max-width:720px}
 
-        /* العنوان الرئيسي */
-        .hero-section {
-            text-align: center;
-            padding: 20px 10px 30px;
-            animation: fadeIn 0.8s ease-out;
-        }
+.soon{margin:44px 0 0;padding:28px;border:1px solid rgba(242,182,50,.28);border-radius:20px;background:linear-gradient(160deg,rgba(242,182,50,.07),transparent);display:flex;gap:16px;align-items:center}
+.soon i{font-size:26px;color:var(--gold)}
+.soon h3{font-size:18px}
+.soon p{color:var(--muted);font-size:14.5px}
 
-        .hero-title {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--accent-gold);
-            margin-bottom: 10px;
-            letter-spacing: -0.5px;
-        }
+.fab{position:fixed;z-index:30;inset-inline:18px;bottom:calc(16px + env(safe-area-inset-bottom,0px));max-width:480px;margin-inline:auto;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px;border-radius:14px;font-weight:700;font-size:15px;color:#1a1204;background:linear-gradient(135deg,var(--gold2),var(--gold));box-shadow:0 12px 30px rgba(0,0,0,.45)}
 
-        .hero-subtitle {
-            font-size: 14px;
-            color: var(--text-muted);
-            max-width: 520px;
-            margin: 0 auto;
-        }
-
-        /* عناوين الأقسام */
-        .category-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 30px 0 16px;
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--accent-blue);
-        }
-
-        .category-header i {
-            font-size: 20px;
-        }
-
-        /* قائمة الخدمات */
-        .services-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        /* كارت الخدمة */
-        .service-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 18px;
-            padding: 20px;
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-
-            backdrop-filter: blur(10px);
-
-            transition:
-                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                border-color 0.3s ease,
-                box-shadow 0.3s ease;
-
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .service-card:active,
-        .service-card:hover {
-            transform: translateY(-4px) scale(1.01);
-            border-color: rgba(245, 158, 11, 0.4);
-            box-shadow: 0 15px 30px -5px rgba(245, 158, 11, 0.15);
-        }
-
-        /* أيقونة الخدمة */
-        .service-icon {
-            width: 50px;
-            height: 50px;
-            min-width: 50px;
-
-            background: linear-gradient(
-                135deg,
-                rgba(245, 158, 11, 0.2),
-                rgba(56, 189, 248, 0.1)
-            );
-
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            border-radius: 14px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            color: var(--accent-gold);
-            font-size: 22px;
-        }
-
-        .service-content {
-            flex: 1;
-        }
-
-        .service-title {
-            font-size: 17px;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 6px;
-        }
-
-        .service-desc {
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        /* زر العودة */
-        .sticky-footer-btn {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            max-width: 500px;
-            margin: 0 auto;
-
-            background: linear-gradient(
-                135deg,
-                #f59e0b,
-                #d97706
-            );
-
-            color: #000;
-            text-align: center;
-            padding: 14px;
-            border-radius: 14px;
-
-            font-weight: 800;
-            font-size: 15px;
-            text-decoration: none;
-
-            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
-
-            z-index: 100;
-            transition: transform 0.2s ease;
-        }
-
-        .sticky-footer-btn:active {
-            transform: scale(0.97);
-        }
-
-        /* أنيميشن الظهور */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .service-card.reveal {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+@media(max-width:720px){
+  .hero{padding:38px 0 22px}
+  .cards,.how .grid{grid-template-columns:1fr}
+  .tools .wrap{gap:10px}
+  .soon{flex-direction:column;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){.card,.go{transition:none}.card:hover{transform:none}html{scroll-behavior:auto}}
+</style>
 </head>
-
 <body>
 
-    <!-- العنوان الرئيسي -->
-    <div class="hero-section">
-        <h1 class="hero-title">خدمات HYPER TOPUP</h1>
-
-        <p class="hero-subtitle">
-            اشحن ألعابك وعملاتك الرقمية بسهولة وأمان باستخدام الـID،
-            مع تنفيذ الطلبات بسرعة وفي ثوانٍ.
-        </p>
-    </div>
-
-
-    <!-- ========================= -->
-    <!-- قسم الألعاب -->
-    <!-- ========================= -->
-
-    <div class="category-header">
-        <i class="fas fa-gamepad"></i>
-        <span>شحن الألعاب</span>
-    </div>
-
-    <div class="services-list">
-
-        <!-- PUBG MOBILE -->
-        <div class="service-card">
-            <div class="service-icon">
-                <i class="fas fa-crosshairs"></i>
-            </div>
-
-            <div class="service-content">
-                <div class="service-title">PUBG MOBILE</div>
-
-                <div class="service-desc">
-                    شحن شدات PUBG MOBILE بسهولة وأمان باستخدام
-                    الـID الخاص باللاعب.
-                </div>
-            </div>
-        </div>
-
-
-        <!-- FREE FIRE -->
-        <div class="service-card">
-            <div class="service-icon">
-                <i class="fas fa-fire"></i>
-            </div>
-
-            <div class="service-content">
-                <div class="service-title">Free Fire</div>
-
-                <div class="service-desc">
-                    شحن جواهر Free Fire بسرعة وأمان باستخدام
-                    الـID الخاص بالحساب.
-                </div>
-            </div>
-        </div>
-
-
-        <!-- FC MOBILE -->
-        <div class="service-card">
-            <div class="service-icon">
-                <i class="fas fa-futbol"></i>
-            </div>
-
-            <div class="service-content">
-                <div class="service-title">FC Mobile</div>
-
-                <div class="service-desc">
-                    شحن المنتجات والنقاط المتاحة في FC Mobile
-                    باستخدام ID اللاعب.
-                </div>
-            </div>
-        </div>
-
-
-        <!-- CALL OF DUTY -->
-        <div class="service-card">
-            <div class="service-icon">
-                <i class="fas fa-shield-halved"></i>
-            </div>
-
-            <div class="service-content">
-                <div class="service-title">Call of Duty Mobile</div>
-
-                <div class="service-desc">
-                    شحن نقاط CP والباقات المتاحة في Call of Duty Mobile
-                    باستخدام ID اللاعب.
-                </div>
-            </div>
-        </div>
-
-
-        <!-- GANGSTAR -->
-        <div class="service-card">
-            <div class="service-icon">
-                <i class="fas fa-mask"></i>
-            </div>
-
-            <div class="service-content">
-                <div class="service-title">Gangstar Mirage City</div>
-
-                <div class="service-desc">
-                    شحن العملات والباقات المتاحة في Gangstar Mirage City
-                    باستخدام ID اللاعب.
-                </div>
-            </div>
-        </div>
-
-
-        <!-- DELTA FORCE -->
-        <div class="service-card">
-            <div class="service-icon">
-                <i class="fas fa-jet-fighter"></i>
-            </div>
-
-            <div class="service-content">
-                <div class="service-title">Delta Force</div>
-
-                <div class="service-desc">
-                    شحن المنتجات والباقات المتاحة في Delta Force
-                    باستخدام ID اللاعب.
-                </div>
-            </div>
-        </div>
-
-
-        <!-- LUDO WORLD -->
-        <div class="service-card">
-            <div class="service-icon">
-                <i class="fas fa-dice"></i>
-            </div>
-
-            <div class="service-content">
-                <div class="service-title">Ludo World</div>
-
-                <div class="service-desc">
-                    شحن العملات والمنتجات المتاحة في Ludo World
-                    باستخدام ID اللاعب.
-                </div>
-            </div>
-        </div>
-
-
-        <!-- HONOR OF KINGS -->
-        <div class="service-card">
-            <div class="service-icon">
-                <i class="fas fa-crown"></i>
-            </div>
-
-            <div class="service-content">
-                <div class="service-title">Honor of Kings</div>
-
-                <div class="service-desc">
-                    شحن المنتجات والباقات المتاحة في Honor of Kings
-                    باستخدام ID اللاعب.
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-
-    <!-- ========================= -->
-    <!-- قسم العملات والتطبيقات -->
-    <!-- ========================= -->
-
-    <div class="category-header">
-        <i class="fas fa-mobile-screen-button"></i>
-        <span>شحن العملات والتطبيقات</span>
-    </div>
-
-    <div class="services-list">
-
-        <!-- TIKTOK -->
-        <div class="service-card">
-            <div class="service-icon">
-                <i class="fab fa-tiktok"></i>
-            </div>
-
-            <div class="service-content">
-                <div class="service-title">TikTok Coins</div>
-
-                <div class="service-desc">
-    شحن عملات TikTok بسهولة وأمان عبر مسح رمز QR الخاص بالحساب.
-                </div>
-            </div>
-        </div>
-
-
-        <!-- BIGO -->
-        <div class="service-card">
-            <div class="service-icon">
-                <i class="fas fa-video"></i>
-            </div>
-
-            <div class="service-content">
-                <div class="service-title">Bigo Live</div>
-
-                <div class="service-desc">
-                    شحن ماسات Bigo Live بسرعة وأمان باستخدام
-                    الـID الخاص بالحساب.
-                </div>
-            </div>
-        </div>
-
-
-        <!-- YOHO -->
-        <div class="service-card">
-            <div class="service-icon">
-                <i class="fas fa-headset"></i>
-            </div>
-
-            <div class="service-content">
-                <div class="service-title">YOHO VOICE</div>
-
-                <div class="service-desc">
-                    شحن عملات YOHO VOICE باستخدام
-                    الـID الخاص بالمستخدم.
-                </div>
-            </div>
-        </div>
-
-
-        <!-- SUGO -->
-        <div class="service-card">
-            <div class="service-icon">
-                <i class="fas fa-comments"></i>
-            </div>
-
-            <div class="service-content">
-                <div class="service-title">SUGO CHAT</div>
-
-                <div class="service-desc">
-                    شحن عملات SUGO CHAT والباقات المتاحة
-                    باستخدام الـID الخاص بالحساب.
-                </div>
-            </div>
-        </div>
-
-    </div>
-<!-- تنبيه المنتجات الجديدة -->
-<div style="
-    text-align: center;
-    margin: 35px auto 25px;
-    padding: 16px 20px;
-    max-width: 520px;
-    border: 1px solid rgba(56, 189, 248, 0.18);
-    border-radius: 16px;
-    background: rgba(56, 189, 248, 0.05);
-">
-    <i class="fas fa-rocket" style="
-        color: var(--accent-gold);
-        font-size: 20px;
-        margin-bottom: 8px;
-    "></i>
-
-    <div style="
-        font-size: 15px;
-        font-weight: 700;
-        color: #ffffff;
-        margin-bottom: 4px;
-    ">
-        قريبًا 🚀
-    </div>
-
-    <div style="
-        font-size: 13px;
-        color: var(--text-muted);
-        line-height: 1.6;
-    ">
-        سيتم إضافة منتجات وخدمات رقمية جديدة إلى HYPER TOPUP قريبًا.
-    </div>
-</div>
-
-    <!-- زر العودة -->
-    <a href="index.html" class="sticky-footer-btn">
-        <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
-        العودة للرئيسية
-    </a>
-
-
-    <!-- أنيميشن ظهور الخدمات -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-
-            const cards = document.querySelectorAll(".service-card");
-
-            const observer = new IntersectionObserver((entries) => {
-
-                entries.forEach((entry, index) => {
-
-                    if (entry.isIntersecting) {
-
-                        setTimeout(() => {
-                            entry.target.classList.add("reveal");
-                        }, index * 70);
-
-                        observer.unobserve(entry.target);
-                    }
-
-                });
-
-            }, {
-                threshold: 0.1
-            });
-
-            cards.forEach(card => {
-                observer.observe(card);
-            });
-
-        });
-    </script>
-
+<div class="bar"><div class="wrap">
+  <a class="brand" href="index.html"><i></i><span>HYPER <b>TOPUP</b></span></a>
+  <a class="back" href="index.html">الرئيسية</a>
+</div></div>
+
+<header class="hero"><div class="wrap">
+  <div class="kicker">خدماتنا</div>
+  <h1>اشحن ألعابك وتطبيقاتك من مكان واحد</h1>
+  <p>12 خدمة شحن تعمل بمعرّف اللاعب (ID) أو رمز QR، مع دفع إلكتروني ودعم متاح طوال الأسبوع.</p>
+</div></header>
+
+<div class="tools"><div class="wrap">
+  <label class="search"><i class="fas fa-magnifying-glass"></i><input id="q" type="search" placeholder="ابحث عن لعبة أو تطبيق" aria-label="بحث في الخدمات"></label>
+  <div class="chips" role="group" aria-label="تصفية الخدمات">
+    <button class="chip" data-f="all" aria-pressed="true">الكل</button>
+    <button class="chip" data-f="games" aria-pressed="false">ألعاب</button>
+    <button class="chip" data-f="apps" aria-pressed="false">تطبيقات</button>
+  </div>
+  <a class="add" id="addGame" href="chat.html"><i class="fas fa-plus"></i> إضافة لعبة</a>
+</div></div>
+
+<section class="how"><div class="wrap">
+  <div class="kicker">قبل ما تطلب</div>
+  <div class="grid">
+    <div class="box"><i class="fas fa-id-card"></i><h3>الشحن بمعرّف اللاعب (ID)</h3><p>معظم الخدمات تحتاج الـID فقط. لا نطلب كلمة مرور حسابك أبدًا، فتأكد من كتابة الـID بشكل صحيح قبل الدفع.</p></div>
+    <div class="box"><i class="fas fa-qrcode"></i><h3>الشحن برمز QR</h3><p>خدمة TikTok Coins تتم عبر مسح رمز QR الخاص بالحساب بدل الـID، وتظهر لك خطوات الطلب داخل المتجر.</p></div>
+  </div>
+</div></section>
+
+<section class="group" data-g="games"><div class="wrap">
+  <h2>شحن الألعاب <small>8 خدمات</small></h2>
+  <p>اختر لعبتك، أدخل الـID، وأكمل الدفع. نبدأ التنفيذ بعد تأكيد الدفع.</p>
+  <div class="cards">
+
+    <article class="card" data-k="pubg mobile ببجي شدات uc" data-t="games"><div class="top"><div class="ic"><i class="fas fa-crosshairs"></i></div><div><h3>PUBG MOBILE</h3><span class="tag">لعبة</span></div></div><p>شحن شدات PUBG MOBILE بسهولة وأمان باستخدام الـID الخاص باللاعب.</p><div class="meta"><div><span>تحصل على</span><strong>الشدات</strong></div><div><span>المطلوب</span><strong>ID اللاعب</strong></div></div><a class="go" href="HYPER_TOPUP_PUBG_MOBILE.html">اطلب الآن <i class="fas fa-arrow-left"></i></a></article>
+
+    <article class="card" data-k="free fire فري فاير جواهر" data-t="games"><div class="top"><div class="ic"><i class="fas fa-fire"></i></div><div><h3>Free Fire</h3><span class="tag">لعبة</span></div></div><p>شحن جواهر Free Fire بسرعة وأمان باستخدام الـID الخاص بالحساب.</p><div class="meta"><div><span>تحصل على</span><strong>الجواهر</strong></div><div><span>المطلوب</span><strong>ID الحساب</strong></div></div><a class="go" href="freefire.html">اطلب الآن <i class="fas fa-arrow-left"></i></a></article>
+
+    <article class="card" data-k="call of duty mobile كول اوف ديوتي cp" data-t="games"><div class="top"><div class="ic"><i class="fas fa-shield-halved"></i></div><div><h3>Call of Duty Mobile</h3><span class="tag">لعبة</span></div></div><p>شحن نقاط CP والباقات المتاحة في Call of Duty Mobile باستخدام ID اللاعب.</p><div class="meta"><div><span>تحصل على</span><strong>نقاط CP والباقات</strong></div><div><span>المطلوب</span><strong>ID اللاعب</strong></div></div><a class="go" href="codm.html">اطلب الآن <i class="fas fa-arrow-left"></i></a></article>
+
+    <article class="card" data-k="fc mobile اف سي موبايل فيفا نقاط" data-t="games"><div class="top"><div class="ic"><i class="fas fa-futbol"></i></div><div><h3>FC Mobile</h3><span class="tag">لعبة</span></div></div><p>شحن المنتجات والنقاط المتاحة في FC Mobile باستخدام ID اللاعب.</p><div class="meta"><div><span>تحصل على</span><strong>النقاط والمنتجات</strong></div><div><span>المطلوب</span><strong>ID اللاعب</strong></div></div><a class="go" href="fcmobile.html">اطلب الآن <i class="fas fa-arrow-left"></i></a></article>
+
+    <article class="card" data-k="gangstar mirage city جانجستار" data-t="games"><div class="top"><div class="ic"><i class="fas fa-mask"></i></div><div><h3>Gangstar Mirage City</h3><span class="tag">لعبة</span></div></div><p>شحن العملات والباقات المتاحة في Gangstar Mirage City باستخدام ID اللاعب.</p><div class="meta"><div><span>تحصل على</span><strong>العملات والباقات</strong></div><div><span>المطلوب</span><strong>ID اللاعب</strong></div></div><a class="go" href="mirage.html">اطلب الآن <i class="fas fa-arrow-left"></i></a></article>
+
+    <article class="card" data-k="delta force دلتا فورس" data-t="games"><div class="top"><div class="ic"><i class="fas fa-jet-fighter"></i></div><div><h3>Delta Force</h3><span class="tag">لعبة</span></div></div><p>شحن المنتجات والباقات المتاحة في Delta Force باستخدام ID اللاعب.</p><div class="meta"><div><span>تحصل على</span><strong>المنتجات والباقات</strong></div><div><span>المطلوب</span><strong>ID اللاعب</strong></div></div><a class="go" href="deltaforce.html">اطلب الآن <i class="fas fa-arrow-left"></i></a></article>
+
+    <article class="card" data-k="ludo world لودو" data-t="games"><div class="top"><div class="ic"><i class="fas fa-dice"></i></div><div><h3>Ludo World</h3><span class="tag">لعبة</span></div></div><p>شحن العملات والمنتجات المتاحة في Ludo World باستخدام ID اللاعب.</p><div class="meta"><div><span>تحصل على</span><strong>العملات والمنتجات</strong></div><div><span>المطلوب</span><strong>ID اللاعب</strong></div></div><a class="go" href="ludo.html">اطلب الآن <i class="fas fa-arrow-left"></i></a></article>
+
+    <article class="card" data-k="honor of kings هونر اوف كينجز" data-t="games"><div class="top"><div class="ic"><i class="fas fa-crown"></i></div><div><h3>Honor of Kings</h3><span class="tag">لعبة</span></div></div><p>شحن المنتجات والباقات المتاحة في Honor of Kings باستخدام ID اللاعب.</p><div class="meta"><div><span>تحصل على</span><strong>المنتجات والباقات</strong></div><div><span>المطلوب</span><strong>ID اللاعب</strong></div></div><a class="go" href="hok.html">اطلب الآن <i class="fas fa-arrow-left"></i></a></article>
+
+  </div>
+</div></section>
+
+<section class="group" data-g="apps"><div class="wrap">
+  <h2>العملات والتطبيقات <small>4 خدمات</small></h2>
+  <p>شحن عملات تطبيقات البث والدردشة بالـID أو بمسح رمز QR.</p>
+  <div class="cards">
+
+    <article class="card" data-k="tiktok coins تيك توك عملات qr" data-t="apps"><div class="top"><div class="ic"><i class="fab fa-tiktok"></i></div><div><h3>TikTok Coins</h3><span class="tag">تطبيق</span></div></div><p>شحن عملات TikTok بسهولة وأمان عبر مسح رمز QR الخاص بالحساب.</p><div class="meta"><div><span>تحصل على</span><strong>عملات TikTok</strong></div><div><span>المطلوب</span><strong>رمز QR</strong></div></div><a class="go" href="tiktok.html">اطلب الآن <i class="fas fa-arrow-left"></i></a></article>
+
+    <article class="card" data-k="bigo live بيجو لايف ماسات" data-t="apps"><div class="top"><div class="ic"><i class="fas fa-video"></i></div><div><h3>Bigo Live</h3><span class="tag">تطبيق</span></div></div><p>شحن ماسات Bigo Live بسرعة وأمان باستخدام الـID الخاص بالحساب.</p><div class="meta"><div><span>تحصل على</span><strong>الماسات</strong></div><div><span>المطلوب</span><strong>ID الحساب</strong></div></div><a class="go" href="bigo.html">اطلب الآن <i class="fas fa-arrow-left"></i></a></article>
+
+    <article class="card" data-k="yoho voice يوهو عملات" data-t="apps"><div class="top"><div class="ic"><i class="fas fa-headset"></i></div><div><h3>YOHO VOICE</h3><span class="tag">تطبيق</span></div></div><p>شحن عملات YOHO VOICE باستخدام الـID الخاص بالمستخدم.</p><div class="meta"><div><span>تحصل على</span><strong>العملات</strong></div><div><span>المطلوب</span><strong>ID المستخدم</strong></div></div><a class="go" href="yoho.html">اطلب الآن <i class="fas fa-arrow-left"></i></a></article>
+
+    <article class="card" data-k="sugo chat سوجو شات عملات" data-t="apps"><div class="top"><div class="ic"><i class="fas fa-comments"></i></div><div><h3>SUGO CHAT</h3><span class="tag">تطبيق</span></div></div><p>شحن عملات SUGO CHAT والباقات المتاحة باستخدام الـID الخاص بالحساب.</p><div class="meta"><div><span>تحصل على</span><strong>العملات والباقات</strong></div><div><span>المطلوب</span><strong>ID الحساب</strong></div></div><a class="go" href="sugo.html">اطلب الآن <i class="fas fa-arrow-left"></i></a></article>
+
+  </div>
+</div></section>
+
+<div class="wrap"><div class="empty" id="empty"><i class="fas fa-circle-info"></i><p>مفيش خدمة بالاسم ده دلوقتي. جرّب اسم تاني أو اختر "الكل".</p></div></div>
+
+<section class="faq"><div class="wrap">
+  <h2>أسئلة شائعة</h2>
+  <details><summary>إزاي أعرف الـID بتاعي؟</summary><p>الـID بيظهر داخل اللعبة أو التطبيق في صفحة الملف الشخصي. راجعه كويس قبل الدفع، لأن الشحن بيتم على الـID اللي بتكتبه.</p></details>
+  <details><summary>هل محتاج أدخل كلمة مرور حسابي؟</summary><p>لا. خدمات الـID بتحتاج الـID فقط، ومش بنطلب كلمة مرور حسابك أبدًا.</p></details>
+  <details><summary>الطلب بيتنفذ إمتى؟</summary><p>بعد تأكيد الدفع بنبدأ التنفيذ بأسرع وقت ممكن، وغالبًا خلال ثوانٍ بحسب الخدمة ونظام الشحن.</p></details>
+  <details><summary>إيه طرق الدفع المتاحة؟</summary><p>Vodafone Cash وOrange Cash وEtisalat Cash وInstaPay، وهنضيف طرق تانية قريب.</p></details>
+  <details><summary>لو حصلت مشكلة في طلبي أعمل إيه؟</summary><p>المساعد الذكي للدعم الفني متاح 24 ساعة طوال الأسبوع، وتقدر تتواصل مباشرة معانا من المتجر.</p></details>
+
+  <div class="soon"><i class="fas fa-rocket"></i><div><h3>خدمات جديدة قريبًا</h3><p>بنضيف ألعاب ومنتجات رقمية جديدة باستمرار، تابع المتجر عشان تعرف أول بأول.</p></div></div>
+</div></section>
+
+<a class="fab" href="index.html"><i class="fas fa-arrow-right"></i> العودة للرئيسية</a>
+
+<script>
+/* غيّر اسم ملف شات الذكاء الاصطناعي هنا لو اسمه مختلف */
+var CHAT_URL = "https://go.crisp.chat/chat/embed/?website_id=0316b84d-cdc3-41b7-b06d-1b7a44f2b524";
+document.getElementById('addGame').href = CHAT_URL;
+(function(){
+  var q=document.getElementById('q'),cards=[].slice.call(document.querySelectorAll('.card')),
+      groups=[].slice.call(document.querySelectorAll('.group')),chips=[].slice.call(document.querySelectorAll('.chip')),
+      empty=document.getElementById('empty'),f='all';
+  function run(){
+    var s=q.value.trim().toLowerCase(),shown=0;
+    cards.forEach(function(c){
+      var ok=(f==='all'||c.dataset.t===f)&&(!s||(c.dataset.k+' '+c.textContent).toLowerCase().indexOf(s)>-1);
+      c.classList.toggle('hide',!ok);if(ok)shown++;
+    });
+    groups.forEach(function(g){g.style.display=g.querySelector('.card:not(.hide)')?'':'none'});
+    empty.classList.toggle('on',!shown);
+  }
+  q.addEventListener('input',run);
+  chips.forEach(function(b){b.addEventListener('click',function(){
+    f=b.dataset.f;chips.forEach(function(x){x.setAttribute('aria-pressed',x===b)});run();
+  })});
+})();
+</script>
 </body>
 </html>
