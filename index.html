@@ -574,10 +574,308 @@ html{scrollbar-width:none;-ms-overflow-style:none}
 </div>
 
 
- <section class="promo">
-  <strong>🔥 عروض الصيف الحصرية — اشحن الآن واحصل على بونص إضافي! 🔥</strong>
-  <span>عروض محدودة لفترة محدودة • اطلب خدمتك الآن</span>
- </section>
+ <section class="join-promo" dir="rtl" aria-label="انضم إلى قناة HYPER TOPUP">
+
+  <div class="slider">
+
+    <!-- البانر الأول: الانضمام للعائلة -->
+    <div class="slide slide-1 active">
+      <img src="images/1000149159-Picsart-BackgroundRemover.png"
+           alt="انضم إلى عائلة HYPER TOPUP">
+
+      <div class="text-side">
+        <p class="promo-text">
+          انضم إلى عائلة <span>HYPER TOPUP</span>
+        </p>
+        <p class="promo-desc">
+          خليك واحد من مجتمعنا، وكن أول من يعرف كل جديد!
+        </p>
+      </div>
+    </div>
+
+    <!-- البانر الثاني: الأخبار والتحديثات -->
+    <div class="slide slide-2">
+      <img src="images/1000149161-Picsart-BackgroundRemover.png"
+           alt="أخبار وتحديثات HYPER TOPUP">
+
+      <div class="text-side">
+        <p class="promo-text">
+          خليك دايمًا <span>في قلب الحدث!</span>
+        </p>
+        <p class="promo-desc">
+          تابع أخبار المتجر، المنتجات الجديدة وآخر التحديثات أول بأول.
+        </p>
+      </div>
+    </div>
+
+    <!-- البانر الثالث: العروض والخصومات -->
+    <div class="slide slide-3">
+      <img src="images/1000149160-Picsart-BackgroundRemover.png"
+           alt="عروض وخصومات HYPER TOPUP">
+
+      <div class="text-side">
+        <p class="promo-text">
+          فرصتك للتوفير مع <span>HYPER TOPUP!</span>
+        </p>
+        <p class="promo-desc">
+          اكتشف العروض الحصرية وأكواد الخصم واستمتع بمميزات متجددة.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- زر الانضمام -->
+  <a class="join-btn"
+     href="https://whatsapp.com/channel/0029VbEHzFNId7nS3y6asp25"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="انضم إلى قناة HYPER TOPUP على واتساب">
+
+    <svg class="wa-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1s-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4c.6.3 1.1.4 1.5.5a3.6 3.6 0 0 0 1.7.1 2.8 2.8 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/>
+    </svg>
+
+    <span class="wa-label">انضم للقناة</span>
+  </a>
+
+</section>
+
+<style>
+.join-promo {
+  position: relative;
+  margin: 12px 0;
+  padding: 8px 10px 36px;
+  border-radius: 16px;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(39,65,125,.16), transparent 75%),
+    linear-gradient(135deg, #0b1020, #151c34 60%, #0c1225);
+  border: 1px solid rgba(214,173,85,.65);
+  box-shadow:
+    0 0 14px rgba(255,200,80,.10),
+    inset 0 0 14px rgba(255,255,255,.015);
+  min-height: 100px;
+  overflow: hidden;
+  isolation: isolate;
+  }
+
+.join-promo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(255,215,120,.035) 50%,
+    transparent 80%
+  );
+  z-index: -1;
+}
+
+/* منطقة السلايدر */
+.join-promo .slider {
+  position: relative;
+  height: 80px;
+}
+
+.join-promo .slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .55s ease, visibility .55s ease;
+}
+
+.join-promo .slide.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* النصوص */
+.join-promo .text-side {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  padding: 0 4px;
+}
+
+.join-promo .promo-text {
+  margin: 0 0 7px;
+  font-size: clamp(.85rem, 3.5vw, 1.12rem);
+  font-weight: 900;
+  line-height: 1.45;
+  color: #fff;
+  text-shadow: 0 0 9px rgba(255,200,80,.22);
+}
+
+.join-promo .promo-text span {
+  background: linear-gradient(
+    90deg,
+    #ffd36b,
+    #fff4bd,
+    #e9b84d
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.join-promo .promo-desc {
+  margin: 0 auto;
+  max-width: 340px;
+  color: #c5ccdc;
+  font-size: clamp(.62rem, 2.7vw, .77rem);
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+/* الصور */
+.join-promo {
+  overflow: visible;
+}
+
+.join-promo .slide-1 img {
+  height: 122px;
+  width: 116px;
+  margin-top: -0px;
+  margin-right: -6px;
+  }
+
+/* دخول العناصر */
+@keyframes hyperImageIn {
+  from {
+    transform: translateX(65px) scale(.8);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes hyperTextIn {
+  from {
+    transform: translateX(-45px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.join-promo .slide.active img {
+  animation: hyperImageIn .8s ease-out both;
+}
+
+.join-promo .slide.active .promo-text {
+  animation: hyperTextIn .65s ease-out .12s both;
+}
+
+.join-promo .slide.active .promo-desc {
+  animation: hyperTextIn .65s ease-out .25s both;
+}
+
+/* زر واتساب */
+.join-promo .join-btn {
+  position: absolute;
+  left: 12px;
+  bottom: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 8px 13px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: .72rem;
+  box-shadow: 0 0 12px rgba(37,211,102,.35);
+  z-index: 5;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.join-promo .join-btn:active {
+  transform: scale(.94);
+}
+
+.join-promo .wa-icon {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+
+.join-promo .wa-label {
+  line-height: 1;
+}
+
+/* شاشات الموبايل الصغيرة */
+@media (max-width: 380px) {
+  .join-promo {
+    padding-inline: 8px;
+  }
+
+  .join-promo .slide {
+    gap: 5px;
+  }
+
+  .join-promo .slide img {
+    width: 90px;
+    height: 85px;
+  }
+
+  .join-promo .slide-1 img {
+    width: 100px;
+    height: 112px;
+  }
+
+  .join-promo .promo-text {
+    font-size: .82rem;
+  }
+
+  .join-promo .promo-desc {
+    font-size: .61rem;
+  }
+}
+
+/* احترام إعداد تقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+  .join-promo *,
+  .join-promo *::before {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+</style>
+
+<script>
+(function () {
+  const promo = document.querySelector('.join-promo');
+  if (!promo) return;
+
+  const slides = promo.querySelectorAll('.slide');
+  if (slides.length < 2) return;
+
+  let current = 0;
+
+  setInterval(() => {
+    slides[current].classList.remove('active');
+
+    current = (current + 1) % slides.length;
+
+    slides[current].classList.add('active');
+  }, 4000);
+
+})();
+</script>
 
 <h1 class="section-title">خدماتنا الموثقة</h1>
  <section class="categories" id="services" aria-label="الأقسام">
